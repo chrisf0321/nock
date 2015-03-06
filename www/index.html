@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script type="text/javascript">
+            window.addEventListener('load', function() {
+                document.getElementById('game').addEventListener('touchmove', function(e) {
+                    e.preventDefault();
+                }, false);
+            }, false);
+        </script>
+        <title>Tec-Tec</title>
+    </head>
+    <body>
+        <div class="app">
+            <div data-role="page" id="home" data-theme="b">
+                <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                    <a href="#popupSettings" style='text-decoration: none' data-rel='popup' data-position-to='window' data-transition="slideup" class="ui-btn ui-btn-right ui-icon-gear ui-corner-all ui-btn-icon-left ui-btn-icon-notext"></a>
+                    <h1 class="ui-title"><span data-translate="Tec-Tec">Tec-Tec</span></h1>
+                </div>
+                <div data-role="content">
+                    <div id="tot"></div>
+                    <br />
+                    <a href="#matches" data-transition="slide" class="ui-btn ui-icon-carat-r ui-corner-all ui-btn-icon-right"><span data-translate="Play Game!">Play Game!</span></a>
+                    <a href="#inst" data-transition="slide" class="ui-btn ui-icon-carat-r ui-corner-all ui-btn-icon-right"><span data-translate="How to Play">How to Play</span></a>
+                    <a href="#resources" data-transition="slide" class="ui-btn ui-icon-carat-r ui-corner-all ui-btn-icon-right"><span data-translate="Crisis Support">Crisis Support</span></a>
+                    <a href="#about" data-transition="slide" class="ui-btn ui-icon-carat-r ui-corner-all ui-btn-icon-right"><span data-translate="Disclaimer">Disclaimer</span></a>
+                </div>
+                <div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="min-width:290px;">
+                    <div data-role="header" data-theme="b">
+                        <h1><span data-translate="gmStats">Game Stats</span></h1>
+                    </div>
+                    <div id="stat" role="main" class="ui-content">
+                        <div id="scr"></div>
+                        <div id="gam"></div>
+                        <div id="totPts"></div>
+                        <div id="avg"></div>
+                        <a href="#" class="ui-btn ui-corner-all ui-shadow" data-rel="back" data-transition="slidedown"><span data-translate="back">Back</span></a>
+                    </div>
+                </div>
+                <div data-role="popup" id="popupSettings" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="min-width:200px;">
+                    <div data-role="header" data-theme="b">
+                        <h1>Language</h1>
+                    </div>
+                    <ul data-role="listview" data-inset="true" style="min-width:200px;">
+                        <li data-icon="false"><a id="hmImg" href="#" onclick="langChg('en')" data-rel="back" data-transition="slidedown">English</a></li>
+                        <li data-icon="false"><a id="hmImg1" href="#" onclick="langChg('es')" data-rel="back" data-transition="slidedown">Español</a></li>
+                        <li data-icon="false"><a id="hmImg2" href="#" onclick="langChg('pt')" data-rel="back" data-transition="slidedown">Português</a></li>
+                        <li data-icon="false"><a id="hmImg3" href="#" onclick="langChg('hi')" data-rel="back" data-transition="slidedown">हिंदी</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div data-role="page" id="about" data-theme="b">
+                <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                    <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-arrow-l ui-corner-all ui-btn-icon-left ui-btn-icon-notext"></a>
+                    <h1><span data-translate="Disclaimer">Disclaimer</span></h1>
+                </div>
+                <div data-role="content">
+                    <p>About and Disclaimer Info goes here!</p>
+                </div>
+            </div>
+            <div data-role="page" id="resources" data-theme="b">
+                <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                    <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-arrow-l ui-corner-all ui-btn-icon-left ui-btn-icon-notext"></a>
+                    <h1><span data-translate="Resources">Resources</span></h1>
+                </div>
+                <div data-role="content">
+                    <h3><strong><span data-translate="res1">If you are feeling suicidal, please contact:</span></strong></h3>
+                    <p><ins><span data-translate="res2">American Users</span></ins>:</p>
+                    <ul>
+                        <li><span data-translate="res3">Suicide Prevention Hotline: </span><a onclick="window.open('tel:18002738255', '_system')">1-800-273-TALK (8255)</a></li>
+                        <li><span data-translate="res4">HopeLine Suicide Hotline: </span><a onclick="window.open('tel:18007842433', '_system')">1-800-SUICIDE (1-800-784-2433)</a></li>
+                        <li><span data-translate="res5">Call </span><a onclick="window.open('tel:911', '_system')">911</a></li>
+                    </ul>
+                    <p><ins><span data-translate="res6">American and Non-American Users</span></ins>:</p>
+                    <ul>
+                        <li><span data-translate="res7">Your local psychiatric hospital's walk-in clinic</span></li>
+                        <li><span data-translate="res8">Your local hospital's emergency room</span></li>
+                        <li><span data-translate="res9">Your local urgent care center or clinic</span></li>
+                        <li><a onclick="window.open('http://www.suicide.org/international-suicide-hotlines.html', '_blank', 'location=yes')"><span data-translate="res10">International suicide hotlines</span></a></li>
+                        <li><a onclick="window.open('http://www.iasp.info/resources/Crisis_Centres/', '_blank', 'location=yes')"><span data-translate="res11">International suicide crisis center information</span></a></li>
+                        <li><a onclick="window.open('http://www.befrienders.org/', '_blank', 'location=yes')"><span data-translate="res12">International suicide crisis lines</span></a></li>
+                    </ul>                   
+                </div>
+            </div>
+            <div data-role="page" id="inst" data-theme="b">
+                <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                    <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-arrow-l ui-corner-all ui-btn-icon-left ui-btn-icon-notext"></a>
+                    <h1><span data-translate="inst">Instructions</span></h1>
+                    <a href="#inst2" data-transition="slide" class="ui-btn ui-icon-arrow-r ui-corner-all ui-btn-icon-right ui-btn-icon-notext"></a>
+                </div>
+                <div data-role="content">
+                    <h1 id="in1"><strong><span data-translate="inst1">Tec-Tec is a matching game</span></strong></h1>
+                    <p id="in2"><strong><span data-translate="inst2">The goal is to match one image/word with another image/word within a grid like this:</span></strong></p>
+                    <div class="ui-grid-c">
+                        <div class="ui-block-a">
+                            <img src="img/b1.jpg"/>
+                        </div>
+                        <div class="ui-block-b">
+                            <img src="img/c1.jpg"/>
+                        </div>
+                        <div class="ui-block-c">
+                            <img src="img/c2.jpg"/>
+                        </div>
+                        <div class="ui-block-d">
+                            <img id="r1"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-role="page" id="inst2" data-theme="b">
+                <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                    <a href="#inst" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-arrow-l ui-corner-all ui-btn-icon-left ui-btn-icon-notext"></a>
+                    <h1><span data-translate="inst">Instructions</span></h1>
+                    <a href="#inst3" data-transition="slide" class="ui-btn ui-icon-arrow-r ui-corner-all ui-btn-icon-right ui-btn-icon-notext"></a>
+                </div>
+                <div data-role="content">
+                    <h1 id="in3"><strong><span data-translate="inst4">How do you know what to match?</span></strong></h1>
+                    <p id="in4"><strong><span data-translate="inst5">At the start of each game, you're given three pairs of images/words, like this:</span></strong></p>
+                    <div class="ui-grid-a">
+                        <h4 class="ui-bar"><span data-translate="pair">Pair </span>1</h4>
+                        <div class="ui-block-a">
+                            <img src="img/a1.jpg"/>
+                        </div>
+                        <div class="ui-block-b">
+                            <img src="img/d1.jpg"/>
+                        </div>
+                    </div>
+                    <h4 class="ui-bar"><span data-translate="pair">Pair </span>2</h4>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a">
+                            <img src="img/b1.jpg"/>
+                        </div>
+                        <div class="ui-block-b">
+                            <img id="r2"/>
+                        </div>
+                    </div>
+                    <h4 class="ui-bar"><span data-translate="pair">Pair </span>3</h4>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a">
+                            <img src="img/c3.jpg"/>
+                        </div>
+                        <div class="ui-block-b">
+                            <img src="img/c4.jpg"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-role="page" id="inst3" data-theme="b">
+                <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                    <a href="#inst2" onclick="inst=false" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-arrow-l ui-corner-all ui-btn-icon-left ui-btn-icon-notext"></a>
+                    <h1><span data-translate="inst">Instructions</span></h1>
+                    <a href="#inst4" onclick="inst=false" data-transition="slide" class="ui-btn ui-icon-arrow-r ui-corner-all ui-btn-icon-right ui-btn-icon-notext"></a>
+                </div>
+                <div data-role="content">
+                    <h1 id="in5"><strong><span data-translate="inst7">How do you match pairs?</span></strong></h1>
+                    <p id="in6"><strong><span data-translate="inst8">One of those pairs will appear on each game screen.  There are </span><ins>60</ins><span data-translate="inst9"> total game screens.</span></strong></p>
+                    <p id="in7"><strong><span data-translate="inst10">Tap on the members of the pair as quickly as possible.  The </span><ins><span data-translate="inst11">faster</span></ins><span data-translate="inst12"> and more </span><ins><span data-translate="inst13">accurate</span></ins><span data-translate="inst14"> you are, the more points you get.</span></strong></p>
+                    <div class="ui-grid-c">
+                        <div id="inBlk1" class="ui-block-a">
+                            <img src="img/b1.jpg"/>
+                        </div>
+                        <div class="ui-block-b">
+                            <img src="img/c1.jpg"/>
+                        </div>
+                        <div class="ui-block-c">
+                            <img src="img/c2.jpg"/>
+                        </div>
+                        <div id="inBlk2" class="ui-block-d">
+                            <img id="r3"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-role="page" id="inst4" data-theme="b">
+                <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                    <a href="#inst3" onclick="inst2=false" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-arrow-l ui-corner-all ui-btn-icon-left ui-btn-icon-notext"></a>
+                    <h1><span data-translate="inst">Instructions</span></h1>
+                    <a href="#inst5" onclick="inst2=false" data-transition="slide" class="ui-btn ui-icon-arrow-r ui-corner-all ui-btn-icon-right ui-btn-icon-notext"></a>
+                </div>
+                <div data-role="content">
+                    <h1 id="in8"><strong><span data-translate="inst16">Tec-Tec gets more challenging</span></strong></h1>
+                    <p id="in9"><strong><span data-translate="inst17">Image/word options start to black out after you select the first image/word:</span></strong></p>
+                    <div class="ui-grid-c">
+                        <div id="inBlk3" class="ui-block-a">
+                            <img src="img/b1.jpg"/>
+                        </div>
+                        <div class="ui-block-b">
+                            <img id="ing2" src="img/c1.jpg"/>
+                        </div>
+                        <div class="ui-block-c">
+                            <img id="ing3" src="img/c2.jpg"/>
+                        </div>
+                        <div id="inBlk4" class="ui-block-d">
+                            <img id="ing4" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-role="page" id="inst5" data-theme="b">
+                <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                    <a href="#inst4" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-arrow-l ui-corner-all ui-btn-icon-left ui-btn-icon-notext"></a>
+                    <h1><span data-translate="inst">Instructions</span></h1>
+                    <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-home ui-corner-all ui-btn-icon-right ui-btn-icon-notext"></a>
+                </div>
+                <div data-role="content">
+                    <h1 id="in10"><strong><span data-translate="inst18">Then Tec-Tec gets even more challenging</span></strong></h1>
+                    <p id="in11"><strong><span data-translate="inst19">The grid doubles in size:</span></strong></p>
+                    <div class="ui-grid-c">
+                        <div class="ui-block-a">
+                            <img src="img/b1.jpg"/>
+                        </div>
+                        <div class="ui-block-b">
+                            <img src="img/c1.jpg"/>
+                        </div>
+                        <div class="ui-block-c">
+                            <img src="img/c2.jpg"/>
+                        </div>
+                        <div class="ui-block-d">
+                            <img id="r4"/>
+                        </div>
+                        <div class="ui-block-a">
+                            <img src="img/b2.jpg"/>
+                        </div>
+                        <div class="ui-block-b">
+                            <img src="img/c5.jpg"/>
+                        </div>
+                        <div class="ui-block-c">
+                            <img src="img/c6.jpg"/>
+                        </div>
+                        <div class="ui-block-d">
+                            <img src="img/c7.jpg"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-role="page" id="finish" data-theme="b">
+                <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                    <h1><span data-translate="finish">Finished!</span></h1>
+                </div>
+                <div data-role="content">
+                    <div class="ui-grid-c">
+                        <div class="ui-block-a">
+                            <img id="a1" />
+                        </div>
+                        <div class="ui-block-b">
+                            <img id="a2" />
+                        </div>
+                        <div id="fn1" class="ui-block-c">
+                            <img id="a5" />
+                        </div>
+                        <div id="fn2" class="ui-block-d">
+                            <img id="a6" />
+                        </div>
+                    </div>
+                    <h2 class="ui-bar"></h2>
+                    <div id="gamScr"></div>
+                    <h2 class="ui-bar"></h2>
+                    <div class="ui-grid-c">
+                        <div id="fn3" class="ui-block-a">
+                            <img id="a3" />
+                        </div>
+                        <div id="fn3" class="ui-block-b">
+                            <img id="a4" />
+                        </div>
+                    </div>
+                    <div id="hideBar">
+                        <h2 class="ui-bar"></h2>
+                    </div>
+                    <a href="#home" onclick="resetGame()" data-transition="slide" class="ui-btn ui-icon-carat-r ui-corner-all ui-btn-icon-right"><span data-translate="main">Main Menu</span></a>
+                </div>
+            </div>
+            <div data-role="page" id="matches" data-theme="b">
+                <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                    <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-home ui-corner-all ui-btn-icon-left ui-btn-icon-notext"></a>
+                    <h1><span data-translate="matches">Matches</span></h1>
+                    <a onclick="matchReload()" class="ui-btn ui-icon-refresh ui-corner-all ui-btn-icon-right ui-btn-icon-notext"></a>
+                    <p id="rld"></p>
+                </div>
+                <div data-role="content">
+                    <h4 class="ui-bar"><span data-translate="pair">Pair </span>1</h4>
+                    <div class="ui-grid-a">
+                        <div id="mBlk1" class="ui-block-a">
+                            <img id="mImg1" />
+                        </div>
+                        <div id="mBlk2" class="ui-block-b">
+                            <img id="mImg2" />
+                        </div>
+                    </div>
+                    <h4 class="ui-bar"><span data-translate="pair">Pair </span>2</h4>
+                    <div class="ui-grid-a">
+                        <div id="mBlk3" class="ui-block-a">
+                            <img id="mImg3" />
+                        </div>
+                        <div id="mBlk4" class="ui-block-b">
+                            <img id="mImg4" />
+                        </div>
+                    </div>
+                    <h4 class="ui-bar"><span data-translate="pair">Pair </span>3</h4>
+                    <div class="ui-grid-a">
+                        <div id="mBlk5" class="ui-block-a">
+                            <img id="mImg5" />
+                        </div>
+                        <div id="mBlk6" class="ui-block-b">
+                            <img id="mImg6" />
+                        </div>
+                    </div>
+                    <h4 class="ui-bar"></h4>
+                    <a href="#game" data-transition="slide" class="ui-btn ui-icon-carat-r ui-corner-all ui-btn-icon-right"><span data-translate="start">Start Game!</span></a>
+                </div>
+            </div>
+            <div data-role="page" id="game" data-theme="b">
+                <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                    <a href="#home" onclick="resetGame()" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-home ui-corner-all ui-btn-icon-left ui-btn-icon-notext"></a>
+                    <h1><span data-translate="Tec-Tec">Tec-Tec</span></h1>
+                </div>
+                    <div data-role="content">
+                        <div id="gallery" class="ui-grid-c">
+                            <div id="blk1" class="ui-block-a">
+                                <a id="0">
+                                   <img id="img1" />
+                                </a>
+                            </div>
+                            <div id="blk2" class="ui-block-b">
+                                <a id="1">
+                                    <img id="img2" />
+                                </a>
+                            </div>
+                            <div id="blk3" class="ui-block-c">
+                                <a id="2">
+                                    <img id="img3" />
+                                </a>
+                            </div>
+                            <div id="blk4" class="ui-block-d">
+                                <a id="3">
+                                    <img id="img4" />
+                                </a>
+                            </div>
+                            <div id="blk5" class="ui-block-a">
+                                <a id="4">
+                                    <img id="img5" />
+                                </a>
+                            </div>
+                            <div id="blk6" class="ui-block-b">
+                                <a id="5">
+                                    <img id="img6" />
+                                </a>
+                            </div>
+                            <div id="blk7" class="ui-block-c">
+                                <a id="6">
+                                    <img id="img7" />
+                                </a>
+                            </div>
+                            <div id="blk8" class="ui-block-d">
+                                <a id="7">
+                                    <img id="img8" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="js/game.js"></script>
+        <script type="text/javascript">
+            if (window.localStorage.getItem("lang") !== null) {
+                oldLng = window.localStorage.getItem("lang");
+                var trans = $("<script type='text/javascript' src='langs/" + oldLng +".js'>");
+            } 
+            else {
+                oldLng = "en";
+                var trans = $("<script type='text/javascript' src='langs/en.js'>");
+            }
+            $("body").append(trans);
+        </script>
+    </body>
+</html>
