@@ -32,7 +32,7 @@ $(document).on('pagebeforeshow', '#wel', function() {
 
 $(document).on('pagebeforeshow', '#iat', function() {
     $("#iBlk2").hide();
-    $("#wng1").hide();
+    $("#wng1").css({'opacity': '0'});
     $("#iBlk1").show();
     $("#lft1").css({'background-color': 'rgba(255, 0, 0, 0.5)'});
     $("#rgt1").css({'background-color': 'rgba(0, 0, 255, 0.5)'});
@@ -127,22 +127,22 @@ function calcScore(num) {
         $("#test").css({'color': 'red'});
         if ($.inArray(iCurWrd, death) !== -1) {
             iCnt++;
-            $("#wng1").hide();
+            $("#wng1").css({'opacity': '0'});
             iStart();
         }
         else {
-            $("#wng1").show();
+            $("#wng1").css({'opacity': '100'});
         }
     }
     else {
         $("#test").css({'color': 'blue'});
         if ($.inArray(iCurWrd, life) !== -1) {
             iCnt++;
-            $("#wng1").hide();
+            $("#wng1").css({'opacity': '0'});
             iStart();
         }
         else {
-            $("#wng1").show();
+            $("#wng1").css({'opacity': '100'});
         }
     }
 }
@@ -197,10 +197,10 @@ function stIAT() {
 function iStart() {
     if (iCnt < 12) {
         iCurWrd = iatArry[iCnt];
-        $("#iWrd").hide();
+        $("#iWrd").css({'opacity': '0'});
         setTimeout(function() {
             $("#iWrd").text(iCurWrd);
-            $("#iWrd").show();
+            $("#iWrd").css({'opacity': '100'});
         }, 100);
     }
     else {
