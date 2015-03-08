@@ -32,7 +32,7 @@ $(document).on('pagebeforeshow', '#wel', function() {
 
 $(document).on('pagebeforeshow', '#iat', function() {
     $("#iBlk2").hide();
-    $("#iBlk3").hide();
+    $("#wng1").hide();
     $("#iBlk1").show();
     $("#lft1").css({'background-color': 'rgba(255, 0, 0, 0.5)'});
     $("#rgt1").css({'background-color': 'rgba(0, 0, 255, 0.5)'});
@@ -127,22 +127,22 @@ function calcScore(num) {
         $("#test").css({'color': 'red'});
         if ($.inArray(iCurWrd, death) !== -1) {
             iCnt++;
-            $("#iBlk3").hide();
+            $("#wng1").hide();
             iStart();
         }
         else {
-            $("#iBlk3").show();
+            $("#wng1").show();
         }
     }
     else {
         $("#test").css({'color': 'blue'});
         if ($.inArray(iCurWrd, life) !== -1) {
             iCnt++;
-            $("#iBlk3").hide();
+            $("#wng1").hide();
             iStart();
         }
         else {
-            $("#iBlk3").show();
+            $("#wng1").show();
         }
     }
 }
