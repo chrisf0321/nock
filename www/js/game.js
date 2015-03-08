@@ -10,9 +10,9 @@ var death = ["Suicide", "Die", "Dead", "Deceased"];
 var life = ["Alive", "Thrive", "Living", "Breathing"];
 var iatArry = [];
 
-$(document).on('touchmove', '#iat', function(e) {
+/*$(document).on('touchmove', '#iat', function(e) {
     e.preventDefault();
-});
+});*/
 
 $(document).on('pagebeforeshow', '#home', function() {
     if (window.localStorage.getItem("fade") === null) {
