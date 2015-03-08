@@ -161,7 +161,9 @@ body {
     font-family: arial;
     font-size: 200px;
     text-shadow: none;
-    margin: auto;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 20%;
     padding: 0;
     color: red;
 }
