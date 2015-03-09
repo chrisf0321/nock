@@ -6,8 +6,25 @@ var flash;
 var iCnt = 0;
 var iCurWrd;
 var iBlkMax;
+var sCnt = 0;
+var rpNum = 0;
+var bpNum = 0;
+var pRed = false;
+var pBlue = false;
+var rNum = 0;
+var bNum = 0;
+var red = false;
+var blue = false;
+var active = false;
+var sBlkMax = 56;
 var death = ["Suicide", "Die", "Dead", "Deceased"];
 var life = ["Alive", "Thrive", "Living", "Breathing"];
+var pBlueArry = ["Bag", "Basket", "Tape", "Radio"];
+var pRedArry = ["Cat", "Desk", "Ball", "Table"];
+var redArry = ["Success", "Paper", "Dead", "Happy", "Funeral", "Rejected", "Engine", "Stupid", "Alone", "Pleasure", "Suicide", "Museum",
+               "Success", "Paper", "Dead", "Happy", "Funeral", "Rejected", "Engine", "Stupid", "Alone", "Pleasure", "Suicide", "Museum"];
+var blueArry = ["Success", "Paper", "Dead", "Happy", "Funeral", "Rejected", "Engine", "Stupid", "Alone", "Pleasure", "Suicide", "Museum",
+               "Success", "Paper", "Dead", "Happy", "Funeral", "Rejected", "Engine", "Stupid", "Alone", "Pleasure", "Suicide", "Museum"];
 var iatArry = [];
 var surArry = { a1 : "", a2 : "", a3 : "", a4 : "", a5 : ""};
 
@@ -53,6 +70,14 @@ $(document).on('pagebeforeshow', '#iat', function() {
     blk1Gen();
 });
 
+$(document).on('pagebeforeshow', '#sst', function() {
+    active = false;
+    $("#sBlk2").hide();
+    $("#sBlk1").show();
+    $("#lft2").css({'background-color': 'rgba(255, 0, 0, 0.5)'});
+    $("#rgt2").css({'background-color': 'rgba(0, 0, 255, 0.5)'});
+});
+
 $(document).on('pagebeforeshow', '#survey', function() {
     $("#a3Blk").hide();
     $("#a2Blk").hide();
@@ -77,6 +102,20 @@ $("#lft, #rgt, #lft1, #rgt1").on(TOUCH_START, function() {
             setTimeout(function() {
                 $("#rgt, #rgt1").css({'background-color': 'rgba(0, 0, 255,' + fade + ')'});
             }, 100);
+        }
+    }
+});
+
+$("#lft2, #rgt2").on(TOUCH_START, function() {
+    if (active) {
+        active = false;
+        $("#sWrd").css({'opacity': '0'});
+        sCnt++;
+        if (sCnt >= 56) {
+            $.mobile.changePage("#finish");
+        }
+        else {
+            sTrial();
         }
     }
 });
@@ -226,6 +265,148 @@ function iStart() {
     }
 }
 
+function stSST() {
+    $("#sBlk1").hide();
+    $("#sBlk2").show();
+    $("#lft2").css({'background-color': 'rgba(255, 0, 0,' + fade + ')'});
+    $("#rgt2").css({'background-color': 'rgba(0, 0, 255,' + fade + ')'});
+    pRedArry.shuffle();
+    pBlueArry.shuffle();
+    redArry.shuffle();
+    blueArry.shuffle();
+    sCnt = 0;
+    rpNum = 0;
+    bpNum = 0;
+    pRed = false;
+    pBlue = false;
+    rNum = 0;
+    bNum = 0;
+    red = false;
+    blue = false;
+    active = false;
+    sBlkMax = 56;
+    sTrial();
+}
+
+function sTrial() {
+    $("#sWrd").removeClass('blue_font');
+    $("#sWrd").removeClass('red_font');
+    setTimeout(function() {
+        setTimeout(function() {
+            setTimeout(function() {
+                sStart();
+            }, 1000);
+            $("#sWrd").css({'opacity': '0'});
+        }, 1000);
+        $("#sWrd").text("+");
+        $("#sWrd").css({'opacity': '100'});
+    }, 1000);
+}
+
+function sStart() {
+    if (sCnt < 56) {
+        if (sCnt < 8) {
+            if (!pRed && !pBlue) {
+                num = Math.floor(Math.random() * 2);
+                if (rpNum < pRedArry.length && num === 0) {
+                    sstWrd = pRedArry[rpNum];
+                    $("#sWrd").removeClass('blue_font');
+                    $("#sWrd").addClass('red_font');
+                    $("#sWrd").text(sstWrd);
+                    $("#sWrd").css({'opacity': '0.2'});
+                    rpNum++;
+                    if (rpNum === pRedArry.length) {
+                        pRed = true;
+                    }
+                }
+                else if (bpNum < pBlueArry.length && num === 1) {
+                    sstWrd = pBlueArry[bpNum];
+                    $("#sWrd").removeClass('red_font');
+                    $("#sWrd").addClass('blue_font');
+                    $("#sWrd").text(sstWrd);
+                    $("#sWrd").css({'opacity': '0.2'});
+                    bpNum++;
+                    if (bpNum === pBlueArry.length) {
+                        pBlue = true;
+                    }
+                }
+            }
+            else if (!pRed) {
+                sstWrd = pRedArry[rpNum];
+                $("#sWrd").removeClass('blue_font');
+                $("#sWrd").addClass('red_font');
+                $("#sWrd").text(sstWrd);
+                $("#sWrd").css({'opacity': '0.2'});
+                rpNum++;
+                if (rpNum === pRedArry.length) {
+                    pRed = true;
+                }
+            }
+            else if (!pBlue) {
+                sstWrd = pBlueArry[bpNum];
+                $("#sWrd").removeClass('red_font');
+                $("#sWrd").addClass('blue_font');
+                $("#sWrd").text(sstWrd);
+                $("#sWrd").css({'opacity': '0.2'});
+                bpNum++;
+                if (bpNum === pBlueArry.length) {
+                    pBlue = true;
+                }
+            }
+        }
+        else {
+            if (!red && !blue) {
+                num = Math.floor(Math.random() * 2);
+                if (rNum < redArry.length && num === 0) {
+                    sstWrd = redArry[rNum];
+                    $("#sWrd").removeClass('blue_font');
+                    $("#sWrd").addClass('red_font');
+                    $("#sWrd").text(sstWrd);
+                    $("#sWrd").css({'opacity': '100'});
+                    rNum++;
+                    if (rNum === redArry.length) {
+                        red = true;
+                    }
+                }
+                else if (bNum < blueArry.length && num === 1) {
+                    sstWrd = blueArry[bNum];
+                    $("#sWrd").removeClass('red_font');
+                    $("#sWrd").addClass('blue_font');
+                    $("#sWrd").text(sstWrd);
+                    $("#sWrd").css({'opacity': '100'});
+                    bNum++;
+                    if (bNum === blueArry.length) {
+                        blue = true;
+                    }
+                }
+            }
+            else if (!red) {
+                sstWrd = redArry[rNum];
+                $("#sWrd").removeClass('blue_font');
+                $("#sWrd").addClass('red_font');
+                $("#sWrd").text(sstWrd);
+                $("#sWrd").css({'opacity': '100'});
+                rNum++;
+                if (rNum === redArry.length) {
+                    red = true;
+                }
+            }
+            else if (!blue) {
+                sstWrd = blueArry[bNum];
+                $("#sWrd").removeClass('red_font');
+                $("#sWrd").addClass('blue_font');
+                $("#sWrd").text(sstWrd);
+                $("#sWrd").css({'opacity': '100'});
+                bNum++;
+                if (bNum === blueArry.length) {
+                    blue = true;
+                }
+            }
+        }
+    }
+    active = true;
+}
+
 function a1() {
     surArry.a1 = $("#atxt").val();
     $("#a1Blk").hide();
@@ -240,6 +421,6 @@ function a2() {
 
 function a3() {
     $("a3Blk").hide();
-    $.mobile.changePage("#finish");
+    $.mobile.changePage("#sst");
 }
 

@@ -59,7 +59,7 @@ body {
     margin-left: 20%;
 }
 
-#iBtn2 {
+#iBtn2, #sBtn2 {
     font-family: arial;
     font-size: 20px;
     background-color: rgba(0, 108, 250, 1);
@@ -94,7 +94,7 @@ body {
     margin-right: 25%;
 }
 
-#lft, #lft1 {
+#lft, #lft1, #lft2 {
     position: absolute;
     left: 0px;
     background-color: rgba(255, 0, 0, 0.2);
@@ -102,7 +102,7 @@ body {
     height: 100%;
 }
 
-#rgt, #rgt1 {
+#rgt, #rgt1, #rgt2 {
     position: absolute;
     right: 0px;
     background-color: rgba(0, 0, 255, 0.2);
@@ -207,6 +207,10 @@ body {
     padding-bottom: 10px;
 }
 
+#sinBlk li {
+    padding-bottom: 10px;
+}
+
 #iat1 {
     margin-left: 10%;
     margin-right: 10%;
@@ -288,4 +292,17 @@ fieldset.ui-controlgroup {
 #td2 {
     padding: 0;
     width: 60%;
+}
+
+.red_font {
+    color: red;
+}
+
+.blue_font {
+    color: blue;
+}
+
+#sWrd, #iWrd {
+    margin-left: 20%;
+    margin-right: 20%;
 }
