@@ -48,6 +48,17 @@ body {
     margin-left: 20%;
 }
 
+#asb1, #asb2, #asb3 {
+    font-family: arial;
+    font-size: 20px;
+    background-color: rgba(0, 108, 250, 1);
+    color: white;
+    text-shadow: none;
+    margin-top: 5%;
+    margin-right: 20%;
+    margin-left: 20%;
+}
+
 #iBtn2 {
     font-family: arial;
     font-size: 20px;
@@ -200,4 +211,81 @@ body {
     margin-left: 10%;
     margin-right: 10%;
     text-align: left;
+}
+
+.sur1 {
+    text-align: center;
+    font-family: arial;
+    font-size: 40px;
+    margin-top: 15%;
+}
+
+.chkbox{
+    font-family: arial;
+    font-size: 20px;  
+    padding-left: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.smallTitle {
+    font-size: 20px;
+}
+
+fieldset.ui-controlgroup {
+    margin-right: 20%;
+    margin-left: 20%;
+}
+
+.ui-input-text {
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+.standard-text {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+#atxt, #a2txt {
+    font-family: arial;
+    font-size: 20px;
+}
+
+#fBack, #fwrd {
+    font-family: arial;
+    font-size: 20px;
+    background-color: rgba(0, 108, 250, 1);
+    color: white;
+    text-shadow: none;
+}
+
+#navSpc {
+    background-color: grey;
+}
+
+#a3Tbl {
+    font-size: 20px;
+}
+
+#a3Slide {
+    margin: 0;
+}
+
+.full-slide input {
+    display: none;
+}
+
+.full-slide .ui-slider-track {
+    margin-left: 15px;
+}
+
+#td1 {
+    width: 20%;
+    text-align: right;
+}
+
+#td2 {
+    padding: 0;
+    width: 60%;
 }

@@ -9,10 +9,18 @@ var iBlkMax;
 var death = ["Suicide", "Die", "Dead", "Deceased"];
 var life = ["Alive", "Thrive", "Living", "Breathing"];
 var iatArry = [];
+var surArry = { a1 : "", a2 : "", a3 : "", a4 : "", a5 : ""};
 
 /*$(document).on('touchmove', '#iat', function(e) {
     e.preventDefault();
 });*/
+
+$("#a2Op6").on('change', function() {
+    if ($("#a2Op6").prop('checked')) {
+        $("#a2inpt").show();
+        $("#a2txt").focus();
+    }
+});
 
 $(document).on('pagebeforeshow', '#home', function() {
     if (window.localStorage.getItem("fade") === null) {
@@ -43,6 +51,12 @@ $(document).on('pagebeforeshow', '#iat', function() {
     $("#lWrd3").text("Death");
     $("#rWrd3").text("Life");
     blk1Gen();
+});
+
+$(document).on('pagebeforeshow', '#survey', function() {
+    $("#a3Blk").hide();
+    $("#a2Blk").hide();
+    $("#a1Blk").show();
 });
 
 $("#lft, #rgt, #lft1, #rgt1").on(TOUCH_START, function() {
@@ -208,6 +222,24 @@ function iStart() {
         }, 100);
     }
     else {
-        $.mobile.changePage("#finish");
+        $.mobile.changePage("#survey");
     }
 }
+
+function a1() {
+    surArry.a1 = $("#atxt").val();
+    $("#a1Blk").hide();
+    $("#a2inpt").hide();
+    $("#a2Blk").show();
+}
+
+function a2() {
+    $("#a2Blk").hide();
+    $("#a3Blk").show();
+}
+
+function a3() {
+    $("a3Blk").hide();
+    $.mobile.changePage("#finish");
+}
+
