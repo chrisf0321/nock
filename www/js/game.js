@@ -71,6 +71,7 @@ $(document).on('pagebeforeshow', '#iat', function() {
 });
 
 $(document).on('pagebeforeshow', '#sst', function() {
+    $("#wng2").css({'opacity': '0'});
     active = false;
     $("#sBlk2").hide();
     $("#sBlk1").show();
