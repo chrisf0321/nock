@@ -16,9 +16,16 @@ var bNum = 0;
 var red = false;
 var blue = false;
 var active = false;
+var iCorrect = true;
 var sBlkMax = 56;
+var iatBlk = 1;
+var iatMax;
+var iStartTime;
+var iStop;
 var death = ["Suicide", "Die", "Dead", "Deceased"];
 var life = ["Alive", "Thrive", "Living", "Breathing"];
+var notMe = ["They", "Them", "Their", "Other"];
+var me = ["I", "Myself", "Self", "Mine"];
 var pBlueArry = ["Bag", "Basket", "Tape", "Radio"];
 var pRedArry = ["Cat", "Desk", "Ball", "Table"];
 var redArry = ["Success", "Paper", "Dead", "Happy", "Funeral", "Rejected", "Engine", "Stupid", "Alone", "Pleasure", "Suicide", "Museum",
@@ -26,7 +33,13 @@ var redArry = ["Success", "Paper", "Dead", "Happy", "Funeral", "Rejected", "Engi
 var blueArry = ["Success", "Paper", "Dead", "Happy", "Funeral", "Rejected", "Engine", "Stupid", "Alone", "Pleasure", "Suicide", "Museum",
                "Success", "Paper", "Dead", "Happy", "Funeral", "Rejected", "Engine", "Stupid", "Alone", "Pleasure", "Suicide", "Museum"];
 var iatArry = [];
+var left = [];
+var right = [];
+var iatData = [];
 var surArry = { a1 : "", a2 : "", a3 : "", a4 : "", a5 : ""};
+
+//Remove for the final version.
+var iOnly = false;
 
 /*$(document).on('touchmove', '#iat', function(e) {
     e.preventDefault();
@@ -37,6 +50,10 @@ $("#a2Op6").on('change', function() {
         $("#a2inpt").show();
         $("#a2txt").focus();
     }
+});
+
+$(document).on('pagebeforeshow', '#iData', function() {
+    displayIAT();
 });
 
 $(document).on('pagebeforeshow', '#home', function() {
@@ -60,13 +77,16 @@ $(document).on('pagebeforeshow', '#wel', function() {
 });
 
 $(document).on('pagebeforeshow', '#iat', function() {
-    $("#iBlk2").hide();
+    $("#iBlk2, #iBlk3, #iBlk4, #iBlk5, #iBlk6, #iBlk7, #iBlk8").hide();
     $("#wng1").css({'opacity': '0'});
     $("#iBlk1").show();
     $("#lft1").css({'background-color': 'rgba(255, 0, 0, 0.5)'});
     $("#rgt1").css({'background-color': 'rgba(0, 0, 255, 0.5)'});
     $("#lWrd3").text("Death");
     $("#rWrd3").text("Life");
+    $("#lWrd3, #rWrd3").removeClass('green_font');
+    $("#lWrd3, #rWrd3").addClass('gold_font');
+    $("#or3, #or4, #lWrd4, #rWrd4").hide();
     blk1Gen();
 });
 
@@ -136,6 +156,11 @@ $("#flSld").change(function() {
     flash = $("#slide3").val();
 });
 
+// Remove for the final version.
+function iaton() {
+    iOnly = true;
+}
+
 Array.prototype.shuffle = function() {
     var i = this.length, j, temp;
     if ( i === 0 ) return;
@@ -178,31 +203,86 @@ function refreshSlide() {
 function reset() {
     iCnt = 0;
     iatArry = [];
+    left = [];
+    right = [];
+    iatData = [];
+    iatBlk = 1;
+    //Remove for final version.
+    iOnly = false;
 }
 
 function calcScore(num) {
     if (num === 1) {
         $("#test").css({'color': 'red'});
-        if ($.inArray(iCurWrd, death) !== -1) {
+        if ($.inArray(iCurWrd, left) !== -1) {
+            iStop = new Date().getTime();
+            iTime = (iStop - iStartTime) / 1000;
+            iTime = Math.round(iTime * 100) / 100;
             iCnt++;
+            recordTrial(iCurWrd, iTime, iCnt, iCorrect);
             $("#wng1").css({'opacity': '0'});
+            iCorrect = true;
             iStart();
         }
         else {
             $("#wng1").css({'opacity': '100'});
+            iCorrect = false;
         }
     }
     else {
         $("#test").css({'color': 'blue'});
-        if ($.inArray(iCurWrd, life) !== -1) {
+        if ($.inArray(iCurWrd, right) !== -1) {
+            iStop = new Date().getTime();
+            iTime = (iStop - iStartTime) / 1000;
+            iTime = Math.round(iTime * 100) / 100;
             iCnt++;
+            recordTrial(iCurWrd, iTime, iCnt, iCorrect);
             $("#wng1").css({'opacity': '0'});
+            iCorrect = true;
             iStart();
         }
         else {
             $("#wng1").css({'opacity': '100'});
+            iCorrect = false;
         }
     }
+}
+
+function recordTrial(word, time, trial, correct) {
+    iatData.push({"trial" : trial, "word" : word, "time" : time, "correct" : correct});
+}
+
+// Remove for final Version.
+function displayIAT() {
+    for (var i = 0; i < iatData.length; i++) {
+        tr = $('<tr/>');
+        tr.append("<td>" + iatData[i].trial + "</td>");
+        tr.append("<td>" + iatData[i].word + "</td>");
+        tr.append("<td>" + iatData[i].time + "</td>");
+        tr.append("<td>" + iatData[i].correct + "</td>");
+        if ( i < 12) {
+            $("#iTable1 tbody").append(tr);
+        }
+        else if (i < 24) {
+            $("#iTable2 tbody").append(tr);
+        }
+        else if (i < 48) {
+            $("#iTable3 tbody").append(tr);
+        }
+        else if (i < 72) {
+            $("#iTable4 tbody").append(tr);
+        }
+        else if (i < 84) {
+            $("#iTable5 tbody").append(tr);
+        }
+        else if (i < 108) {
+            $("#iTable6 tbody").append(tr);
+        }
+        else if (i < 132) {
+            $("#iTable7 tbody").append(tr);
+        }
+    }
+    $("#iTable1, #iTable2, #iTable3, #iTable4, #iTable5, #iTable6, #iTable7").table("refresh");
 }
 
 function nextInst() {
@@ -214,6 +294,14 @@ function blk1Gen() {
     var prevWrd = "";
     var newWrd;
     var loopCntrl;
+    if (iatBlk === 5) {
+        left = life;
+        right = death;
+    }
+    else {
+        left = death;
+        right = life;
+    }
     iatArry = death.concat(life);
     
     for (i = 0; i < 2; i++) {
@@ -239,30 +327,245 @@ function blk1Gen() {
             }
         }
     }   
-    iatArry.shuffle();    
+    iatArry.shuffle();
+    iatArry.shuffle();
 }
 
-function stIAT() {
-    $("#iBlk1").hide();
-    $("#iBlk2").show();
+function blk2Gen() {
+    var prevWrd = "";
+    var newWrd;
+    var loopCntrl;
+    left = notMe;
+    right = me;
+    iatArry = notMe.concat(me);
+    
+    for (i = 0; i < 2; i++) {
+        loopCntrl = 0;
+        while (loopCntrl === 0) {
+            newWrd = notMe[Math.floor(Math.random() * notMe.length)];
+            if (newWrd !== prevWrd) {
+                prevWrd = newWrd;
+                iatArry.push(newWrd);
+                loopCntrl = 1;
+            }
+        }
+    }
+        
+    for (i = 0; i < 2; i++) {
+        loopCntrl = 0;
+        while (loopCntrl === 0) {
+            newWrd = me[Math.floor(Math.random() * me.length)];
+            if (newWrd !== prevWrd) {
+                prevWrd = newWrd;
+                iatArry.push(newWrd);
+                loopCntrl = 1;
+            }
+        }
+    }   
+    iatArry.shuffle();
+    iatArry.shuffle();
+}
+
+function blk3Gen() {
+    var prevWrd = "";
+    var newWrd;
+    var loopCntrl;
+    if (iatBlk >= 6) {
+        left = notMe.concat(life);
+        right = me.concat(death);
+    }
+    else {
+        left = notMe.concat(death);
+        right = me.concat(life);
+    }
+    iatArry = death.concat(life, notMe, me);
+    
+    for (i = 0; i < 2; i++) {
+        loopCntrl = 0;
+        while (loopCntrl === 0) {
+            newWrd = notMe[Math.floor(Math.random() * notMe.length)];
+            if (newWrd !== prevWrd) {
+                prevWrd = newWrd;
+                iatArry.push(newWrd);
+                loopCntrl = 1;
+            }
+        }
+    }
+        
+    for (i = 0; i < 2; i++) {
+        loopCntrl = 0;
+        while (loopCntrl === 0) {
+            newWrd = me[Math.floor(Math.random() * me.length)];
+            if (newWrd !== prevWrd) {
+                prevWrd = newWrd;
+                iatArry.push(newWrd);
+                loopCntrl = 1;
+            }
+        }
+    }   
+    for (i = 0; i < 2; i++) {
+        loopCntrl = 0;
+        while (loopCntrl === 0) {
+            newWrd = death[Math.floor(Math.random() * death.length)];
+            if (newWrd !== prevWrd) {
+                prevWrd = newWrd;
+                iatArry.push(newWrd);
+                loopCntrl = 1;
+            }
+        }
+    }   
+    for (i = 0; i < 2; i++) {
+        loopCntrl = 0;
+        while (loopCntrl === 0) {
+            newWrd = life[Math.floor(Math.random() * life.length)];
+            if (newWrd !== prevWrd) {
+                prevWrd = newWrd;
+                iatArry.push(newWrd);
+                loopCntrl = 1;
+            }
+        }
+    }   
+    iatArry.shuffle();   
+    iatArry.shuffle();
+}
+
+function stIAT(maxTrial, trial) {
+    iatMax = maxTrial;
+    switch (trial) {
+        case 1:
+            $("#iBlk1").hide();
+            $("#iBlk2").show();
+            break;
+        case 2:
+            $("#iBlk3").hide();
+            $("#iBlk2").show();
+            break;
+        case 3:
+            $("#iBlk4").hide();
+            $("#iBlk2").show();
+            break;
+        case 4:
+            $("#iBlk5").hide();
+            $("#iBlk2").show();
+            break;
+        case 5:
+            $("#iBlk6").hide();
+            $("#iBlk2").show();
+            break;
+        case 6:
+            $("#iBlk7").hide();
+            $("#iBlk2").show();
+            break;
+        case 7:
+            $("#iBlk8").hide();
+            $("#iBlk2").show();
+            break;
+    }
     $("#lft1").css({'background-color': 'rgba(255, 0, 0,' + fade + ')'});
     $("#rgt1").css({'background-color': 'rgba(0, 0, 255,' + fade + ')'});
     iCnt = 0;
-    iBlkMax = 12;
     iStart();
 }
 
 function iStart() {
-    if (iCnt < 12) {
+    if (iCnt < iatMax) {
         iCurWrd = iatArry[iCnt];
         $("#iWrd").css({'opacity': '0'});
+        if ($.inArray(iCurWrd, death) !== -1 || $.inArray(iCurWrd, life) !== -1) {
+            $("#iWrd").removeClass('green_font');
+            $("#iWrd").addClass('gold_font');
+        }
+        else {
+            $("#iWrd").removeClass('gold_font');
+            $("#iWrd").addClass('green_font');
+        }
         setTimeout(function() {
             $("#iWrd").text(iCurWrd);
+            iStartTime = new Date().getTime();
             $("#iWrd").css({'opacity': '100'});
         }, 100);
     }
     else {
-        $.mobile.changePage("#survey");
+        switch(iatBlk) {
+            case 1:
+                iatBlk = 2;
+                $("#iBlk2").hide();
+                $("#iBlk3").show();
+                $("#lWrd3").text("Not Me");
+                $("#rWrd3").text("Me"); 
+                $("#lWrd3, #rWrd3").removeClass('gold_font');
+                $("#lWrd3, #rWrd3").addClass('green_font');
+                blk2Gen();
+                break;
+            case 3:
+                iatBlk = 4;
+            case 2:
+                if (iatBlk < 3) {
+                    iatBlk = 3;
+                }
+                $("#iBlk2").hide();
+                if (iatBlk === 4) {
+                    $("#iBlk5").show();
+                }
+                else {
+                    $("#iBlk4").show();
+                }
+                $("#lWrd3").text("Death");
+                $("#rWrd3").text("Life"); 
+                $("#or3, #or4").text("or");
+                $("#lWrd4").text("Not Me");
+                $("#rWrd4").text("Me");
+                $("#lWrd3, #rWrd3, #lWrd4, #rWrd4").removeClass('gold_font');
+                $("#lWrd3, #rWrd3, #lWrd4, #rWrd4").removeClass('green_font');
+                $("#lWrd3, #rWrd3").addClass('gold_font');
+                $("#lWrd4, #rWrd4").addClass('green_font');
+                $("#or3, #or4, #lWrd4, #rWrd4").show();
+                blk3Gen();
+                break;
+            case 4:
+                iatBlk = 5;
+                $("#iBlk2").hide();
+                $("#iBlk6").show();
+                $("#lWrd3").text("Life");
+                $("#rWrd3").text("Death");
+                $("#lWrd4, #rWrd4, #or3, #or4").hide();
+                $("#lWrd3, #rWrd3").removeClass('green_font');
+                $("#lWrd3, #rWrd3").addClass('gold_font');
+                blk1Gen();
+                break;
+            case 6:
+                iatBlk = 7;
+            case 5:
+                if (iatBlk < 6) {
+                    iatBlk = 6;
+                }
+                $("#iBlk2").hide();
+                if (iatBlk === 7) {
+                    $("#iBlk8").show();
+                }
+                else {
+                    $("#iBlk7").show();
+                }
+                $("#lWrd3").text("Life");
+                $("#rWrd3").text("Death");
+                $("#or3, #or4").text("or");
+                $("#lWrd4").text("Not Me");
+                $("#rWrd4").text("Me");
+                $("#lWrd4, #rWrd4, #or3, #or4").show();
+                $("#lWrd3, #rWrd3, #lWrd4, #rWrd4").removeClass('gold_font');
+                $("#lWrd3, #rWrd3, #lWrd4, #rWrd4").removeClass('green_font');
+                $("#lWrd3, #rWrd3").addClass('gold_font');
+                $("#lWrd4, #rWrd4").addClass('green_font');
+                blk3Gen();
+                break;
+            default:
+                if (iOnly) {
+                    $.mobile.changePage("#iData");
+                }
+                else {
+                    $.mobile.changePage("#survey");
+                }
+        }
     }
 }
 

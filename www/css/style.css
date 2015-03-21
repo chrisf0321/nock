@@ -37,7 +37,7 @@ body {
     margin-left: 20%;
 }
 
-#stBtn, #wBtn, #iBtn {
+#stBtn, #wBtn, #iBtn, #iatBtn, #iatBtn2 {
     font-family: arial;
     font-size: 20px;
     background-color: rgba(0, 108, 250, 1);
@@ -59,7 +59,7 @@ body {
     margin-left: 20%;
 }
 
-#iBtn2, #sBtn2 {
+#iBtn2, #sBtn2, #iBtn4, #iBtn5, #iBtn6, #iBtn7, #iBtn8, #iBtn9 {
     font-family: arial;
     font-size: 20px;
     background-color: rgba(0, 108, 250, 1);
@@ -113,7 +113,6 @@ body {
 #lWrd, #rWrd, #lWrd3, #rWrd3 {
     font-family: arial;
     font-size: 45px;
-    color: gold;
     text-align: center;
     text-shadow: none;
     -webkit-margin-after: 0.1em;
@@ -122,7 +121,6 @@ body {
 #lWrd2, #rWrd2, #lWrd4, #rWrd4 {
     font-family: arial;
     font-size: 45px;
-    color: green;
     text-align: center;
     text-shadow: none;
     -webkit-margin-before: 0.1em;
@@ -204,6 +202,10 @@ body {
 }
 
 #inBlk li {
+    padding-bottom: 10px;
+}
+
+#inBlk2 li {
     padding-bottom: 10px;
 }
 
@@ -300,6 +302,14 @@ fieldset.ui-controlgroup {
 
 .blue_font {
     color: blue;
+}
+
+.gold_font {
+    color: gold;
+}
+
+.green_font {
+    color: green;
 }
 
 #sWrd, #iWrd {

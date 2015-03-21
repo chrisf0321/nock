@@ -16,6 +16,7 @@
                     <div id="lgBtnGrp">
                         <a id="lgBtn" href="#settings" data-transition="slide" class="ui-btn ui-corner-all">Demo Settings</a>
                         <a id="stBtn" href="#wel" class="ui-btn ui-corner-all">Start Demo</a>
+                        <a id="iatBtn" onclick="iaton()" href="#iat" class="ui-btn ui-corner-all">IAT Only</a>                       
                     </div>
                 </div>               
             </div> 
@@ -120,12 +121,188 @@
                             <li>If you make a mistake, a red <span style="color:red">X</span> will appear.  Tap the other side of the screen to continue.</li>
                             <li><ins>GO AS FAST AS YOU CAN</ins> while making as few mistakes as possible!</li>
                         </ul>
-                        <a id="iBtn2" onclick="stIAT()" class="ui-btn ui-corner-all">Start</a>
+                        <a id="iBtn2" onclick="stIAT(12, 1)" class="ui-btn ui-corner-all">Start</a>
+                    </div>
+                    <div id="iBlk3" class="welBlk welBlk2 welBlk3">
+                        <p><ins>Block 2 of 7</ins></p>
+                        <ul id="inBlk2" style="list-style-type:none">
+                            <li>This is a practice block.</li>
+                            <li>Touchable areas are <span style="color:red">Red</span> on the left and <span style="color:blue">Blue</span> on the right.</li>
+                            <li>The <span style="color:red">red</span> area is used for <span style="color:green">Not Me</span> words.</li>
+                            <li>The <span style="color:blue">blue</span> area is used for <span style="color:green">Me</span> words.</li>
+                            <li>Tap the <span style="color:red">red</span> or <span style="color:blue">blue</span> areas to sort the word in the correct category.</li>
+                            <li>If you make a mistake, a red <span style="color:red">X</span> will appear.  Tap the other side of the screen to continue.</li>
+                            <li><ins>GO AS FAST AS YOU CAN</ins> while making as few mistakes as possible!</li>
+                        </ul>
+                        <a id="iBtn4" onclick="stIAT(12, 2)" class="ui-btn ui-corner-all">Start</a>
+                    </div>
+                    <div id="iBlk4" class="welBlk welBlk2 welBlk3">
+                        <p><ins>Block 3 of 7</ins></p>
+                        <ul id="inBlk3" style="list-style-type:none">
+                            <li>Touchable areas are <span style="color:red">Red</span> on the left and <span style="color:blue">Blue</span> on the right.</li>
+                            <li>The <span style="color:red">red</span> area is used for <span style="color:gold">Death</span> and <span style="color:green">Not Me</span> words.</li>
+                            <li>The <span style="color:blue">blue</span> area is used for <span style="color:gold">Life</span> and <span style="color:green">Me</span> words.</li>
+                            <li>Tap the <span style="color:red">red</span> or <span style="color:blue">blue</span> areas to sort the word in the correct category.</li>
+                            <li>If you make a mistake, a red <span style="color:red">X</span> will appear.  Tap the other side of the screen to continue.</li>
+                            <li><ins>GO AS FAST AS YOU CAN</ins> while making as few mistakes as possible!</li>
+                        </ul>
+                        <a id="iBtn5" onclick="stIAT(24, 3)" class="ui-btn ui-corner-all">Start</a>
+                    </div>
+                    <div id="iBlk5" class="welBlk welBlk2 welBlk3">
+                        <p><ins>Block 4 of 7</ins></p>
+                        <ul id="inBlk4" style="list-style-type:none">
+                            <li>Touchable areas are <span style="color:red">Red</span> on the left and <span style="color:blue">Blue</span> on the right.</li>
+                            <li>The <span style="color:red">red</span> area is used for <span style="color:gold">Death</span> and <span style="color:green">Not Me</span> words.</li>
+                            <li>The <span style="color:blue">blue</span> area is used for <span style="color:gold">Life</span> and <span style="color:green">Me</span> words.</li>
+                            <li>Tap the <span style="color:red">red</span> or <span style="color:blue">blue</span> areas to sort the word in the correct category.</li>
+                            <li>If you make a mistake, a red <span style="color:red">X</span> will appear.  Tap the other side of the screen to continue.</li>
+                            <li><ins>GO AS FAST AS YOU CAN</ins> while making as few mistakes as possible!</li>
+                        </ul>
+                        <a id="iBtn6" onclick="stIAT(24, 4)" class="ui-btn ui-corner-all">Start</a>
+                    </div>
+                    <div id="iBlk6" class="welBlk welBlk2 welBlk3">
+                        <p><ins>Block 5 of 7</ins></p>
+                        <ul id="inBlk5" style="list-style-type:none">
+                            <li>Watch out, the labels have changed position!</li>
+                            <li>Touchable areas are <span style="color:red">Red</span> on the left and <span style="color:blue">Blue</span> on the right.</li>
+                            <li>The <span style="color:red">red</span> area is used for <span style="color:gold">Life</span> words.</li>
+                            <li>The <span style="color:blue">blue</span> area is used for <span style="color:gold">Death</span> words.</li>
+                            <li>Tap the <span style="color:red">red</span> or <span style="color:blue">blue</span> areas to sort the word in the correct category.</li>
+                            <li>If you make a mistake, a red <span style="color:red">X</span> will appear.  Tap the other side of the screen to continue.</li>
+                            <li><ins>GO AS FAST AS YOU CAN</ins> while making as few mistakes as possible!</li>
+                        </ul>
+                        <a id="iBtn7" onclick="stIAT(12, 5)" class="ui-btn ui-corner-all">Start</a>
+                    </div>
+                    <div id="iBlk7" class="welBlk welBlk2 welBlk3">
+                        <p><ins>Block 6 of 7</ins></p>
+                        <ul id="inBlk6" style="list-style-type:none">
+                            <li>Touchable areas are <span style="color:red">Red</span> on the left and <span style="color:blue">Blue</span> on the right.</li>
+                            <li>The <span style="color:red">red</span> area is used for <span style="color:gold">Life</span> and <span style="color:green">Not Me</span> words.</li>
+                            <li>The <span style="color:blue">blue</span> area is used for <span style="color:gold">Death</span> and <span style="color:green">Me</span> words.</li>
+                            <li>Tap the <span style="color:red">red</span> or <span style="color:blue">blue</span> areas to sort the word in the correct category.</li>
+                            <li>If you make a mistake, a red <span style="color:red">X</span> will appear.  Tap the other side of the screen to continue.</li>
+                            <li><ins>GO AS FAST AS YOU CAN</ins> while making as few mistakes as possible!</li>
+                        </ul>
+                        <a id="iBtn8" onclick="stIAT(24, 6)" class="ui-btn ui-corner-all">Start</a>
+                    </div>
+                    <div id="iBlk8" class="welBlk welBlk2 welBlk3">
+                        <p><ins>Block 7 of 7</ins></p>
+                        <ul id="inBlk7" style="list-style-type:none">
+                            <li>Touchable areas are <span style="color:red">Red</span> on the left and <span style="color:blue">Blue</span> on the right.</li>
+                            <li>The <span style="color:red">red</span> area is used for <span style="color:gold">Life</span> and <span style="color:green">Not Me</span> words.</li>
+                            <li>The <span style="color:blue">blue</span> area is used for <span style="color:gold">Death</span> and <span style="color:green">Me</span> words.</li>
+                            <li>Tap the <span style="color:red">red</span> or <span style="color:blue">blue</span> areas to sort the word in the correct category.</li>
+                            <li>If you make a mistake, a red <span style="color:red">X</span> will appear.  Tap the other side of the screen to continue.</li>
+                            <li><ins>GO AS FAST AS YOU CAN</ins> while making as few mistakes as possible!</li>
+                        </ul>
+                        <a id="iBtn9" onclick="stIAT(24, 7)" class="ui-btn ui-corner-all">Start</a>
                     </div>
                     <div id="iBlk2" class="iStim">
                         <p id="iWrd"></p>
                         <p id="wng1" class="wng">X</p>
                     </div>
+                </div>
+            </div>
+            <div data-role="page" id="iData" data-theme="a">
+                <div data-role="content">
+                    <table data-role="table" id="iTable1" class="ui-responsive table-stroke">
+                        <thead>
+                            <tr>
+                                <th data-priority="1">Block 1</th>
+                                <th data-priority="2">Word</th>
+                                <th data-priority="3">Time</th>
+                                <th data-priority="4">Correct</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                    <br />
+                    <table data-role="table" id="iTable2" class="ui-responsive table-stroke">
+                        <thead>
+                            <tr>
+                                <th data-priority="1">Block 2</th>
+                                <th data-priority="2">Word</th>
+                                <th data-priority="3">Time</th>
+                                <th data-priority="4">Correct</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                    <br />
+                    <table data-role="table" id="iTable3" class="ui-responsive table-stroke">
+                        <thead>
+                            <tr>
+                                <th data-priority="1">Block 3</th>
+                                <th data-priority="2">Word</th>
+                                <th data-priority="3">Time</th>
+                                <th data-priority="4">Correct</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                    <br />
+                    <table data-role="table" id="iTable4" class="ui-responsive table-stroke">
+                        <thead>
+                            <tr>
+                                <th data-priority="1">Block 4</th>
+                                <th data-priority="2">Word</th>
+                                <th data-priority="3">Time</th>
+                                <th data-priority="4">Correct</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                    <br />
+                    <table data-role="table" id="iTable5" class="ui-responsive table-stroke">
+                        <thead>
+                            <tr>
+                                <th data-priority="1">Block 5</th>
+                                <th data-priority="2">Word</th>
+                                <th data-priority="3">Time</th>
+                                <th data-priority="4">Correct</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                    <br />
+                    <table data-role="table" id="iTable6" class="ui-responsive table-stroke">
+                        <thead>
+                            <tr>
+                                <th data-priority="1">Block 6</th>
+                                <th data-priority="2">Word</th>
+                                <th data-priority="3">Time</th>
+                                <th data-priority="4">Correct</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                    <br />
+                    <table data-role="table" id="iTable7" class="ui-responsive table-stroke">
+                        <thead>
+                            <tr>
+                                <th data-priority="1">Block 7</th>
+                                <th data-priority="2">Word</th>
+                                <th data-priority="3">Time</th>
+                                <th data-priority="4">Correct</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                    <a id="iatBtn2" onclick="reset()" href="#home" class="ui-btn ui-corner-all">Main Menu</a>
                 </div>
             </div>
             <div data-role="page" id="survey" data-theme="a">
