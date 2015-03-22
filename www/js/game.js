@@ -41,6 +41,7 @@ var surArry = { a1 : "", a2 : "", a3 : "", a4 : "", a5 : ""};
 
 //Remove for the final version.
 var iOnly = false;
+var s1Only = false;
 
 /*$(document).on('touchmove', '#iat', function(e) {
     e.preventDefault();
@@ -161,6 +162,9 @@ $("#flSld").change(function() {
 function iaton() {
     iOnly = true;
 }
+function sur1on() {
+    s1Only = true;
+}
 
 Array.prototype.shuffle = function() {
     var i = this.length, j, temp;
@@ -211,6 +215,7 @@ function reset() {
     iActive = true;
     //Remove for final version.
     iOnly = false;
+    s1Only = false;
 }
 
 function calcScore(num) {

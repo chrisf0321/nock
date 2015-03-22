@@ -15,6 +15,12 @@ body {
     padding: 0.5em;
 }
 
+#sur1hd {
+    margin-left: 10%;
+    margin-right: 10%;
+    font-family: arial;
+}
+
 #iBtn3 {
     font-family: arial;
     font-size: 20px;
@@ -37,7 +43,7 @@ body {
     margin-left: 20%;
 }
 
-#stBtn, #wBtn, #iBtn, #iatBtn, #iatBtn2 {
+#stBtn, #wBtn, #iBtn, #iatBtn, #iatBtn2, #surBtn {
     font-family: arial;
     font-size: 20px;
     background-color: rgba(0, 108, 250, 1);
@@ -253,7 +259,7 @@ fieldset.ui-controlgroup {
     margin-right: 20%;
 }
 
-#atxt, #a2txt {
+#atxt, #a2txt, #atest {
     font-family: arial;
     font-size: 20px;
 }

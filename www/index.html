@@ -17,6 +17,7 @@
                         <a id="lgBtn" href="#settings" data-transition="slide" class="ui-btn ui-corner-all">Demo Settings</a>
                         <a id="stBtn" href="#wel" class="ui-btn ui-corner-all">Start Demo</a>
                         <a id="iatBtn" onclick="iaton()" href="#iat" class="ui-btn ui-corner-all">IAT Only</a> 
+                        <a id="surBtn" onclick="sur1on()" href="#survey" class="ui-btn ui-corner-all">Survey 1 Only</a>
                     </div>
                 </div>               
             </div> 
@@ -307,18 +308,13 @@
             </div>
             <div data-role="page" id="survey" data-theme="a">
                 <div data-role="header" data-position="fixed" data-tap-toggle="false">
-                    <div id="navSpc" data-role="navbar">
-                        <ul>
-                            <li><a id="fBack" onclick="back()" class="ui-btn ui-icon-carat-l ui-btn-icon-left">Back</a></li>
-                            <li></li>
-                            <li><a id="fwrd" onclick="forward()" class="ui-btn ui-icon-carat-r ui-btn-icon-right">Forward</a></li>   
-                        </ul>
-                    </div>
+                    <h1 id="sur1hd">SECTION A:  TELL US ABOUT YOURSELF</h1>
                 </div>
                 <div data-role="content">
                     <div id="a1Blk" class="sur1">
                         <p><b>How old are you?</b></p>
-                        <input type="text" pattern="\d*" id="atxt" value="" placeholder="Age" />
+                        <input type="number" min="18" max="99" id="atxt" value="" placeholder="Age" />
+                        <input type="tel" id="atest" value="" placeholder="Age" />
                         <a id="asb1" onclick="a1()" class="ui-btn ui-corner-all">Next</a>
                     </div>
                     <div id="a2Blk" class="sur1">
@@ -367,6 +363,15 @@
                             </table>
                         </div>
                         <a id="asb3" onclick="a3()" class="ui-btn ui-corner-all">Next</a>
+                    </div>
+                </div>
+                <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                    <div id="navSpc" data-role="navbar">
+                        <ul>
+                            <li><a id="fBack" onclick="back()" class="ui-btn ui-icon-carat-l ui-btn-icon-left">Back</a></li>
+                            <li></li>
+                            <li><a id="fwrd" onclick="forward()" class="ui-btn ui-icon-carat-r ui-btn-icon-right">Forward</a></li>   
+                        </ul>
                     </div>
                 </div>
             </div>
