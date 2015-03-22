@@ -17,6 +17,7 @@ var red = false;
 var blue = false;
 var active = false;
 var iCorrect = true;
+var iActive = true;
 var sBlkMax = 56;
 var iatBlk = 1;
 var iatMax;
@@ -207,43 +208,48 @@ function reset() {
     right = [];
     iatData = [];
     iatBlk = 1;
+    iActive = true;
     //Remove for final version.
     iOnly = false;
 }
 
 function calcScore(num) {
-    if (num === 1) {
-        $("#test").css({'color': 'red'});
-        if ($.inArray(iCurWrd, left) !== -1) {
-            iStop = new Date().getTime();
-            iTime = (iStop - iStartTime) / 1000;
-            iTime = Math.round(iTime * 100) / 100;
-            iCnt++;
-            recordTrial(iCurWrd, iTime, iCnt, iCorrect);
-            $("#wng1").css({'opacity': '0'});
-            iCorrect = true;
-            iStart();
+    if(iActive) {
+        if (num === 1) {
+            $("#test").css({'color': 'red'});
+            if ($.inArray(iCurWrd, left) !== -1) {
+                iActive = false;
+                iStop = new Date().getTime();
+                iTime = (iStop - iStartTime) / 1000;
+                iTime = Math.round(iTime * 100) / 100;
+                iCnt++;
+                recordTrial(iCurWrd, iTime, iCnt, iCorrect);
+                $("#wng1").css({'opacity': '0'});
+                iCorrect = true;
+                iStart();
+            }
+            else {
+                $("#wng1").css({'opacity': '100'});
+                iCorrect = false;
+            }
         }
         else {
-            $("#wng1").css({'opacity': '100'});
-            iCorrect = false;
-        }
-    }
-    else {
-        $("#test").css({'color': 'blue'});
-        if ($.inArray(iCurWrd, right) !== -1) {
-            iStop = new Date().getTime();
-            iTime = (iStop - iStartTime) / 1000;
-            iTime = Math.round(iTime * 100) / 100;
-            iCnt++;
-            recordTrial(iCurWrd, iTime, iCnt, iCorrect);
-            $("#wng1").css({'opacity': '0'});
-            iCorrect = true;
-            iStart();
-        }
-        else {
-            $("#wng1").css({'opacity': '100'});
-            iCorrect = false;
+            $("#test").css({'color': 'blue'});
+            if ($.inArray(iCurWrd, right) !== -1) {
+                iActive = false;
+                iStop = new Date().getTime();
+                iTime = (iStop - iStartTime) / 1000;
+                iTime = Math.round(iTime * 100) / 100;
+                iCnt++;
+                recordTrial(iCurWrd, iTime, iCnt, iCorrect);
+                $("#wng1").css({'opacity': '0'});
+                iCorrect = true;
+                iStart();
+            }
+            else {
+                $("#wng1").css({'opacity': '100'});
+                iCorrect = false;
+            }
         }
     }
 }
@@ -482,6 +488,7 @@ function iStart() {
         setTimeout(function() {
             $("#iWrd").text(iCurWrd);
             iStartTime = new Date().getTime();
+            iActive = true;
             $("#iWrd").css({'opacity': '100'});
         }, 100);
     }
