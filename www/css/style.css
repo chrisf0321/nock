@@ -259,7 +259,7 @@ fieldset.ui-controlgroup {
     margin-right: 20%;
 }
 
-#atxt, #a2txt, #atest {
+#atxt, #a2txt {
     font-family: arial;
     font-size: 20px;
 }
@@ -321,4 +321,39 @@ fieldset.ui-controlgroup {
 #sWrd, #iWrd {
     margin-left: 20%;
     margin-right: 20%;
+}
+
+#numPad {
+    text-align: center;
+    width: 400px;
+    height: 400px;
+    margin-left: 184px;
+    margin-right: 184px;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+#keypad {
+    text-align: center;
+    width: 400px;
+    height: 400px;
+    margin: 0;
+}
+
+#keypad td {
+    text-align: center;
+    padding: 0;
+    height: 25%;
+    width: 33%;
+}
+
+.num, .zero, .del, .don {
+    font-size: 30px;
+    height: 100%;
+    width: 100%;
+    padding-top: 25px;;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
 }

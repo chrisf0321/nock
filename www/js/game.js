@@ -23,6 +23,7 @@ var iatBlk = 1;
 var iatMax;
 var iStartTime;
 var iStop;
+var txtID;
 var death = ["Suicide", "Die", "Dead", "Deceased"];
 var life = ["Alive", "Thrive", "Living", "Breathing"];
 var notMe = ["They", "Them", "Their", "Other"];
@@ -158,6 +159,40 @@ $("#flSld").change(function() {
     flash = $("#slide3").val();
 });
 
+// Custom numeric keyboard for ipad.
+$("#atxt").on(TOUCH_START, function() {
+    txtID = "#" + $(this).attr('id');
+    $("#numPad").show();
+    $("#keypad").fadeToggle('fast');
+});
+
+$('.don').click(function(){
+    $('#keypad').hide('fast');
+});
+
+$('.num').click(function(){
+    if (!isNaN($(txtID).val())) {
+        if (parseInt($(txtID).val()) == 0) {
+            $(txtID).val($(this).text());
+        } else {
+            $(txtID).val($(txtID).val() + $(this).text());
+        }
+    }
+});
+
+$('.del').click(function(){
+    $(txtID).val($(txtID).val().substring(0,$(txtID).val().length - 1));
+});
+
+$('.zero').click(function(){
+    if (!isNaN($(txtID).val())) {
+        if (parseInt($(txtID).val()) != 0) {
+            $(txtID).val($(txtID).val() + $(this).text());
+        }
+    }
+});
+// End custom numeric keypad for ipad.
+      
 // Remove for the final version.
 function iaton() {
     iOnly = true;
@@ -724,6 +759,8 @@ function sStart() {
 }
 
 function a1() {
+    $("#keypad").hide();
+    $("#numPad").hide();
     surArry.a1 = $("#atxt").val();
     $("#a1Blk").hide();
     $("#a2inpt").hide();
