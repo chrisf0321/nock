@@ -54,7 +54,9 @@ body {
     margin-left: 20%;
 }
 
-#asb1, #asb2, #asb3 {
+#asb, #asb1, #asb2, #asb3, #asb4, #asb5, #asb6, #asb7, #asb8, #asb9, #asb9a, #asb10,
+#bsb, #bsb1, #bsb2, #bsb3, #bsb4, #bsb5, #bsb6, #csb, #csb1, #csb2, #csb3, #csb4, #csb5,
+#csb6, #csb7, #csb8, #csb9, #csb10, #csb11, #csb12, #csb13, #csb14, #csb15, #csb16, #csb17 {
     font-family: arial;
     font-size: 20px;
     background-color: rgba(0, 108, 250, 1);
@@ -63,6 +65,10 @@ body {
     margin-top: 5%;
     margin-right: 20%;
     margin-left: 20%;
+}
+
+#csb13 {
+    margin-top: 0;
 }
 
 #iBtn2, #sBtn2, #iBtn4, #iBtn5, #iBtn6, #iBtn7, #iBtn8, #iBtn9 {
@@ -228,16 +234,24 @@ body {
 .sur1 {
     text-align: center;
     font-family: arial;
-    font-size: 40px;
-    margin-top: 15%;
+    font-size: 30px;
+    margin-top: 5%;
 }
 
-.chkbox{
+.chkbox {
     font-family: arial;
     font-size: 20px;  
     padding-left: 50px;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.chkbox1{
+    font-family: arial;
+    font-size: 20px;  
+    padding-left: 50px;
+    padding-top: 17px;
+    padding-bottom: 17px;
 }
 
 .smallTitle {
@@ -259,7 +273,7 @@ fieldset.ui-controlgroup {
     margin-right: 20%;
 }
 
-#atxt, #a2txt {
+#atxt, #a4txt, #a8txt, #a9txt, #b2txt, #b3txt, #c1atxt, #c1btxt, #c2atxt, #c2btxt, #c3atxt, #c3btxt {
     font-family: arial;
     font-size: 20px;
 }
@@ -273,7 +287,7 @@ fieldset.ui-controlgroup {
 }
 
 #navSpc {
-    background-color: grey;
+    background-color: rgba(0, 108, 250, 1);
 }
 
 #a3Tbl {
@@ -318,6 +332,17 @@ fieldset.ui-controlgroup {
     color: green;
 }
 
+.errmsg {
+    font-family: arial;
+    font-size: 20px;
+    color: red;
+}
+
+#erc13 {
+    margin-top: 1%;
+    margin-bottom: 0;
+}
+
 #sWrd, #iWrd {
     margin-left: 20%;
     margin-right: 20%;
@@ -356,4 +381,74 @@ fieldset.ui-controlgroup {
     padding-left: 0;
     padding-right: 0;
     margin: 0;
+}
+
+.bTable {
+    font-size: 18px;
+}
+
+.b1Th {
+    vertical-align: bottom !important;
+}
+
+.b2Size {
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+#b2a .ui-input-text {
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+#b3a .ui-input-text {
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 50%;
+    margin-right: 10px;
+}
+
+#c1a .ui-input-text {
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+#c1b .ui-input-text {
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 50%;
+    margin-right: 10px;
+}
+
+#c2a .ui-input-text {
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+#c2b .ui-input-text {
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 50%;
+    margin-right: 10px;
+}
+
+#c3a .ui-input-text {
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.ui-block-a, .ui-block-b {
+    text-align: left !important;
+}
+
+#b2q, #b3q {
+    font-weight: bold;
 }

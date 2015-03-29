@@ -311,57 +311,644 @@
                     <h1 id="sur1hd">SECTION A:  TELL US ABOUT YOURSELF</h1>
                 </div>
                 <div data-role="content">
+                    <div id="aBlk" class="sur1">
+                        <p><b>First, please answer a few questions about yourself.</b></p>
+                        <br />
+                        <a id="asb" onclick="aSt()" class="ui-btn ui-corner-all">Start</a>
+                    </div>
                     <div id="a1Blk" class="sur1">
                         <p><b>How old are you?</b></p>
                         <input type="text" id="atxt" value="" readonly="readonly" placeholder="Age" />
                         <a id="asb1" onclick="a1()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="err1" class="errmsg"><b>Please enter a valid age between 18 and 99.</b></p>
                     </div>
                     <div id="a2Blk" class="sur1">
-                        <p><b>What is your race?</b><br><span class="smallTitle"><i>(Check all that apply.)</i></span></p>
+                        <p><b>What is your gender?</b></p>
                         <fieldset id="a2fd" data-role="controlgroup">
-                            <input name="a2Op1" id="a2Op1" type="checkbox">
-                            <label for="a2Op1" class="chkbox">White</label>
-                            <input name="a2Op2" id="a2Op2" type="checkbox">
-                            <label for="a2Op2" class="chkbox">Black or African American</label>
-                            <input name="a2Op3" id="a2Op3" type="checkbox">
-                            <label for="a2Op3" class="chkbox">American Indian or Alaskan Native</label>
-                            <input name="a2Op4" id="a2Op4" type="checkbox">
-                            <label for="a2Op4" class="chkbox">Asian (for example, Chinese, Filipino, Indian)</label>
-                            <input name="a2Op5" id="a2Op5" type="checkbox">
-                            <label for="a2Op5" class="chkbox">Native Hawaiian or other Pacific Islander</label>
-                            <input name="a2Op6" id="a2Op6" type="checkbox">
-                            <label for="a2Op6" class="chkbox">Other</label>
+                            <input name="a2Op1" id="a2Op1" value="Male" type="radio">
+                            <label id="a2lb1" for="a2Op1" class="chkbox">Male</label>
+                            <input name="a2Op1" id="a2Op2" value="Female" type="radio">
+                            <label id="a2lb2" for="a2Op2" class="chkbox">Female</label>
+                            <input name="a2Op1" id="a2Op3" value="Transgender, Male-to-Female (MTF)" type="radio">
+                            <label id="a2lb3" for="a2Op3" class="chkbox">Transgender, Male-to-Female (MTF)</label>
+                            <input name="a2Op1" id="a2Op4" value="Transgender, Female-to-Male (FTM)" type="radio">
+                            <label id="a2lb4" for="a2Op4" class="chkbox">Transgender, Female-to-Male (FTM)</label>
+                            <input name="a2Op1" id="a2Op5" value="Transgender, Do not identify as Male or Female" type="radio">
+                            <label id="a2lb5" for="a2Op5" class="chkbox">Transgender, Do not identify as Male or Female</label>
                         </fieldset>
-                        <div id="a2inpt">
-                            <input type="text" id="a2txt" value="" placeholder="Other" data-wrapper-class="standard-text">
-                        </div>
                         <a id="asb2" onclick="a2()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="err2" class="errmsg"><b>Please choose a gender.</b></p>
                     </div>
                     <div id="a3Blk" class="sur1">
-                        <p><b>To what extent do you think of <ins>death</ins> as being "like you" versus "not like you"?</b></p>
-                        <div id="sldWrap">
-                            <table data-role="table" id="a3Tbl" class="ui-responsive">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td id="td1">Not Like Me</td>
-                                        <td id="td2"><div class="full-slide">
-                                                <input name="a3Slide" id="a3Slide" min="0" max="100" value="50" step="1" data-popup-enabled="true" type="range">
-                                                <label for="a3Slide" class="ui-hidden-accessible"></label>
-                                            </div>
-                                        </td>
-                                        <td id="td3">Like Me</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <p><b>Are you Spanish/Hispanic/Latino?</b><br><span class="smallTitle"><i>(Check all that apply.)</i></span></p>
+                        <fieldset id="a3fd" data-role="controlgroup">
+                            <input name="a3Op1" id="a3Op1" value="No" type="checkbox">
+                            <label for="a3Op1" class="chkbox">No</label>
+                            <input name="a3Op2" id="a3Op2" value="Yes, Mexican/Mexican-American/Chicano" type="checkbox">
+                            <label for="a3Op2" class="chkbox">Yes, Mexican/Mexican-American/Chicano</label>
+                            <input name="a3Op3" id="a3Op3" value="Yes, Puerto Rican" type="checkbox">
+                            <label for="a3Op3" class="chkbox">Yes, Puerto Rican</label>
+                            <input name="a3Op4" id="a3Op4" value="Yes, Cuban" type="checkbox">
+                            <label for="a3Op4" class="chkbox">Yes, Cuban</label>
+                            <input name="a3Op5" id="a3Op5" value="Yes, other Spanish/Hispanic/Latino" type="checkbox">
+                            <label for="a3Op5" class="chkbox">Yes, other Spanish/Hispanic/Latino</label>
+                        </fieldset>
                         <a id="asb3" onclick="a3()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="err3" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="a4Blk" class="sur1">
+                        <p><b>What is your race?</b><br><span class="smallTitle"><i>(Check all that apply.)</i></span></p>
+                        <fieldset id="a4fd" data-role="controlgroup">
+                            <input name="a4Op1" id="a4Op1" value="White" type="checkbox">
+                            <label for="a4Op1" class="chkbox">White</label>
+                            <input name="a4Op2" id="a4Op2" value="Black or African American" type="checkbox">
+                            <label for="a4Op2" class="chkbox">Black or African American</label>
+                            <input name="a4Op3" id="a4Op3" value="American Indian or Alaskan Native" type="checkbox">
+                            <label for="a4Op3" class="chkbox">American Indian or Alaskan Native</label>
+                            <input name="a4Op4" id="a4Op4" value="Asian (for example, Chinese, Filipino, Indian)" type="checkbox">
+                            <label for="a4Op4" class="chkbox">Asian (for example, Chinese, Filipino, Indian)</label>
+                            <input name="a4Op5" id="a4Op5" value="Native Hawaiian or other Pacific Islander" type="checkbox">
+                            <label for="a4Op5" class="chkbox">Native Hawaiian or other Pacific Islander</label>
+                            <input name="a4Op6" id="a4Op6" type="checkbox">
+                            <label for="a4Op6" class="chkbox">Other</label>
+                        </fieldset>
+                        <div id="a4inpt">
+                            <input type="text" id="a4txt" value="" placeholder="Other" data-wrapper-class="standard-text">
+                        </div>
+                        <a id="asb4" onclick="a4()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="err4" class="errmsg"><b>Other input too long.</b></p>
+                        <p id="err4_1" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="a5Blk" class="sur1">
+                        <p><b>What is the <ins>highest</ins> level of education you completed?</b></p>
+                        <fieldset id="a5fd" data-role="controlgroup">
+                            <input name="a5Op1" id="a5Op1" value="Less than high school diploma, GED, or equivalent" type="radio">
+                            <label id="a5lb1" for="a5Op1" class="chkbox">Less than high school diploma, GED, or equivalent</label>
+                            <input name="a5Op1" id="a5Op2" value="High school diploma, GED, or equivalent" type="radio">
+                            <label id="a5lb2" for="a5Op2" class="chkbox">High school diploma, GED, or equivalent</label>
+                            <input name="a5Op1" id="a5Op3" value="Some post high school education, but no certificate or degree" type="radio">
+                            <label id="a5lb3" for="a5Op3" class="chkbox">Some post high school education, but no certificate or degree</label>
+                            <input name="a5Op1" id="a5Op4" value="Post high school technical school certificate or degree (for example, EMT)" type="radio">
+                            <label id="a5lb4" for="a5Op4" class="chkbox">Post high school technical school certificate or degree (for example, EMT)</label>
+                            <input name="a5Op1" id="a5Op5" value="2-year college Associate Degree" type="radio">
+                            <label id="a5lb5" for="a5Op5" class="chkbox">2-year college Associate Degree</label>
+                            <input name="a5Op1" id="a5Op6" value="4-year college degree (BA, BS, or equivalent)" type="radio">
+                            <label id="a5lb6" for="a5Op6" class="chkbox">4-year college degree (BA, BS, or equivalent)</label>
+                            <input name="a5Op1" id="a5Op7" value="Graduate or professional study" type="radio">
+                            <label id="a5lb7" for="a5Op7" class="chkbox">Graduate or professional study</label>
+                        </fieldset>
+                        <a id="asb5" onclick="a5()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="err5" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="a6Blk" class="sur1">
+                        <p><b>Are you currently married, divorced, separated, widowed, or never married?</b></p>
+                        <fieldset id="a6fd" data-role="controlgroup">
+                            <input name="a6Op1" id="a6Op1" value="Married" type="radio">
+                            <label id="a6lb1" for="a6Op1" class="chkbox">Married</label>
+                            <input name="a6Op1" id="a6Op2" value="Divorced" type="radio">
+                            <label id="a6lb2" for="a6Op2" class="chkbox">Divorced</label>
+                            <input name="a6Op1" id="a6Op3" value="Separated" type="radio">
+                            <label id="a6lb3" for="a6Op3" class="chkbox">Separated</label>
+                            <input name="a6Op1" id="a6Op4" value="Widowed" type="radio">
+                            <label id="a6lb4" for="a6Op4" class="chkbox">Widowed</label>
+                            <input name="a6Op1" id="a6Op5" value="Never Married" type="radio">
+                            <label id="a6lb5" for="a6Op5" class="chkbox">Never Married</label>
+                        </fieldset>
+                        <a id="asb6" onclick="a6()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="err6" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="a7Blk" class="sur1">
+                        <p><b>Do you consider yourself to be:</b></p>
+                        <fieldset id="a7fd" data-role="controlgroup">
+                            <input name="a7Op1" id="a7Op1" value="Heterosexual/Straight" type="radio">
+                            <label id="a7lb1" for="a7Op1" class="chkbox">Heterosexual/Straight</label>
+                            <input name="a7Op1" id="a7Op2" value="Gay/Lesbian/Homosexual" type="radio">
+                            <label id="a7lb2" for="a7Op2" class="chkbox">Gay/Lesbian/Homosexual</label>
+                            <input name="a7Op1" id="a7Op3" value="Bisexual" type="radio">
+                            <label id="a7lb3" for="a7Op3" class="chkbox">Bisexual</label>
+                            <input name="a7Op1" id="a7Op4" value="Not sure" type="radio">
+                            <label id="a7lb4" for="a7Op4" class="chkbox">Not sure</label>
+                        </fieldset>
+                        <a id="asb7" onclick="a7()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="err7" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="a8Blk" class="sur1">
+                        <p><b>With whom do you currently live?</b><br><span class="smallTitle"><i>(Check all that apply.)</i></span></p>
+                        <fieldset id="a8fd" data-role="controlgroup">
+                            <input name="a8Op1" id="a8Op1" value="Roommate(s)" type="checkbox">
+                            <label for="a8Op1" class="chkbox">Roommate(s)</label>
+                            <input name="a8Op2" id="a8Op2" value="Girlfriend/Boyfriend/Partner" type="checkbox">
+                            <label for="a8Op2" class="chkbox">Girlfriend/Boyfriend/Partner</label>
+                            <input name="a8Op3" id="a8Op3" value="Spouse" type="checkbox">
+                            <label for="a8Op3" class="chkbox">Spouse</label>
+                            <input name="a8Op4" id="a8Op4" value="Children" type="checkbox">
+                            <label for="a8Op4" class="chkbox">Children</label>
+                            <input name="a8Op5" id="a8Op5" value="Other relatives" type="checkbox">
+                            <label for="a8Op5" class="chkbox">Other relatives</label>
+                            <input name="a8Op6" id="a8Op6" value="Alone" type="checkbox">
+                            <label for="a8Op6" class="chkbox">Alone</label>
+                            <input name="a8Op7" id="a8Op7" value="Homeless/Shelter" type="checkbox">
+                            <label for="a8Op7" class="chkbox">Homeless/Shelter</label>
+                            <input name="a8Op8" id="a8Op8" type="checkbox">
+                            <label for="a8Op8" class="chkbox">Other</label>
+                        </fieldset>
+                        <div id="a8inpt">
+                            <input type="text" id="a8txt" value="" placeholder="Other" data-wrapper-class="standard-text">
+                        </div>
+                        <a id="asb8" onclick="a8()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="err8" class="errmsg"><b>Other input too long.</b></p>
+                        <p id="err8_1" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="a9Blk" class="sur1">
+                        <p><b>Which option best describes your current work situation?</b></p>
+                        <fieldset id="a9fd" data-role="controlgroup">
+                            <input name="a9Op1" id="a9Op1" value="Working now" type="radio">
+                            <label for="a9Op1" class="chkbox">Working now</label>
+                            <input name="a9Op1" id="a9Op2" value="Temporarily laid off, sick leave or maternity leave" type="radio">
+                            <label for="a9Op2" class="chkbox">Temporarily laid off, sick leave or maternity leave</label>
+                            <input name="a9Op1" id="a9Op3" value="Looking for work, unemployed" type="radio">
+                            <label for="a9Op3" class="chkbox">Looking for work, unemployed</label>
+                            <input name="a9Op1" id="a9Op4" value="Retired" type="radio">
+                            <label for="a9Op4" class="chkbox">Retired</label>
+                            <input name="a9Op1" id="a9Op5" value="Disabled, permanently or temporarily" type="radio">
+                            <label for="a9Op5" class="chkbox">Disabled, permanently or temporarily</label>
+                            <input name="a9Op1" id="a9Op6" value="Keeping house" type="radio">
+                            <label for="a9Op6" class="chkbox">Keeping house</label>
+                            <input name="a9Op1" id="a9Op7" value="Student" type="radio">
+                            <label for="a9Op7" class="chkbox">Student</label>
+                            <input name="a9Op1" id="a9Op8" type="radio">
+                            <label for="a9Op8" class="chkbox">Other</label>
+                        </fieldset>
+                        <div id="a9inpt">
+                            <input type="text" id="a9txt" value="" placeholder="Other" data-wrapper-class="standard-text">
+                        </div>
+                        <a id="asb9" onclick="a9()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="err9" class="errmsg"><b>Other input too long.</b></p>
+                        <p id="err9_1" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="a9aBlk" class="sur1">
+                        <p><b>How long has it been since you worked?</b></p>
+                        <fieldset id="a9afd" data-role="controlgroup">
+                            <input name="a9aOp1" id="a9aOp1" value="Within past 6 months" type="radio">
+                            <label id="a9alb1" for="a9aOp1" class="chkbox">Within past 6 months</label>
+                            <input name="a9aOp1" id="a9aOp2" value="7 months to 11 months" type="radio">
+                            <label id="a9alb2" for="a9aOp2" class="chkbox">7 months to 11 months</label>
+                            <input name="a9aOp1" id="a9aOp3" value="1 year to 5 years" type="radio">
+                            <label id="a9alb3" for="a9aOp3" class="chkbox">1 year to 5 years</label>
+                            <input name="a9aOp1" id="a9aOp4" value="More than 5 years" type="radio">
+                            <label id="a9alb4" for="a9aOp4" class="chkbox">More than 5 years</label>
+                        </fieldset>
+                        <a id="asb9a" onclick="a9a()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="err9a" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="a10Blk" class="sur1">
+                        <p><b>What's your best estimate of your [if married: and your spouse's] total income from all sources, before taxes, from 2014?</b></p>
+                        <fieldset id="a10fd" data-role="controlgroup">
+                            <input name="a10Op1" id="a10Op1" value="$0 - 20,000" type="radio">
+                            <label id="a10lb1" for="a10Op1" class="chkbox">$0 - 20,000</label>
+                            <input name="a9aOp1" id="a10Op2" value="$21,000 - $40,000" type="radio">
+                            <label id="a10lb2" for="a10Op2" class="chkbox">$21,000 - $40,000</label>
+                            <input name="a10Op1" id="a10Op3" value="$41,000 - $60,000" type="radio">
+                            <label id="a10lb3" for="a10Op3" class="chkbox">$41,000 - $60,000</label>
+                            <input name="a10Op1" id="a10Op4" value="$61,000 - $80,000" type="radio">
+                            <label id="a10lb4" for="a10Op4" class="chkbox">$61,000 - $80,000</label>
+                            <input name="a10Op1" id="a10Op5" value="$61,000 - $80,000" type="radio">
+                            <label id="a10lb5" for="a10Op5" class="chkbox">$81,000 - $100,000</label>
+                            <input name="a10Op1" id="a10Op6" value="> $100,000" type="radio">
+                            <label id="a10lb6" for="a10Op6" class="chkbox">> $100,000</label>
+                        </fieldset>
+                        <a id="asb10" onclick="a10()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="err10" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="bBlk" class="sur1">
+                        <p><b>The next questions are about emotional problems you may have had.</b></p>
+                        <br />
+                        <a id="bsb" onclick="bSt()" class="ui-btn ui-corner-all">Start</a>
+                    </div>
+                    <div id="b1Blk" class="sur1">
+                        <p><b>When was the <ins>last time</ins> that you had problems with the following issues that <ins>lasted more than 1 month</ins> and were <ins>so bad</ins> that they caused problems for you at work/school, with your family, or friends?</b><p>
+                        <table data-role="table" id="bTbl1" data-mode="reflow" class="bTable ui-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th style="width:55%"></th>
+                                    <th class="b1Th" style="width:10%">Past Week</th>
+                                    <th class="b1Th" style="width:10%">Past Year</th>
+                                    <th class="b1Th" style="width:10%">More than a year ago</th>
+                                    <th class="b1Th" style="width:10%">Never</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>(a)</th>
+                                    <td>you were so <ins>sad or depressed</ins> that you couldn't concentrate, had trouble eating or sleeping, or didn't want to do things you normally enjoy</td>
+                                    <td><input name="b1Op1" id="b1Op1" value="Past Week" type="radio">
+                                    </td>
+                                    <td><input name="b1Op1" id="b1Op2" value="Past Year" type="radio">
+                                    </td>
+                                    <td><input name="b1Op1" id="b1Op3" value="More than a year ago" type="radio">
+                                    </td>
+                                    <td><input name="b1Op1" id="b1Op4" value="Never" type="radio">
+                                    </td>                            
+                                </tr>
+                                <tr>
+                                    <th>(b)</th>
+                                    <td>you were <ins>hyper or manic</ins>; that is, much more excited and full of energy than usual, your mind went too fast, and you did things that were unusual for you (for example, taking risks, spending too much money)</td>
+                                    <td><input name="b1Op2" id="b1Op5" value="Past Week" type="radio">
+                                    </td>
+                                    <td><input name="b1Op2" id="b1Op6" value="Past Year" type="radio">
+                                    </td>
+                                    <td><input name="b1Op2" id="b1Op7" value="More than a year ago" type="radio">
+                                    </td>
+                                    <td><input name="b1Op2" id="b1Op8" value="Never" type="radio">
+                                    </td>                            
+                                </tr>
+                                <tr>
+                                    <th>(c)</th>
+                                    <td>you had <ins>insomnia</ins>, or problems falling asleep, staying asleep, or waking up too early</td>
+                                    <td><input name="b1Op3" id="b1Op9" value="Past Week" type="radio">
+                                    </td>
+                                    <td><input name="b1Op3" id="b1Op10" value="Past Year" type="radio">
+                                    </td>
+                                    <td><input name="b1Op3" id="b1Op11" value="More than a year ago" type="radio">
+                                    </td>
+                                    <td><input name="b1Op3" id="b1Op12" value="Never" type="radio">
+                                    </td>                            
+                                </tr>
+                                <tr>
+                                    <th>(d)</th>
+                                    <td>you had repeated attacks <ins>of fear or panic</ins> when all of a sudden you felt very frightened, anxious, or uneasy </td>
+                                    <td><input name="b1Op4" id="b1Op13" value="Past Week" type="radio">
+                                    </td>
+                                    <td><input name="b1Op4" id="b1Op14" value="Past Year" type="radio">
+                                    </td>
+                                    <td><input name="b1Op4" id="b1Op15" value="More than a year ago" type="radio">
+                                    </td>
+                                    <td><input name="b1Op4" id="b1Op16" value="Never" type="radio">
+                                    </td>                            
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a id="bsb1" onclick="b1c()" class="ui-btn ui-corner-all">Continue</a>
+                        <p id="erb1" class="errmsg"><b>Please answer all questions.</b></p>
+                    </div>
+                    <div id="b1Blkc" class="sur1">
+                        <p><b>When was the <ins>last time</ins> that you had problems with the following issues that <ins>lasted more than 1 month</ins> and were <ins>so bad</ins> that they caused problems for you at work/school, with your family, or friends?</b><p>
+                        <table data-role="table" id="bTbl1c" data-mode="reflow" class="bTable ui-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th style="width:55%"></th>
+                                    <th class="b1Th" style="width:10%">Past Week</th>
+                                    <th class="b1Th" style="width:10%">Past Year</th>
+                                    <th class="b1Th" style="width:10%">More than a year ago</th>
+                                    <th class="b1Th" style="width:10%">Never</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>(e)</th>
+                                    <td>you had repeated <ins>attacks of anger</ins> when all of a sudden you lost control and broke or smashed something, hit or tried to hurt someone, or threatened someone</td>
+                                    <td><input name="b1Op5" id="b1Op17" value="Past Week" type="radio">
+                                    </td>
+                                    <td><input name="b1Op5" id="b1Op18" value="Past Year" type="radio">
+                                    </td>
+                                    <td><input name="b1Op5" id="b1Op19" value="More than a year ago" type="radio">
+                                    </td>
+                                    <td><input name="b1Op5" id="b1Op20" value="Never" type="radio">
+                                    </td>                            
+                                </tr>
+                                <tr>
+                                    <th>(f)</th>
+                                    <td><ins>after a traumatic experience</ins> you had frequent upsetting memories or dreams, felt jumpy, distant or depressed, and had trouble sleeping or concentrating (<i>Do <ins>not</ins> report the most recent time a traumatic experience occurred, but rather the most recent time you had reactions of the sort described here to a traumatic experience</i>)</td>
+                                    <td><input name="b1Op6" id="b1Op21" value="Past Week" type="radio">
+                                    </td>
+                                    <td><input name="b1Op6" id="b1Op22" value="Past Year" type="radio">
+                                    </td>
+                                    <td><input name="b1Op6" id="b1Op23" value="More than a year ago" type="radio">
+                                    </td>
+                                    <td><input name="b1Op6" id="b1Op24" value="Never" type="radio">
+                                    </td>                            
+                                </tr>
+                                <tr>
+                                    <th>(g)</th>
+                                    <td>you were <ins>so agitated, anxious, or worried</ins> that you couldn't relax, sleep, or concentrate, and you couldn't function normally</td>
+                                    <td><input name="b1Op7" id="b1Op25" value="Past Week" type="radio">
+                                    </td>
+                                    <td><input name="b1Op7" id="b1Op26" value="Past Year" type="radio">
+                                    </td>
+                                    <td><input name="b1Op7" id="b1Op27" value="More than a year ago" type="radio">
+                                    </td>
+                                    <td><input name="b1Op7" id="b1Op28" value="Never" type="radio">
+                                    </td>                            
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a id="bsb2" onclick="b1c1()" class="ui-btn ui-corner-all">Continue</a>
+                        <p id="erb2" class="errmsg"><b>Please answer all questions.</b></p>
+                    </div>
+                    <div id="b1Blkc1" class="sur1">
+                        <p><b>When was the <ins>last time</ins> that you had problems with the following issues that <ins>lasted more than 1 month</ins> and were <ins>so bad</ins> that they caused problems for you at work/school, with your family, or friends?</b><p>
+                        <table data-role="table" id="bTbl1c1" data-mode="reflow" class="bTable ui-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th style="width:55%"></th>
+                                    <th class="b1Th" style="width:10%">Past Week</th>
+                                    <th class="b1Th" style="width:10%">Past Year</th>
+                                    <th class="b1Th" style="width:10%">More than a year ago</th>
+                                    <th class="b1Th" style="width:10%">Never</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>(h)</th>
+                                    <td>you <ins>used alcohol</ins> so much that you got in trouble at school/work or with family/friends, or your use was out of control</td>
+                                    <td><input name="b1Op8" id="b1Op29" value="Past Week" type="radio">
+                                    </td>
+                                    <td><input name="b1Op8" id="b1Op30" value="Past Year" type="radio">
+                                    </td>
+                                    <td><input name="b1Op8" id="b1Op31" value="More than a year ago" type="radio">
+                                    </td>
+                                    <td><input name="b1Op8" id="b1Op32" value="Never" type="radio">
+                                    </td>                            
+                                </tr>
+                                <tr>
+                                    <th>(i)</th>
+                                    <td>you <ins>used drugs</ins> (for example, marijuana, cocaine, etc.) so much that you got in trouble at school/work or family/friends, or your use was out of control</td>
+                                    <td><input name="b1Op9" id="b1Op33" value="Past Week" type="radio">
+                                    </td>
+                                    <td><input name="b1Op9" id="b1Op34" value="Past Year" type="radio">
+                                    </td>
+                                    <td><input name="b1Op9" id="b1Op35" value="More than a year ago" type="radio">
+                                    </td>
+                                    <td><input name="b1Op9" id="b1Op36" value="Never" type="radio">
+                                    </td>                            
+                                </tr>
+                                <tr>
+                                    <th>(j)</th>
+                                    <td>you had unusual experiences like<ins>seeing or hearing things</ins> that other people couldn't see or hear (<i>Do <ins>not</ins> include times that you were half-asleep or drinking alcohol or taking drugs.</i>)</td>
+                                    <td><input name="b1Op10" id="b1Op37" value="Past Week" type="radio">
+                                    </td>
+                                    <td><input name="b1Op10" id="b1Op38" value="Past Year" type="radio">
+                                    </td>
+                                    <td><input name="b1Op10" id="b1Op39" value="More than a year ago" type="radio">
+                                    </td>
+                                    <td><input name="b1Op10" id="b1Op40" value="Never" type="radio">
+                                    </td>                            
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a id="bsb3" onclick="b1c2()" class="ui-btn ui-corner-all">Continue</a>
+                        <p id="erb3" class="errmsg"><b>Please answer all questions.</b></p>
+                    </div>
+                    <div id="b1Blkc2" class="sur1">
+                        <p><b>When was the <ins>last time</ins> that you had problems with the following issues that <ins>lasted more than 1 month</ins> and were <ins>so bad</ins> that they caused problems for you at work/school, with your family, or friends?</b><p>
+                        <table data-role="table" id="bTbl1c2" data-mode="reflow" class="bTable ui-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th style="width:55%"></th>
+                                    <th class="b1Th" style="width:10%">Past Week</th>
+                                    <th class="b1Th" style="width:10%">Past Year</th>
+                                    <th class="b1Th" style="width:10%">More than a year ago</th>
+                                    <th class="b1Th" style="width:10%">Never</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>(k)</th>
+                                    <td>you had <ins>strange thoughts</ins> like believing your mind was being controlled by outside forces, that someone or something was sending you special signs (like through the TV), or someone or something was plotting to harm you</td>
+                                    <td><input name="b1Op11" id="b1Op41" value="Past Week" type="radio">
+                                    </td>
+                                    <td><input name="b1Op11" id="b1Op42" value="Past Year" type="radio">
+                                    </td>
+                                    <td><input name="b1Op11" id="b1Op43" value="More than a year ago" type="radio">
+                                    </td>
+                                    <td><input name="b1Op11" id="b1Op44" value="Never" type="radio">
+                                    </td>                            
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a id="bsb4" onclick="b1()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erb4" class="errmsg"><b>Please provide an answer.</b></p>
+                    </div>
+                    <div id="b2Blk" class="sur1">
+                        <p id='b2q'></p>
+                        <div class="ui-grid-a b2Size">
+                            <div id="b2a" class="ui-block-a">
+                                <input type="text" id="b2txt" value="" readonly="readonly" placeholder="Age" />
+                            </div>
+                            <div class="ui-block-b">
+                                <p><b>Years old</b><p>
+                            </div>
+                        </div>
+                        <a id="bsb5" onclick="b2()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erb5" class="errmsg"><b>Age cannot be greater than current age.</b></p>
+                    </div>
+                    <div id="b3Blk" class="sur1">
+                        <p id='b3q'></p>
+                        <div class="ui-grid-a">
+                            <div id="b3a" class="ui-block-a">
+                                <input type="text" id="b3txt" value="" readonly="readonly" placeholder="Months" />
+                            </div>
+                            <div class="ui-block-b">
+                                <p><b>Number of Months</b><p>
+                            </div>
+                        </div>
+                        <a id="bsb6" onclick="b3()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erb6" class="errmsg"><b>Months cannot be greater than 12.</b></p>
+                    </div>
+                    <div id="cBlk" class="sur1">
+                        <p><b>The next questions are about thoughts of hurting yourself.</b></p>
+                        <br />
+                        <a id="csb" onclick="cSt()" class="ui-btn ui-corner-all">Start</a>
+                    </div>
+                    <div id="c1Blk" class="sur1">
+                        <p><b>Did you <ins>ever in your life</ins> have thoughts of killing yourself?</b></p>
+                        <fieldset id="c1fd" data-role="controlgroup">
+                            <input name="c1Op1" id="c1Op1" value="Yes" type="radio">
+                            <label id="c1lb1" for="c1Op1" class="chkbox">Yes</label>
+                            <input name="c1Op1" id="c1Op2" value="No" type="radio">
+                            <label id="c1lb2" for="c1Op2" class="chkbox">No</label>
+                        </fieldset>
+                        <a id="csb1" onclick="c1()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc1" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="c1Blka" class="sur1">
+                        <p><b>About how old were you the very first time you had thoughts of killing yourself?</b></p>
+                        <div class="ui-grid-a b2Size">
+                            <div id="c1a" class="ui-block-a">
+                                <input type="text" id="c1atxt" value="" readonly="readonly" placeholder="Age" />
+                            </div>
+                            <div class="ui-block-b">
+                                <p><b>Years old</b><p>
+                            </div>
+                        </div>
+                        <a id="csb2" onclick="c1a()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc2" class="errmsg"><b>Age cannot be greater than current age.</b></p>
+                    </div>
+                    <div id="c1Blkb" class="sur1">
+                        <p><b>About how many <ins>weeks in the past year</ins> did you think of killing yourself?</b><br><span class='smallTitle'><i>(You can use any number between 0 and 52.  Your best estimate is fine.)</i></span></p>
+                        <div class="ui-grid-a">
+                            <div id="c1b" class="ui-block-a">
+                                <input type="text" id="c1btxt" value="" readonly="readonly" placeholder="Weeks" />
+                            </div>
+                            <div class="ui-block-b">
+                                <p><b>Number of Weeks</b><p>
+                            </div>
+                        </div>
+                        <a id="csb3" onclick="c1b()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc3" class="errmsg"><b>Value cannot be greater than 52.</b></p>
+                    </div>
+                    <div id="c1Blkc" class="sur1">
+                        <p><b>When was the <ins>last time</ins> you had thoughts of killing yourself?</b></p>
+                        <fieldset id="c1cfd" data-role="controlgroup">
+                            <input name="c1cOp1" id="c1cOp1" value="Past week" type="radio">
+                            <label id="c1clb1" for="c1cOp1" class="chkbox">Past week</label>
+                            <input name="c1cOp1" id="c1cOp2" value="2-4 weeks ago" type="radio">
+                            <label id="c1clb2" for="c1cOp2" class="chkbox">2-4 weeks ago</label>
+                            <input name="c1cOp1" id="c1cOp3" value="1-3 months ago" type="radio">
+                            <label id="c1clb3" for="c1cOp3" class="chkbox">1-3 months ago</label>
+                            <input name="c1cOp1" id="c1cOp4" value="4-6 months ago" type="radio">
+                            <label id="c1clb4" for="c1cOp4" class="chkbox">4-6 months ago</label>
+                            <input name="c1cOp1" id="c1cOp5" value="7-12 months ago" type="radio">
+                            <label id="c1clb5" for="c1cOp5" class="chkbox">7-12 months ago</label>
+                        </fieldset>
+                        <a id="csb4" onclick="c1c()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc4" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="c2Blk" class="sur1">
+                        <p><b>Did you ever make a plan to kill yourself?</b></p>
+                        <fieldset id="c2fd" data-role="controlgroup">
+                            <input name="c2Op1" id="c2Op1" value="Yes" type="radio">
+                            <label id="c2lb1" for="c2Op1" class="chkbox">Yes</label>
+                            <input name="c2Op1" id="c2Op2" value="No" type="radio">
+                            <label id="c2lb2" for="c2Op2" class="chkbox">No</label>
+                        </fieldset>
+                        <a id="csb5" onclick="c2()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc5" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="c2Blka" class="sur1">
+                        <p><b>About how old were you the very first time you made a plan to kill yourself?</b></p>
+                        <div class="ui-grid-a b2Size">
+                            <div id="c2a" class="ui-block-a">
+                                <input type="text" id="c2atxt" value="" readonly="readonly" placeholder="Age" />
+                            </div>
+                            <div class="ui-block-b">
+                                <p><b>Years old</b><p>
+                            </div>
+                        </div>
+                        <a id="csb6" onclick="c2a()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc6" class="errmsg"><b>Age cannot be greater than current age.</b></p>
+                    </div>
+                    <div id="c2Blkb" class="sur1">
+                        <p><b>About how many <ins>weeks in the past year</ins> did you have a plan to kill yourself?</b><br><span class='smallTitle'><i>(You can use any number between 0 and 52.  Your best estimate is fine.)</i></span></p>
+                        <div class="ui-grid-a">
+                            <div id="c2b" class="ui-block-a">
+                                <input type="text" id="c2btxt" value="" readonly="readonly" placeholder="Weeks" />
+                            </div>
+                            <div class="ui-block-b">
+                                <p><b>Number of Weeks</b><p>
+                            </div>
+                        </div>
+                        <a id="csb7" onclick="c2b()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc7" class="errmsg"><b>Value cannot be greater than 52.</b></p>
+                    </div>
+                    <div id="c2Blkc" class="sur1">
+                        <p><b>When was the <ins>last time</ins> you had a plan to kill yourself?</b></p>
+                        <fieldset id="c2cfd" data-role="controlgroup">
+                            <input name="c2cOp1" id="c2cOp1" value="Past week" type="radio">
+                            <label id="c2clb1" for="c2cOp1" class="chkbox">Past week</label>
+                            <input name="c2cOp1" id="c2cOp2" value="2-4 weeks ago" type="radio">
+                            <label id="c2clb2" for="c2cOp2" class="chkbox">2-4 weeks ago</label>
+                            <input name="c2cOp1" id="c2cOp3" value="1-3 months ago" type="radio">
+                            <label id="c2clb3" for="c2cOp3" class="chkbox">1-3 months ago</label>
+                            <input name="c2cOp1" id="c2cOp4" value="4-6 months ago" type="radio">
+                            <label id="c2clb4" for="c2cOp4" class="chkbox">4-6 months ago</label>
+                            <input name="c2cOp1" id="c2cOp5" value="7-12 months ago" type="radio">
+                            <label id="c2clb5" for="c2cOp5" class="chkbox">7-12 months ago</label>
+                        </fieldset>
+                        <a id="csb8" onclick="c2c()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc8" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="c3Blk" class="sur1">
+                        <p><b>Did you ever make a suicide attempt (that is, purposefully hurt yourself with at least some intent to die)?</b></p>
+                        <fieldset id="c3fd" data-role="controlgroup">
+                            <input name="c3Op1" id="c3Op1" value="Yes" type="radio">
+                            <label id="c3lb1" for="c3Op1" class="chkbox">Yes</label>
+                            <input name="c3Op1" id="c3Op2" value="No" type="radio">
+                            <label id="c3lb2" for="c3Op2" class="chkbox">No</label>
+                        </fieldset>
+                        <a id="csb9" onclick="c3()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc9" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="c3Blka" class="sur1">
+                        <p><b>About how old were you the very first time you made a plan to kill yourself?</b></p>
+                        <div class="ui-grid-a b2Size">
+                            <div id="c3a" class="ui-block-a">
+                                <input type="text" id="c3atxt" value="" readonly="readonly" placeholder="Age" />
+                            </div>
+                            <div class="ui-block-b">
+                                <p><b>Years old</b><p>
+                            </div>
+                        </div>
+                        <a id="csb10" onclick="c3a()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc10" class="errmsg"><b>Age cannot be greater than current age.</b></p>
+                    </div>
+                    <div id="c3Blkb" class="sur1">
+                        <p><b>How many different suicide attempts did you ever make?</b></p>
+                        <input type="text" id="c3btxt" value="" readonly="readonly" placeholder="Attempts" />
+                        <a id="csb11" onclick="c3b()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc11" class="errmsg"><b>Please enter a valid number.</b></p>
+                    </div>
+                    <div id="c3Blkc" class="sur1">
+                        <p><b>When was the <ins>last time</ins> you made a suicide attempt?</b></p>
+                        <fieldset id="c3cfd" data-role="controlgroup">
+                            <input name="c3cOp1" id="c3cOp1" value="Past week" type="radio">
+                            <label id="c3clb1" for="c3cOp1" class="chkbox">Past week</label>
+                            <input name="c3cOp1" id="c3cOp2" value="2-4 weeks ago" type="radio">
+                            <label id="c3clb2" for="c3cOp2" class="chkbox">2-4 weeks ago</label>
+                            <input name="c3cOp1" id="c3cOp3" value="1-3 months ago" type="radio">
+                            <label id="c3clb3" for="c3cOp3" class="chkbox">1-3 months ago</label>
+                            <input name="c3cOp1" id="c3cOp4" value="4-6 months ago" type="radio">
+                            <label id="c3clb4" for="c3cOp4" class="chkbox">4-6 months ago</label>
+                            <input name="c3cOp1" id="c3cOp5" value="7-12 months ago" type="radio">
+                            <label id="c3clb5" for="c3cOp5" class="chkbox">7-12 months ago</label>
+                            <input name="c3cOp1" id="c3cOp6" value="More than 1 year ago" type="radio">
+                            <label id="c3clb6" for="c3cOp6" class="chkbox">More than 1 year ago</label>
+                        </fieldset>
+                        <a id="csb12" onclick="c3c()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc12" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="c3Blkd" class="sur1">
+                        <p id="c3dq"></p>
+                        <fieldset id="c3dfd" data-role="controlgroup">
+                            <input name="c3dOp1" id="c3dOp1" value="Overdose of medications" type="checkbox">
+                            <label for="c3dOp1" class="chkbox1">Overdose of medications</label>
+                            <input name="c3dOp2" id="c3dOp2" value="Overdose of illegal drugs" type="checkbox">
+                            <label for="c3dOp2" class="chkbox1">Overdose of illegal drugs</label>
+                            <input name="c3dOp3" id="c3dOp3" value="Poisoning with a household substance or gas" type="checkbox">
+                            <label for="c3dOp3" class="chkbox1">Poisoning with a household substance or gas</label>
+                            <input name="c3dOp4" id="c3dOp4" value="Hanging" type="checkbox">
+                            <label for="c3dOp4" class="chkbox1">Hanging</label>
+                            <input name="c3dOp5" id="c3dOp5" value="Suffocation (for example, plastic bag over head)" type="checkbox">
+                            <label for="c3dOp5" class="chkbox1">Suffocation (for example, plastic bag over head)</label>
+                            <input name="c3dOp6" id="c3dOp6" value="Drowning" type="checkbox">
+                            <label for="c3dOp6" class="chkbox1">Drowning</label>
+                            <input name="c3dOp7" id="c3dOp7" value="Cutting or Stabbing" type="checkbox">
+                            <label for="c3dOp7" class="chkbox1">Cutting or Stabbing</label>
+                            <input name="c3dOp8" id="c3dOp8" value="Gunshot" type="checkbox">
+                            <label for="c3dOp8" class="chkbox1">Gunshot</label>
+                            <input name="c3dOp9" id="c3dOp9" value="Jumping from a high place" type="checkbox">
+                            <label for="c3dOp9" class="chkbox1">Jumping from a high place</label>
+                            <input name="c3dOp10" id="c3dOp10" value="Motor vehicle crash" type="checkbox">
+                            <label for="c3dOp10" class="chkbox1">Motor vehicle crash</label>
+                            <input name="c3dOp11" id="c3dOp11" value="Any other method" type="checkbox">
+                            <label for="c3dOp11" class="chkbox1">Any other method</label>
+                        </fieldset>
+                        <a id="csb13" onclick="c3d()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc13" class="errmsg"><b>Please choose an answer.</b></p>
                     </div>
                 </div>
                 <div id="numPad">
@@ -391,8 +978,8 @@
                 <div data-role="footer" data-position="fixed" data-tap-toggle="false">
                     <div id="navSpc" data-role="navbar">
                         <ul>
-                            <li><a id="fBack" onclick="back()" class="ui-btn ui-icon-carat-l ui-btn-icon-left">Back</a></li>
                             <li></li>
+                            <li><a id="fBack" onclick="back()" class="ui-btn ui-icon-carat-l ui-btn-icon-left">Back</a></li>
                             <li><a id="fwrd" onclick="forward()" class="ui-btn ui-icon-carat-r ui-btn-icon-right">Forward</a></li>   
                         </ul>
                     </div>

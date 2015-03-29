@@ -21,6 +21,8 @@ var iActive = true;
 var sBlkMax = 56;
 var iatBlk = 1;
 var iatMax;
+var b1Ever = 0;
+var b2Year = 0;
 var iStartTime;
 var iStop;
 var txtID;
@@ -38,22 +40,16 @@ var iatArry = [];
 var left = [];
 var right = [];
 var iatData = [];
-var surArry = { a1 : "", a2 : "", a3 : "", a4 : "", a5 : ""};
+var surArry = { a1 : "", a2 : "", a3_1 : "", a3_2 : "", a3_3 : "", a3_4 : "", a3_5 : "", a4_1 : "", a4_2 : "", a4_3 : "", a4_4 : "",
+                a4_5 : "", a4_6 : "", a5 : "", a6 : "", a7 : "", a8_1 : "", a8_2 : "", a8_3 : "", a8_4 : "", a8_5 : "", a8_6 : "", 
+                a8_7 : "", a8_8 : "", a9 : "", a9_flag : 0, a9a : "", a10 : "", b1a : "", b1b : "", b1c : "", b1d : "", b1e : "", b1f : "",
+                b1g : "", b1h : "", b1i : "", b1j : "", b1k : "", b2 : "", b3 : "", c1 : "", c1a : "", c1b : "", c1c : "", c2 : "", c2a : "",
+                c2b : "", c2c : "", c3 : "", c3a : "", c3b : "", c3c : "", c3d_1 : "", c3d_2 : "", c3d_3 : "", c3d_4 : "", c3d_5 : "", c3d_6 : "",
+                c3d_7 : "", c3d_8 : "", c3d_9 : "", c3d_10 : "", c3d_11 : "", c4 : "", c4a : "", c4b : "", c4c : ""};
 
 //Remove for the final version.
 var iOnly = false;
 var s1Only = false;
-
-/*$(document).on('touchmove', '#iat', function(e) {
-    e.preventDefault();
-});*/
-
-$("#a2Op6").on('change', function() {
-    if ($("#a2Op6").prop('checked')) {
-        $("#a2inpt").show();
-        $("#a2txt").focus();
-    }
-});
 
 $(document).on('pagebeforeshow', '#iData', function() {
     displayIAT();
@@ -103,9 +99,10 @@ $(document).on('pagebeforeshow', '#sst', function() {
 });
 
 $(document).on('pagebeforeshow', '#survey', function() {
-    $("#a3Blk").hide();
-    $("#a2Blk").hide();
-    $("#a1Blk").show();
+    $("#a1Blk, #a2Blk, #a3Blk, #a4Blk, #a5Blk, #a6Blk, #a7Blk, #a8Blk, #a9Blk, #a9aBlk, #a10Blk").hide();
+    $("#bBlk, #b1Blk, #b2Blk, #b3Blk, #b1Blkc, #b1Blkc1, #b1Blkc2").hide();
+    $("#cBlk, #c1Blk, #c1Blka, #c1Blkb, #c1Blkc, #c2Blk, #c2Blka, #c2Blkb, #c2Blkc, #c3Blk, #c3Blka, #c3Blkb, #c3Blkc, #c3Blkd, #c4Blk, #c4Blka, #c4Blkb, #c4Blkc").hide();
+    $("#aBlk").show();
 });
 
 $("#lft, #rgt, #lft1, #rgt1").on(TOUCH_START, function() {
@@ -160,7 +157,7 @@ $("#flSld").change(function() {
 });
 
 // Custom numeric keyboard for ipad.
-$("#atxt").on(TOUCH_START, function() {
+$("#atxt, #b2txt, #b3txt, #c1atxt, #c1btxt, #c2atxt, #c2btxt, #c3atxt, #c3btxt").on(TOUCH_START, function() {
     txtID = "#" + $(this).attr('id');
     $("#numPad").show();
     $("#keypad").fadeToggle('fast');
@@ -172,7 +169,7 @@ $('.don').click(function(){
 
 $('.num').click(function(){
     if (!isNaN($(txtID).val())) {
-        if (parseInt($(txtID).val()) == 0) {
+        if (parseInt($(txtID).val()) === 0) {
             $(txtID).val($(this).text());
         } else {
             $(txtID).val($(txtID).val() + $(this).text());
@@ -186,7 +183,7 @@ $('.del').click(function(){
 
 $('.zero').click(function(){
     if (!isNaN($(txtID).val())) {
-        if (parseInt($(txtID).val()) != 0) {
+        if (parseInt($(txtID).val()) !== 0) {
             $(txtID).val($(txtID).val() + $(this).text());
         }
     }
@@ -758,22 +755,904 @@ function sStart() {
     active = true;
 }
 
-function a1() {
+// Survey logic
+$("#a2Op1, #a2Op2, #a2Op3, #a2Op4, #a2Op5").on('change', function() {
+    surArry.a2 = $(this).val();
+});
+
+$("#a3Op1, #a3Op2, #a3Op3, #a3Op4, #a3Op5").on('change', function() {
+    if ($(this).attr('id') !== "a3Op1" && $("#a3Op1").prop('checked')) {
+        $("#a3Op1").prop('checked', false).checkboxradio("refresh");
+    }
+    else if ($(this).attr('id') === "a3Op1") {
+        $("#a3Op2, #a3Op3, #a3Op4, #a3Op5").prop('checked', false).checkboxradio("refresh");
+    }
+});
+
+$("#a5Op1, #a5Op2, #a5Op3, #a5Op4, #a5Op5, #a5Op6, #a5Op7").on('change', function() {
+    surArry.a5 = $(this).val();
+});
+
+$("#a6Op1, #a6Op2, #a6Op3, #a6Op4, #a6Op5").on('change', function() {
+    surArry.a6 = $(this).val();
+});
+
+$("#a7Op1, #a7Op2, #a7Op3, #a7Op4").on('change', function() {
+    surArry.a7 = $(this).val();
+});
+
+$("#a4Op6").on('change', function() {
+    if ($("#a4Op6").prop('checked')) {
+        $("#a4inpt").show();
+        $("#a4txt").focus();
+    }
+    else {
+        $("#a4inpt").hide();
+    }
+});
+
+$("#a8Op8").on('change', function() {
+    if ($("#a8Op8").prop('checked')) {
+        $("#a8inpt").show();
+        $("#a8txt").focus();
+    }
+    else {
+        $("#a8inpt").hide();
+    }
+});
+
+$("#a9Op2, #a9Op3, #a9Op4, #a9Op5").on('change', function() {
+    surArry.a9 = $(this).val();
+    surArry.a9_flag = 1;
+});
+
+$("#a9Op1, #a9Op6, #a9Op7").on('change', function() {  
+    surArry.a9 = $(this).val();
+    surArry.a9_flag = 0;
+});
+
+$("#a9Op8").on('change', function() {
+    if ($("#a9Op8").prop('checked')) {
+        $("#a9inpt").show();
+        $("#a9txt").focus();
+    }
+    else {
+        $("#a9inpt").hide();
+    }
+});
+
+$("#a9aOp1, #a9aOp2, #a9aOp3, #a9aOp4").on('change', function() {
+    surArry.a9a = $(this).val();
+});
+
+$("#a10Op1, #a10Op2, #a10Op3, #a10Op4, #a10Op5, #a10Op6").on('change', function() {
+    surArry.a10 = $(this).val();
+});
+
+$("#b1Op1, #b1Op2, #b1Op3, #b1Op4").on('change', function() {
+    surArry.b1a = $(this).val();
+});
+$("#b1Op5, #b1Op6, #b1Op7, #b1Op8").on('change', function() {
+    surArry.b1b = $(this).val();
+});
+$("#b1Op9, #b1Op10, #b1Op11, #b1Op12").on('change', function() {
+    surArry.b1c = $(this).val();
+});
+$("#b1Op13, #b1Op14, #b1Op15, #b1Op16").on('change', function() {
+    surArry.b1d = $(this).val();
+});
+$("#b1Op17, #b1Op18, #b1Op19, #b1Op20").on('change', function() {
+    surArry.b1e = $(this).val();
+});
+$("#b1Op21, #b1Op22, #b1Op23, #b1Op24").on('change', function() {
+    surArry.b1f = $(this).val();
+});
+$("#b1Op25, #b1Op26, #b1Op27, #b1Op28").on('change', function() {
+    surArry.b1g = $(this).val();
+});
+$("#b1Op29, #b1Op30, #b1Op31, #b1Op32").on('change', function() {
+    surArry.b1h = $(this).val();
+});
+$("#b1Op33, #b1Op34, #b1Op35, #b1Op36").on('change', function() {
+    surArry.b1i = $(this).val();
+});
+$("#b1Op37, #b1Op38, #b1Op39, #b1Op40").on('change', function() {
+    surArry.b1j = $(this).val();
+});
+$("#b1Op41, #b1Op42, #b1Op43, #b1Op44").on('change', function() {
+    surArry.b1k = $(this).val();
+});
+
+$("#c1Op1, #c1Op2").on('change', function() {
+    surArry.c1 = $(this).val();
+});
+
+$("#c1cOp1, #c1cOp2, #c1cOp3, #c1cOp4, #c1cOp5").on('change', function() {
+    surArry.c1c = $(this).val();
+});
+
+$("#c2Op1, #c2Op2").on('change', function() {
+    surArry.c2 = $(this).val();
+});
+
+$("#c2cOp1, #c2cOp2, #c2cOp3, #c2cOp4, #c2cOp5").on('change', function() {
+    surArry.c2c = $(this).val();
+});
+
+$("#c3Op1, #c3Op2").on('change', function() {
+    surArry.c3 = $(this).val();
+});
+
+$("#c3cOp1, #c3cOp2, #c3cOp3, #c3cOp4, #c3cOp5, #c3cOp6").on('change', function() {
+    surArry.c3c = $(this).val();
+});
+
+function aSt() {
+    $("#aBlk").hide();
     $("#keypad").hide();
     $("#numPad").hide();
+    $("#err1").hide();
+    $("#a1Blk").show();
+}
+
+
+function a1() {
     surArry.a1 = $("#atxt").val();
-    $("#a1Blk").hide();
-    $("#a2inpt").hide();
-    $("#a2Blk").show();
+    num = parseInt($("#atxt").val());
+    $("#keypad").hide();
+    $("#numPad").hide();
+    
+    if (num > 17 && num < 100) {
+        $("#a1Blk").hide();
+        $("#err1").hide();
+        $("#err2").hide();
+        $("#a2Blk").show();
+    }
+    else {
+        $("#err1").show();
+    }
 }
 
 function a2() {
-    $("#a2Blk").hide();
-    $("#a3Blk").show();
+    if (surArry.a2 !== "") {
+        $("#a2Blk").hide();
+        $("#err2").hide();
+        $("#err3").hide();
+        $("#a3Blk").show();
+    }
+    else {
+        $("#err2").show();
+    }
 }
 
 function a3() {
-    $("a3Blk").hide();
-    $.mobile.changePage("#sst");
+    if ($("#a3Op1").prop('checked')) {
+        surArry.a3_1 = $("#a3Op1").val();
+    }
+    if ($("#a3Op2").prop('checked')) {
+        surArry.a3_2 = $("#a3Op2").val();
+    }
+    if ($("#a3Op3").prop('checked')) {
+        surArry.a3_3 = $("#a3Op3").val();
+    }
+    if ($("#a3Op4").prop('checked')) {
+        surArry.a3_4 = $("#a3Op4").val();
+    }
+    if ($("#a3Op5").prop('checked')) {
+        surArry.a3_5 = $("#a3Op5").val();
+    }
+    if (surArry.a3_1 !== "" || surArry.a3_2 !== "" || surArry.a3_3 !== ""
+            || surArry.a3_4 !== "" || surArry.a3_5 !== "") {
+        $("#a3Blk").hide();
+        $("#a4inpt").hide();
+        $("#err3").hide();
+        $("#err4").hide();
+        $("#err4_1").hide();
+        $("#a4Blk").show();
+    }
+    else {
+        $("#err3").show();
+    }
 }
 
+function a4() {
+    if ($("#a4Op1").prop('checked')) {
+        surArry.a4_1 = $("#a4Op1").val();
+        alert(surArry.a4_1);
+    }
+    if ($("#a4Op2").prop('checked')) {
+        surArry.a4_2 = $("#a4Op2").val();
+    }
+    if ($("#a4Op3").prop('checked')) {
+        surArry.a4_3 = $("#a4Op3").val();
+    }
+    if ($("#a4Op4").prop('checked')) {
+        surArry.a4_4 = $("#a4Op4").val();
+    }
+    if ($("#a4Op5").prop('checked')) {
+        surArry.a4_5 = $("#a4Op5").val();
+    }
+    if ($("#a4Op6").prop('checked')) {
+        if ($("#a4txt").val().length < 2000) {
+            surArry.a4_6 = $("#a4txt").val();
+        }
+        else if ($("#a4txt").val() !== "") {
+            $("#err4").show();
+        }
+    }
+    if (surArry.a4_1 !== "" || surArry.a4_2 !== "" || surArry.a4_3 !== "" || surArry.a4_4 !== "" || surArry.a4_5 !== "" || 
+            ($("#a4Op6").prop('checked') && surArry.a4_6 !== "")) {
+        $("#a4Blk").hide();
+        $("#a4inpt").hide();
+        $("#err4").hide();
+        $("#err4_1").hide();
+        $("#err5").hide();
+        $("#a5Blk").show();
+    }
+    else {
+        $("#err4_1").show();
+    }
+}
+
+function a5() {
+    if (surArry.a5 !== "") {
+        $("#a5Blk").hide();
+        $("#err5").hide();
+        $("#err6").hide();
+        $("#a6Blk").show();
+    }
+    else {
+        $("#err5").show();
+    }
+}
+
+function a6() {
+    if (surArry.a6 !== "") {
+        $("#a6Blk").hide();
+        $("#err6").hide();
+        $("#err7").hide();
+        $("#a7Blk").show();
+    }
+    else {
+        $("#err6").show();
+    }
+}
+
+function a7() {
+    if (surArry.a7 !== "") {
+        $("#a7Blk").hide();
+        $("#err7").hide();
+        $("#err8").hide();
+        $("#err8_1").hide();
+        $("#a8inpt").hide();
+        $("#a8Blk").show();
+    }
+    else {
+        $("#err7").show();
+    }
+}
+
+function a8() {
+    if ($("#a8Op1").prop('checked')) {
+        surArry.a8_1 = $("#a8Op1").val();
+    }
+    if ($("#a8Op2").prop('checked')) {
+        surArry.a8_2 = $("#a8Op2").val();
+    }
+    if ($("#a8Op3").prop('checked')) {
+        surArry.a8_3 = $("#a8Op3").val();
+    }
+    if ($("#a8Op4").prop('checked')) {
+        surArry.a8_4 = $("#a8Op4").val();
+    }
+    if ($("#a8Op5").prop('checked')) {
+        surArry.a8_5 = $("#a8Op5").val();
+    }
+    if ($("#a8Op6").prop('checked')) {
+        surArry.a8_6 = $("#a8Op6").val();
+    }
+    if ($("#a8Op7").prop('checked')) {
+        surArry.a8_7 = $("#a8Op7").val();
+    }
+    if ($("#a8Op8").prop('checked')) {
+        if ($("#a8txt").val().length < 2000) {
+            surArry.a8_8 = $("#a8txt").val();
+        }
+        else if ($("#a8txt").val() !== "") {
+            $("#err8").show();
+        }
+    }
+    if (surArry.a8_1 !== "" || surArry.a8_2 !== "" || surArry.a8_3 !== "" || surArry.a8_4 !== "" || surArry.a8_5 !== "" || 
+             surArry.a8_6 !== "" || surArry.a8_7 !== "" || ($("#a8Op8").prop('checked') && surArry.a8_8 !== "")) {
+        $("#a8Blk").hide();
+        $("#a8inpt").hide();
+        $("#err8").hide();
+        $("#err8_1").hide();
+        $("#err9").hide();
+        $("#err9_1").hide();
+        $("#a9inpt").hide();
+        $("#a9Blk").show();
+    }
+    else {
+        $("#err8_1").show();
+    }
+}
+
+function a9() {
+    if ($("#a9Op8").prop('checked')) {
+        if ($("#a9txt").val().length < 2000) {
+            surArry.a9 = $("#a9txt").val();
+            surArry.a9_flag = 1;
+        }
+        else if ($("#a9txt").val() !== "") {
+            $("#err9").show();
+        }
+    }
+    if (surArry.a9 !== "") {
+        $("#a9Blk").hide();
+        $("#a9inpt").hide();
+        $("#err9").hide();
+        $("#err9_1").hide();
+        $("#err9a").hide();
+        $("#err10").hide();
+        if (surArry.a9_flag === 1) {
+            $("#a9aBlk").show();
+        }
+        else {
+            $("#a10Blk").show();
+        }
+    }
+    else {
+        $("#err9_1").show();
+    }
+}
+
+function a9a() {
+    if (surArry.a9a !== "") {
+        $("#a9aBlk").hide();
+        $("#err9a").hide();
+        $("#err10").hide();
+        $("#a10Blk").show();
+    }
+    else {
+        $("#err9a").show();
+    }
+}
+
+function a10() {
+    if (surArry.a10 !== "") {
+        $("#a10Blk").hide();
+        $("#err10").hide();
+        $("#sur1hd").text('SECTION B:  EMOTIONAL PROBLEMS');
+        $("#bBlk").show();
+    }
+    else {
+        $("#err10").show();
+    }
+}
+
+function bSt() {
+    $("#bBlk").hide();
+    $("#erb1").hide();
+    $("#b1Blk").show();
+}
+
+function b1c() {
+    if (surArry.b1a !== "" && surArry.b1b !== "" && surArry.b1c !== "" && surArry.b1d !== "") {
+        $("#b1Blk").hide();
+        $("#erb1").hide();
+        $("#erb2").hide();
+        $("#b1Blkc").show();
+    }
+    else {
+        $("#erb1").show();
+    }
+}
+
+function b1c1() {
+    if (surArry.b1e !== "" && surArry.b1f !== "" && surArry.b1g !== "") {
+        $("#b1Blkc").hide();
+        $("#erb2").hide();
+        $("#erb3").hide();
+        $("#b1Blkc1").show();
+    }
+    else {
+        $("#erb2").show();
+    }
+}
+
+function b1c2() {
+    if (surArry.b1h !== "" && surArry.b1i !== "" && surArry.b1j !== "") {
+        $("#b1Blkc1").hide();
+        $("#erb3").hide();
+        $("#erb4").hide();
+        $("#b1Blkc2").show();
+    }
+    else {
+        $("#erb3").show();
+    }
+}
+
+function b1() {
+    if (surArry.b1h !== "" && surArry.b1i !== "" && surArry.b1j !== "") {
+        if (b1Checks()) {
+            $("#b1Blkc2").hide();
+            $("#erb4").hide();
+            $("#erb5").hide();
+            
+            if (b1Ever > 0) {
+                $("#b2Blk").show();
+            }
+            else {
+                $("#sur1hd").text('SECTION C:  SELF-HARM');
+                $("#cBlk").show();
+            }
+        }
+    }
+    else {
+        $("#erb4").show();
+    }
+}
+
+function b1Checks() {
+    b1Ever = 0;
+    b1Year = 0;
+    b1Fill = [];
+    b1Fillers = {a : "having depression", b : "being hyper or manic", c : "having insomnia", d : "having attacks of fear or panic",
+                 e : "having attacks of anger", f : "having trouble after a traumatic experience", g : "having anxiety", h : "trouble with alcohol",
+                 i : "trouble with drugs", j : "seeing or hearing strange things", k : "having strange thoughts"};
+    
+    if (surArry.b1a !== "Never") {
+        b1Ever++;
+        b1Fill.push(b1Fillers.a);
+        if (surArry.b1a !== "More than a year ago") {
+            b1Year++;
+        }
+    }
+    if (surArry.b1b !== "Never") {
+        b1Ever++;
+        b1Fill.push(b1Fillers.b);
+        if (surArry.b1b !== "More than a year ago") {
+            b1Year++;
+        }
+    }
+    if (surArry.b1c !== "Never") {
+        b1Ever++;
+        b1Fill.push(b1Fillers.c);
+        if (surArry.b1c !== "More than a year ago") {
+            b1Year++;
+        }
+    }
+    if (surArry.b1d !== "Never") {
+        b1Ever++;
+        b1Fill.push(b1Fillers.d);
+        if (surArry.b1d !== "More than a year ago") {
+            b1Year++;
+        }
+    }
+    if (surArry.b1e !== "Never") {
+        b1Ever++;
+        b1Fill.push(b1Fillers.e);
+        if (surArry.b1e !== "More than a year ago") {
+            b1Year++;
+        }
+    }
+    if (surArry.b1f !== "Never") {
+        b1Ever++;
+        b1Fill.push(b1Fillers.f);
+        if (surArry.b1f !== "More than a year ago") {
+            b1Year++;
+        }
+    }
+    if (surArry.b1g !== "Never") {
+        b1Ever++;
+        b1Fill.push(b1Fillers.g);
+        if (surArry.b1g !== "More than a year ago") {
+            b1Year++;
+        }
+    }
+    if (surArry.b1h !== "Never") {
+        b1Ever++;
+        b1Fill.push(b1Fillers.h);
+        if (surArry.b1h !== "More than a year ago") {
+            b1Year++;
+        }
+    }
+    if (surArry.b1i !== "Never") {
+        b1Ever++;
+        b1Fill.push(b1Fillers.i);
+        if (surArry.b1i !== "More than a year ago") {
+            b1Year++;
+        }
+    }
+    if (surArry.b1j !== "Never") {
+        b1Ever++;
+        b1Fill.push(b1Fillers.j);
+        if (surArry.b1j !== "More than a year ago") {
+            b1Year++;
+        }
+    }
+    if (surArry.b1k !== "Never") {
+        b1Ever++;
+        b1Fill.push(b1Fillers.k);
+        if (surArry.b1k !== "More than a year ago") {
+            b1Year++;
+        }
+    }
+    
+    if (b1Ever > 0) {
+        switch(b1Ever) {
+            case 1:
+                $("#b2q").text("You reported " + b1Fill[0] + ".  About how old were you when this problem started?");
+                break;
+            case 2:
+                $("#b2q").text("You reported " + b1Fill[0] + " and " + b1Fill[1] + ".  About how old were you when either of these problems started?");
+                break;
+            case 3:
+                $("#b2q").text("You reported " + b1Fill[0] + " and " + b1Fill[1] + " and " + b1Fill[2] + ".  About how old were you when any of these problems started?");
+                break;
+            default:
+                $("#b2q").text("You reported quite a few of the above problems, like " + b1Fill[0] + ", " + b1Fill[1] + " and " + b1Fill[2] + ".  About how old were you when any of these problems started?");
+                break;
+        }
+    }
+    
+    if (b1Year > 0) {
+        switch(b1Year) {
+            case 1:
+                $("#b3q").html("<b>About how many months out of 12 in the past year did you have this problem?</b><br><span class='smallTitle'><i>(Your best estimate is fine.)</i></span>");
+                break;
+            case 2:
+                $("#b3q").html("<b>About how many months out of 12 in the past year did you have either of these problems?</b><br><span class='smallTitle'><i>(Your best estimate is fine.)</i></span>");
+                break;
+            default:
+                $("#b3q").html("<b>About how many months out of 12 in the past year did you have any of these problems?</b><br><span class='smallTitle'><i>(Your best estimate is fine.)</i></span>");
+                break;
+        }
+    }
+    
+    return true;
+}
+
+function b2() {
+    surArry.b2 = $("#b2txt").val();
+    num = parseInt($("#b2txt").val());
+    $("#keypad").hide();
+    $("#numPad").hide();
+    
+    if (parseInt(surArry.a1) >= num) {
+        $("#b2Blk").hide();
+        $("#erb5").hide();
+        $("#erb6").hide();
+        if (b1Year > 0) {
+            $("#b3Blk").show();
+        }
+        else {
+            $("#sur1hd").text('SECTION C:  SELF-HARM');
+            $("#cBlk").show();
+        }
+    }
+    else {
+        $("#erb5").show();
+    }
+}
+
+function b3() {
+    surArry.b3 = $("#b3txt").val();
+    num = parseInt($("#b3txt").val());
+    $("#keypad").hide();
+    $("#numPad").hide();
+    
+    if (num <= 12) {
+        $("#sur1hd").text('SECTION C:  SELF-HARM');
+        $("#b3Blk").hide();
+        $("#erb6").hide();
+        $("#cBlk").show();
+    }
+    else {
+        $("#erb6").show();
+    }
+}
+
+function cSt() {
+    $("#cBlk").hide();
+    $("#erc1").hide();
+    $("#c1Blk").show();
+}
+
+function c1() {
+    if (surArry.c1 !== "") {
+        $("#c1Blk").hide();
+        $("#erc1").hide();
+        $("#erc2").hide();
+        $("#erc14").hide();   // double check this later!!!!!!!!
+        if (surArry.c1 === "Yes") {
+            $("#c1Blka").show();
+        }
+        else {
+            $("#c4Blk").show();
+        }
+    }
+    else {
+        $("#erc1").show();
+    }
+}
+
+function c1a() {
+    surArry.c1a = $("#c1atxt").val();
+    num = parseInt($("#c1atxt").val());
+    $("#keypad").hide();
+    $("#numPad").hide();
+    
+    if (parseInt(surArry.a1) >= num) {
+        $("#c1Blka").hide();
+        $("#erc2").hide();
+        $("#erc3").hide();
+        $("#c1Blkb").show();
+    }
+    else {
+        $("#erc2").show();
+    }
+}
+
+function c1b() {
+    surArry.c1b = $("#c1btxt").val();
+    num = parseInt($("#c1btxt").val());
+    $("#keypad").hide();
+    $("#numPad").hide();
+    
+    if (num <= 52) {
+        $("#c1Blkb").hide();
+        $("#erc3").hide();
+        $("#erc4").hide();
+        if (num > 0) {
+            $("#c1Blkc").show();
+        }
+        else {
+            $("#erc6").hide();
+            $("#c2Blk").show();
+        }
+    }
+    else {
+        $("#erc3").show();
+    }
+}
+
+function c1c() {
+    if (surArry.c1c !== "") {
+        $("#c1Blkc").hide();
+        $("#erc4").hide();
+        $("#erc5").hide();
+        $("#c2Blk").show();
+    }
+    else {
+        $("#erc4").show();
+    }
+}
+
+function c2() {
+    if (surArry.c2 !== "") {
+        $("#c2Blk").hide();
+        $("#erc5").hide();
+        $("#erc6").hide();
+        $("#erc9").hide();   // double check this later!!!!!!!!
+        if (surArry.c2 === "Yes") {
+            $("#c2Blka").show();
+        }
+        else {
+            $("#c3Blk").show();
+        }
+    }
+    else {
+        $("#erc5").show();
+    }
+}
+
+function c2a() {
+    surArry.c2a = $("#c2atxt").val();
+    num = parseInt($("#c2atxt").val());
+    $("#keypad").hide();
+    $("#numPad").hide();
+    
+    if (parseInt(surArry.a1) >= num) {
+        $("#c2Blka").hide();
+        $("#erc6").hide();
+        $("#erc7").hide();
+        $("#c2Blkb").show();
+    }
+    else {
+        $("#erc6").show();
+    }
+}
+
+function c2b() {
+    surArry.c2b = $("#c2btxt").val();
+    num = parseInt($("#c2btxt").val());
+    $("#keypad").hide();
+    $("#numPad").hide();
+    
+    if (num <= 52) {
+        $("#c2Blkb").hide();
+        $("#erc7").hide();
+        $("#erc8").hide();
+        if (num > 0) {
+            $("#erc9").hide();
+            $("#c3Blk").show();
+        }
+        else {
+            $("#c2Blkc").show();
+        }
+    }
+    else {
+        $("#erc7").show();
+    }
+}
+
+function c2c() {
+    if (surArry.c2c !== "") {
+        $("#c2cBlk").hide();
+        $("#erc8").hide();
+        $("#erc9").hide();
+        $("#c3Blk").show();
+    }
+    else {
+        $("#erc8").show();
+    }
+}
+
+function c3() {
+    if (surArry.c3 !== "") {
+        $("#c3Blk").hide();
+        $("#erc9").hide();
+        $("#erc10").hide();
+        $("#erc14").hide();   // double check this later!!!!!!!! C4
+        if (surArry.c3 === "Yes") {
+            $("#c3Blka").show();
+        }
+        else {
+            $("#c4Blk").show();
+        }
+    }
+    else {
+        $("#erc9").show();
+    }
+}
+
+function c3a() {
+    surArry.c3a = $("#c3atxt").val();
+    num = parseInt($("#c3atxt").val());
+    $("#keypad").hide();
+    $("#numPad").hide();
+    
+    if (parseInt(surArry.a1) >= num) {
+        $("#c3Blka").hide();
+        $("#erc10").hide();
+        $("#erc11").hide();
+        $("#c3Blkb").show();
+    }
+    else {
+        $("#erc10").show();
+    }
+}
+
+function c3b() {
+    surArry.c3b = $("#c3btxt").val();
+    num = parseInt($("#c3btxt").val());
+    numC3a = parseInt(surArry.c3a);
+    numA1 = parseInt(surArry.a1);
+    $("#keypad").hide();
+    $("#numPad").hide();
+    
+    if (surArry.c3b !== "") {
+        if (surArry.c3b >= 1) {
+            $("#c3Blkb").hide();
+            $("#erc11").hide();
+            $("#erc12").hide();
+            $("#erc13").hide();
+            $("#erc14").hide();
+            $("#erc15").hide();
+            if (num === 1) {
+                $("#c3dq").html("<b>Which method did you use for your suicide attempt?</b><br><span class='smallTitle'><i>(Check all that apply.)</i></span>");
+            }
+            else if (num > 1) {
+                $("#c3dq").html("<b>Which methods did you use for your suicide attempts?</b><br><span class='smallTitle'><i>(Check all that apply.)</i></span>");
+            }
+        
+            if (numC3a === numA1 || numC3a === (numA1 - 1)) {
+                $("#c3Blkc").show();
+            }
+            else if (numC3a < (numA1 - 1) && num > 1) {
+                $("#c3Blkc").show();
+            }
+            else if (numC3a < (numA1 - 1) && num === 1) {
+                $("#c3Blkd").show();
+            }
+            else {
+                $("#c4Blk").show();
+            }
+        }
+        else {
+            $("#erc11").show();
+        }
+    }
+    else {
+        $("#erc11").show();
+    }
+}
+
+function c3c() {
+    if (surArry.c3c !== "") {
+        $("#c3Blkc").hide();
+        $("#erc12").hide();
+        $("#erc13").hide();
+        $("#c3Blkd").show();
+    }
+    else {
+        $("#erc12").show();
+    }
+}
+
+function c3d() {
+    ans = false;
+    
+    if ($("#c3dOp1").prop('checked')) {
+        ans = true;
+        surArry.c3d_1 = $("#c3dOp1").val();
+    }
+    if ($("#c3dOp2").prop('checked')) {
+        ans = true;
+        surArry.c3d_2 = $("#c3dOp2").val();
+    }
+    if ($("#c3dOp3").prop('checked')) {
+        ans = true;
+        surArry.c3d_3 = $("#c3dOp3").val();
+    }
+    if ($("#c3dOp4").prop('checked')) {
+        ans = true;
+        surArry.c3d_4 = $("#c3dOp4").val();
+    }
+    if ($("#c3dOp5").prop('checked')) {
+        ans = true;
+        surArry.c3d_5 = $("#c3dOp5").val();
+    }
+    if ($("#c3dOp6").prop('checked')) {
+        ans = true;
+        surArry.c3d_6 = $("#c3dOp6").val();
+    }
+    if ($("#c3dOp7").prop('checked')) {
+        ans = true;
+        surArry.c3d_7 = $("#c3dOp7").val();
+    }
+    if ($("#c3dOp8").prop('checked')) {
+        ans = true;
+        surArry.c3d_8 = $("#c3dOp8").val();
+    }
+    if ($("#c3dOp9").prop('checked')) {
+        ans = true;
+        surArry.c3d_9 = $("#c3dOp9").val();
+    }
+    if ($("#c3dOp10").prop('checked')) {
+        ans = true;
+        surArry.c3d_10 = $("#c3dOp10").val();
+    }
+    if ($("#c3dOp11").prop('checked')) {
+        ans = true;
+        surArry.c3d_11 = $("#c3dOp11").val();
+    }
+    if (ans) {
+        $("#c3dBlk").hide();
+        $("#erc13").hide();
+        $("#erc14").hide();
+        $("#c4Blk").show();
+    }
+    else {
+        $("#erc13").show();
+    }
+}
+
+function c4() {
+    
+}
+
+
+// $.mobile.changePage("#sst");
