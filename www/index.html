@@ -18,6 +18,7 @@
                         <a id="stBtn" href="#wel" class="ui-btn ui-corner-all">Start Demo</a>
                         <a id="iatBtn" onclick="iaton()" href="#iat" class="ui-btn ui-corner-all">IAT Only</a> 
                         <a id="surBtn" onclick="sur1on()" href="#survey" class="ui-btn ui-corner-all">Survey 1 Only</a>
+                        <a id="sstBtn" onclick="sston()" href="#sst" class="ui-btn ui-corner-all">SST Only</a>
                     </div>
                 </div>               
             </div> 
@@ -950,6 +951,72 @@
                         <a id="csb13" onclick="c3d()" class="ui-btn ui-corner-all">Next</a>
                         <p id="erc13" class="errmsg"><b>Please choose an answer.</b></p>
                     </div>
+                    <div id="c4Blk" class="sur1">
+                        <p><b>Did you do something to hurt yourself on purpose, but <ins>without</ins> wanting to die (for example, cutting yourself, hitting yourself, or burning yourself)?</b></p>
+                        <fieldset id="c4fd" data-role="controlgroup">
+                            <input name="c4Op1" id="c4Op1" value="Yes" type="radio">
+                            <label id="c4lb1" for="c4Op1" class="chkbox">Yes</label>
+                            <input name="c4Op1" id="c4Op2" value="No" type="radio">
+                            <label id="c4lb2" for="c4Op2" class="chkbox">No</label>
+                        </fieldset>
+                        <a id="csb14" onclick="c4()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc14" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="c4Blka" class="sur1">
+                        <p><b>About how old were you the very first time you did something to hurt yourself on purpose, but <ins>without</ins> wanting to die?</b></p>
+                        <div class="ui-grid-a b2Size">
+                            <div id="c4a" class="ui-block-a">
+                                <input type="text" id="c4atxt" value="" readonly="readonly" placeholder="Age" />
+                            </div>
+                            <div class="ui-block-b">
+                                <p><b>Years old</b><p>
+                            </div>
+                        </div>
+                        <a id="csb15" onclick="c4a()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc15" class="errmsg"><b>Age cannot be greater than current age.</b></p>
+                    </div>
+                    <div id="c4Blkb" class="sur1">
+                        <p><b>About how many times in your life did you do something to hurt yourself on purpose, but <ins>without</ins> wanting to die?</b></p>
+                        <fieldset id="c4bfd" data-role="controlgroup">
+                            <input name="c4bOp1" id="c4bOp1" value="1-2 times" type="radio">
+                            <label id="c4blb1" for="c4bOp1" class="chkbox">1-2 times</label>
+                            <input name="c4bOp1" id="c4bOp2" value="3-5" type="radio">
+                            <label id="c4blb2" for="c4bOp2" class="chkbox">3-5</label>
+                            <input name="c4bOp1" id="c4bOp3" value="6-10" type="radio">
+                            <label id="c4blb3" for="c4bOp3" class="chkbox">6-10</label>
+                            <input name="c4bOp1" id="c4bOp4" value="11-20" type="radio">
+                            <label id="c4blb4" for="c4bOp4" class="chkbox">11-20</label>
+                            <input name="c4bOp1" id="c4bOp5" value="21-30" type="radio">
+                            <label id="c4blb5" for="c4bOp5" class="chkbox">21-30</label>
+                            <input name="c4bOp1" id="c4bOp6" value="31-50" type="radio">
+                            <label id="c4blb6" for="c4bOp6" class="chkbox">31-50</label>
+                            <input name="c4bOp1" id="c4bOp7" value="51-100" type="radio">
+                            <label id="c4blb7" for="c4bOp7" class="chkbox">51-100</label>
+                            <input name="c4bOp1" id="c4bOp8" value="101 or more times" type="radio">
+                            <label id="c4blb8" for="c4bOp8" class="chkbox">101 or more times</label>
+                        </fieldset>
+                        <a id="csb16" onclick="c4b()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc16" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="c4Blkc" class="sur1">
+                        <p><b>When was the <ins>last time</ins> you did something to hurt yourself on purpose, but <ins>without</ins> wanting to die?</b></p>
+                        <fieldset id="c4cfd" data-role="controlgroup">
+                            <input name="c4cOp1" id="c4cOp1" value="Past week" type="radio">
+                            <label id="c4clb1" for="c4cOp1" class="chkbox">Past week</label>
+                            <input name="c4cOp1" id="c4cOp2" value="2-4 weeks ago" type="radio">
+                            <label id="c4clb2" for="c4cOp2" class="chkbox">2-4 weeks ago</label>
+                            <input name="c4cOp1" id="c4cOp3" value="1-3 months ago" type="radio">
+                            <label id="c4clb3" for="c4cOp3" class="chkbox">1-3 months ago</label>
+                            <input name="c4cOp1" id="c4cOp4" value="4-6 months ago" type="radio">
+                            <label id="c4clb4" for="c4cOp4" class="chkbox">4-6 months ago</label>
+                            <input name="c4cOp1" id="c4cOp5" value="7-12 months ago" type="radio">
+                            <label id="c4clb5" for="c4cOp5" class="chkbox">7-12 months ago</label>
+                            <input name="c4cOp1" id="c4cOp6" value="More than 1 year ago" type="radio">
+                            <label id="c4clb6" for="c4cOp6" class="chkbox">More than 1 year ago</label>
+                        </fieldset>
+                        <a id="csb17" onclick="c4c()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc17" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
                 </div>
                 <div id="numPad">
                         <table class="ui-bar-a" id="keypad" style="display: none;">
@@ -983,6 +1050,13 @@
                             <li><a id="fwrd" onclick="forward()" class="ui-btn ui-icon-carat-r ui-btn-icon-right">Forward</a></li>   
                         </ul>
                     </div>
+                </div>
+            </div>
+            <div data-role="page" id="sData" data-theme="a">
+                <div data-role="content">
+                    <div id="dataDiv">                        
+                    </div>
+                    <a id="sdb" onclick="reset()" href="#home" class="ui-btn ui-corner-all">Continue</a>
                 </div>
             </div>
             <div data-role="page" id="sst" data-theme="a">

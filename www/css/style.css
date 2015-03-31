@@ -43,7 +43,7 @@ body {
     margin-left: 20%;
 }
 
-#stBtn, #wBtn, #iBtn, #iatBtn, #iatBtn2, #surBtn {
+#stBtn, #wBtn, #iBtn, #iatBtn, #iatBtn2, #surBtn, #sstBtn {
     font-family: arial;
     font-size: 20px;
     background-color: rgba(0, 108, 250, 1);
@@ -56,7 +56,7 @@ body {
 
 #asb, #asb1, #asb2, #asb3, #asb4, #asb5, #asb6, #asb7, #asb8, #asb9, #asb9a, #asb10,
 #bsb, #bsb1, #bsb2, #bsb3, #bsb4, #bsb5, #bsb6, #csb, #csb1, #csb2, #csb3, #csb4, #csb5,
-#csb6, #csb7, #csb8, #csb9, #csb10, #csb11, #csb12, #csb13, #csb14, #csb15, #csb16, #csb17 {
+#csb6, #csb7, #csb8, #csb9, #csb10, #csb11, #csb12, #csb13, #csb14, #csb15, #csb16, #csb17, #sdb {
     font-family: arial;
     font-size: 20px;
     background-color: rgba(0, 108, 250, 1);
@@ -273,7 +273,7 @@ fieldset.ui-controlgroup {
     margin-right: 20%;
 }
 
-#atxt, #a4txt, #a8txt, #a9txt, #b2txt, #b3txt, #c1atxt, #c1btxt, #c2atxt, #c2btxt, #c3atxt, #c3btxt {
+#atxt, #a4txt, #a8txt, #a9txt, #b2txt, #b3txt, #c1atxt, #c1btxt, #c2atxt, #c2btxt, #c3atxt, #c3btxt, #c4atxt {
     font-family: arial;
     font-size: 20px;
 }
@@ -439,6 +439,13 @@ fieldset.ui-controlgroup {
 }
 
 #c3a .ui-input-text {
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+#c4a .ui-input-text {
     margin-top: 20px;
     margin-bottom: 0;
     margin-left: 0;
