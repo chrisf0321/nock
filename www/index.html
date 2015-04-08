@@ -14,7 +14,6 @@
             <div data-role="page" id="home" data-theme="a">
                 <div data-role="content">
                     <div id="lgBtnGrp">
-                        <a id="lgBtn" href="#settings" data-transition="slide" class="ui-btn ui-corner-all">Demo Settings</a>
                         <a id="stBtn" href="#wel" class="ui-btn ui-corner-all">Start Demo</a>
                         <a id="iatBtn" onclick="iaton()" href="#iat" class="ui-btn ui-corner-all">IAT Only</a> 
                         <a id="surBtn" onclick="sur1on()" href="#survey" class="ui-btn ui-corner-all">Survey 1 Only</a>
@@ -22,35 +21,6 @@
                     </div>
                 </div>               
             </div> 
-            <div data-role="page" id="settings" data-theme="b">
-                <div data-role="content">
-                    <div id="lft">
-                        <p id="lWrd">Death</p>
-                        <p id="or1">or</p>
-                        <p id="lWrd2">Not Me</p>
-                    </div>
-                    <div id="rgt">
-                        <p id="rWrd">Life</p>
-                        <p id="or2">or</p>
-                        <p id="rWrd2">Me</p>
-                    </div>
-                    <div id="fdSld" class="full-width-slider">
-                        <label for="slide1" id="sld1">Fade:</label>
-                        <input name="slide1" id="slide1" min="0" max="1" value="0.2" step="0.05" type="range" />
-                    </div>
-                    <div id="wdSld" class="full-width-slider">
-                        <label for="slide2" id="sld2">Bar Width:</label>
-                        <input name="slide2" id="slide2" min="0" max="50" value="20" step="1" type="range" />
-                    </div>
-                    <div id="flSld" class="full-width-slider">
-                        <label for="slide3" id="sld3">Flash and Intensity:</label>
-                        <input name="slide3" id="slide3" min="0" max="1" value="0" step="0.05" type="range" />
-                    </div>
-                    <p id="test">Speed and performance test phrase.</p>
-                    <a id="hBtn" href="#home" onclick="saveData()" data-transition="slide" data-direction="reverse" class="ui-btn ui-corner-all ui-btn-icon-right ui-icon-check">Save Settings</a>
-                    <a id="dBtn" onclick="defaults()" class="ui-btn ui-corner-all ui-btn-icon-right ui-icon-recycle">Defaults</a>
-                </div>
-            </div>
             <div data-role="page" id="wel" data-theme="a">
                 <div data-role="content">
                     <div id="welDiv" class="welBlk welBlk2">
@@ -308,9 +278,6 @@
                 </div>
             </div>
             <div data-role="page" id="survey" data-theme="a">
-                <div data-role="header" data-position="fixed" data-tap-toggle="false">
-                    <h1 id="sur1hd">SECTION A:  TELL US ABOUT YOURSELF</h1>
-                </div>
                 <div data-role="content">
                     <div id="aBlk" class="sur1">
                         <p><b>First, please answer a few questions about yourself.</b></p>
@@ -1038,7 +1005,7 @@
                             <tr>
                                 <td><a data-role="button" class="del">Del</a></td>
                                 <td><a data-role="button" class="zero">0</a></td>
-                                <td><a data-role="button" class="don">Done</a></td>
+                                <td><a data-role="button" class="don">Clear</a></td>
                             </tr>
                         </table>
                     </div>
@@ -1076,10 +1043,33 @@
                         </ul>
                         <a id="sBtn2" onclick="stSST()" class="ui-btn ui-corner-all">Start</a>
                     </div>
-                    <div id="sBlk2" class="iStim">
+                    <div id="sBlk2" class="iStim2">
                         <p id="sWrd"></p>
                         <p id="wng2" class="wng">X</p>
                     </div>
+                </div>
+            </div>
+            <div data-role="page" id="sstDataRes" data-theme="a">
+                <div data-role="content">
+                    <table data-role="table" id="sTable1" class="ui-responsive table-stroke">
+                        <thead>
+                            <tr>
+                                <th data-priority="1">Stimulus</th>
+                                <th data-priority="2">Type</th>
+                                <th data-priority="3">Color</th>
+                                <th data-priority="4">Response</th>
+                                <th data-priority="5">Time</th>
+                                <th data-priority="6">Correct</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                    <br />
+                    <div id="sstDiv">
+                    </div>
+                    <a id="sDat" onclick="reset()" href="#home" data-transition="slide" class="ui-btn ui-corner-all">Continue</a>
                 </div>
             </div>
             <div data-role="page" id="finish" data-theme="a">
@@ -1092,6 +1082,7 @@
         <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
         <script type="text/javascript" src="js/game.js"></script>
     </body>
 </html>

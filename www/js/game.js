@@ -1,8 +1,8 @@
+$(function() {
+    FastClick.attach(document.body);
+});
 var hasTouch = ('ontouchstart' in window);
 var TOUCH_START = hasTouch ? "touchstart" : "mousedown";
-var fade;
-var width;
-var flash;
 var iCnt = 0;
 var iCurWrd;
 var iBlkMax;
@@ -15,6 +15,7 @@ var rNum = 0;
 var bNum = 0;
 var red = false;
 var blue = false;
+var sstColor;
 var active = false;
 var iCorrect = true;
 var iActive = true;
@@ -25,6 +26,9 @@ var b1Ever = 0;
 var b2Year = 0;
 var iStartTime;
 var iStop;
+var sStTime;
+var sStop;
+var sstWrd;
 var txtID;
 var death = ["Suicide", "Die", "Dead", "Deceased"];
 var life = ["Alive", "Thrive", "Living", "Breathing"];
@@ -36,10 +40,16 @@ var redArry = ["Success", "Paper", "Dead", "Happy", "Funeral", "Rejected", "Engi
                "Success", "Paper", "Dead", "Happy", "Funeral", "Rejected", "Engine", "Stupid", "Alone", "Pleasure", "Suicide", "Museum"];
 var blueArry = ["Success", "Paper", "Dead", "Happy", "Funeral", "Rejected", "Engine", "Stupid", "Alone", "Pleasure", "Suicide", "Museum",
                "Success", "Paper", "Dead", "Happy", "Funeral", "Rejected", "Engine", "Stupid", "Alone", "Pleasure", "Suicide", "Museum"];
+var depressotypic = ["Rejected", "Alone", "Stupid"];
+var suicide = ["Dead", "Funeral", "Suicide"];
+var positive = ["Success", "Happy", "Pleasure"];
+var neutral = ["Paper", "Engine", "Museum"];
 var iatArry = [];
 var left = [];
 var right = [];
 var iatData = [];
+var sstData = [];
+var a9Exists = false;
 var surArry = { a1 : "", a2 : "", a3_1 : "", a3_2 : "", a3_3 : "", a3_4 : "", a3_5 : "", a4_1 : "", a4_2 : "", a4_3 : "", a4_4 : "",
                 a4_5 : "", a4_6 : "", a5 : "", a6 : "", a7 : "", a8_1 : "", a8_2 : "", a8_3 : "", a8_4 : "", a8_5 : "", a8_6 : "", 
                 a8_7 : "", a8_8 : "", a9 : "", a9_flag : 0, a9a : "", a10 : "", b1a : "", b1b : "", b1c : "", b1d : "", b1e : "", b1f : "",
@@ -59,19 +69,7 @@ $(document).on('pagebeforeshow', '#iData', function() {
 });
 
 $(document).on('pagebeforeshow', '#home', function() {
-    if (window.localStorage.getItem("fade") === null) {
-        window.localStorage.setItem("fade", 0.2);
-        window.localStorage.setItem("width", 20);
-        window.localStorage.setItem("flash", 0);
-    }
-    fade = window.localStorage.getItem("fade");
-    width = window.localStorage.getItem("width");
-    flash = window.localStorage.getItem("flash");
 }); 
-
-$(document).on('pagebeforeshow', '#settings', function() {
-    refreshSlide();
-});
 
 $(document).on('pagebeforeshow', '#wel', function() {
     $("#iatDiv").hide();
@@ -94,6 +92,7 @@ $(document).on('pagebeforeshow', '#iat', function() {
 
 $(document).on('pagebeforeshow', '#sst', function() {
     $("#wng2").css({'opacity': '0'});
+    sstColor = "";
     active = false;
     $("#sBlk2").hide();
     $("#sBlk1").show();
@@ -112,21 +111,9 @@ $("#lft, #rgt, #lft1, #rgt1").on(TOUCH_START, function() {
     var side = $(this).attr('id');
     if (side === "lft" || side === "lft1") {
         calcScore(1);
-        if (flash > 0) {
-           $("#lft, #lft1").css({'background-color': 'rgba(255, 0, 0,' + flash + ')'});
-            setTimeout(function() {
-                $("#lft, #lft1").css({'background-color': 'rgba(255, 0, 0,' + fade + ')'});
-            }, 100);
-        }
     }
     else {
         calcScore(2);
-        if (flash > 0) {
-            $("#rgt, #rgt1").css({'background-color': 'rgba(0, 0, 255,' + flash + ')'});
-            setTimeout(function() {
-                $("#rgt, #rgt1").css({'background-color': 'rgba(0, 0, 255,' + fade + ')'});
-            }, 100);
-        }
     }
 });
 
@@ -134,43 +121,39 @@ $("#lft2, #rgt2").on(TOUCH_START, function() {
     if (active) {
         active = false;
         $("#sWrd").css({'opacity': '0'});
+        sStop = new Date().getTime();
+        sTime = sStop - sStTime; // / 1000;
+        //sTime = Math.round(sTime * 1000) / 1000;
         sCnt++;
-        if (sCnt >= 56) {
-            $.mobile.changePage("#finish");
+        /*if (sCnt >= 56) {
+            sCalc(sstWrd, $(this).attr('id'), sTime, sstColor);
+            //$.mobile.changePage("#finish");
         }
-        else {
+        else {*/
+            if (sCnt > 8) {
+                sCalc(sstWrd, $(this).attr('id'), sTime, sstColor);
+            }
             sTrial();
-        }
+        //}
     }
 });
 
-$("#fdSld").change(function() {
-    fade = $("#slide1").val();
-    $("#lft, #lft1").css({'background-color': 'rgba(255, 0, 0,' + fade + ')'});
-    $("#rgt, #rgt1").css({'background-color': 'rgba(0, 0, 255,' + fade + ')'});
-});
-
-$("#wdSld").change(function() {
-    width = $("#slide2").val();
-    $('#lft, #rgt, #rgt1, #lft1').css({'width': width + '%'});
-});
-
-$("#flSld").change(function() {
-    flash = $("#slide3").val();
-});
-
 // Custom numeric keyboard for ipad.
-$("#atxt, #b2txt, #b3txt, #c1atxt, #c1btxt, #c2atxt, #c2btxt, #c3atxt, #c3btxt, #c4atxt").on(TOUCH_START, function() {
+/*$("#atxt, #b2txt, #b3txt, #c1atxt, #c1btxt, #c2atxt, #c2btxt, #c3atxt, #c3btxt, #c4atxt").on(TOUCH_START, function() {
     txtID = "#" + $(this).attr('id');
     $("#numPad").show();
     $("#keypad").fadeToggle('fast');
-});
+});*/
+
+function setID(id) {
+    txtID = id;
+}
 
 $('.don').click(function(){
-    $('#keypad').hide('fast');
+    $(txtID).val("");
 });
 
-$('.num').click(function(){
+$('.num').on(TOUCH_START, function(){
     if (!isNaN($(txtID).val())) {
         if (parseInt($(txtID).val()) === 0) {
             $(txtID).val($(this).text());
@@ -180,11 +163,11 @@ $('.num').click(function(){
     }
 });
 
-$('.del').click(function(){
+$('.del').on(TOUCH_START, function(){
     $(txtID).val($(txtID).val().substring(0,$(txtID).val().length - 1));
 });
 
-$('.zero').click(function(){
+$('.zero').on(TOUCH_START, function(){
     if (!isNaN($(txtID).val())) {
         if (parseInt($(txtID).val()) !== 0) {
             $(txtID).val($(txtID).val() + $(this).text());
@@ -217,31 +200,6 @@ Array.prototype.shuffle = function() {
 };
 
 function saveData() {
-    window.localStorage.setItem("fade", fade);
-    window.localStorage.setItem("width", width);
-    window.localStorage.setItem("flash", flash);
-}
-
-function defaults() {
-    fade = 0.2;
-    width = 20;
-    flash = 0;
-    
-    refreshSlide();
-}
-
-function refreshSlide() {
-    $("#slide1").val(fade);
-    $("#slide2").val(width);
-    $("#slide3").val(flash);
-    
-    $("#slide1").slider("refresh");
-    $("#slide2").slider("refresh");
-    $("#slide3").slider("refresh");
-    
-    $("#fdSld").change();
-    $("#wdSld").change();
-    $("#flSld").change();
 }
 
 function reset() {
@@ -250,6 +208,7 @@ function reset() {
     left = [];
     right = [];
     iatData = [];
+    sstData = [];
     iatBlk = 1;
     iActive = true;
     surArry = { a1 : "", a2 : "", a3_1 : "", a3_2 : "", a3_3 : "", a3_4 : "", a3_5 : "", a4_1 : "", a4_2 : "", a4_3 : "", a4_4 : "",
@@ -265,17 +224,17 @@ function reset() {
     //Remove for final version.
     iOnly = false;
     s1Only = false;
+    sstOnly = false;
 }
 
 function calcScore(num) {
     if(iActive) {
         if (num === 1) {
-            $("#test").css({'color': 'red'});
             if ($.inArray(iCurWrd, left) !== -1) {
                 iActive = false;
                 iStop = new Date().getTime();
                 iTime = (iStop - iStartTime) / 1000;
-                iTime = Math.round(iTime * 100) / 100;
+                iTime = Math.round(iTime * 1000) / 1000;
                 iCnt++;
                 recordTrial(iCurWrd, iTime, iCnt, iCorrect);
                 $("#wng1").css({'opacity': '0'});
@@ -288,12 +247,11 @@ function calcScore(num) {
             }
         }
         else {
-            $("#test").css({'color': 'blue'});
             if ($.inArray(iCurWrd, right) !== -1) {
                 iActive = false;
                 iStop = new Date().getTime();
                 iTime = (iStop - iStartTime) / 1000;
-                iTime = Math.round(iTime * 100) / 100;
+                iTime = Math.round(iTime * 1000) / 1000;
                 iCnt++;
                 recordTrial(iCurWrd, iTime, iCnt, iCorrect);
                 $("#wng1").css({'opacity': '0'});
@@ -521,8 +479,8 @@ function stIAT(maxTrial, trial) {
             $("#iBlk2").show();
             break;
     }
-    $("#lft1").css({'background-color': 'rgba(255, 0, 0,' + fade + ')'});
-    $("#rgt1").css({'background-color': 'rgba(0, 0, 255,' + fade + ')'});
+    $("#lft1").css({'background-color': 'rgba(255, 0, 0, 0.1)'});
+    $("#rgt1").css({'background-color': 'rgba(0, 0, 255, 0.1)'});
     iCnt = 0;
     iStart();
 }
@@ -633,8 +591,6 @@ function iStart() {
 function stSST() {
     $("#sBlk1").hide();
     $("#sBlk2").show();
-    $("#lft2").css({'background-color': 'rgba(255, 0, 0,' + fade + ')'});
-    $("#rgt2").css({'background-color': 'rgba(0, 0, 255,' + fade + ')'});
     pRedArry.shuffle();
     pBlueArry.shuffle();
     redArry.shuffle();
@@ -654,18 +610,30 @@ function stSST() {
 }
 
 function sTrial() {
-    $("#sWrd").removeClass('blue_font');
-    $("#sWrd").removeClass('red_font');
-    setTimeout(function() {
+    if (sCnt < 56) {
+        $("#sWrd").removeClass('blue_font');
+        $("#sWrd").removeClass('red_font');
         setTimeout(function() {
             setTimeout(function() {
-                sStart();
+                setTimeout(function() {
+                    sStart();
+                }, 1000);
+                $("#sWrd").css({'opacity': '0'});
             }, 1000);
-            $("#sWrd").css({'opacity': '0'});
+            $("#sWrd").text("+");
+            $("#sWrd").css({'opacity': '100'});
         }, 1000);
-        $("#sWrd").text("+");
-        $("#sWrd").css({'opacity': '100'});
-    }, 1000);
+    }
+    else {
+        if (sstOnly) {
+            if (sstScore()) {
+                genSData();
+            }
+        }
+        else {
+            $.mobile.changePage("#finish");
+        }
+    }
 }
 
 function sStart() {
@@ -678,7 +646,7 @@ function sStart() {
                     $("#sWrd").removeClass('blue_font');
                     $("#sWrd").addClass('red_font');
                     $("#sWrd").text(sstWrd);
-                    $("#sWrd").css({'opacity': '0.2'});
+                    $("#sWrd").css({'opacity': '0.5'});
                     rpNum++;
                     if (rpNum === pRedArry.length) {
                         pRed = true;
@@ -689,7 +657,7 @@ function sStart() {
                     $("#sWrd").removeClass('red_font');
                     $("#sWrd").addClass('blue_font');
                     $("#sWrd").text(sstWrd);
-                    $("#sWrd").css({'opacity': '0.2'});
+                    $("#sWrd").css({'opacity': '0.5'});
                     bpNum++;
                     if (bpNum === pBlueArry.length) {
                         pBlue = true;
@@ -701,7 +669,7 @@ function sStart() {
                 $("#sWrd").removeClass('blue_font');
                 $("#sWrd").addClass('red_font');
                 $("#sWrd").text(sstWrd);
-                $("#sWrd").css({'opacity': '0.2'});
+                $("#sWrd").css({'opacity': '0.5'});
                 rpNum++;
                 if (rpNum === pRedArry.length) {
                     pRed = true;
@@ -712,7 +680,7 @@ function sStart() {
                 $("#sWrd").removeClass('red_font');
                 $("#sWrd").addClass('blue_font');
                 $("#sWrd").text(sstWrd);
-                $("#sWrd").css({'opacity': '0.2'});
+                $("#sWrd").css({'opacity': '0.5'});
                 bpNum++;
                 if (bpNum === pBlueArry.length) {
                     pBlue = true;
@@ -727,7 +695,8 @@ function sStart() {
                     $("#sWrd").removeClass('blue_font');
                     $("#sWrd").addClass('red_font');
                     $("#sWrd").text(sstWrd);
-                    $("#sWrd").css({'opacity': '100'});
+                    $("#sWrd").css({'opacity': '0.5'});
+                    sstColor = "red";
                     rNum++;
                     if (rNum === redArry.length) {
                         red = true;
@@ -738,7 +707,8 @@ function sStart() {
                     $("#sWrd").removeClass('red_font');
                     $("#sWrd").addClass('blue_font');
                     $("#sWrd").text(sstWrd);
-                    $("#sWrd").css({'opacity': '100'});
+                    $("#sWrd").css({'opacity': '0.5'});
+                    sstColor = "blue";
                     bNum++;
                     if (bNum === blueArry.length) {
                         blue = true;
@@ -750,7 +720,8 @@ function sStart() {
                 $("#sWrd").removeClass('blue_font');
                 $("#sWrd").addClass('red_font');
                 $("#sWrd").text(sstWrd);
-                $("#sWrd").css({'opacity': '100'});
+                $("#sWrd").css({'opacity': '0.5'});
+                sstColor = "red";
                 rNum++;
                 if (rNum === redArry.length) {
                     red = true;
@@ -761,7 +732,8 @@ function sStart() {
                 $("#sWrd").removeClass('red_font');
                 $("#sWrd").addClass('blue_font');
                 $("#sWrd").text(sstWrd);
-                $("#sWrd").css({'opacity': '100'});
+                $("#sWrd").css({'opacity': '0.5'});
+                sstColor = "blue";
                 bNum++;
                 if (bNum === blueArry.length) {
                     blue = true;
@@ -769,7 +741,185 @@ function sStart() {
             }
         }
     }
+    sStTime = new Date().getTime();
     active = true;
+}
+
+function sCalc(word, side, time, sColor) {
+    var choiceSide = "";
+    var correct = false;
+    var type = "";
+    if (side === "lft2") {
+        choiceSide = "left";
+        if (sColor === "red") {
+            correct = true;
+        }
+        else {
+            correct = false;
+        }       
+    }
+    else {
+        choiceSide = "right";
+        if (sColor === "blue") {
+            correct = true;
+        }
+        else {
+            correct = false;
+        }
+    }
+    if ($.inArray(word, depressotypic) !== -1) {
+        type = "depressotypic";
+    }
+    else if ($.inArray(word, suicide) !== -1) {
+        type = "suicide";
+    }
+    else if ($.inArray(word, neutral) !== -1) {
+        type = "neutral";
+    }
+    else if ($.inArray(word, positive) !== -1) {
+        type = "positive";
+    }
+    sRecord(word, choiceSide, time, sColor, correct, type);
+}
+
+function sRecord(word, side, time, color, correct, type) {
+    sstData.push({"stim" : word, "type" : type, "color" : color, "side" : side, "time" : time, "correct" : correct});
+}
+
+function sstScore() {
+    corArry = [];
+    depArry = [];
+    posArry = [];
+    suiArry = [];
+    neutArry = [];
+    low = 0;
+    high = 0;
+    errors = 0;
+    outliers = 0;
+    sum = 0;
+    sumSd = 0;
+    mean = 0;
+    sd = 0;
+    validDep = 0;
+    validPos = 0;
+    validNeut = 0;
+    validSui = 0;
+    meanDep = 0;
+    meanPos = 0;
+    meanNeut = 0;
+    meanSui = 0;
+    intDep = 0;
+    intPos = 0;
+    intSui = 0;
+    
+    for (var i = 0; i < sstData.length; i++) {
+        if (sstData[i].correct === false) {
+            errors++;
+        }
+        else {
+            corArry.push(sstData[i]);
+        }       
+    }
+    for (var x = 0; x < corArry.length; x++) {
+        sum += corArry[x].time;
+    }
+    mean = sum / corArry.length;
+    mean = Math.round(mean * 1000) / 1000;
+    
+    for (var i = 0; i < corArry.length; i++) {
+        sumSd += Math.pow((mean - corArry[i].time), 2);
+    }
+    sd = sumSd / corArry.length;
+    sd = Math.sqrt(sd);
+    sd = Math.round(sd * 1000) / 1000;
+    low = mean - (sd * 2);
+    high = mean + (sd * 2);
+    
+    for (var i = 0; i < corArry.length; i++) {
+        if (corArry[i].time < high && corArry[i].time > low) {
+            if (corArry[i].type === "depressotypic") {
+                validDep++;
+                depArry.push(corArry[i]);
+            }
+            else if (corArry[i].type === "positive") {
+                validPos++;
+                posArry.push(corArry[i]);
+            }
+            else if (corArry[i].type === "suicide") {
+                validSui++;
+                suiArry.push(corArry[i]);
+            }
+            else if (corArry[i].type === "neutral") {
+                validNeut++;
+                neutArry.push(corArry[i]);
+            }
+        }
+        else {
+            outliers++;
+        }
+    }
+    if (validDep > 0) {
+        for (var i = 0; i < depArry.length; i++) {
+            meanDep += depArry[i].time;
+        }
+        meanDep = meanDep / depArry.length;
+        meanDep = Math.round(meanDep * 1000) / 1000;
+    }
+    if (validPos > 0) {
+        for (var i = 0; i < posArry.length; i++) {
+            meanPos += posArry[i].time;
+        }
+        meanPos = meanPos / posArry.length;
+        meanPos = Math.round(meanPos * 1000) / 1000;
+    }
+    if (validNeut > 0) {
+        for (var i = 0; i < neutArry.length; i++) {
+            meanNeut += neutArry[i].time;
+        }
+        meanNeut = meanNeut / neutArry.length;
+        meanNeut = Math.round(meanNeut * 1000) / 1000;
+    }
+    if (validSui > 0) {
+        for (var i = 0; i < suiArry.length; i++) {
+            meanSui += suiArry[i].time;
+        }
+        meanSui = meanSui / suiArry.length;
+        meanSui = Math.round(meanSui * 1000) / 1000;
+    }
+    intDep = meanDep - meanNeut;
+    intPos = meanPos - meanNeut;
+    intSui = meanSui - meanNeut;
+    intDep = Math.round(intDep * 1000) / 1000;
+    intPos = Math.round(intPos * 1000) / 1000;
+    intSui = Math.round(intSui * 1000) / 1000;
+    
+    sstData.push({"errors" : errors, "outliers" : outliers, "mean" : mean, "sd" : sd, "valid_dep" : validDep,
+                  "mean_dep" : meanDep, "valid_pos" : validPos, "mean_pos" : meanPos, "valid_sui" : validSui,
+                  "mean_sui" : meanSui, "valid_neut" : validNeut, "mean_neut" : meanNeut, "int_dep" : intDep,
+                  "int_pos" : intPos, "int_sui" : intSui});
+    return true;
+}
+
+//Remove for final version.
+function genSData() {
+    pos = sstData.length - 1;
+    score = sstData[pos];
+    for (var i = 0; i < pos; i++) {
+        tr = $('<tr/>');
+        tr.append("<td>" + sstData[i].stim + "</td>");
+        tr.append("<td>" + sstData[i].type + "</td>");
+        tr.append("<td>" + sstData[i].color + "</td>");
+        tr.append("<td>" + sstData[i].side + "</td>");
+        tr.append("<td>" + sstData[i].time + "</td>");
+        tr.append("<td>" + sstData[i].correct + "</td>");
+        $("#sTable1 tbody").append(tr);
+    }
+    $.each(score, function(key, value) {
+        var ssData = '<p><b>' + key + '</b> ' + value + '</p>';
+        $("#sstDiv").append(ssData);
+    });
+    
+    $.mobile.changePage("#sstDataRes");
 }
 
 // Survey logic
@@ -918,21 +1068,23 @@ $("#c4cOp1, #c4cOp2, #c4cOp3, #c4cOp4, #c4cOp5, #c4cOp6").on('change', function(
 
 function aSt() {
     $("#aBlk").hide();
-    $("#keypad").hide();
-    $("#numPad").hide();
     $("#err1").hide();
     $("#a1Blk").show();
+    $("#keypad").show();
+    $("#numPad").show();
+    $("#atxt").focus();
+    setID("#atxt");
 }
 
 
 function a1() {
     surArry.a1 = $("#atxt").val();
     num = parseInt($("#atxt").val());
-    $("#keypad").hide();
-    $("#numPad").hide();
     
     if (num > 17 && num < 100) {
         $("#a1Blk").hide();
+        $("#keypad").hide();
+        $("#numPad").hide();
         $("#err1").hide();
         $("#err2").hide();
         $("#a2Blk").show();
@@ -1138,6 +1290,9 @@ function a9() {
         }
         else {
             surArry.a9a = "";
+            $("#a9aOp1, #a9aOp2, #a9aOp3, #a9aOp4").removeAttr("checked").checkboxradio("refresh");
+            removeArry(a9a);
+            a9Exists = false;
             $("#a10Blk").show();
         }
     }
@@ -1152,7 +1307,8 @@ function a9a() {
         $("#err9a").hide();
         $("#err10").hide();
         $("#a10Blk").show();
-        addArry(a9);
+        a9Exists = true;
+        addArry(a9);  //need to check this in other areas for questions that skip.
     }
     else {
         $("#err9a").show();
@@ -1163,9 +1319,13 @@ function a10() {
     if (surArry.a10 !== "") {
         $("#a10Blk").hide();
         $("#err10").hide();
-        $("#sur1hd").text('SECTION B:  EMOTIONAL PROBLEMS');
         $("#bBlk").show();
-        addArry(a9);
+        if (a9Exists) {
+            addArry(a9a);
+        }
+        else {
+            addArry(a9);
+        }
     }
     else {
         $("#err10").show();
@@ -1226,9 +1386,11 @@ function b1() {
             addArry(b1c2);
             if (b1Ever > 0) {
                 $("#b2Blk").show();
+                $("#keypad").show();
+                $("#numPad").show();
+                setID("#b2txt");
             }
             else {
-                $("#sur1hd").text('SECTION C:  SELF-HARM');
                 surArry.b2 = "";
                 surArry.b3 = "";
                 $("#cBlk").show();
@@ -1363,8 +1525,6 @@ function b1Checks() {
 function b2() {
     surArry.b2 = $("#b2txt").val();
     num = parseInt($("#b2txt").val());
-    $("#keypad").hide();
-    $("#numPad").hide();
     
     if (parseInt(surArry.a1) >= num) {
         $("#b2Blk").hide();
@@ -1373,11 +1533,15 @@ function b2() {
         addArry(b1);
         if (b1Year > 0) {
             $("#b3Blk").show();
+            $("#keypad").show();
+            $("#numPad").show();
+            setID("#b3txt");
         }
         else {
-            $("#sur1hd").text('SECTION C:  SELF-HARM');
             surArry.b3 = "";
             $("#cBlk").show();
+            $("#keypad").hide();
+            $("#numPad").hide();
         }
     }
     else {
@@ -1388,12 +1552,11 @@ function b2() {
 function b3() {
     surArry.b3 = $("#b3txt").val();
     num = parseInt($("#b3txt").val());
-    $("#keypad").hide();
-    $("#numPad").hide();
     
     if (num <= 12) {
-        $("#sur1hd").text('SECTION C:  SELF-HARM');
         $("#b3Blk").hide();
+        $("#keypad").hide();
+        $("#numPad").hide();
         $("#erb6").hide();
         $("#cBlk").show();
         addArry(b2);
@@ -1418,6 +1581,9 @@ function c1() {
         addArry(cSt);
         if (surArry.c1 === "Yes") {
             $("#c1Blka").show();
+            $("#keypad").show();
+            $("#numPad").show();
+            setID("#c1atxt");
         }
         else {
             surArry.c1a = "";
@@ -1453,11 +1619,12 @@ function c1() {
 function c1a() {
     surArry.c1a = $("#c1atxt").val();
     num = parseInt($("#c1atxt").val());
-    $("#keypad").hide();
-    $("#numPad").hide();
     
     if (parseInt(surArry.a1) >= num) {
         $("#c1Blka").hide();
+        $("#keypad").show();
+        $("#numPad").show();
+        setID("#c1btxt");
         $("#erc2").hide();
         $("#erc3").hide();
         $("#c1Blkb").show();
@@ -1471,11 +1638,11 @@ function c1a() {
 function c1b() {
     surArry.c1b = $("#c1btxt").val();
     num = parseInt($("#c1btxt").val());
-    $("#keypad").hide();
-    $("#numPad").hide();
     
     if (num <= 52) {
         $("#c1Blkb").hide();
+        $("#keypad").hide();
+        $("#numPad").hide();
         $("#erc3").hide();
         $("#erc4").hide();
         addArry(c1a);
@@ -1515,6 +1682,9 @@ function c2() {
         addArry(c1c);
         if (surArry.c2 === "Yes") {
             $("#c2Blka").show();
+            $("#keypad").show();
+            $("#numPad").show();
+            setID("#c2atxt");
         }
         else {
             surArry.c2a = "";
@@ -1531,11 +1701,12 @@ function c2() {
 function c2a() {
     surArry.c2a = $("#c2atxt").val();
     num = parseInt($("#c2atxt").val());
-    $("#keypad").hide();
-    $("#numPad").hide();
     
     if (parseInt(surArry.a1) >= num) {
         $("#c2Blka").hide();
+        $("#keypad").show();
+        $("#numPad").show();
+        setID("#c2btxt");
         $("#erc6").hide();
         $("#erc7").hide();
         $("#c2Blkb").show();
@@ -1549,11 +1720,11 @@ function c2a() {
 function c2b() {
     surArry.c2b = $("#c2btxt").val();
     num = parseInt($("#c2btxt").val());
-    $("#keypad").hide();
-    $("#numPad").hide();
-    
+
     if (num <= 52) {
         $("#c2Blkb").hide();
+        $("#keypad").hide();
+        $("#numPad").hide();
         $("#erc7").hide();
         $("#erc8").hide();
         addArry(c2a);
@@ -1593,6 +1764,9 @@ function c3() {
         addArry(c2c);
         if (surArry.c3 === "Yes") {
             $("#c3Blka").show();
+            $("#keypad").show();
+            $("#numPad").show();
+            setID("#c3atxt");
         }
         else {
             surArry.c3a = "";
@@ -1620,11 +1794,12 @@ function c3() {
 function c3a() {
     surArry.c3a = $("#c3atxt").val();
     num = parseInt($("#c3atxt").val());
-    $("#keypad").hide();
-    $("#numPad").hide();
     
     if (parseInt(surArry.a1) >= num) {
         $("#c3Blka").hide();
+        $("#keypad").show();
+        $("#numPad").show();
+        setID("#c3btxt");
         $("#erc10").hide();
         $("#erc11").hide();
         $("#c3Blkb").show();
@@ -1640,12 +1815,12 @@ function c3b() {
     num = parseInt($("#c3btxt").val());
     numC3a = parseInt(surArry.c3a);
     numA1 = parseInt(surArry.a1);
-    $("#keypad").hide();
-    $("#numPad").hide();
     
     if (surArry.c3b !== "") {
         if (surArry.c3b >= 1) {
             $("#c3Blkb").hide();
+            $("#keypad").hide();
+            $("#numPad").hide();
             $("#erc11").hide();
             $("#erc12").hide();
             $("#erc13").hide();
@@ -1774,6 +1949,9 @@ function c4() {
         addArry(c3d);
         if (surArry.c4 === "Yes") {
             $("#c4Blka").show();
+            $("#keypad").show();
+            $("#numPad").show();
+            setID("#c4atxt");
         }
         else {
             surArry.c4a = "";
@@ -1796,11 +1974,11 @@ function c4() {
 function c4a() {
     surArry.c4a = $("#c4atxt").val();
     num = parseInt($("#c4atxt").val());
-    $("#keypad").hide();
-    $("#numPad").hide();
     
     if (parseInt(surArry.a1) >= num) {
         $("#c4Blka").hide();
+        $("#keypad").hide();
+        $("#numPad").hide();
         $("#erc15").hide();
         $("#erc16").hide();
         $("#c4Blkb").show();
@@ -1852,6 +2030,13 @@ function addArry(blk) {
     }
 }
 
+function removeArry(blk) {
+    pos = $.inArray(blk, navArry);
+    if (pos !== -1) {
+        navArry.splice(pos, 1);
+    }
+}
+
 function back() {
     if (navPos > 0) {
         if (hideAll()) {
@@ -1880,6 +2065,7 @@ function hideAll() {
     $("#aBlk, #a1Blk, #a2Blk, #a3Blk, #a4Blk, #a5Blk, #a6Blk, #a7Blk, #a8Blk, #a9Blk, #a9aBlk, #a10Blk").hide();
     $("#bBlk, #b1Blk, #b2Blk, #b3Blk, #b1Blkc, #b1Blkc1, #b1Blkc2").hide();
     $("#cBlk, #c1Blk, #c1Blka, #c1Blkb, #c1Blkc, #c2Blk, #c2Blka, #c2Blkb, #c2Blkc, #c3Blk, #c3Blka, #c3Blkb, #c3Blkc, #c3Blkd, #c4Blk, #c4Blka, #c4Blkb, #c4Blkc").hide();
+    $("#keypad, #numpad").hide();
     return true;
 }
 

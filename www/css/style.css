@@ -32,7 +32,7 @@ body {
     margin-left: 20%;
 }
 
-#lgBtn {
+#stBtn {
     font-family: arial;
     font-size: 20px;
     background-color: rgba(0, 108, 250, 1);
@@ -43,7 +43,7 @@ body {
     margin-left: 20%;
 }
 
-#stBtn, #wBtn, #iBtn, #iatBtn, #iatBtn2, #surBtn, #sstBtn {
+#wBtn, #iBtn, #iatBtn, #iatBtn2, #surBtn, #sstBtn {
     font-family: arial;
     font-size: 20px;
     background-color: rgba(0, 108, 250, 1);
@@ -56,7 +56,7 @@ body {
 
 #asb, #asb1, #asb2, #asb3, #asb4, #asb5, #asb6, #asb7, #asb8, #asb9, #asb9a, #asb10,
 #bsb, #bsb1, #bsb2, #bsb3, #bsb4, #bsb5, #bsb6, #csb, #csb1, #csb2, #csb3, #csb4, #csb5,
-#csb6, #csb7, #csb8, #csb9, #csb10, #csb11, #csb12, #csb13, #csb14, #csb15, #csb16, #csb17, #sdb {
+#csb6, #csb7, #csb8, #csb9, #csb10, #csb11, #csb12, #csb13, #csb14, #csb15, #csb16, #csb17, #sdb, #sDat {
     font-family: arial;
     font-size: 20px;
     background-color: rgba(0, 108, 250, 1);
@@ -109,7 +109,7 @@ body {
 #lft, #lft1, #lft2 {
     position: absolute;
     left: 0px;
-    background-color: rgba(255, 0, 0, 0.2);
+    background-color: rgba(255, 0, 0, 0.1);
     width: 20%;
     height: 100%;
 }
@@ -117,7 +117,7 @@ body {
 #rgt, #rgt1, #rgt2 {
     position: absolute;
     right: 0px;
-    background-color: rgba(0, 0, 255, 0.2);
+    background-color: rgba(0, 0, 255, 0.1);
     width: 20%;
     height: 100%;
 }
@@ -170,6 +170,14 @@ body {
 }
 
 .iStim {
+    text-align: center;
+    font-family: arial;
+    font-size: 45px;
+    text-shadow: none;
+    margin-top: 60%;
+}
+
+.iStim2 {
     text-align: center;
     font-family: arial;
     font-size: 60px;
