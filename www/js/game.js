@@ -219,7 +219,8 @@ function reset() {
                 c3d_7 : "", c3d_8 : "", c3d_9 : "", c3d_10 : "", c3d_11 : "", c4 : "", c4a : "", c4b : "", c4c : ""};
     navArry = [];
     navPos = 0;
-    $("input:checked").removeAttr("checked");
+    $("input[type='radio']").prop("checked", false).checkboxradio("refresh");
+    $("input[type='checkbox']").prop("checked", false).checkboxradio("refresh");
     $("input[type=text]").val("");
     //Remove for final version.
     iOnly = false;
