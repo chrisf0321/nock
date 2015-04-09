@@ -1031,6 +1031,182 @@ $("#b1Op41, #b1Op42, #b1Op43, #b1Op44").on('change', function() {
     surArry.b1k = $(this).val();
 });
 
+$("#1").on(TOUCH_START, function() {
+    $("#b1Op1").prop("checked", true).trigger("change");
+});
+
+$("#2").on(TOUCH_START, function() {
+    $("#b1Op2").prop("checked", true).trigger("change");
+});
+
+$("#3").on(TOUCH_START, function() {
+    $("#b1Op3").prop("checked", true).trigger("change");
+});
+
+$("#4").on(TOUCH_START, function() {
+    $("#b1Op4").prop("checked", true).trigger("change");
+});
+
+$("#5").on(TOUCH_START, function() {
+    $("#b1Op5").prop("checked", true).trigger("change");
+});
+
+$("#6").on(TOUCH_START, function() {
+    $("#b1Op6").prop("checked", true).trigger("change");
+});
+
+$("#7").on(TOUCH_START, function() {
+    $("#b1Op7").prop("checked", true).trigger("change");
+});
+
+$("#8").on(TOUCH_START, function() {
+    $("#b1Op8").prop("checked", true).trigger("change");
+});
+
+$("#9").on(TOUCH_START, function() {
+    $("#b1Op9").prop("checked", true).trigger("change");
+});
+
+$("#10").on(TOUCH_START, function() {
+    $("#b1Op10").prop("checked", true).trigger("change");
+});
+
+$("#11").on(TOUCH_START, function() {
+    $("#b1Op11").prop("checked", true).trigger("change");
+});
+
+$("#12").on(TOUCH_START, function() {
+    $("#b1Op12").prop("checked", true).trigger("change");
+});
+
+$("#13").on(TOUCH_START, function() {
+    $("#b1Op13").prop("checked", true).trigger("change");
+});
+
+$("#14").on(TOUCH_START, function() {
+    $("#b1Op14").prop("checked", true).trigger("change");
+});
+
+$("#15").on(TOUCH_START, function() {
+    $("#b1Op15").prop("checked", true).trigger("change");
+});
+
+$("#16").on(TOUCH_START, function() {
+    $("#b1Op16").prop("checked", true).trigger("change");
+});
+
+$("#17").on(TOUCH_START, function() {
+    $("#b1Op17").prop("checked", true).trigger("change");
+});
+
+$("#18").on(TOUCH_START, function() {
+    $("#b1Op18").prop("checked", true).trigger("change");
+});
+
+$("#19").on(TOUCH_START, function() {
+    $("#b1Op19").prop("checked", true).trigger("change");
+});
+
+$("#20").on(TOUCH_START, function() {
+    $("#b1Op20").prop("checked", true).trigger("change");
+});
+
+$("#21").on(TOUCH_START, function() {
+    $("#b1Op21").prop("checked", true).trigger("change");
+});
+
+$("#22").on(TOUCH_START, function() {
+    $("#b1Op22").prop("checked", true).trigger("change");
+});
+
+$("#23").on(TOUCH_START, function() {
+    $("#b1Op23").prop("checked", true).trigger("change");
+});
+
+$("#24").on(TOUCH_START, function() {
+    $("#b1Op24").prop("checked", true).trigger("change");
+});
+
+$("#25").on(TOUCH_START, function() {
+    $("#b1Op25").prop("checked", true).trigger("change");
+});
+
+$("#26").on(TOUCH_START, function() {
+    $("#b1Op26").prop("checked", true).trigger("change");
+});
+
+$("#27").on(TOUCH_START, function() {
+    $("#b1Op27").prop("checked", true).trigger("change");
+});
+
+$("#28").on(TOUCH_START, function() {
+    $("#b1Op28").prop("checked", true).trigger("change");
+});
+
+$("#29").on(TOUCH_START, function() {
+    $("#b1Op29").prop("checked", true).trigger("change");
+});
+
+$("#30").on(TOUCH_START, function() {
+    $("#b1Op30").prop("checked", true).trigger("change");
+});
+
+$("#31").on(TOUCH_START, function() {
+    $("#b1Op31").prop("checked", true).trigger("change");
+});
+
+$("#32").on(TOUCH_START, function() {
+    $("#b1Op32").prop("checked", true).trigger("change");
+});
+
+$("#33").on(TOUCH_START, function() {
+    $("#b1Op33").prop("checked", true).trigger("change");
+});
+
+$("#34").on(TOUCH_START, function() {
+    $("#b1Op34").prop("checked", true).trigger("change");
+});
+
+$("#35").on(TOUCH_START, function() {
+    $("#b1Op35").prop("checked", true).trigger("change");
+});
+
+$("#36").on(TOUCH_START, function() {
+    $("#b1Op36").prop("checked", true).trigger("change");
+});
+
+$("#37").on(TOUCH_START, function() {
+    $("#b1Op37").prop("checked", true).trigger("change");
+});
+
+$("#38").on(TOUCH_START, function() {
+    $("#b1Op38").prop("checked", true).trigger("change");
+});
+
+$("#39").on(TOUCH_START, function() {
+    $("#b1Op39").prop("checked", true).trigger("change");
+});
+
+$("#40").on(TOUCH_START, function() {
+    $("#b1Op40").prop("checked", true).trigger("change");
+});
+
+$("#41").on(TOUCH_START, function() {
+    $("#b1Op41").prop("checked", true).trigger("change");
+});
+
+$("#42").on(TOUCH_START, function() {
+    $("#b1Op42").prop("checked", true).trigger("change");
+});
+
+$("#43").on(TOUCH_START, function() {
+    $("#b1Op43").prop("checked", true).trigger("change");
+});
+
+$("#44").on(TOUCH_START, function() {
+    $("#b1Op44").prop("checked", true).trigger("change");
+});
+
 $("#c1Op1, #c1Op2").on('change', function() {
     surArry.c1 = $(this).val();
 });
