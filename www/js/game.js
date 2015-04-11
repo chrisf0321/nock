@@ -65,7 +65,7 @@ var s1Only = false;
 var sstOnly = false;
 
 $(document).on('pagebeforeshow', '#iData', function() {
-    displayIAT();
+    calcIAT();
 });
 
 $(document).on('pagebeforeshow', '#home', function() {
@@ -234,8 +234,8 @@ function calcScore(num) {
             if ($.inArray(iCurWrd, left) !== -1) {
                 iActive = false;
                 iStop = new Date().getTime();
-                iTime = (iStop - iStartTime) / 1000;
-                iTime = Math.round(iTime * 1000) / 1000;
+                iTime = iStop - iStartTime; // / 1000;
+                //iTime = Math.round(iTime * 1000) / 1000;
                 iCnt++;
                 recordTrial(iCurWrd, iTime, iCnt, iCorrect);
                 $("#wng1").css({'opacity': '0'});
@@ -251,8 +251,8 @@ function calcScore(num) {
             if ($.inArray(iCurWrd, right) !== -1) {
                 iActive = false;
                 iStop = new Date().getTime();
-                iTime = (iStop - iStartTime) / 1000;
-                iTime = Math.round(iTime * 1000) / 1000;
+                iTime = iStop - iStartTime; // / 1000;
+                //iTime = Math.round(iTime * 1000) / 1000;
                 iCnt++;
                 recordTrial(iCurWrd, iTime, iCnt, iCorrect);
                 $("#wng1").css({'opacity': '0'});
@@ -273,7 +273,9 @@ function recordTrial(word, time, trial, correct) {
 
 // Remove for final Version.
 function displayIAT() {
-    for (var i = 0; i < iatData.length; i++) {
+    var iPos = iatData.length - 1;
+    var iScrData = iatData[iPos];
+    for (var i = 0; i < iPos; i++) {
         tr = $('<tr/>');
         tr.append("<td>" + iatData[i].trial + "</td>");
         tr.append("<td>" + iatData[i].word + "</td>");
@@ -291,17 +293,137 @@ function displayIAT() {
         else if (i < 72) {
             $("#iTable4 tbody").append(tr);
         }
-        else if (i < 84) {
+        else if (i < 96) {
             $("#iTable5 tbody").append(tr);
         }
-        else if (i < 108) {
+        else if (i < 120) {
             $("#iTable6 tbody").append(tr);
         }
-        else if (i < 132) {
+        else if (i < 144) {
             $("#iTable7 tbody").append(tr);
         }
     }
     $("#iTable1, #iTable2, #iTable3, #iTable4, #iTable5, #iTable6, #iTable7").table("refresh");
+    
+    $.each(iScrData, function(key, value) {
+        var scr = '<p><b>' + key + '</b> ' + value + '</p>';
+        $("#iScr").append(scr);
+    });
+}
+
+function calcIAT() {
+    var totScores = [];
+    var errorTrials = 0;
+    var errorLat400 = 0;
+    var errorLat10 = 0;
+    var err3 = 0;
+    var err4 = 0;
+    var err6 = 0;
+    var err7 = 0;
+    var iScore = 0;
+    var sum3 = 0;
+    var sum4 = 0;
+    var sum6 = 0;
+    var sum7 = 0;
+    var cMean = 0;
+    var nMean = 0;
+    var iSd = 0;
+    var iSdSum = 0;
+    var allMean = 0;
+    var blks_40_err = 0;
+    var session_30_err = false;
+    
+    for (var i = 24; i < 48; i++) {
+        if (!iatData[i].correct) {
+            errorTrials++;
+        }
+        if (iatData[i].time <= 400) {
+            errorLat400++;
+            err3++;
+        }
+        if (iatData[i].time >= 10000) {
+            errorLat10++;
+            err3++;
+        }
+        sum3 += iatData[i].time;
+        totScores.push(iatData[i].time);
+    }
+    for (var i = 48; i < 72; i++) {
+        if (!iatData[i].correct) {
+            errorTrials++;
+        }
+        if (iatData[i].time <= 400) {
+            errorLat400++;
+            err4++;
+        }
+        if (iatData[i].time >= 10000) {
+            errorLat10++;
+            err4++;
+        }
+        sum4 += iatData[i].time;
+        totScores.push(iatData[i].time);
+    }
+    for (var i = 96; i < 120; i++) {
+        if (!iatData[i].correct) {
+            errorTrials++;
+        }
+        if (iatData[i].time <= 400) {
+            errorLat400++;
+            err6++;
+        }
+        if (iatData[i].time >= 10000) {
+            errorLat10++;
+            err6++;
+        }
+        sum6 += iatData[i].time;
+        totScores.push(iatData[i].time);
+    }
+    for (var i = 120; i < 144; i++) {
+        if (!iatData[i].correct) {
+            errorTrials++;
+        }
+        if (iatData[i].time <= 400) {
+            errorLat400++;
+            err7++;
+        }
+        if (iatData[i].time >= 10000) {
+            errorLat10++;
+            err7++;
+        }
+        sum7 += iatData[i].time;
+        totScores.push(iatData[i].time);
+    }
+    if (err3 > 9) {
+        blks_40_err++;
+    }
+    if (err4 > 9) {
+        blks_40_err++;
+    }
+    if (err6 > 9) {
+        blks_40_err++;
+    }
+    if (err7 > 9) {
+        blks_40_err++;
+    }
+    if ((errorLat400 + errorLat10) > 28) {
+        session_30_err = true;
+    }
+    cMean = (sum3 + sum4) / 48;
+    nMean = (sum6 + sum7) / 48;
+    allMean = (sum3 + sum4 + sum6 + sum7) / 96;
+    
+    for (var i = 0; i < totScores.length; i++) {
+        iSdSum += Math.pow((allMean - totScores[i]), 2);
+    }
+    iSd = iSdSum / 96;
+    iSd = Math.sqrt(iSd);
+    
+    iScore = (cMean - nMean) / iSd;
+    iScore = Math.round(iScore * 1000) / 1000;
+    
+    iatData.push({"Wrong" : errorTrials, "Below_400" : errorLat400, "Above_10000" : errorLat10, "Critical_blks_40_err" : blks_40_err,
+                  "Session_30_err" : session_30_err, "IAT_Score" : iScore});
+    displayIAT();
 }
 
 function nextInst() {
@@ -313,17 +435,21 @@ function blk1Gen() {
     var prevWrd = "";
     var newWrd;
     var loopCntrl;
+    var loopSize;
     if (iatBlk === 5) {
+        loopSize = 4;
         left = life;
         right = death;
+        iatArry = death.concat(life, left, right);
     }
     else {
+        loopSize = 2;
         left = death;
         right = life;
+        iatArry = death.concat(life);
     }
-    iatArry = death.concat(life);
     
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i < loopSize; i++) {
         loopCntrl = 0;
         while (loopCntrl === 0) {
             newWrd = death[Math.floor(Math.random() * death.length)];
@@ -335,7 +461,7 @@ function blk1Gen() {
         }
     }
         
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i < loopSize; i++) {
         loopCntrl = 0;
         while (loopCntrl === 0) {
             newWrd = life[Math.floor(Math.random() * life.length)];
