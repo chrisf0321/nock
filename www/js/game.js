@@ -51,8 +51,8 @@ var iatData = [];
 var sstData = [];
 var a9Exists = false;
 var surArry = { a1 : "", a2 : "", a3_1 : "", a3_2 : "", a3_3 : "", a3_4 : "", a3_5 : "", a4_1 : "", a4_2 : "", a4_3 : "", a4_4 : "",
-                a4_5 : "", a4_6 : "", a5 : "", a6 : "", a7 : "", a8_1 : "", a8_2 : "", a8_3 : "", a8_4 : "", a8_5 : "", a8_6 : "", 
-                a8_7 : "", a8_8 : "", a9 : "", a9_flag : 0, a9a : "", a10 : "", b1a : "", b1b : "", b1c : "", b1d : "", b1e : "", b1f : "",
+                a4_5 : "", a4_6 : "", a4_6_other : "", a5 : "", a6 : "", a7 : "", a8_1 : "", a8_2 : "", a8_3 : "", a8_4 : "", a8_5 : "", a8_6 : "", 
+                a8_7 : "", a8_8 : "", a8_8_other : "", a9 : "", a9_other : "", a9_flag : 0, a9a : "", a10 : "", b1a : "", b1b : "", b1c : "", b1d : "", b1e : "", b1f : "",
                 b1g : "", b1h : "", b1i : "", b1j : "", b1k : "", b2 : "", b3 : "", c1 : "", c1a : "", c1b : "", c1c : "", c2 : "", c2a : "",
                 c2b : "", c2c : "", c3 : "", c3a : "", c3b : "", c3c : "", c3d_1 : "", c3d_2 : "", c3d_3 : "", c3d_4 : "", c3d_5 : "", c3d_6 : "",
                 c3d_7 : "", c3d_8 : "", c3d_9 : "", c3d_10 : "", c3d_11 : "", c4 : "", c4a : "", c4b : "", c4c : ""};
@@ -212,8 +212,8 @@ function reset() {
     iatBlk = 1;
     iActive = true;
     surArry = { a1 : "", a2 : "", a3_1 : "", a3_2 : "", a3_3 : "", a3_4 : "", a3_5 : "", a4_1 : "", a4_2 : "", a4_3 : "", a4_4 : "",
-                a4_5 : "", a4_6 : "", a5 : "", a6 : "", a7 : "", a8_1 : "", a8_2 : "", a8_3 : "", a8_4 : "", a8_5 : "", a8_6 : "", 
-                a8_7 : "", a8_8 : "", a9 : "", a9_flag : 0, a9a : "", a10 : "", b1a : "", b1b : "", b1c : "", b1d : "", b1e : "", b1f : "",
+                a4_5 : "", a4_6 : "", a4_6_other : "", a5 : "", a6 : "", a7 : "", a8_1 : "", a8_2 : "", a8_3 : "", a8_4 : "", a8_5 : "", a8_6 : "", 
+                a8_7 : "", a8_8 : "", a8_8_other : "", a9 : "", a9_other : "", a9_flag : 0, a9a : "", a10 : "", b1a : "", b1b : "", b1c : "", b1d : "", b1e : "", b1f : "",
                 b1g : "", b1h : "", b1i : "", b1j : "", b1k : "", b2 : "", b3 : "", c1 : "", c1a : "", c1b : "", c1c : "", c2 : "", c2a : "",
                 c2b : "", c2c : "", c3 : "", c3a : "", c3b : "", c3c : "", c3d_1 : "", c3d_2 : "", c3d_3 : "", c3d_4 : "", c3d_5 : "", c3d_6 : "",
                 c3d_7 : "", c3d_8 : "", c3d_9 : "", c3d_10 : "", c3d_11 : "", c4 : "", c4a : "", c4b : "", c4c : ""};
@@ -1415,17 +1415,32 @@ function a3() {
     if ($("#a3Op1").prop('checked')) {
         surArry.a3_1 = $("#a3Op1").val();
     }
+    else {
+        surArry.a3_1 = "";
+    }
     if ($("#a3Op2").prop('checked')) {
         surArry.a3_2 = $("#a3Op2").val();
+    }
+    else {
+        surArry.a3_2 = "";
     }
     if ($("#a3Op3").prop('checked')) {
         surArry.a3_3 = $("#a3Op3").val();
     }
+    else {
+        surArry.a3_3 = "";
+    }
     if ($("#a3Op4").prop('checked')) {
         surArry.a3_4 = $("#a3Op4").val();
     }
+    else {
+        surArry.a3_4 = "";
+    }
     if ($("#a3Op5").prop('checked')) {
         surArry.a3_5 = $("#a3Op5").val();
+    }
+    else {
+        surArry.a3_5 = "";
     }
     if (surArry.a3_1 !== "" || surArry.a3_2 !== "" || surArry.a3_3 !== ""
             || surArry.a3_4 !== "" || surArry.a3_5 !== "") {
@@ -1445,27 +1460,50 @@ function a3() {
 function a4() {
     if ($("#a4Op1").prop('checked')) {
         surArry.a4_1 = $("#a4Op1").val();
-        alert(surArry.a4_1);
+    }
+    else {
+        surArry.a4_1 = "";
     }
     if ($("#a4Op2").prop('checked')) {
         surArry.a4_2 = $("#a4Op2").val();
     }
+    else {
+        surArry.a4_2 = "";
+    }
     if ($("#a4Op3").prop('checked')) {
         surArry.a4_3 = $("#a4Op3").val();
+    }
+    else {
+        surArry.a4_3 = "";
     }
     if ($("#a4Op4").prop('checked')) {
         surArry.a4_4 = $("#a4Op4").val();
     }
+    else {
+        surArry.a4_4 = "";
+    }
     if ($("#a4Op5").prop('checked')) {
         surArry.a4_5 = $("#a4Op5").val();
     }
+    else {
+        surArry.a4_5 = "";
+    }
     if ($("#a4Op6").prop('checked')) {
-        if ($("#a4txt").val().length < 2000) {
-            surArry.a4_6 = $("#a4txt").val();
+        if ($("#a4txt").val().length < 2000 && $("#a4txt").val() !== "") {
+            surArry.a4_6 = "1";
+            surArry.a4_6_other = $("#a4txt").val();
         }
         else if ($("#a4txt").val() !== "") {
             $("#err4").show();
         }
+        else {
+            $("#err4_1").show();
+        }
+    }
+    else {
+        surArry.a4_6 = "";
+        surArry.a4_6_other = "";
+        $("#a4txt").val("");
     }
     if (surArry.a4_1 !== "" || surArry.a4_2 !== "" || surArry.a4_3 !== "" || surArry.a4_4 !== "" || surArry.a4_5 !== "" || 
             ($("#a4Op6").prop('checked') && surArry.a4_6 !== "")) {
@@ -1527,31 +1565,61 @@ function a8() {
     if ($("#a8Op1").prop('checked')) {
         surArry.a8_1 = $("#a8Op1").val();
     }
+    else {
+        surArry.a8_1 = "";
+    }
     if ($("#a8Op2").prop('checked')) {
         surArry.a8_2 = $("#a8Op2").val();
+    }
+    else {
+        surArry.a8_2 = "";
     }
     if ($("#a8Op3").prop('checked')) {
         surArry.a8_3 = $("#a8Op3").val();
     }
+    else {
+        surArry.a8_3 = "";
+    }
     if ($("#a8Op4").prop('checked')) {
         surArry.a8_4 = $("#a8Op4").val();
+    }
+    else {
+        surArry.a8_4 = "";
     }
     if ($("#a8Op5").prop('checked')) {
         surArry.a8_5 = $("#a8Op5").val();
     }
+    else {
+        surArry.a8_5 = "";
+    }
     if ($("#a8Op6").prop('checked')) {
         surArry.a8_6 = $("#a8Op6").val();
+    }
+    else {
+        surArry.a8_6 = "";
     }
     if ($("#a8Op7").prop('checked')) {
         surArry.a8_7 = $("#a8Op7").val();
     }
+    else {
+        surArry.a8_7 = "";
+    }
     if ($("#a8Op8").prop('checked')) {
-        if ($("#a8txt").val().length < 2000) {
-            surArry.a8_8 = $("#a8txt").val();
+        if ($("#a8txt").val().length < 2000 && $("#a8txt").val() !== "") {
+            surArry.a8_8 = "1";
+            surArry.a8_8_other = $("#a8txt").val();
         }
         else if ($("#a8txt").val() !== "") {
             $("#err8").show();
         }
+        else {
+            $("#err8_1").show();
+        }
+    }
+    else {
+        surArry.a8_8 = "";
+        surArry.a8_8_other = "";
+        $("#a8txt").val("");
     }
     if (surArry.a8_1 !== "" || surArry.a8_2 !== "" || surArry.a8_3 !== "" || surArry.a8_4 !== "" || surArry.a8_5 !== "" || 
              surArry.a8_6 !== "" || surArry.a8_7 !== "" || ($("#a8Op8").prop('checked') && surArry.a8_8 !== "")) {
@@ -1572,12 +1640,16 @@ function a8() {
 
 function a9() {
     if ($("#a9Op8").prop('checked')) {
-        if ($("#a9txt").val().length < 2000) {
-            surArry.a9 = $("#a9txt").val();
+        if ($("#a9txt").val().length < 2000 && $("#a9txt").val() !== "") {
+            surArry.a9 = "8";
+            surArry.a9_other = $("#a9txt").val();
             surArry.a9_flag = 1;
         }
         else if ($("#a9txt").val() !== "") {
             $("#err9").show();
+        }
+        else {
+            $("#err9_1").show();
         }
     }
     if (surArry.a9 !== "") {
@@ -1713,80 +1785,80 @@ function b1Checks() {
                  e : "having attacks of anger", f : "having trouble after a traumatic experience", g : "having anxiety", h : "trouble with alcohol",
                  i : "trouble with drugs", j : "seeing or hearing strange things", k : "having strange thoughts"};
     
-    if (surArry.b1a !== "Never") {
+    if (surArry.b1a !== "4") {
         b1Ever++;
         b1Fill.push(b1Fillers.a);
-        if (surArry.b1a !== "More than a year ago") {
+        if (surArry.b1a !== "3") {
             b1Year++;
         }
     }
-    if (surArry.b1b !== "Never") {
+    if (surArry.b1b !== "4") {
         b1Ever++;
         b1Fill.push(b1Fillers.b);
-        if (surArry.b1b !== "More than a year ago") {
+        if (surArry.b1b !== "3") {
             b1Year++;
         }
     }
-    if (surArry.b1c !== "Never") {
+    if (surArry.b1c !== "4") {
         b1Ever++;
         b1Fill.push(b1Fillers.c);
-        if (surArry.b1c !== "More than a year ago") {
+        if (surArry.b1c !== "3") {
             b1Year++;
         }
     }
-    if (surArry.b1d !== "Never") {
+    if (surArry.b1d !== "4") {
         b1Ever++;
         b1Fill.push(b1Fillers.d);
-        if (surArry.b1d !== "More than a year ago") {
+        if (surArry.b1d !== "3") {
             b1Year++;
         }
     }
-    if (surArry.b1e !== "Never") {
+    if (surArry.b1e !== "4") {
         b1Ever++;
         b1Fill.push(b1Fillers.e);
-        if (surArry.b1e !== "More than a year ago") {
+        if (surArry.b1e !== "3") {
             b1Year++;
         }
     }
-    if (surArry.b1f !== "Never") {
+    if (surArry.b1f !== "4") {
         b1Ever++;
         b1Fill.push(b1Fillers.f);
-        if (surArry.b1f !== "More than a year ago") {
+        if (surArry.b1f !== "3") {
             b1Year++;
         }
     }
-    if (surArry.b1g !== "Never") {
+    if (surArry.b1g !== "4") {
         b1Ever++;
         b1Fill.push(b1Fillers.g);
-        if (surArry.b1g !== "More than a year ago") {
+        if (surArry.b1g !== "3") {
             b1Year++;
         }
     }
-    if (surArry.b1h !== "Never") {
+    if (surArry.b1h !== "4") {
         b1Ever++;
         b1Fill.push(b1Fillers.h);
-        if (surArry.b1h !== "More than a year ago") {
+        if (surArry.b1h !== "3") {
             b1Year++;
         }
     }
-    if (surArry.b1i !== "Never") {
+    if (surArry.b1i !== "4") {
         b1Ever++;
         b1Fill.push(b1Fillers.i);
-        if (surArry.b1i !== "More than a year ago") {
+        if (surArry.b1i !== "3") {
             b1Year++;
         }
     }
-    if (surArry.b1j !== "Never") {
+    if (surArry.b1j !== "4") {
         b1Ever++;
         b1Fill.push(b1Fillers.j);
-        if (surArry.b1j !== "More than a year ago") {
+        if (surArry.b1j !== "3") {
             b1Year++;
         }
     }
-    if (surArry.b1k !== "Never") {
+    if (surArry.b1k !== "4") {
         b1Ever++;
         b1Fill.push(b1Fillers.k);
-        if (surArry.b1k !== "More than a year ago") {
+        if (surArry.b1k !== "3") {
             b1Year++;
         }
     }
@@ -1882,7 +1954,7 @@ function c1() {
         $("#erc2").hide();
         $("#erc14").hide();
         addArry(cSt);
-        if (surArry.c1 === "Yes") {
+        if (surArry.c1 === "1") {
             $("#c1Blka").show();
             $("#keypad").show();
             $("#numPad").show();
@@ -1983,7 +2055,7 @@ function c2() {
         $("#erc6").hide();
         $("#erc9").hide();
         addArry(c1c);
-        if (surArry.c2 === "Yes") {
+        if (surArry.c2 === "1") {
             $("#c2Blka").show();
             $("#keypad").show();
             $("#numPad").show();
@@ -2065,7 +2137,7 @@ function c3() {
         $("#erc10").hide();
         $("#erc14").hide();  
         addArry(c2c);
-        if (surArry.c3 === "Yes") {
+        if (surArry.c3 === "1") {
             $("#c3Blka").show();
             $("#keypad").show();
             $("#numPad").show();
@@ -2192,45 +2264,78 @@ function c3d() {
         ans = true;
         surArry.c3d_1 = $("#c3dOp1").val();
     }
+    else {
+        surArry.c3d_1 = "";
+    }
     if ($("#c3dOp2").prop('checked')) {
         ans = true;
         surArry.c3d_2 = $("#c3dOp2").val();
+    }
+    else {
+        surArry.c3d_2 = "";
     }
     if ($("#c3dOp3").prop('checked')) {
         ans = true;
         surArry.c3d_3 = $("#c3dOp3").val();
     }
+    else {
+        surArry.c3d_3 = "";
+    }
     if ($("#c3dOp4").prop('checked')) {
         ans = true;
         surArry.c3d_4 = $("#c3dOp4").val();
+    }
+    else {
+        surArry.c3d_4 = "";
     }
     if ($("#c3dOp5").prop('checked')) {
         ans = true;
         surArry.c3d_5 = $("#c3dOp5").val();
     }
+    else {
+        surArry.c3d_5 = "";
+    }
     if ($("#c3dOp6").prop('checked')) {
         ans = true;
         surArry.c3d_6 = $("#c3dOp6").val();
+    }
+    else {
+        surArry.c3d_6 = "";
     }
     if ($("#c3dOp7").prop('checked')) {
         ans = true;
         surArry.c3d_7 = $("#c3dOp7").val();
     }
+    else {
+        surArry.c3d_7 = "";
+    }
     if ($("#c3dOp8").prop('checked')) {
         ans = true;
         surArry.c3d_8 = $("#c3dOp8").val();
+    }
+    else {
+        surArry.c3d_8 = "";
     }
     if ($("#c3dOp9").prop('checked')) {
         ans = true;
         surArry.c3d_9 = $("#c3dOp9").val();
     }
+    else {
+        surArry.c3d_9 = "";
+    }
     if ($("#c3dOp10").prop('checked')) {
         ans = true;
         surArry.c3d_10 = $("#c3dOp10").val();
     }
+    else {
+        surArry.c3d_10 = "";
+    }
     if ($("#c3dOp11").prop('checked')) {
         ans = true;
         surArry.c3d_11 = $("#c3dOp11").val();
+    }
+    else {
+        surArry.c3d_11 = "";
     }
     if (ans) {
         $("#c3Blkd").hide();
@@ -2250,7 +2355,7 @@ function c4() {
         $("#erc14").hide();
         $("#erc15").hide();
         addArry(c3d);
-        if (surArry.c4 === "Yes") {
+        if (surArry.c4 === "1") {
             $("#c4Blka").show();
             $("#keypad").show();
             $("#numPad").show();
@@ -2375,7 +2480,12 @@ function hideAll() {
 function genSurData() {
     $.each(surArry, function(key, value) {
         if (key !== "a9_flag") {
-            var surData = '<p><b>' + key + ':</b>  ' + value + '</p>';
+            if (key !== "a4_6_other" && key !== "a8_8_other" && key !== "a9_other") {
+                if (value === "") {
+                    surArry[key] = "0";
+                }
+            }
+            var surData = '<p><b>' + key + ':</b>  ' + surArry[key] + '</p>';
             $("#dataDiv").append(surData);
         }
     });
