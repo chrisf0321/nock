@@ -56,6 +56,10 @@ var surArry = { a1 : "", a2 : "", a3_1 : "", a3_2 : "", a3_3 : "", a3_4 : "", a3
                 b1g : "", b1h : "", b1i : "", b1j : "", b1k : "", b2 : "", b3 : "", c1 : "", c1a : "", c1b : "", c1c : "", c2 : "", c2a : "",
                 c2b : "", c2c : "", c3 : "", c3a : "", c3b : "", c3c : "", c3d_1 : "", c3d_2 : "", c3d_3 : "", c3d_4 : "", c3d_5 : "", c3d_6 : "",
                 c3d_7 : "", c3d_8 : "", c3d_9 : "", c3d_10 : "", c3d_11 : "", c4 : "", c4a : "", c4b : "", c4c : ""};
+var sur2Arry = { d1a : "", d1b : "", d1c : "", d1d : "", d1e : "", d1f : "", d1g : "", d1h : "", e1a : "", e1b : "", e1c : "", e1d : "",
+                 e1e : "", e1f : "", e1g : "", e2a : "", e2b : "", e2c : "", e3a : "", e3b : "", e3c : "", e3d : "", e3e : "", e3f : "",
+                 e3g : "", e3h : "", e3i : "", e3j : "", e3k : "", e3l : "", f1a : "", f1b : "", f1c : "", f1d : "", f1e : "", g1 : "",
+                 g2 : "", g3 : ""};
 var navArry = [];
 var navPos = 0;
 
@@ -63,6 +67,7 @@ var navPos = 0;
 var iOnly = false;
 var s1Only = false;
 var sstOnly = false;
+var s2Only = false;
 
 $(document).on('pagebeforeshow', '#iData', function() {
     calcIAT();
@@ -101,10 +106,19 @@ $(document).on('pagebeforeshow', '#sst', function() {
 });
 
 $(document).on('pagebeforeshow', '#survey', function() {
+    $("#numPad, #keyPad").hide();
     $("#a1Blk, #a2Blk, #a3Blk, #a4Blk, #a5Blk, #a6Blk, #a7Blk, #a8Blk, #a9Blk, #a9aBlk, #a10Blk").hide();
     $("#bBlk, #b1Blk, #b2Blk, #b3Blk, #b1Blkc, #b1Blkc1, #b1Blkc2").hide();
     $("#cBlk, #c1Blk, #c1Blka, #c1Blkb, #c1Blkc, #c2Blk, #c2Blka, #c2Blkb, #c2Blkc, #c3Blk, #c3Blka, #c3Blkb, #c3Blkc, #c3Blkd, #c4Blk, #c4Blka, #c4Blkb, #c4Blkc").hide();
     $("#aBlk").show();
+});
+
+$(document).on('pagebeforeshow', '#survey2', function() {
+    navArry = [];
+    navPos = 0;
+    $("#numPad2, #keyPad2").hide();
+    $("#d1Blk, #d1Blkb, #d1Blkc, #eBlk, #e1Blk, #e1Blkb, #e2Blk, #e2Blka, #e3Blk, #e3Blka, #e3Blkb, #fBlk, #f1Blka, #f1Blkb, #f1Blkc, #f1Blkd, #f1Blke, #g1Blk, #g2Blk, #g3Blk").hide();
+    $("#dBlk").show();
 });
 
 $("#lft, #rgt, #lft1, #rgt1").on(TOUCH_START, function() {
@@ -188,6 +202,10 @@ function sston() {
     sstOnly = true;
 }
 
+function sur2on() {
+    s2Only = true;
+}
+
 Array.prototype.shuffle = function() {
     var i = this.length, j, temp;
     if ( i === 0 ) return;
@@ -217,6 +235,10 @@ function reset() {
                 b1g : "", b1h : "", b1i : "", b1j : "", b1k : "", b2 : "", b3 : "", c1 : "", c1a : "", c1b : "", c1c : "", c2 : "", c2a : "",
                 c2b : "", c2c : "", c3 : "", c3a : "", c3b : "", c3c : "", c3d_1 : "", c3d_2 : "", c3d_3 : "", c3d_4 : "", c3d_5 : "", c3d_6 : "",
                 c3d_7 : "", c3d_8 : "", c3d_9 : "", c3d_10 : "", c3d_11 : "", c4 : "", c4a : "", c4b : "", c4c : ""};
+    sur2Arry = { d1a : "", d1b : "", d1c : "", d1d : "", d1e : "", d1f : "", d1g : "", d1h : "", e1a : "", e1b : "", e1c : "", e1d : "",
+                 e1e : "", e1f : "", e1g : "", e2a : "", e2b : "", e2c : "", e3a : "", e3b : "", e3c : "", e3d : "", e3e : "", e3f : "",
+                 e3g : "", e3h : "", e3i : "", e3j : "", e3k : "", e3l : "", f1a : "", f1b : "", f1c : "", f1d : "", f1e : "", g1 : "",
+                 g2 : "", g3 : ""};
     navArry = [];
     navPos = 0;
     $("input[type='radio']").prop("checked", false).checkboxradio("refresh");
@@ -225,6 +247,7 @@ function reset() {
     //Remove for final version.
     iOnly = false;
     s1Only = false;
+    s2Only = false;
     sstOnly = false;
 }
 
@@ -2425,6 +2448,657 @@ function c4c() {
     }
     else {
         $("#erc17").show();
+    }
+}
+
+// Survey 2 start
+$("#d1Op1, #d1Op2, #d1Op3").on('change', function() {
+    sur2Arry.d1a = $(this).val();
+});
+
+$("#d1Op5, #d1Op6, #d1Op7").on('change', function() {
+    sur2Arry.d1b = $(this).val();
+});
+
+$("#d1Op9, #d1Op10, #d1Op11").on('change', function() {
+    sur2Arry.d1c = $(this).val();
+});
+
+$("#d1Op12, #d1Op13, #d1Op14").on('change', function() {
+    sur2Arry.d1d = $(this).val();
+});
+
+$("#d1Op15, #d1Op16, #d1Op17").on('change', function() {
+    sur2Arry.d1e = $(this).val();
+});
+
+$("#d1Op18, #d1Op19, #d1Op20").on('change', function() {
+    sur2Arry.d1f = $(this).val();
+});
+
+$("#d1Op21, #d1Op22, #d1Op23").on('change', function() {
+    sur2Arry.d1g = $(this).val();
+});
+
+$("#d1Op24, #d1Op25, #d1Op26").on('change', function() {
+    sur2Arry.d1h = $(this).val();
+});
+
+$("#e1Op1, #e1Op2, #e1Op3, #e1Op4, #e1Op5").on('change', function() {
+    sur2Arry.e1a = $(this).val();
+});
+
+$("#e1Op6, #e1Op7, #e1Op8, #e1Op9, #e1Op10").on('change', function() {
+    sur2Arry.e1b = $(this).val();
+});
+
+$("#e1Op11, #e1Op12, #e1Op13, #e1Op14, #e1Op15").on('change', function() {
+    sur2Arry.e1c = $(this).val();
+});
+
+$("#e1Op16, #e1Op17, #e1Op18, #e1Op19, #e1Op20").on('change', function() {
+    sur2Arry.e1d = $(this).val();
+});
+
+$("#e1Op21, #e1Op22, #e1Op23, #e1Op24, #e1Op25").on('change', function() {
+    sur2Arry.e1e = $(this).val();
+});
+
+$("#e1Op26, #e1Op27, #e1Op28, #e1Op29, #e1Op30").on('change', function() {
+    sur2Arry.e1f = $(this).val();
+});
+
+$("#e1Op31, #e1Op32, #e1Op33, #e1Op34, #e1Op35").on('change', function() {
+    sur2Arry.e1g = $(this).val();
+});
+
+$("#e2Op1, #e2Op2, #e2Op3, #e2Op4, #e2Op5").on('change', function() {
+    sur2Arry.e2a = $(this).val();
+});
+
+$("#e2Op6, #e2Op7, #e2Op8, #e2Op9, #e2Op10").on('change', function() {
+    sur2Arry.e2b = $(this).val();
+});
+
+$("#e2Op11, #e2Op12, #e2Op13, #e2Op14, #e2Op15").on('change', function() {
+    sur2Arry.e2c = $(this).val();
+});
+
+$("#e3Op1, #e3Op2, #e3Op3, #e3Op4, #e3Op5").on('change', function() {
+    sur2Arry.e3a = $(this).val();
+});
+
+$("#e3Op6, #e3Op7, #e3Op8, #e3Op9, #e3Op10").on('change', function() {
+    sur2Arry.e3b = $(this).val();
+});
+
+$("#e3Op11, #e3Op12, #e3Op13, #e3Op14, #e3Op15").on('change', function() {
+    sur2Arry.e3c = $(this).val();
+});
+
+$("#e3Op16, #e3Op17, #e3Op18, #e3Op19, #e3Op20").on('change', function() {
+    sur2Arry.e3d = $(this).val();
+});
+
+$("#e3Op21, #e3Op22, #e3Op23, #e3Op24, #e3Op25").on('change', function() {
+    sur2Arry.e3e = $(this).val();
+});
+
+$("#e3Op26, #e3Op27, #e3Op28, #e3Op29, #e3Op30").on('change', function() {
+    sur2Arry.e3f = $(this).val();
+});
+
+$("#e3Op31, #e3Op32, #e3Op33, #e3Op34, #e3Op35").on('change', function() {
+    sur2Arry.e3g = $(this).val();
+});
+
+$("#e3Op36, #e3Op37, #e3Op38, #e3Op39, #e3Op40").on('change', function() {
+    sur2Arry.e3h = $(this).val();
+});
+
+$("#e3Op41, #e3Op42, #e3Op43, #e3Op44, #e3Op45").on('change', function() {
+    sur2Arry.e3i = $(this).val();
+});
+
+$("#e3Op46, #e3Op47, #e3Op48, #e3Op49, #e3Op50").on('change', function() {
+    sur2Arry.e3j = $(this).val();
+});
+
+$("#e3Op51, #e3Op52, #e3Op53, #e3Op54, #e3Op55").on('change', function() {
+    sur2Arry.e3k = $(this).val();
+});
+
+$("#e3Op56, #e3Op57, #e3Op58, #e3Op59, #e3Op60").on('change', function() {
+    sur2Arry.e3l = $(this).val();
+});
+
+$("#d1").on(TOUCH_START, function() {
+    $("#d1Op1").prop("checked", true).trigger("change");
+});
+$("#d2").on(TOUCH_START, function() {
+    $("#d1Op2").prop("checked", true).trigger("change");
+});
+$("#d3").on(TOUCH_START, function() {
+    $("#d1Op3").prop("checked", true).trigger("change");
+});
+$("#d4").on(TOUCH_START, function() {
+    $("#d1Op5").prop("checked", true).trigger("change");
+});
+$("#d5").on(TOUCH_START, function() {
+    $("#d1Op6").prop("checked", true).trigger("change");
+});
+$("#d6").on(TOUCH_START, function() {
+    $("#d1Op7").prop("checked", true).trigger("change");
+});
+$("#d7").on(TOUCH_START, function() {
+    $("#d1Op9").prop("checked", true).trigger("change");
+});
+$("#d8").on(TOUCH_START, function() {
+    $("#d1Op10").prop("checked", true).trigger("change");
+});
+$("#d9").on(TOUCH_START, function() {
+    $("#d1Op11").prop("checked", true).trigger("change");
+});
+$("#d10").on(TOUCH_START, function() {
+    $("#d1Op12").prop("checked", true).trigger("change");
+});
+$("#d11").on(TOUCH_START, function() {
+    $("#d1Op13").prop("checked", true).trigger("change");
+});
+$("#d12").on(TOUCH_START, function() {
+    $("#d1Op14").prop("checked", true).trigger("change");
+});
+$("#d13").on(TOUCH_START, function() {
+    $("#d1Op15").prop("checked", true).trigger("change");
+});
+$("#d14").on(TOUCH_START, function() {
+    $("#d1Op16").prop("checked", true).trigger("change");
+});
+$("#d15").on(TOUCH_START, function() {
+    $("#d1Op17").prop("checked", true).trigger("change");
+});
+$("#d16").on(TOUCH_START, function() {
+    $("#d1Op18").prop("checked", true).trigger("change");
+});
+$("#d17").on(TOUCH_START, function() {
+    $("#d1Op19").prop("checked", true).trigger("change");
+});
+$("#d18").on(TOUCH_START, function() {
+    $("#d1Op20").prop("checked", true).trigger("change");
+});
+$("#d19").on(TOUCH_START, function() {
+    $("#d1Op21").prop("checked", true).trigger("change");
+});
+$("#d20").on(TOUCH_START, function() {
+    $("#d1Op22").prop("checked", true).trigger("change");
+});
+$("#d21").on(TOUCH_START, function() {
+    $("#d1Op23").prop("checked", true).trigger("change");
+});
+$("#d22").on(TOUCH_START, function() {
+    $("#d1Op24").prop("checked", true).trigger("change");
+});
+$("#d23").on(TOUCH_START, function() {
+    $("#d1Op25").prop("checked", true).trigger("change");
+});
+$("#d24").on(TOUCH_START, function() {
+    $("#d1Op26").prop("checked", true).trigger("change");
+});
+
+$("#e1").on(TOUCH_START, function() {
+    $("#e1Op1").prop("checked", true).trigger("change");
+});
+$("#e2").on(TOUCH_START, function() {
+    $("#e1Op2").prop("checked", true).trigger("change");
+});
+$("#e3").on(TOUCH_START, function() {
+    $("#e1Op3").prop("checked", true).trigger("change");
+});
+$("#e4").on(TOUCH_START, function() {
+    $("#e1Op4").prop("checked", true).trigger("change");
+});
+$("#e5").on(TOUCH_START, function() {
+    $("#e1Op5").prop("checked", true).trigger("change");
+});
+$("#e6").on(TOUCH_START, function() {
+    $("#e1Op6").prop("checked", true).trigger("change");
+});
+$("#e7").on(TOUCH_START, function() {
+    $("#e1Op7").prop("checked", true).trigger("change");
+});
+$("#e8").on(TOUCH_START, function() {
+    $("#e1Op8").prop("checked", true).trigger("change");
+});
+$("#e9").on(TOUCH_START, function() {
+    $("#e1Op9").prop("checked", true).trigger("change");
+});
+$("#e10").on(TOUCH_START, function() {
+    $("#e1Op10").prop("checked", true).trigger("change");
+});
+$("#e11").on(TOUCH_START, function() {
+    $("#e1Op11").prop("checked", true).trigger("change");
+});
+$("#e12").on(TOUCH_START, function() {
+    $("#e1Op12").prop("checked", true).trigger("change");
+});
+$("#e13").on(TOUCH_START, function() {
+    $("#e1Op13").prop("checked", true).trigger("change");
+});
+$("#e14").on(TOUCH_START, function() {
+    $("#e1Op14").prop("checked", true).trigger("change");
+});
+$("#e15").on(TOUCH_START, function() {
+    $("#e1Op15").prop("checked", true).trigger("change");
+});
+$("#e16").on(TOUCH_START, function() {
+    $("#e1Op16").prop("checked", true).trigger("change");
+});
+$("#e17").on(TOUCH_START, function() {
+    $("#e1Op17").prop("checked", true).trigger("change");
+});
+$("#e18").on(TOUCH_START, function() {
+    $("#e1Op18").prop("checked", true).trigger("change");
+});
+$("#e19").on(TOUCH_START, function() {
+    $("#e1Op19").prop("checked", true).trigger("change");
+});
+$("#e20").on(TOUCH_START, function() {
+    $("#e1Op20").prop("checked", true).trigger("change");
+});
+$("#e21").on(TOUCH_START, function() {
+    $("#e1Op21").prop("checked", true).trigger("change");
+});
+$("#e22").on(TOUCH_START, function() {
+    $("#e1Op22").prop("checked", true).trigger("change");
+});
+$("#e23").on(TOUCH_START, function() {
+    $("#e1Op23").prop("checked", true).trigger("change");
+});
+$("#e24").on(TOUCH_START, function() {
+    $("#e1Op24").prop("checked", true).trigger("change");
+});
+$("#e25").on(TOUCH_START, function() {
+    $("#e1Op25").prop("checked", true).trigger("change");
+});
+$("#e26").on(TOUCH_START, function() {
+    $("#e1Op26").prop("checked", true).trigger("change");
+});
+$("#e27").on(TOUCH_START, function() {
+    $("#e1Op27").prop("checked", true).trigger("change");
+});
+$("#e28").on(TOUCH_START, function() {
+    $("#e1Op28").prop("checked", true).trigger("change");
+});
+$("#e29").on(TOUCH_START, function() {
+    $("#e1Op29").prop("checked", true).trigger("change");
+});
+$("#e30").on(TOUCH_START, function() {
+    $("#e1Op30").prop("checked", true).trigger("change");
+});
+$("#e31").on(TOUCH_START, function() {
+    $("#e1Op31").prop("checked", true).trigger("change");
+});
+$("#e32").on(TOUCH_START, function() {
+    $("#e1Op32").prop("checked", true).trigger("change");
+});
+$("#e33").on(TOUCH_START, function() {
+    $("#e1Op33").prop("checked", true).trigger("change");
+});
+$("#e34").on(TOUCH_START, function() {
+    $("#e1Op34").prop("checked", true).trigger("change");
+});
+$("#e35").on(TOUCH_START, function() {
+    $("#e1Op35").prop("checked", true).trigger("change");
+});
+$("#e36").on(TOUCH_START, function() {
+    $("#e2Op1").prop("checked", true).trigger("change");
+});
+$("#e37").on(TOUCH_START, function() {
+    $("#e2Op2").prop("checked", true).trigger("change");
+});
+$("#e38").on(TOUCH_START, function() {
+    $("#e2Op3").prop("checked", true).trigger("change");
+});
+$("#e39").on(TOUCH_START, function() {
+    $("#e2Op4").prop("checked", true).trigger("change");
+});
+$("#e40").on(TOUCH_START, function() {
+    $("#e2Op5").prop("checked", true).trigger("change");
+});
+$("#e41").on(TOUCH_START, function() {
+    $("#e2Op6").prop("checked", true).trigger("change");
+});
+$("#e42").on(TOUCH_START, function() {
+    $("#e2Op7").prop("checked", true).trigger("change");
+});
+$("#e43").on(TOUCH_START, function() {
+    $("#e2Op8").prop("checked", true).trigger("change");
+});
+$("#e44").on(TOUCH_START, function() {
+    $("#e2Op9").prop("checked", true).trigger("change");
+});
+$("#e45").on(TOUCH_START, function() {
+    $("#e2Op10").prop("checked", true).trigger("change");
+});
+$("#e46").on(TOUCH_START, function() {
+    $("#e2Op11").prop("checked", true).trigger("change");
+});
+$("#e47").on(TOUCH_START, function() {
+    $("#e2Op12").prop("checked", true).trigger("change");
+});
+$("#e48").on(TOUCH_START, function() {
+    $("#e2Op13").prop("checked", true).trigger("change");
+});
+$("#e49").on(TOUCH_START, function() {
+    $("#e2Op14").prop("checked", true).trigger("change");
+});
+$("#e50").on(TOUCH_START, function() {
+    $("#e2Op15").prop("checked", true).trigger("change");
+});
+$("#e51").on(TOUCH_START, function() {
+    $("#e3Op1").prop("checked", true).trigger("change");
+});
+$("#e52").on(TOUCH_START, function() {
+    $("#e3Op2").prop("checked", true).trigger("change");
+});
+$("#e53").on(TOUCH_START, function() {
+    $("#e3Op3").prop("checked", true).trigger("change");
+});
+$("#e54").on(TOUCH_START, function() {
+    $("#e3Op4").prop("checked", true).trigger("change");
+});
+$("#e55").on(TOUCH_START, function() {
+    $("#e3Op5").prop("checked", true).trigger("change");
+});
+$("#e56").on(TOUCH_START, function() {
+    $("#e3Op6").prop("checked", true).trigger("change");
+});
+$("#e57").on(TOUCH_START, function() {
+    $("#e3Op7").prop("checked", true).trigger("change");
+});
+$("#e58").on(TOUCH_START, function() {
+    $("#e3Op8").prop("checked", true).trigger("change");
+});
+$("#e59").on(TOUCH_START, function() {
+    $("#e3Op9").prop("checked", true).trigger("change");
+});
+$("#e60").on(TOUCH_START, function() {
+    $("#e3Op10").prop("checked", true).trigger("change");
+});
+$("#e61").on(TOUCH_START, function() {
+    $("#e3Op11").prop("checked", true).trigger("change");
+});
+$("#e62").on(TOUCH_START, function() {
+    $("#e3Op12").prop("checked", true).trigger("change");
+});
+$("#e63").on(TOUCH_START, function() {
+    $("#e3Op13").prop("checked", true).trigger("change");
+});
+$("#e64").on(TOUCH_START, function() {
+    $("#e3Op14").prop("checked", true).trigger("change");
+});
+$("#e65").on(TOUCH_START, function() {
+    $("#e3Op15").prop("checked", true).trigger("change");
+});
+$("#e66").on(TOUCH_START, function() {
+    $("#e3Op16").prop("checked", true).trigger("change");
+});
+$("#e67").on(TOUCH_START, function() {
+    $("#e3Op17").prop("checked", true).trigger("change");
+});
+$("#e68").on(TOUCH_START, function() {
+    $("#e3Op18").prop("checked", true).trigger("change");
+});
+$("#e69").on(TOUCH_START, function() {
+    $("#e3Op19").prop("checked", true).trigger("change");
+});
+$("#e70").on(TOUCH_START, function() {
+    $("#e3Op20").prop("checked", true).trigger("change");
+});
+$("#e71").on(TOUCH_START, function() {
+    $("#e3Op21").prop("checked", true).trigger("change");
+});
+$("#e72").on(TOUCH_START, function() {
+    $("#e3Op22").prop("checked", true).trigger("change");
+});
+$("#e73").on(TOUCH_START, function() {
+    $("#e3Op23").prop("checked", true).trigger("change");
+});
+$("#e74").on(TOUCH_START, function() {
+    $("#e3Op24").prop("checked", true).trigger("change");
+});
+$("#e75").on(TOUCH_START, function() {
+    $("#e3Op25").prop("checked", true).trigger("change");
+});
+$("#e76").on(TOUCH_START, function() {
+    $("#e77Op26").prop("checked", true).trigger("change");
+});
+$("#e77").on(TOUCH_START, function() {
+    $("#e3Op27").prop("checked", true).trigger("change");
+});
+$("#e78").on(TOUCH_START, function() {
+    $("#e3Op28").prop("checked", true).trigger("change");
+});
+$("#e79").on(TOUCH_START, function() {
+    $("#e3Op29").prop("checked", true).trigger("change");
+});
+$("#e80").on(TOUCH_START, function() {
+    $("#e3Op30").prop("checked", true).trigger("change");
+});
+$("#e81").on(TOUCH_START, function() {
+    $("#e3Op31").prop("checked", true).trigger("change");
+});
+$("#e82").on(TOUCH_START, function() {
+    $("#e3Op32").prop("checked", true).trigger("change");
+});
+$("#e83").on(TOUCH_START, function() {
+    $("#e3Op33").prop("checked", true).trigger("change");
+});
+$("#e84").on(TOUCH_START, function() {
+    $("#e3Op34").prop("checked", true).trigger("change");
+});
+$("#e85").on(TOUCH_START, function() {
+    $("#e3Op35").prop("checked", true).trigger("change");
+});
+$("#e86").on(TOUCH_START, function() {
+    $("#e3Op36").prop("checked", true).trigger("change");
+});
+$("#e87").on(TOUCH_START, function() {
+    $("#e3Op37").prop("checked", true).trigger("change");
+});
+$("#e88").on(TOUCH_START, function() {
+    $("#e3Op38").prop("checked", true).trigger("change");
+});
+$("#e89").on(TOUCH_START, function() {
+    $("#e3Op39").prop("checked", true).trigger("change");
+});
+$("#e90").on(TOUCH_START, function() {
+    $("#e3Op40").prop("checked", true).trigger("change");
+});
+$("#e91").on(TOUCH_START, function() {
+    $("#e3Op41").prop("checked", true).trigger("change");
+});
+$("#e92").on(TOUCH_START, function() {
+    $("#e3Op42").prop("checked", true).trigger("change");
+});
+$("#e93").on(TOUCH_START, function() {
+    $("#e3Op43").prop("checked", true).trigger("change");
+});
+$("#e94").on(TOUCH_START, function() {
+    $("#e3Op44").prop("checked", true).trigger("change");
+});
+$("#e95").on(TOUCH_START, function() {
+    $("#e3Op45").prop("checked", true).trigger("change");
+});
+$("#e96").on(TOUCH_START, function() {
+    $("#e3Op46").prop("checked", true).trigger("change");
+});
+$("#e97").on(TOUCH_START, function() {
+    $("#e3Op47").prop("checked", true).trigger("change");
+});
+$("#e98").on(TOUCH_START, function() {
+    $("#e3Op48").prop("checked", true).trigger("change");
+});
+$("#e99").on(TOUCH_START, function() {
+    $("#e3Op49").prop("checked", true).trigger("change");
+});
+$("#e100").on(TOUCH_START, function() {
+    $("#e3Op50").prop("checked", true).trigger("change");
+});
+$("#e101").on(TOUCH_START, function() {
+    $("#e3Op51").prop("checked", true).trigger("change");
+});
+$("#e102").on(TOUCH_START, function() {
+    $("#e3Op52").prop("checked", true).trigger("change");
+});
+$("#e103").on(TOUCH_START, function() {
+    $("#e3Op53").prop("checked", true).trigger("change");
+});
+$("#e104").on(TOUCH_START, function() {
+    $("#e3Op54").prop("checked", true).trigger("change");
+});
+$("#e105").on(TOUCH_START, function() {
+    $("#e3Op55").prop("checked", true).trigger("change");
+});
+$("#e106").on(TOUCH_START, function() {
+    $("#e3Op56").prop("checked", true).trigger("change");
+});
+$("#e107").on(TOUCH_START, function() {
+    $("#e3Op57").prop("checked", true).trigger("change");
+});
+$("#e108").on(TOUCH_START, function() {
+    $("#e3Op58").prop("checked", true).trigger("change");
+});
+$("#e109").on(TOUCH_START, function() {
+    $("#e3Op59").prop("checked", true).trigger("change");
+});
+$("#e110").on(TOUCH_START, function() {
+    $("#e3Op60").prop("checked", true).trigger("change");
+});
+
+function dSt() {
+    $("#dBlk").hide();
+    $("#erd1").hide();
+    $("#d1Blk").show();
+}
+
+function d1c() {
+    if (sur2Arry.d1a !== "" && sur2Arry.d1b !== "" && sur2Arry.d1c !== "") {
+        $("#d1Blk").hide();
+        $("#erd1").hide();
+        $("#erd2").hide();
+        $("#d1Blkb").show();
+        addArry(dSt);
+    }
+    else {
+        $("#erd1").show();
+    }
+}
+
+function d1b() {
+    if (sur2Arry.d1d !== "" && sur2Arry.d1e !== "" && sur2Arry.d1f !== "") {
+        $("#d1Blkb").hide();
+        $("#erd2").hide();
+        $("#erd3").hide();
+        $("#d1Blkc").show();
+        addArry(d1c);
+    }
+    else {
+        $("#erd2").show();
+    }
+}
+
+function d1() {
+    if (sur2Arry.d1g !== "" && sur2Arry.d1h !== "") {
+        $("#d1Blkc").hide();
+        $("#erd3").hide();
+        $("#eBlk").show();
+        addArry(d1b);
+    }
+    else {
+        $("#erd3").show();
+    }
+}
+
+function eSt() {
+    $("#eBlk").hide();
+    $("#ere1").hide();
+    $("#e1Blk").show();
+}
+
+function e1b() {
+    if (sur2Arry.e1a !== "" && sur2Arry.e1b !== "" && sur2Arry.e1c !== "") {
+        $("#e1Blk").hide();
+        $("#ere1").hide();
+        $("#ere2").hide();
+        $("#e1Blkb").show();
+        addArry(eSt);
+    }
+    else {
+        $("ere1").show();
+    }
+}
+
+function e1() {
+    if (sur2Arry.e1d !== "" && sur2Arry.e1e !== "" && sur2Arry.e1f !== "" && sur2Arry.e1g !== "") {
+        $("#e1Blkb").hide();
+        $("#ere2").hide();
+        $("#e2Blk").show();
+        addArry(e1b);
+    }
+    else {
+        $("ere2").show();
+    }
+}
+
+function e2St() {
+    $("#e2Blk").hide();
+    $("#ere4").hide();
+    $("#e2Blka").show();
+}
+
+function e2() {
+    if (sur2Arry.e2a !== "" && sur2Arry.e2b !== "" && sur2Arry.e2c !== "") {
+        $("#e2Blka").hide();
+        $("#ere4").hide();
+        $("#e3Blk").show();
+        addArry(e2St);
+    }
+    else {
+        $("ere4").show();
+    }
+}
+
+function e3St() {
+    $("#e3Blk").hide();
+    $("#ere6").hide();
+    $("#e3Blka").show();
+}
+
+function e3b() {
+    if (sur2Arry.e3a !== "" && sur2Arry.e3b !== "" && sur2Arry.e3c !== "" && sur2Arry.e3d !== ""
+            && sur2Arry.e3e !== "" && sur2Arry.e3f !== "") {
+        $("#e3Blka").hide();
+        $("#ere6").hide();
+        $("#ere7").hide();
+        $("#e3Blkb").show();
+        addArry(e3St);
+    }
+    else {
+        $("ere6").show();
+    }
+}
+
+function e3() {
+    if (sur2Arry.e3g !== "" && sur2Arry.e3h !== "" && sur2Arry.e3i !== "" && sur2Arry.e3j !== ""
+            && sur2Arry.e3k !== "" && sur2Arry.e3l !== "") {
+        $("#e3Blkb").hide();
+        $("#ere7").hide();
+        $("#fBlk").show();
+        addArry(e3b);
+    }
+    else {
+        $("ere7").show();
     }
 }
 

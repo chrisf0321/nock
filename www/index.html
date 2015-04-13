@@ -18,6 +18,7 @@
                         <a id="iatBtn" onclick="iaton()" href="#iat" class="ui-btn ui-corner-all">IAT Only</a> 
                         <a id="surBtn" onclick="sur1on()" href="#survey" class="ui-btn ui-corner-all">Survey 1 Only</a>
                         <a id="sstBtn" onclick="sston()" href="#sst" class="ui-btn ui-corner-all">SST Only</a>
+                        <a id="sur2Btn" onclick="sur2on()" href="#survey2" class="ui-btn ui-corner-all">Survey 2 Only</a>
                     </div>
                 </div>               
             </div> 
@@ -552,7 +553,7 @@
                                 </tr>
                                 <tr>
                                     <th>(d)</th>
-                                    <td>you had repeated attacks <ins>of fear or panic</ins> when all of a sudden you felt very frightened, anxious, or uneasy </td>
+                                    <td>you had repeated attacks <ins>of fear or panic</ins> when all of a sudden you felt very frightened, anxious, or uneasy</td>
                                     <td id="13"><input name="b1Op4" id="b1Op13" value="1" type="radio">
                                     </td>
                                     <td id="14"><input name="b1Op4" id="b1Op14" value="2" type="radio">
@@ -1022,6 +1023,843 @@
                             <li></li>
                             <li><a id="fBack" onclick="back()" class="ui-btn ui-icon-carat-l ui-btn-icon-left">Back</a></li>
                             <li><a id="fwrd" onclick="forward()" class="ui-btn ui-icon-carat-r ui-btn-icon-right">Forward</a></li>   
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div data-role="page" id="survey2" data-theme="a">
+                <div data-role="content">
+                    <div id="dBlk" class="sur1">
+                        <p><b>The next questions are about the mental health of your biological parents (not step-parents).  We want to know about problems that <ins>ever</ins> occurred, so answer even for people who are no longer alive.</b></p>
+                        <br />
+                        <a id="dsb" onclick="dSt()" class="ui-btn ui-corner-all">Start</a>
+                    </div>
+                    <div id="d1Blk" class="sur2">
+                        <p><b>Did either of your biological parents ever...</b><p>
+                        <table data-role="table" id="dTbl1" data-mode="reflow" class="bTable ui-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th style="width:70%"></th>
+                                    <th class="b1Th" style="width:10%">Yes</th>
+                                    <th class="b1Th" style="width:10%">No</th>
+                                    <th class="b1Th" style="width:10%">Don't Know</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>(a)</th>
+                                    <td>have times lasting 2 weeks or longer when they were so <ins>depressed</ins> they couldn't concentrate, felt worthless, or felt their life was not worth living?</td>
+                                    <td id="d1">
+                                        <input name="d1Op1" id="d1Op1" value="1" type="radio">
+                                    </td>
+                                    <td id="d2">
+                                        <input name="d1Op1" id="d1Op2" value="2" type="radio">
+                                    </td>
+                                    <td id="d3">
+                                        <input name="d1Op1" id="d1Op3" value="3" type="radio">
+                                    </td>                           
+                                </tr>
+                                <tr>
+                                    <th>(b)</th>
+                                    <td>have <ins>manic episodes</ins> lasting several days or longer when they were excited, full of energy, and did dangerous or embarrassing things? <i>(Do <ins>not</ins> include times due to using drugs or alcohol.)</i></td>
+                                    <td id="d4"><input name="d1Op2" id="d1Op5" value="1" type="radio">
+                                    </td>
+                                    <td id="d5"><input name="d1Op2" id="d1Op6" value="2" type="radio">
+                                    </td>
+                                    <td id="d6"><input name="d1Op2" id="d1Op7" value="3" type="radio">
+                                    </td>                           
+                                </tr>
+                                <tr>
+                                    <th>(c)</th>
+                                    <td>have <ins>anxiety attacks</ins> when they suddenly felt terrified for no good reason and would either shake, sweat, or have other physical symptoms?</td>
+                                    <td id="d7"><input name="d1Op3" id="d1Op9" value="1" type="radio">
+                                    </td>
+                                    <td id="d8"><input name="d1Op3" id="d1Op10" value="2" type="radio">
+                                    </td>
+                                    <td id="d9"><input name="d1Op3" id="d1Op11" value="3" type="radio">
+                                    </td>                           
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a id="dsb1" onclick="d1c()" class="ui-btn ui-corner-all">Continue</a>
+                        <p id="erd1" class="errmsg"><b>Please answer all questions.</b></p>
+                    </div>
+                    <div id="d1Blkb" class="sur2">
+                        <p><b>Did either of your biological parents ever...</b><p>
+                        <table data-role="table" id="dTbl2" data-mode="reflow" class="bTable ui-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th style="width:70%"></th>
+                                    <th class="b1Th" style="width:10%">Yes</th>
+                                    <th class="b1Th" style="width:10%">No</th>
+                                    <th class="b1Th" style="width:10%">Don't Know</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>(d)</th>
+                                    <td>have <ins>anger attacks</ins> when they suddenly lost control and "blew up" for no good reason, either yelling, breaking things, or hurting people?</td>
+                                    <td id="d10">
+                                        <input name="d1Op4" id="d1Op12" value="1" type="radio">
+                                    </td>
+                                    <td id="d11">
+                                        <input name="d1Op4" id="d1Op13" value="2" type="radio">
+                                    </td>
+                                    <td id="d12">
+                                        <input name="d1Op4" id="d1Op14" value="3" type="radio">
+                                    </td>                           
+                                </tr>
+                                <tr>
+                                    <th>(e)</th>
+                                    <td>have long periods of time where they were more <ins>agitated, anxious, or worried</ins> than other people so that they couldn't relax, couldn't concentrate, or couldn't function normally?</td>
+                                    <td id="d13"><input name="d1Op5" id="d1Op15" value="1" type="radio">
+                                    </td>
+                                    <td id="d14"><input name="d1Op5" id="d1Op16" value="2" type="radio">
+                                    </td>
+                                    <td id="d15"><input name="d1Op5" id="d1Op17" value="3" type="radio">
+                                    </td>                           
+                                </tr>
+                                <tr>
+                                    <th>(f)</th>
+                                    <td>have significant problems with <ins>alcohol or drugs</ins> that caused problems at home, work, or with friends, or that was out of control?</td>
+                                    <td id="d16"><input name="d1Op6" id="d1Op18" value="1" type="radio">
+                                    </td>
+                                    <td id="d17"><input name="d1Op6" id="d1Op19" value="2" type="radio">
+                                    </td>
+                                    <td id="d18"><input name="d1Op6" id="d1Op20" value="3" type="radio">
+                                    </td>                           
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a id="dsb2" onclick="d1b()" class="ui-btn ui-corner-all">Continue</a>
+                        <p id="erd2" class="errmsg"><b>Please answer all questions.</b></p>
+                    </div>
+                    <div id="d1Blkc" class="sur2">
+                        <p><b>Did either of your biological parents ever...</b><p>
+                        <table data-role="table" id="dTbl3" data-mode="reflow" class="bTable ui-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th style="width:70%"></th>
+                                    <th class="b1Th" style="width:10%">Yes</th>
+                                    <th class="b1Th" style="width:10%">No</th>
+                                    <th class="b1Th" style="width:10%">Don't Know</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>(g)</th>
+                                    <td>attempt <ins>suicide</ins> or die by suicide?</td>
+                                    <td id="d19">
+                                        <input name="d1Op7" id="d1Op21" value="1" type="radio">
+                                    </td>
+                                    <td id="d20">
+                                        <input name="d1Op7" id="d1Op22" value="2" type="radio">
+                                    </td>
+                                    <td id="d21">
+                                        <input name="d1Op7" id="d1Op23" value="3" type="radio">
+                                    </td>                           
+                                </tr>
+                                <tr>
+                                    <th>(h)</th>
+                                    <td>go to <ins>prison</ins>?</td>
+                                    <td id="d22"><input name="d1Op8" id="d1Op24" value="1" type="radio">
+                                    </td>
+                                    <td id="d23"><input name="d1Op8" id="d1Op25" value="2" type="radio">
+                                    </td>
+                                    <td id="d24"><input name="d1Op8" id="d1Op26" value="3" type="radio">
+                                    </td>                           
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a id="dsb3" onclick="d1()" class="ui-btn ui-corner-all">Continue</a>
+                        <p id="erd3" class="errmsg"><b>Please answer all questions.</b></p>
+                    </div>
+                    <div id="eBlk" class="sur1">
+                        <p><b>The next questions are about your childhood.</b></p>
+                        <br />
+                        <a id="esb" onclick="eSt()" class="ui-btn ui-corner-all">Start</a>
+                    </div>
+                    <div id="e1Blk" class="sur2">
+                        <p><b>How often did you have each of the following experiences up through age 18?</b><p>
+                        <table data-role="table" id="eTbl" data-mode="reflow" class="bTable ui-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th style="width:50%"></th>
+                                    <th class="b1Th" style="width:10%">Very Often</th>
+                                    <th class="b1Th" style="width:10%">Often</th>
+                                    <th class="b1Th" style="width:10%">Sometimes</th>
+                                    <th class="b1Th" style="width:10%">Rarely</th>
+                                    <th class="b1Th" style="width:10%">Never</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>(a)</th>
+                                    <td>An adult in your house swore at you, insulted you, or acted in a way that made you afraid you would be physically hurt</td>
+                                    <td id="e1">
+                                        <input name="e1Op1" id="e1Op1" value="1" type="radio">
+                                    </td>
+                                    <td id="e2">
+                                        <input name="e1Op1" id="e1Op2" value="2" type="radio">
+                                    </td>
+                                    <td id="e3">
+                                        <input name="e1Op1" id="e1Op3" value="3" type="radio">
+                                    </td>  
+                                    <td id="e4">
+                                        <input name="e1Op1" id="e1Op4" value="4" type="radio">
+                                    </td>
+                                    <td id="e5">
+                                        <input name="e1Op1" id="e1Op5" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(b)</th>
+                                    <td>An adult in your house pushed, grabbed, or slapped you, or hit you so hard that it left a mark</td>
+                                    <td id="e6">
+                                        <input name="e1Op2" id="e1Op6" value="1" type="radio">
+                                    </td>
+                                    <td id="e7">
+                                        <input name="e1Op2" id="e1Op7" value="2" type="radio">
+                                    </td>
+                                    <td id="e8">
+                                        <input name="e1Op2" id="e1Op8" value="3" type="radio">
+                                    </td>  
+                                    <td id="e9">
+                                        <input name="e1Op2" id="e1Op9" value="4" type="radio">
+                                    </td>
+                                    <td id="e10">
+                                        <input name="e1Op2" id="e1Op10" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(c)</th>
+                                    <td>Your parents or the people who raised you yelled at or insulted each other</td>
+                                    <td id="e11">
+                                        <input name="e1Op3" id="e1Op11" value="1" type="radio">
+                                    </td>
+                                    <td id="e12">
+                                        <input name="e1Op3" id="e1Op12" value="2" type="radio">
+                                    </td>
+                                    <td id="e13">
+                                        <input name="e1Op3" id="e1Op13" value="3" type="radio">
+                                    </td>  
+                                    <td id="e14">
+                                        <input name="e1Op3" id="e1Op14" value="4" type="radio">
+                                    </td>
+                                    <td id="e15">
+                                        <input name="e1Op3" id="e1Op15" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a id="esb1" onclick="e1b()" class="ui-btn ui-corner-all">Continue</a>
+                        <p id="ere1" class="errmsg"><b>Please answer all questions.</b></p>
+                    </div>
+                    <div id="e1Blkb" class="sur2">
+                        <p><b>How often did you have each of the following experiences up through age 18?</b><p>
+                        <table data-role="table" id="eTbl1" data-mode="reflow" class="bTable ui-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th style="width:50%"></th>
+                                    <th class="b1Th" style="width:10%">Very Often</th>
+                                    <th class="b1Th" style="width:10%">Often</th>
+                                    <th class="b1Th" style="width:10%">Sometimes</th>
+                                    <th class="b1Th" style="width:10%">Rarely</th>
+                                    <th class="b1Th" style="width:10%">Never</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>(d)</th>
+                                    <td>Your parents or the people who raised you pushed, grabbed, or slapped each other, or hit each other so hard that it left a mark</td>
+                                    <td id="e16">
+                                        <input name="e1Op4" id="e1Op16" value="1" type="radio">
+                                    </td>
+                                    <td id="e17">
+                                        <input name="e1Op4" id="e1Op17" value="2" type="radio">
+                                    </td>
+                                    <td id="e18">
+                                        <input name="e1Op4" id="e1Op18" value="3" type="radio">
+                                    </td>  
+                                    <td id="e19">
+                                        <input name="e1Op4" id="e1Op19" value="4" type="radio">
+                                    </td>
+                                    <td id="e20">
+                                        <input name="e1Op4" id="e1Op20" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(e)</th>
+                                    <td>People in your family did not look out for you or support you</td>
+                                    <td id="e21">
+                                        <input name="e1Op5" id="e1Op21" value="1" type="radio">
+                                    </td>
+                                    <td id="e22">
+                                        <input name="e1Op5" id="e1Op22" value="2" type="radio">
+                                    </td>
+                                    <td id="e23">
+                                        <input name="e1Op5" id="e1Op23" value="3" type="radio">
+                                    </td>  
+                                    <td id="e24">
+                                        <input name="e1Op5" id="e1Op24" value="4" type="radio">
+                                    </td>
+                                    <td id="e25">
+                                        <input name="e1Op5" id="e1Op25" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(f)</th>
+                                    <td>People in your family didn't worry about whether you had adequate food or clothings or medical care</td>
+                                    <td id="e26">
+                                        <input name="e1Op6" id="e1Op26" value="1" type="radio">
+                                    </td>
+                                    <td id="e27">
+                                        <input name="e1Op6" id="e1Op27" value="2" type="radio">
+                                    </td>
+                                    <td id="e28">
+                                        <input name="e1Op6" id="e1Op28" value="3" type="radio">
+                                    </td>  
+                                    <td id="e29">
+                                        <input name="e1Op6" id="e1Op29" value="4" type="radio">
+                                    </td>
+                                    <td id="e30">
+                                        <input name="e1Op6" id="e1Op30" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(g)</th>
+                                    <td>Someone older than you touched or fondled you in a sexual way</td>
+                                    <td id="e31">
+                                        <input name="e1Op7" id="e1Op31" value="1" type="radio">
+                                    </td>
+                                    <td id="e32">
+                                        <input name="e1Op7" id="e1Op32" value="2" type="radio">
+                                    </td>
+                                    <td id="e33">
+                                        <input name="e1Op7" id="e1Op33" value="3" type="radio">
+                                    </td>  
+                                    <td id="e34">
+                                        <input name="e1Op7" id="e1Op34" value="4" type="radio">
+                                    </td>
+                                    <td id="e35">
+                                        <input name="e1Op7" id="e1Op35" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a id="esb2" onclick="e1()" class="ui-btn ui-corner-all">Continue</a>
+                        <p id="ere2" class="errmsg"><b>Please answer all questions.</b></p>
+                    </div>
+                    <div id="e2Blk" class="sur1">
+                        <p><b>The next questions are about highly stressful experiences that might have happened to you at <ins>any time in your life</ins>.</b></p>
+                        <br />
+                        <a id="esb3" onclick="e2St()" class="ui-btn ui-corner-all">Start</a>
+                    </div>
+                    <div id="e2Blka" class="sur2">
+                        <p><b>How many times did you experience each of the following?</b><p>
+                        <table data-role="table" id="e2Tbl" data-mode="reflow" class="bTable ui-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th style="width:50%"></th>
+                                    <th class="b1Th" style="width:10%">0</th>
+                                    <th class="b1Th" style="width:10%">1</th>
+                                    <th class="b1Th" style="width:10%">2-4</th>
+                                    <th class="b1Th" style="width:10%">5-9</th>
+                                    <th class="b1Th" style="width:10%">10 or more</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>(a)</th>
+                                    <td>Serious physical assault (for example, beaten up or mugged)</td>
+                                    <td id="e36">
+                                        <input name="e2Op1" id="e2Op1" value="1" type="radio">
+                                    </td>
+                                    <td id="e37">
+                                        <input name="e2Op1" id="e2Op2" value="2" type="radio">
+                                    </td>
+                                    <td id="e38">
+                                        <input name="e2Op1" id="e2Op3" value="3" type="radio">
+                                    </td>  
+                                    <td id="e39">
+                                        <input name="e2Op1" id="e2Op4" value="4" type="radio">
+                                    </td>
+                                    <td id="e40">
+                                        <input name="e2Op1" id="e2Op5" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(b)</th>
+                                    <td>Sexual assault or rape</td>
+                                    <td id="e41">
+                                        <input name="e2Op2" id="e2Op6" value="1" type="radio">
+                                    </td>
+                                    <td id="e42">
+                                        <input name="e2Op2" id="e2Op7" value="2" type="radio">
+                                    </td>
+                                    <td id="e43">
+                                        <input name="e2Op2" id="e2Op8" value="3" type="radio">
+                                    </td>  
+                                    <td id="e44">
+                                        <input name="e2Op2" id="e2Op9" value="4" type="radio">
+                                    </td>
+                                    <td id="e45">
+                                        <input name="e2Op2" id="e2Op10" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(c)</th>
+                                    <td>You witnessed someone else being badly beaten or killed</td>
+                                    <td id="e46">
+                                        <input name="e2Op3" id="e2Op11" value="1" type="radio">
+                                    </td>
+                                    <td id="e47">
+                                        <input name="e2Op3" id="e2Op12" value="2" type="radio">
+                                    </td>
+                                    <td id="e48">
+                                        <input name="e2Op3" id="e2Op13" value="3" type="radio">
+                                    </td>  
+                                    <td id="e49">
+                                        <input name="e2Op3" id="e2Op14" value="4" type="radio">
+                                    </td>
+                                    <td id="e50">
+                                        <input name="e2Op3" id="e2Op15" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a id="esb4" onclick="e2()" class="ui-btn ui-corner-all">Continue</a>
+                        <p id="ere4" class="errmsg"><b>Please answer all questions.</b></p>
+                    </div>
+                    <div id="e3Blk" class="sur1">
+                        <p><b>The next questions are about you.</b></p>
+                        <br />
+                        <a id="esb5" onclick="e3St()" class="ui-btn ui-corner-all">Start</a>
+                    </div>
+                    <div id="e3Blka" class="sur2">
+                        <p><b>How well does each of the following statements describe you?</b><p>
+                        <table data-role="table" id="e3Tbl" data-mode="reflow" class="bTable ui-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th style="width:30%"></th>
+                                    <th class="b1Th" style="width:15%">Exactly like me</th>
+                                    <th class="b1Th" style="width:12%">A lot like me</th>
+                                    <th class="b1Th" style="width:15%">Somewhat like me</th>
+                                    <th class="b1Th" style="width:15%">A little like me</th>
+                                    <th class="b1Th" style="width:20%">Not at all like me</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>(a)</th>
+                                    <td>When I experience emotions, I feel them very intensely</td>
+                                    <td id="e51">
+                                        <input name="e3Op1" id="e3Op1" value="1" type="radio">
+                                    </td>
+                                    <td id="e52">
+                                        <input name="e3Op1" id="e3Op2" value="2" type="radio">
+                                    </td>
+                                    <td id="e53">
+                                        <input name="e3Op1" id="e3Op3" value="3" type="radio">
+                                    </td>  
+                                    <td id="e54">
+                                        <input name="e3Op1" id="e3Op4" value="4" type="radio">
+                                    </td>
+                                    <td id="e55">
+                                        <input name="e3Op1" id="e3Op5" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(b)</th>
+                                    <td>I am hopeless about the future</td>
+                                    <td id="e56">
+                                        <input name="e3Op2" id="e3Op6" value="1" type="radio">
+                                    </td>
+                                    <td id="e57">
+                                        <input name="e3Op2" id="e3Op7" value="2" type="radio">
+                                    </td>
+                                    <td id="e58">
+                                        <input name="e3Op2" id="e3Op8" value="3" type="radio">
+                                    </td>  
+                                    <td id="e59">
+                                        <input name="e3Op2" id="e3Op9" value="4" type="radio">
+                                    </td>
+                                    <td id="e60">
+                                        <input name="e3Op2" id="e3Op10" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(c)</th>
+                                    <td>I feel like time is running out for me</td>
+                                    <td id="e61">
+                                        <input name="e3Op3" id="e3Op11" value="1" type="radio">
+                                    </td>
+                                    <td id="e62">
+                                        <input name="e3Op3" id="e3Op12" value="2" type="radio">
+                                    </td>
+                                    <td id="e63">
+                                        <input name="e3Op3" id="e3Op13" value="3" type="radio">
+                                    </td>  
+                                    <td id="e64">
+                                        <input name="e3Op3" id="e3Op14" value="4" type="radio">
+                                    </td>
+                                    <td id="e65">
+                                        <input name="e3Op3" id="e3Op15" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(d)</th>
+                                    <td>I feel trapped by my problems</td>
+                                    <td id="e66">
+                                        <input name="e3Op4" id="e3Op16" value="1" type="radio">
+                                    </td>
+                                    <td id="e67">
+                                        <input name="e3Op4" id="e3Op17" value="2" type="radio">
+                                    </td>
+                                    <td id="e68">
+                                        <input name="e3Op4" id="e3Op18" value="3" type="radio">
+                                    </td>  
+                                    <td id="e69">
+                                        <input name="e3Op4" id="e3Op19" value="4" type="radio">
+                                    </td>
+                                    <td id="e70">
+                                        <input name="e3Op4" id="e3Op20" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(e)</th>
+                                    <td>I am constantly anxious and on edge</td>
+                                    <td id="e71">
+                                        <input name="e3Op5" id="e3Op21" value="1" type="radio">
+                                    </td>
+                                    <td id="e72">
+                                        <input name="e3Op5" id="e3Op22" value="2" type="radio">
+                                    </td>
+                                    <td id="e73">
+                                        <input name="e3Op5" id="e3Op23" value="3" type="radio">
+                                    </td>  
+                                    <td id="e74">
+                                        <input name="e3Op5" id="e3Op24" value="4" type="radio">
+                                    </td>
+                                    <td id="e75">
+                                        <input name="e3Op5" id="e3Op25" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(f)</th>
+                                    <td>Life is impossible if things don't change right away</td>
+                                    <td id="e76">
+                                        <input name="e3Op6" id="e3Op26" value="1" type="radio">
+                                    </td>
+                                    <td id="e77">
+                                        <input name="e3Op6" id="e3Op27" value="2" type="radio">
+                                    </td>
+                                    <td id="e78">
+                                        <input name="e3Op6" id="e3Op28" value="3" type="radio">
+                                    </td>  
+                                    <td id="e79">
+                                        <input name="e3Op6" id="e3Op29" value="4" type="radio">
+                                    </td>
+                                    <td id="e80">
+                                        <input name="e3Op6" id="e3Op30" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a id="esb6" onclick="e3b()" class="ui-btn ui-corner-all">Continue</a>
+                        <p id="ere6" class="errmsg"><b>Please answer all questions.</b></p>
+                    </div>
+                    <div id="e3Blkb" class="sur2">
+                        <p><b>How well does each of the following statements describe you?</b><p>
+                        <table data-role="table" id="e3Tbl1" data-mode="reflow" class="bTable ui-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th style="width:30%"></th>
+                                    <th class="b1Th" style="width:15%">Exactly like me</th>
+                                    <th class="b1Th" style="width:12%">A lot like me</th>
+                                    <th class="b1Th" style="width:15%">Somewhat like me</th>
+                                    <th class="b1Th" style="width:15%">A little like me</th>
+                                    <th class="b1Th" style="width:20%">Not at all like me</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>(g)</th>
+                                    <td>When I am upset I often act without thinking</td>
+                                    <td id="e81">
+                                        <input name="e3Op7" id="e3Op31" value="1" type="radio">
+                                    </td>
+                                    <td id="e82">
+                                        <input name="e3Op7" id="e3Op32" value="2" type="radio">
+                                    </td>
+                                    <td id="e83">
+                                        <input name="e3Op7" id="e3Op33" value="3" type="radio">
+                                    </td>  
+                                    <td id="e84">
+                                        <input name="e3Op7" id="e3Op34" value="4" type="radio">
+                                    </td>
+                                    <td id="e85">
+                                        <input name="e3Op7" id="e3Op35" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(h)</th>
+                                    <td>I am a burden to others</td>
+                                    <td id="e86">
+                                        <input name="e3Op8" id="e3Op36" value="1" type="radio">
+                                    </td>
+                                    <td id="e87">
+                                        <input name="e3Op8" id="e3Op37" value="2" type="radio">
+                                    </td>
+                                    <td id="e88">
+                                        <input name="e3Op8" id="e3Op38" value="3" type="radio">
+                                    </td>  
+                                    <td id="e89">
+                                        <input name="e3Op8" id="e3Op39" value="4" type="radio">
+                                    </td>
+                                    <td id="e90">
+                                        <input name="e3Op8" id="e3Op40" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(i)</th>
+                                    <td>I feel like I don't belong</td>
+                                    <td id="e91">
+                                        <input name="e3Op9" id="e3Op41" value="1" type="radio">
+                                    </td>
+                                    <td id="e92">
+                                        <input name="e3Op9" id="e3Op42" value="2" type="radio">
+                                    </td>
+                                    <td id="e93">
+                                        <input name="e3Op9" id="e3Op43" value="3" type="radio">
+                                    </td>  
+                                    <td id="e94">
+                                        <input name="e3Op9" id="e3Op44" value="4" type="radio">
+                                    </td>
+                                    <td id="e95">
+                                        <input name="e3Op9" id="e3Op45" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(j)</th>
+                                    <td>I am not afraid of injury or death</td>
+                                    <td id="e96">
+                                        <input name="e3Op10" id="e3Op46" value="1" type="radio">
+                                    </td>
+                                    <td id="e97">
+                                        <input name="e3Op10" id="e3Op47" value="2" type="radio">
+                                    </td>
+                                    <td id="e98">
+                                        <input name="e3Op10" id="e3Op48" value="3" type="radio">
+                                    </td>  
+                                    <td id="e99">
+                                        <input name="e3Op10" id="e3Op49" value="4" type="radio">
+                                    </td>
+                                    <td id="e100">
+                                        <input name="e3Op10" id="e3Op50" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(k)</th>
+                                    <td>I have people who care about me and are there for me whenever I need them</td>
+                                    <td id="e101">
+                                        <input name="e3Op11" id="e3Op51" value="1" type="radio">
+                                    </td>
+                                    <td id="e102">
+                                        <input name="e3Op11" id="e3Op52" value="2" type="radio">
+                                    </td>
+                                    <td id="e103">
+                                        <input name="e3Op11" id="e3Op53" value="3" type="radio">
+                                    </td>  
+                                    <td id="e104">
+                                        <input name="e3Op11" id="e3Op54" value="4" type="radio">
+                                    </td>
+                                    <td id="e105">
+                                        <input name="e3Op11" id="e3Op55" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <th>(l)</th>
+                                    <td>I have a sense of direction and purpose in life</td>
+                                    <td id="e106">
+                                        <input name="e3Op12" id="e3Op56" value="1" type="radio">
+                                    </td>
+                                    <td id="e107">
+                                        <input name="e3Op12" id="e3Op57" value="2" type="radio">
+                                    </td>
+                                    <td id="e108">
+                                        <input name="e3Op12" id="e3Op58" value="3" type="radio">
+                                    </td>  
+                                    <td id="e109">
+                                        <input name="e3Op12" id="e3Op59" value="4" type="radio">
+                                    </td>
+                                    <td id="e110">
+                                        <input name="e3Op12" id="e3Op60" value="5" type="radio">
+                                    </td>   
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a id="esb7" onclick="e3()" class="ui-btn ui-corner-all">Continue</a>
+                        <p id="ere7" class="errmsg"><b>Please answer all questions.</b></p>
+                    </div>
+                    <div id="fBlk" class="sur1">
+                        <p><b>The next questions are about treatment for emotional or behavioral problems.</b></p>
+                        <br />
+                        <a id="fsb" onclick="fSt()" class="ui-btn ui-corner-all">Start</a>
+                    </div>
+                    <div id="f1Blka" class="sur2">
+                        <p><b>During the past 12 months (52 weeks), how many times...</b><br>did you have a talk therapy session with a psychologist, psychiatrist, or other counselor for emotional or behavioral problems?</p>
+                        <input type="text" id="f1atxt" value="" readonly="readonly" placeholder="Total times" />
+                        <a id="fsb1" onclick="f1a()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erf1" class="errmsg"><b>Please enter a valid number.</b></p>
+                    </div>
+                    <div id="f1Blkb" class="sur2">
+                        <p><b>During the past 12 months (52 weeks), how many times...</b><br>did you fill a prescription for antidepressant medication (that is, how many times did you go to the pharmacy to pick up this medication)?</p>
+                        <input type="text" id="f1btxt" value="" readonly="readonly" placeholder="Total times" />
+                        <a id="fsb2" onclick="f1b()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erf2" class="errmsg"><b>Please enter a valid number.</b></p>
+                    </div>
+                    <div id="f1Blkc" class="sur2">
+                        <p><b>During the past 12 months (52 weeks), how many times...</b><br>did you come to an emergency room for help with emotional or behavioral problems (<ins>not</ins> including today)?</p>
+                        <input type="text" id="f1ctxt" value="" readonly="readonly" placeholder="Total times" />
+                        <a id="fsb3" onclick="f1c()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erf3" class="errmsg"><b>Please enter a valid number.</b></p>
+                    </div>
+                    <div id="f1Blkd" class="sur2">
+                        <p><b>During the past 12 months (52 weeks), how many times...</b><br>were you admitted for an overnight stay at a hospital for the treatment of emotional or behavioral problems (indicate the number of <ins>separate times</ins> this happened, <ins>not</ins> including today)?</p>
+                        <input type="text" id="f1dtxt" value="" readonly="readonly" placeholder="Total times" />
+                        <a id="fsb4" onclick="f1d()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erf4" class="errmsg"><b>Please enter a valid number.</b></p>
+                    </div>
+                    <div id="f1Blke" class="sur1">
+                        <p><b>During the past 12 months, how many <ins>total nights</ins> did you stay in a hospital for the treatment of emotional or behavioral problems?</b></p>
+                        <input type="text" id="f1etxt" value="" readonly="readonly" placeholder="Total nights" />
+                        <a id="fsb5" onclick="f1e()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erf5" class="errmsg"><b>Please enter a valid number.</b></p>
+                    </div>
+                    <div id="g1Blk" class="sur1">
+                        <p><b>To what extent do you think of <ins>death</ins> as being "like you" versus "not like you"?</b></p>
+                        <div id="sldWrap">
+                            <table data-role="table" id="g1Tbl" class="ui-responsive">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="td1">Not Like Me</td>
+                                        <td id="td2"><div class="full-slide">
+                                                <input name="g1Slide" id="g1Slide" min="0" max="100" value="50" step="1" data-popup-enabled="false" type="range">
+                                                <label for="g1Slide" class="ui-hidden-accessible"></label>
+                                            </div>
+                                        </td>
+                                        <td id="td3">Like Me</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <a id="gsb1" onclick="g1()" class="ui-btn ui-corner-all">Next</a>
+                    </div>
+                    <div id="g2Blk" class="sur1">
+                        <p><b>What are the chances that you will make a suicide attempt in the <ins>next 1 month</ins></b></p>
+                        <fieldset id="g2bfd" data-role="controlgroup">
+                            <input name="g2bOp1" id="g2bOp1" value="1" type="radio">
+                            <label id="g2blb1" for="g2bOp1" class="chkbox">0%</label>
+                            <input name="g2bOp1" id="g2bOp2" value="2" type="radio">
+                            <label id="g2blb2" for="g2bOp2" class="chkbox">10%</label>
+                            <input name="g2bOp1" id="g2bOp3" value="3" type="radio">
+                            <label id="g2blb3" for="g2bOp3" class="chkbox">20%</label>
+                            <input name="g2bOp1" id="g2bOp4" value="4" type="radio">
+                            <label id="g2blb4" for="g2bOp4" class="chkbox">30%</label>
+                            <input name="g2bOp1" id="g2bOp5" value="5" type="radio">
+                            <label id="g2blb5" for="g2bOp5" class="chkbox">40%</label>
+                            <input name="g2bOp1" id="g2bOp6" value="6" type="radio">
+                            <label id="g2blb6" for="g2bOp6" class="chkbox">50%</label>
+                            <input name="g2bOp1" id="g2bOp7" value="7" type="radio">
+                            <label id="g2blb7" for="g2bOp7" class="chkbox">60%</label>
+                            <input name="g2bOp1" id="g2bOp8" value="8" type="radio">
+                            <label id="g2blb8" for="g2bOp8" class="chkbox">70%</label>
+                            <input name="g2bOp1" id="g2bOp9" value="9" type="radio">
+                            <label id="g2blb9" for="g2bOp9" class="chkbox">80%</label>
+                            <input name="g2bOp1" id="g2bOp10" value="10" type="radio">
+                            <label id="g2blb10" for="g2bOp10" class="chkbox">90%</label>
+                            <input name="g2bOp1" id="g2bOp11" value="11" type="radio">
+                            <label id="g2blb11" for="g2bOp11" class="chkbox">100%</label>
+                        </fieldset>
+                        <a id="gsb2" onclick="g2()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erg2" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="g3Blk" class="sur1">
+                        <p><b>What are the chances that you will make a suicide attempt in the <ins>next 6 months</ins></b></p>
+                        <fieldset id="g3bfd" data-role="controlgroup">
+                            <input name="g3bOp1" id="g3bOp1" value="1" type="radio">
+                            <label id="g3blb1" for="g3bOp1" class="chkbox">0%</label>
+                            <input name="g3bOp1" id="g3bOp2" value="2" type="radio">
+                            <label id="g3blb2" for="g3bOp2" class="chkbox">10%</label>
+                            <input name="g3bOp1" id="g3bOp3" value="3" type="radio">
+                            <label id="g3blb3" for="g3bOp3" class="chkbox">20%</label>
+                            <input name="g3bOp1" id="g3bOp4" value="4" type="radio">
+                            <label id="g3blb4" for="g3bOp4" class="chkbox">30%</label>
+                            <input name="g3bOp1" id="g3bOp5" value="5" type="radio">
+                            <label id="g3blb5" for="g3bOp5" class="chkbox">40%</label>
+                            <input name="g3bOp1" id="g3bOp6" value="6" type="radio">
+                            <label id="g3blb6" for="g3bOp6" class="chkbox">50%</label>
+                            <input name="g3bOp1" id="g3bOp7" value="7" type="radio">
+                            <label id="g3blb7" for="g3bOp7" class="chkbox">60%</label>
+                            <input name="g3bOp1" id="g3bOp8" value="8" type="radio">
+                            <label id="g3blb8" for="g3bOp8" class="chkbox">70%</label>
+                            <input name="g3bOp1" id="g3bOp9" value="9" type="radio">
+                            <label id="g3blb9" for="g3bOp9" class="chkbox">80%</label>
+                            <input name="g3bOp1" id="g3bOp10" value="10" type="radio">
+                            <label id="g3blb10" for="g3bOp10" class="chkbox">90%</label>
+                            <input name="g3bOp1" id="g3bOp11" value="11" type="radio">
+                            <label id="g3blb11" for="g3bOp11" class="chkbox">100%</label>
+                        </fieldset>
+                        <a id="gsb3" onclick="g3()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erg3" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                </div>
+                <div id="numPad2">
+                        <table class="ui-bar-a" id="keypad2" style="display: none;">
+                            <tr>
+                                <td><a data-role="button" class="num">7</a></td>
+                                <td><a data-role="button" class="num">8</a></td>
+                                <td><a data-role="button" class="num">9</a></td>
+                            </tr>
+                            <tr>
+                                <td><a data-role="button" class="num">4</a></td>
+                                <td><a data-role="button" class="num">5</a></td>
+                                <td><a data-role="button" class="num">6</a></td>
+                            </tr>
+                            <tr>
+                                <td><a data-role="button" class="num">1</a></td>
+                                <td><a data-role="button" class="num">2</a></td>
+                                <td><a data-role="button" class="num">3</a></td>
+                            </tr>
+                            <tr>
+                                <td><a data-role="button" class="del">Del</a></td>
+                                <td><a data-role="button" class="zero">0</a></td>
+                                <td><a data-role="button" class="don">Clear</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                    <div id="navSpc2" data-role="navbar">
+                        <ul>
+                            <li></li>
+                            <li><a id="fBack2" onclick="back2()" class="ui-btn ui-icon-carat-l ui-btn-icon-left">Back</a></li>
+                            <li><a id="fwrd2" onclick="forward2()" class="ui-btn ui-icon-carat-r ui-btn-icon-right">Forward</a></li>   
                         </ul>
                     </div>
                 </div>

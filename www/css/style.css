@@ -43,7 +43,7 @@ body {
     margin-left: 20%;
 }
 
-#wBtn, #iBtn, #iatBtn, #iatBtn2, #surBtn, #sstBtn {
+#wBtn, #iBtn, #iatBtn, #iatBtn2, #surBtn, #sstBtn, #sur2Btn {
     font-family: arial;
     font-size: 20px;
     background-color: rgba(0, 108, 250, 1);
@@ -56,7 +56,9 @@ body {
 
 #asb, #asb1, #asb2, #asb3, #asb4, #asb5, #asb6, #asb7, #asb8, #asb9, #asb9a, #asb10,
 #bsb, #bsb1, #bsb2, #bsb3, #bsb4, #bsb5, #bsb6, #csb, #csb1, #csb2, #csb3, #csb4, #csb5,
-#csb6, #csb7, #csb8, #csb9, #csb10, #csb11, #csb12, #csb13, #csb14, #csb15, #csb16, #csb17, #sdb, #sDat {
+#csb6, #csb7, #csb8, #csb9, #csb10, #csb11, #csb12, #csb13, #csb14, #csb15, #csb16, #csb17,
+#sdb, #sDat, #dsb, #dsb1, #dsb2, #dsb3, #esb, #esb1, #esb2, #esb3, #esb4, #esb5, #esb6, #esb7,
+#fsb, #fsb1, #fsb2, #fsb3, #fsb4, #fsb5, #gsb1, #gsb2, #gsb3 {
     font-family: arial;
     font-size: 20px;
     background-color: rgba(0, 108, 250, 1);
@@ -288,12 +290,13 @@ fieldset.ui-controlgroup {
     margin-right: 20%;
 }
 
-#atxt, #a4txt, #a8txt, #a9txt, #b2txt, #b3txt, #c1atxt, #c1btxt, #c2atxt, #c2btxt, #c3atxt, #c3btxt, #c4atxt {
+#atxt, #a4txt, #a8txt, #a9txt, #b2txt, #b3txt, #c1atxt, #c1btxt, #c2atxt, #c2btxt, #c3atxt, #c3btxt, #c4atxt, #f1atxt,
+#f1btxt, #f1ctxt, #f1dtxt, #f1etxt {
     font-family: arial;
     font-size: 20px;
 }
 
-#fBack, #fwrd {
+#fBack, #fwrd, #fBack2, #fwrd2 {
     font-family: arial;
     font-size: 20px;
     background-color: rgba(0, 108, 250, 1);
@@ -301,7 +304,7 @@ fieldset.ui-controlgroup {
     text-shadow: none;
 }
 
-#navSpc {
+#navSpc, #navSpc2 {
     background-color: rgba(0, 108, 250, 1);
 }
 
@@ -309,7 +312,7 @@ fieldset.ui-controlgroup {
     font-size: 20px;
 }
 
-#a3Slide {
+#g1Slide {
     margin: 0;
 }
 
@@ -363,7 +366,7 @@ fieldset.ui-controlgroup {
     margin-right: 20%;
 }
 
-#numPad {
+#numPad, #numPad2 {
     text-align: center;
     width: 400px;
     height: 400px;
@@ -373,14 +376,14 @@ fieldset.ui-controlgroup {
     margin-bottom: 5%;
 }
 
-#keypad {
+#keypad, #keypad2 {
     text-align: center;
     width: 400px;
     height: 400px;
     margin: 0;
 }
 
-#keypad td {
+#keypad td, #keypad2 td {
     text-align: center;
     padding: 0;
     height: 25%;
