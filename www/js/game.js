@@ -30,6 +30,7 @@ var sStTime;
 var sStop;
 var sstWrd;
 var txtID;
+var size;
 var death = ["Suicide", "Die", "Dead", "Deceased"];
 var life = ["Alive", "Thrive", "Living", "Breathing"];
 var notMe = ["They", "Them", "Their", "Other"];
@@ -51,6 +52,7 @@ var iatData = [];
 var sstData = [];
 var a9Exists = false;
 var f1Exists = false;
+var b3Exists = false;
 var surArry = { a1 : "", a2 : "", a3_1 : "", a3_2 : "", a3_3 : "", a3_4 : "", a3_5 : "", a4_1 : "", a4_2 : "", a4_3 : "", a4_4 : "",
                 a4_5 : "", a4_6 : "", a4_6_other : "", a5 : "", a6 : "", a7 : "", a8_1 : "", a8_2 : "", a8_3 : "", a8_4 : "", a8_5 : "", a8_6 : "", 
                 a8_7 : "", a8_8 : "", a8_8_other : "", a9 : "", a9_other : "", a9_flag : 0, a9a : "", a10 : "", b1a : "", b1b : "", b1c : "", b1d : "", b1e : "", b1f : "",
@@ -107,18 +109,17 @@ $(document).on('pagebeforeshow', '#sst', function() {
 });
 
 $(document).on('pagebeforeshow', '#survey', function() {
-    $("#numPad, #keypad").hide();
-    $("#a1Blk, #a2Blk, #a3Blk, #a4Blk, #a5Blk, #a6Blk, #a7Blk, #a8Blk, #a9Blk, #a9aBlk, #a10Blk").hide();
-    $("#bBlk, #b1Blk, #b2Blk, #b3Blk, #b1Blkc, #b1Blkc1, #b1Blkc2").hide();
-    $("#cBlk, #c1Blk, #c1Blka, #c1Blkb, #c1Blkc, #c2Blk, #c2Blka, #c2Blkb, #c2Blkc, #c3Blk, #c3Blka, #c3Blkb, #c3Blkc, #c3Blkd, #c4Blk, #c4Blka, #c4Blkb, #c4Blkc").hide();
+    a9Exists = false;
+    b3Exists = false;
+    navArry = [];
+    navPos = 0;
     $("#aBlk").show();
 });
 
 $(document).on('pagebeforeshow', '#survey2', function() {
     navArry = [];
     navPos = 0;
-    $("#numPad2, #keypad2").hide();
-    $("#d1Blk, #d1Blkb, #d1Blkc, #eBlk, #e1Blk, #e1Blkb, #e2Blk, #e2Blka, #e3Blk, #e3Blka, #e3Blkb, #fBlk, #f1Blka, #f1Blkb, #f1Blkc, #f1Blkd, #f1Blke, #g1Blk, #g2Blk, #g3Blk").hide();
+    f1Exists = false;
     $("#dBlk").show();
 });
 
@@ -160,8 +161,9 @@ $("#lft2, #rgt2").on(TOUCH_START, function() {
     $("#keypad").fadeToggle('fast');
 });*/
 
-function setID(id) {
+function setID(id, len) {
     txtID = id;
+    size = len;
 }
 
 $('.don').click(function(){
@@ -169,7 +171,7 @@ $('.don').click(function(){
 });
 
 $('.num').on(TOUCH_START, function(){
-    if (!isNaN($(txtID).val())) {
+    if (!isNaN($(txtID).val()) && $(txtID).val().length < size) {
         if (parseInt($(txtID).val()) === 0) {
             $(txtID).val($(this).text());
         } else {
@@ -183,7 +185,7 @@ $('.del').on(TOUCH_START, function(){
 });
 
 $('.zero').on(TOUCH_START, function(){
-    if (!isNaN($(txtID).val())) {
+    if (!isNaN($(txtID).val()) && $(txtID).val().length < size) {
         if (parseInt($(txtID).val()) !== 0) {
             $(txtID).val($(txtID).val() + $(this).text());
         }
@@ -246,6 +248,7 @@ function reset() {
     $("input[type='checkbox']").prop("checked", false).checkboxradio("refresh");
     $("input[type=text]").val("");
     $("#g1Slide").val("50");
+    hideSur();
     //Remove for final version.
     iOnly = false;
     s1Only = false;
@@ -1123,11 +1126,13 @@ $("#a8Op8").on('change', function() {
 $("#a9Op2, #a9Op3, #a9Op4, #a9Op5").on('change', function() {
     surArry.a9 = $(this).val();
     surArry.a9_flag = 1;
+    $("#a9inpt").hide();
 });
 
 $("#a9Op1, #a9Op6, #a9Op7").on('change', function() {  
     surArry.a9 = $(this).val();
     surArry.a9_flag = 0;
+    $("#a9inpt").hide();
 });
 
 $("#a9Op8").on('change', function() {
@@ -1394,6 +1399,10 @@ $("#c4cOp1, #c4cOp2, #c4cOp3, #c4cOp4, #c4cOp5, #c4cOp6").on('change', function(
     surArry.c4c = $(this).val();
 });
 
+function aDis() {
+    $("#aBlk").show();
+}
+
 function aSt() {
     $("#aBlk").hide();
     $("#err1").hide();
@@ -1401,7 +1410,8 @@ function aSt() {
     $("#keypad").show();
     $("#numPad").show();
     $("#atxt").focus();
-    setID("#atxt");
+    setID("#atxt", 2);
+    addArry(aDis);
 }
 
 
@@ -1514,15 +1524,12 @@ function a4() {
         surArry.a4_5 = "";
     }
     if ($("#a4Op6").prop('checked')) {
-        if ($("#a4txt").val().length < 2000 && $("#a4txt").val() !== "") {
+        if ($("#a4txt").val().length < 2000) {
             surArry.a4_6 = "1";
             surArry.a4_6_other = $("#a4txt").val();
         }
         else if ($("#a4txt").val() !== "") {
             $("#err4").show();
-        }
-        else {
-            $("#err4_1").show();
         }
     }
     else {
@@ -1531,7 +1538,7 @@ function a4() {
         $("#a4txt").val("");
     }
     if (surArry.a4_1 !== "" || surArry.a4_2 !== "" || surArry.a4_3 !== "" || surArry.a4_4 !== "" || surArry.a4_5 !== "" || 
-            ($("#a4Op6").prop('checked') && surArry.a4_6 !== "")) {
+            surArry.a4_6 !== "") {
         $("#a4Blk").hide();
         $("#a4inpt").hide();
         $("#err4").hide();
@@ -1564,6 +1571,12 @@ function a6() {
         $("#err6").hide();
         $("#err7").hide();
         $("#a7Blk").show();
+        if (surArry.a6 === "1") {
+            $("#a10q").text("What is your best estimate of your and your spouse's total income from all sources, before taxes, in 2014?");
+        }
+        else {
+            $("#a10q").text("What is your best estimate of your total income from all sources, before taxes, in 2014?");
+        }
         addArry(a5);
     }
     else {
@@ -1630,15 +1643,12 @@ function a8() {
         surArry.a8_7 = "";
     }
     if ($("#a8Op8").prop('checked')) {
-        if ($("#a8txt").val().length < 2000 && $("#a8txt").val() !== "") {
+        if ($("#a8txt").val().length < 2000) {
             surArry.a8_8 = "1";
             surArry.a8_8_other = $("#a8txt").val();
         }
         else if ($("#a8txt").val() !== "") {
             $("#err8").show();
-        }
-        else {
-            $("#err8_1").show();
         }
     }
     else {
@@ -1647,7 +1657,7 @@ function a8() {
         $("#a8txt").val("");
     }
     if (surArry.a8_1 !== "" || surArry.a8_2 !== "" || surArry.a8_3 !== "" || surArry.a8_4 !== "" || surArry.a8_5 !== "" || 
-             surArry.a8_6 !== "" || surArry.a8_7 !== "" || ($("#a8Op8").prop('checked') && surArry.a8_8 !== "")) {
+             surArry.a8_6 !== "" || surArry.a8_7 !== "" || surArry.a8_8 !== "") {
         $("#a8Blk").hide();
         $("#a8inpt").hide();
         $("#err8").hide();
@@ -1665,16 +1675,13 @@ function a8() {
 
 function a9() {
     if ($("#a9Op8").prop('checked')) {
-        if ($("#a9txt").val().length < 2000 && $("#a9txt").val() !== "") {
+        if ($("#a9txt").val().length < 2000) {
             surArry.a9 = "8";
             surArry.a9_other = $("#a9txt").val();
             surArry.a9_flag = 1;
         }
         else if ($("#a9txt").val() !== "") {
             $("#err9").show();
-        }
-        else {
-            $("#err9_1").show();
         }
     }
     if (surArry.a9 !== "") {
@@ -1736,6 +1743,7 @@ function bSt() {
     $("#bBlk").hide();
     $("#erb1").hide();
     $("#b1Blk").show();
+    addArry(a10);
 }
 
 function b1c() {
@@ -1778,17 +1786,18 @@ function b1c2() {
 }
 
 function b1() {
-    if (surArry.b1h !== "" && surArry.b1i !== "" && surArry.b1j !== "") {
+    if (surArry.b1k !== "") {
         if (b1Checks()) {
             $("#b1Blkc2").hide();
             $("#erb4").hide();
             $("#erb5").hide();
+            $("#erb5_1").hide();
             addArry(b1c2);
             if (b1Ever > 0) {
                 $("#b2Blk").show();
                 $("#keypad").show();
                 $("#numPad").show();
-                setID("#b2txt");
+                setID("#b2txt", 2);
             }
             else {
                 surArry.b2 = "";
@@ -1929,22 +1938,31 @@ function b2() {
     if (parseInt(surArry.a1) >= num) {
         $("#b2Blk").hide();
         $("#erb5").hide();
+        $("#erb5_1").hide();
         $("#erb6").hide();
+        $("#erb6_1").hide();
         addArry(b1);
         if (b1Year > 0) {
             $("#b3Blk").show();
+            b3Exists = true;
             $("#keypad").show();
             $("#numPad").show();
-            setID("#b3txt");
+            setID("#b3txt", 2);
         }
         else {
             surArry.b3 = "";
+            b3Exists = false;
             $("#cBlk").show();
             $("#keypad").hide();
             $("#numPad").hide();
         }
     }
+    else if (surArry.b2 === "") {
+        $("#erb5").hide();
+        $("#erb5_1").show();
+    }
     else {
+        $("#erb5_1").hide();
         $("#erb5").show();
     }
 }
@@ -1958,10 +1976,16 @@ function b3() {
         $("#keypad").hide();
         $("#numPad").hide();
         $("#erb6").hide();
+        $("#erb6_1").hide();
         $("#cBlk").show();
         addArry(b2);
     }
+    else if (surArry.b3 === "") {
+        $("#erb6").hide();
+        $("#erb6_1").show();
+    }
     else {
+        $("#erb6_1").hide();
         $("#erb6").show();
     }
 }
@@ -1970,6 +1994,12 @@ function cSt() {
     $("#cBlk").hide();
     $("#erc1").hide();
     $("#c1Blk").show();
+    if (b3Exists) {
+        addArry(b3);
+    }
+    else {
+        addArry(b2);
+    }
 }
 
 function c1() {
@@ -1977,13 +2007,14 @@ function c1() {
         $("#c1Blk").hide();
         $("#erc1").hide();
         $("#erc2").hide();
+        $("#erc2_1").hide();
         $("#erc14").hide();
         addArry(cSt);
         if (surArry.c1 === "1") {
             $("#c1Blka").show();
             $("#keypad").show();
             $("#numPad").show();
-            setID("#c1atxt");
+            setID("#c1atxt", 2);
         }
         else {
             surArry.c1a = "";
@@ -2024,13 +2055,20 @@ function c1a() {
         $("#c1Blka").hide();
         $("#keypad").show();
         $("#numPad").show();
-        setID("#c1btxt");
+        setID("#c1btxt", 2);
         $("#erc2").hide();
+        $("#erc2_1").hide();
         $("#erc3").hide();
+        $("#erc3_1").hide();
         $("#c1Blkb").show();
         addArry(c1);
     }
+    else if (surArry.c1a === "") {
+        $("#erc2").hide();
+        $("#erc2_1").show();
+    }
     else {
+        $("#erc2_1").hide();
         $("#erc2").show();
     }
 }
@@ -2044,6 +2082,7 @@ function c1b() {
         $("#keypad").hide();
         $("#numPad").hide();
         $("#erc3").hide();
+        $("#erc3_1").hide();
         $("#erc4").hide();
         addArry(c1a);
         if (num > 0) {
@@ -2055,7 +2094,12 @@ function c1b() {
             $("#c2Blk").show();
         }
     }
+    else if (surArry.c1b === "") {
+        $("#erc3").hide();
+        $("#erc3_1").show();
+    }
     else {
+        $("#erc3_1").hide();
         $("#erc3").show();
     }
 }
@@ -2065,6 +2109,7 @@ function c1c() {
         $("#c1Blkc").hide();
         $("#erc4").hide();
         $("#erc5").hide();
+        $("#erc5_1").hide();
         $("#c2Blk").show();
         addArry(c1b);
     }
@@ -2078,13 +2123,14 @@ function c2() {
         $("#c2Blk").hide();
         $("#erc5").hide();
         $("#erc6").hide();
+        $("#erc6_1").hide();
         $("#erc9").hide();
         addArry(c1c);
         if (surArry.c2 === "1") {
             $("#c2Blka").show();
             $("#keypad").show();
             $("#numPad").show();
-            setID("#c2atxt");
+            setID("#c2atxt", 2);
         }
         else {
             surArry.c2a = "";
@@ -2106,13 +2152,20 @@ function c2a() {
         $("#c2Blka").hide();
         $("#keypad").show();
         $("#numPad").show();
-        setID("#c2btxt");
+        setID("#c2btxt", 2);
         $("#erc6").hide();
+        $("#erc6_1").hide();
         $("#erc7").hide();
+        $("#erc7_1").hide();
         $("#c2Blkb").show();
         addArry(c2);
     }
+    else if (surArry.c2a === "") {
+        $("#erc6").hide();
+        $("#erc6_1").show();
+    }
     else {
+        $("#erc6_1").hide();
         $("#erc6").show();
     }
 }
@@ -2126,6 +2179,7 @@ function c2b() {
         $("#keypad").hide();
         $("#numPad").hide();
         $("#erc7").hide();
+        $("#erc7_1").hide();
         $("#erc8").hide();
         addArry(c2a);
         if (num > 0) {
@@ -2137,7 +2191,12 @@ function c2b() {
             $("#c2Blkc").show();
         }
     }
+    else if (surArry.c2b === "") {
+        $("#erc7").hide();
+        $("#erc7_1").show();
+    }
     else {
+        $("#erc7_1").hide();
         $("#erc7").show();
     }
 }
@@ -2160,13 +2219,14 @@ function c3() {
         $("#c3Blk").hide();
         $("#erc9").hide();
         $("#erc10").hide();
+        $("#erc10_1").hide();
         $("#erc14").hide();  
         addArry(c2c);
         if (surArry.c3 === "1") {
             $("#c3Blka").show();
             $("#keypad").show();
             $("#numPad").show();
-            setID("#c3atxt");
+            setID("#c3atxt", 2);
         }
         else {
             surArry.c3a = "";
@@ -2199,13 +2259,20 @@ function c3a() {
         $("#c3Blka").hide();
         $("#keypad").show();
         $("#numPad").show();
-        setID("#c3btxt");
+        setID("#c3btxt", 4);
         $("#erc10").hide();
+        $("#erc10_1").hide();
+        $("#erc11_1").hide();
         $("#erc11").hide();
         $("#c3Blkb").show();
         addArry(c3);
     }
+    else if (surArry.c3a === "") {
+        $("#erc10").hide();
+        $("#erc10_1").show();
+    }
     else {
+        $("#erc10_1").hide();
         $("#erc10").show();
     }
 }
@@ -2217,11 +2284,12 @@ function c3b() {
     numA1 = parseInt(surArry.a1);
     
     if (surArry.c3b !== "") {
-        if (surArry.c3b >= 1) {
+        if (num >= 1) {
             $("#c3Blkb").hide();
             $("#keypad").hide();
             $("#numPad").hide();
             $("#erc11").hide();
+            $("#erc11_1").hide();
             $("#erc12").hide();
             $("#erc13").hide();
             $("#erc14").hide();
@@ -2261,11 +2329,13 @@ function c3b() {
             }
         }
         else {
+            $("#erc11_1").hide();
             $("#erc11").show();
         }
     }
     else {
-        $("#erc11").show();
+        $("#erc11").hide();
+        $("#erc11_1").show();
     }
 }
 
@@ -2379,12 +2449,13 @@ function c4() {
         $("#c4Blk").hide();
         $("#erc14").hide();
         $("#erc15").hide();
+        $("#erc15_1").hide();
         addArry(c3d);
         if (surArry.c4 === "1") {
             $("#c4Blka").show();
             $("#keypad").show();
             $("#numPad").show();
-            setID("#c4atxt");
+            setID("#c4atxt", 2);
         }
         else {
             surArry.c4a = "";
@@ -2413,11 +2484,17 @@ function c4a() {
         $("#keypad").hide();
         $("#numPad").hide();
         $("#erc15").hide();
+        $("#erc15_1").hide();
         $("#erc16").hide();
         $("#c4Blkb").show();
         addArry(c4);
     }
+    else if (surArry.c4a === "") {
+        $("#erc15").hide();
+        $("#erc15_1").show();
+    }
     else {
+        $("#erc15_1").hide();
         $("#erc15").show();
     }
 }
@@ -2986,10 +3063,15 @@ $("#g3bOp1, #g3bOp2, #g3bOp3, #g3bOp4, #g3bOp5, #g3bOp6, #g3bOp7, #g3bOp8, #g3bO
     sur2Arry.g3 = $(this).val();
 });
 
+function dDis() {
+    $("#dBlk").show();
+}
+
 function dSt() {
     $("#dBlk").hide();
     $("#erd1").hide();
     $("#d1Blk").show();
+    addArry(dDis);
 }
 
 function d1c() {
@@ -3034,6 +3116,7 @@ function eSt() {
     $("#eBlk").hide();
     $("#ere1").hide();
     $("#e1Blk").show();
+    addArry(d1);
 }
 
 function e1b() {
@@ -3119,8 +3202,9 @@ function fSt() {
     $("#erf1").hide();
     $("#numPad2").show();
     $("#keypad2").show();
-    setID("#f1atxt");
+    setID("#f1atxt", 4);
     $("#f1Blka").show();
+    addArry(e3);
 }
 
 function f1a() {
@@ -3132,7 +3216,7 @@ function f1a() {
         $("#erf2").hide();
         $("#numPad2").show();
         $("#keypad2").show();
-        setID("#f1btxt");
+        setID("#f1btxt", 4);
         $("#f1Blkb").show();
         addArry(fSt);
     }
@@ -3150,7 +3234,7 @@ function f1b() {
         $("#erf3").hide();
         $("#numPad2").show();
         $("#keypad2").show();
-        setID("#f1ctxt");
+        setID("#f1ctxt", 4);
         $("#f1Blkc").show();
         addArry(f1a);
     }
@@ -3168,7 +3252,7 @@ function f1c() {
         $("#erf4").hide();
         $("#numPad2").show();
         $("#keypad2").show();
-        setID("#f1dtxt");
+        setID("#f1dtxt", 4);
         $("#f1Blkd").show();
         addArry(f1b);
     }
@@ -3188,7 +3272,7 @@ function f1d() {
         if (num > 0) {
             $("#numPad2").show();
             $("#keypad2").show();
-            setID("#f1etxt");
+            setID("#f1etxt", 4);
             $("#f1Blke").show();
         }
         else {
@@ -3323,7 +3407,7 @@ function hideAll() {
     $("#aBlk, #a1Blk, #a2Blk, #a3Blk, #a4Blk, #a5Blk, #a6Blk, #a7Blk, #a8Blk, #a9Blk, #a9aBlk, #a10Blk").hide();
     $("#bBlk, #b1Blk, #b2Blk, #b3Blk, #b1Blkc, #b1Blkc1, #b1Blkc2").hide();
     $("#cBlk, #c1Blk, #c1Blka, #c1Blkb, #c1Blkc, #c2Blk, #c2Blka, #c2Blkb, #c2Blkc, #c3Blk, #c3Blka, #c3Blkb, #c3Blkc, #c3Blkd, #c4Blk, #c4Blka, #c4Blkb, #c4Blkc").hide();
-    $("#d1Blk, #d1Blkb, #d1Blkc, #eBlk, #dBlk, #e1Blk, #e1Blka, #e2Blk, #e2Blka, #e3Blk, #e3Blka, #e3Blkb").hide();
+    $("#dBlk, #d1Blk, #d1Blkb, #d1Blkc, #eBlk, #dBlk, #e1Blk, #e1Blka, #e2Blk, #e2Blka, #e3Blk, #e3Blka, #e3Blkb").hide();
     $("#fBlk, #f1Blka, #f1Blkb, #f1Blkc, #f1Blkd, #f1Blke, #g1Blk, #g2Blk, #g3Blk").hide();
     $("#keypad, #numpad, #numPad2, #keypad2").hide();
     return true;

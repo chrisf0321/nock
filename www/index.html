@@ -474,7 +474,7 @@
                         <p id="err9a" class="errmsg"><b>Please choose an answer.</b></p>
                     </div>
                     <div id="a10Blk" class="sur1">
-                        <p><b>What's your best estimate of your [if married: and your spouse's] total income from all sources, before taxes, from 2014?</b></p>
+                        <p id="a10q"></p>
                         <fieldset id="a10fd" data-role="controlgroup">
                             <input name="a10Op1" id="a10Op1" value="1" type="radio">
                             <label id="a10lb1" for="a10Op1" class="chkbox">$0 - 20,000</label>
@@ -721,6 +721,7 @@
                         </div>
                         <a id="bsb5" onclick="b2()" class="ui-btn ui-corner-all">Next</a>
                         <p id="erb5" class="errmsg"><b>Age cannot be greater than current age.</b></p>
+                        <p id="erb5_1" class="errmsg"><b>Please enter an answer.</b></p>
                     </div>
                     <div id="b3Blk" class="sur1">
                         <p id='b3q'></p>
@@ -734,6 +735,7 @@
                         </div>
                         <a id="bsb6" onclick="b3()" class="ui-btn ui-corner-all">Next</a>
                         <p id="erb6" class="errmsg"><b>Months cannot be greater than 12.</b></p>
+                        <p id="erb6_1" class="errmsg"><b>Please enter an answer.</b></p>
                     </div>
                     <div id="cBlk" class="sur1">
                         <p><b>The next questions are about thoughts of hurting yourself.</b></p>
@@ -763,6 +765,7 @@
                         </div>
                         <a id="csb2" onclick="c1a()" class="ui-btn ui-corner-all">Next</a>
                         <p id="erc2" class="errmsg"><b>Age cannot be greater than current age.</b></p>
+                        <p id="erc2_1" class="errmsg"><b>Please enter an answer.</b></p>
                     </div>
                     <div id="c1Blkb" class="sur1">
                         <p><b>About how many <ins>weeks in the past year</ins> did you think of killing yourself?</b><br><span class='smallTitle'><i>(You can use any number between 0 and 52.  Your best estimate is fine.)</i></span></p>
@@ -776,6 +779,7 @@
                         </div>
                         <a id="csb3" onclick="c1b()" class="ui-btn ui-corner-all">Next</a>
                         <p id="erc3" class="errmsg"><b>Value cannot be greater than 52.</b></p>
+                        <p id="erc3_1" class="errmsg"><b>Please enter an answer.</b></p>
                     </div>
                     <div id="c1Blkc" class="sur1">
                         <p><b>When was the <ins>last time</ins> you had thoughts of killing yourself?</b></p>
@@ -817,6 +821,7 @@
                         </div>
                         <a id="csb6" onclick="c2a()" class="ui-btn ui-corner-all">Next</a>
                         <p id="erc6" class="errmsg"><b>Age cannot be greater than current age.</b></p>
+                        <p id="erc6_1" class="errmsg"><b>Please enter an answer.</b></p>
                     </div>
                     <div id="c2Blkb" class="sur1">
                         <p><b>About how many <ins>weeks in the past year</ins> did you have a plan to kill yourself?</b><br><span class='smallTitle'><i>(You can use any number between 0 and 52.  Your best estimate is fine.)</i></span></p>
@@ -830,6 +835,7 @@
                         </div>
                         <a id="csb7" onclick="c2b()" class="ui-btn ui-corner-all">Next</a>
                         <p id="erc7" class="errmsg"><b>Value cannot be greater than 52.</b></p>
+                        <p id="erc7_1" class="errmsg"><b>Please enter an answer.</b></p>
                     </div>
                     <div id="c2Blkc" class="sur1">
                         <p><b>When was the <ins>last time</ins> you had a plan to kill yourself?</b></p>
@@ -871,12 +877,14 @@
                         </div>
                         <a id="csb10" onclick="c3a()" class="ui-btn ui-corner-all">Next</a>
                         <p id="erc10" class="errmsg"><b>Age cannot be greater than current age.</b></p>
+                        <p id="erc10_1" class="errmsg"><b>Please enter an answer.</b></p>
                     </div>
                     <div id="c3Blkb" class="sur1">
                         <p><b>How many different suicide attempts did you ever make?</b></p>
                         <input type="text" id="c3btxt" value="" readonly="readonly" placeholder="Attempts" />
                         <a id="csb11" onclick="c3b()" class="ui-btn ui-corner-all">Next</a>
-                        <p id="erc11" class="errmsg"><b>Please enter a valid number.</b></p>
+                        <p id="erc11" class="errmsg"><b>Please enter a valid number 1 or greater.</b></p>
+                        <p id="erc11_1" class="errmsg"><b>Please enter an answer.</b></p>
                     </div>
                     <div id="c3Blkc" class="sur1">
                         <p><b>When was the <ins>last time</ins> you made a suicide attempt?</b></p>
@@ -949,6 +957,7 @@
                         </div>
                         <a id="csb15" onclick="c4a()" class="ui-btn ui-corner-all">Next</a>
                         <p id="erc15" class="errmsg"><b>Age cannot be greater than current age.</b></p>
+                        <p id="erc15_1" class="errmsg"><b>Please enter an answer.</b></p>
                     </div>
                     <div id="c4Blkb" class="sur1">
                         <p><b>About how many times in your life did you do something to hurt yourself on purpose, but <ins>without</ins> wanting to die?</b></p>
