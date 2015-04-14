@@ -57,7 +57,7 @@ body {
 #asb, #asb1, #asb2, #asb3, #asb4, #asb5, #asb6, #asb7, #asb8, #asb9, #asb9a, #asb10,
 #bsb, #bsb1, #bsb2, #bsb3, #bsb4, #bsb5, #bsb6, #csb, #csb1, #csb2, #csb3, #csb4, #csb5,
 #csb6, #csb7, #csb8, #csb9, #csb10, #csb11, #csb12, #csb13, #csb14, #csb15, #csb16, #csb17,
-#sdb, #sDat, #dsb, #dsb1, #dsb2, #dsb3, #esb, #esb1, #esb2, #esb3, #esb4, #esb5, #esb6, #esb7,
+#sdb, #sdb2, #sDat, #dsb, #dsb1, #dsb2, #dsb3, #esb, #esb1, #esb2, #esb3, #esb4, #esb5, #esb6, #esb7,
 #fsb, #fsb1, #fsb2, #fsb3, #fsb4, #fsb5, #gsb1, #gsb2, #gsb3 {
     font-family: arial;
     font-size: 20px;
@@ -327,11 +327,18 @@ fieldset.ui-controlgroup {
 #td1 {
     width: 20%;
     text-align: right;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 28px;
 }
 
 #td2 {
     padding: 0;
     width: 60%;
+}
+
+#td3 {
+    font-size: 28px;
 }
 
 .red_font {
@@ -407,6 +414,14 @@ fieldset.ui-controlgroup {
 
 .b1Th {
     vertical-align: bottom !important;
+}
+
+.eTh {
+    left: 1.2em !important;
+}
+
+.e2Th {
+    left: 0 !important;
 }
 
 .b2Size {
