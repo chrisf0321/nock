@@ -53,6 +53,7 @@ var sstData = [];
 var a9Exists = false;
 var f1Exists = false;
 var b3Exists = false;
+var c2Exists = false;
 var surArry = { a1 : "", a2 : "", a3_1 : "", a3_2 : "", a3_3 : "", a3_4 : "", a3_5 : "", a4_1 : "", a4_2 : "", a4_3 : "", a4_4 : "",
                 a4_5 : "", a4_6 : "", a4_6_other : "", a5 : "", a6 : "", a7 : "", a8_1 : "", a8_2 : "", a8_3 : "", a8_4 : "", a8_5 : "", a8_6 : "", 
                 a8_7 : "", a8_8 : "", a8_8_other : "", a9 : "", a9_other : "", a9_flag : 0, a9a : "", a10 : "", b1a : "", b1b : "", b1c : "", b1d : "", b1e : "", b1f : "",
@@ -111,8 +112,10 @@ $(document).on('pagebeforeshow', '#sst', function() {
 $(document).on('pagebeforeshow', '#survey', function() {
     a9Exists = false;
     b3Exists = false;
+    c2Exists = false;
     navArry = [];
     navPos = 0;
+    //hideSur();
     $("#aBlk").show();
 });
 
@@ -120,6 +123,7 @@ $(document).on('pagebeforeshow', '#survey2', function() {
     navArry = [];
     navPos = 0;
     f1Exists = false;
+    //hideSur();
     $("#dBlk").show();
 });
 
@@ -244,10 +248,20 @@ function reset() {
                  g2 : "", g3 : ""};
     navArry = [];
     navPos = 0;
-    $("input[type='radio']").prop("checked", false).checkboxradio("refresh");
-    $("input[type='checkbox']").prop("checked", false).checkboxradio("refresh");
+    $("input[type='radio']").each(function() {
+        if ($(this).is(":checked")) {
+            $(this).prop("checked", false).checkboxradio('refresh');
+        }
+    });
+    $("input[type='checkbox']").each(function() {
+        if ($(this).is(":checked")) {
+            $(this).prop("checked", false).checkboxradio('refresh');
+        }
+    });
+    //$("input[type='radio']").checkboxradio("refresh");
+    //$("input[type='checkbox']").checkboxradio("refresh");
     $("input[type=text]").val("");
-    $("#g1Slide").val("50");
+    $("#g1Slide").val("50").slider("refresh");
     hideSur();
     //Remove for final version.
     iOnly = false;
@@ -301,6 +315,14 @@ function recordTrial(word, time, trial, correct) {
 
 // Remove for final Version.
 function displayIAT() {
+    $("#iTable1 tbody").empty();
+    $("#iTable2 tbody").empty();
+    $("#iTable3 tbody").empty();
+    $("#iTable4 tbody").empty();
+    $("#iTable5 tbody").empty();
+    $("#iTable6 tbody").empty();
+    $("#iTable7 tbody").empty();
+    $("#iScr").empty();
     var iPos = iatData.length - 1;
     var iScrData = iatData[iPos];
     for (var i = 0; i < iPos; i++) {
@@ -1057,6 +1079,8 @@ function sstScore() {
 
 //Remove for final version.
 function genSData() {
+    $("#sTable1 tbody").empty();
+    $("#sstDiv").empty();
     pos = sstData.length - 1;
     score = sstData[pos];
     for (var i = 0; i < pos; i++) {
@@ -2185,9 +2209,12 @@ function c2b() {
         if (num > 0) {
             $("#erc9").hide();
             surArry.c2c = "";
+            c2Exists = false;
+            removeArry(c2c);
             $("#c3Blk").show();
         }
         else {
+            c2Exists = true;
             $("#c2Blkc").show();
         }
     }
@@ -2207,6 +2234,7 @@ function c2c() {
         $("#erc8").hide();
         $("#erc9").hide();
         $("#c3Blk").show();
+        c2Exists = true;
         addArry(c2b);
     }
     else {
@@ -2220,8 +2248,13 @@ function c3() {
         $("#erc9").hide();
         $("#erc10").hide();
         $("#erc10_1").hide();
-        $("#erc14").hide();  
-        addArry(c2c);
+        $("#erc14").hide();
+        if (c2Exists) {
+            addArry(c2c);
+        }
+        else {
+            addArry(c2b);
+        }
         if (surArry.c3 === "1") {
             $("#c3Blka").show();
             $("#keypad").show();
@@ -3148,6 +3181,7 @@ function e2St() {
     $("#e2Blk").hide();
     $("#ere4").hide();
     $("#e2Blka").show();
+    addArry(e1);
 }
 
 function e2() {
@@ -3166,6 +3200,7 @@ function e3St() {
     $("#e3Blk").hide();
     $("#ere6").hide();
     $("#e3Blka").show();
+    addArry(e2);
 }
 
 function e3b() {
@@ -3414,6 +3449,7 @@ function hideAll() {
 }
 
 function genSurData() {
+    $("#dataDiv").empty();
     $.each(surArry, function(key, value) {
         if (key !== "a9_flag") {
             if (key !== "a4_6_other" && key !== "a8_8_other" && key !== "a9_other") {
@@ -3428,6 +3464,7 @@ function genSurData() {
 }
 
 function genSur2Data() {
+    $("#data2Div").empty();
     $.each(sur2Arry, function(key, value) {
         var sur2Data = '<p><b>' + key + ':</b>  ' + value + '</p>';
         $("#data2Div").append(sur2Data);
