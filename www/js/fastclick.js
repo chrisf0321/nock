@@ -105,6 +105,13 @@
 		if (FastClick.notNeeded(layer)) {
 			return;
 		}
+                
+                // Added to enable reattach without adding multiple listeners.  CRF
+                layer.removeEventListener('click', this.onClick, true);
+		layer.removeEventListener('touchstart', this.onTouchStart, false);
+		layer.removeEventListener('touchmove', this.onTouchMove, false);
+		layer.removeEventListener('touchend', this.onTouchEnd, false);
+		layer.removeEventListener('touchcancel', this.onTouchCancel, false);
 
 		// Some old versions of Android don't have Function.prototype.bind
 		function bind(method, context) {
