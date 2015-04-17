@@ -100,7 +100,6 @@ $(document).on('pagebeforeshow', '#iat', function() {
     $("#lWrd3, #rWrd3").addClass('gold_font');
     $("#or3, #or4, #lWrd4, #rWrd4").hide();
     blk1Gen();
-    $(":mobile-pagecontainer" ).pagecontainer( "load", "sur1.html", { showLoadMsg: false } );
 });
 
 $(document).on('pagebeforeshow', '#sst', function() {
@@ -113,7 +112,6 @@ $(document).on('pagebeforeshow', '#sst', function() {
     $("#sBlk1").show();
     $("#lft2").css({'background-color': 'rgba(255, 0, 0, 0.5)'});
     $("#rgt2").css({'background-color': 'rgba(0, 0, 255, 0.5)'});
-    $(":mobile-pagecontainer" ).pagecontainer( "load", "sur2.html", { showLoadMsg: false } );
 });
 
 $(document).on('pagebeforeshow', '#survey', function() {
@@ -646,6 +644,7 @@ function stIAT(maxTrial, trial) {
         case 1:
             $("#iBlk1").hide();
             $("#iBlk2").show();
+            $(":mobile-pagecontainer" ).pagecontainer( "load", "sur1.html", { showLoadMsg: false } );
             break;
         case 2:
             $("#iBlk3").hide();
@@ -800,6 +799,7 @@ function stSST() {
     active = false;
     sBlkMax = 56;
     sTrial();
+    $(":mobile-pagecontainer" ).pagecontainer( "load", "sur2.html", { showLoadMsg: false } );
 }
 
 function sTrial() {
