@@ -81,11 +81,14 @@ $(document).on('pagebeforeshow', '#home', function() {
 }); 
 
 $(document).on('pagebeforeshow', '#wel', function() {
+    $(":mobile-pagecontainer" ).pagecontainer( "load", "iat.html", { showLoadMsg: false } );
     $("#iatDiv").hide();
     $("#welDiv").show();
 });
 
 $(document).on('pagebeforeshow', '#iat', function() {
+    FastClick.attach(document.body);
+    iatBinds();
     $("#iBlk2, #iBlk3, #iBlk4, #iBlk5, #iBlk6, #iBlk7, #iBlk8").hide();
     $("#wng1").css({'opacity': '0'});
     $("#iBlk1").show();
@@ -97,9 +100,12 @@ $(document).on('pagebeforeshow', '#iat', function() {
     $("#lWrd3, #rWrd3").addClass('gold_font');
     $("#or3, #or4, #lWrd4, #rWrd4").hide();
     blk1Gen();
+    $(":mobile-pagecontainer" ).pagecontainer( "load", "sur1.html", { showLoadMsg: false } );
 });
 
 $(document).on('pagebeforeshow', '#sst', function() {
+    FastClick.attach(document.body);
+    sstBinds();
     $("#wng2").css({'opacity': '0'});
     sstColor = "";
     active = false;
@@ -107,49 +113,84 @@ $(document).on('pagebeforeshow', '#sst', function() {
     $("#sBlk1").show();
     $("#lft2").css({'background-color': 'rgba(255, 0, 0, 0.5)'});
     $("#rgt2").css({'background-color': 'rgba(0, 0, 255, 0.5)'});
+    $(":mobile-pagecontainer" ).pagecontainer( "load", "sur2.html", { showLoadMsg: false } );
 });
 
 $(document).on('pagebeforeshow', '#survey', function() {
+    FastClick.attach(document.body);
+    bindNumPad();
+    bindSur1();
     a9Exists = false;
     b3Exists = false;
     c2Exists = false;
     navArry = [];
     navPos = 0;
+    $("input[type='radio']").each(function() {
+        if ($(this).is(":checked")) {
+            $(this).prop("checked", false).checkboxradio('refresh');
+        }
+    });
+    $("input[type='checkbox']").each(function() {
+        if ($(this).is(":checked")) {
+            $(this).prop("checked", false).checkboxradio('refresh');
+        }
+    });
+    $("input[type=text]").val("");
     hideSur();
     $("#aBlk").show();
+    $(":mobile-pagecontainer" ).pagecontainer( "load", "sst.html", { showLoadMsg: false } );
 });
 
 $(document).on('pagebeforeshow', '#survey2', function() {
+    FastClick.attach(document.body);
+    bindNumPad();
+    sur2Binds();
     navArry = [];
     navPos = 0;
     f1Exists = false;
+    $("input[type='radio']").each(function() {
+        if ($(this).is(":checked")) {
+            $(this).prop("checked", false).checkboxradio('refresh');
+        }
+    });
+    $("input[type='checkbox']").each(function() {
+        if ($(this).is(":checked")) {
+            $(this).prop("checked", false).checkboxradio('refresh');
+        }
+    });
+    $("input[type=text]").val("");
+    $("#g1Slide").val("50").slider("refresh");
     hideSur();
     $("#dBlk").show();
 });
 
-$("#lft, #rgt, #lft1, #rgt1").on(TOUCH_START, function() {
-    var side = $(this).attr('id');
-    if (side === "lft" || side === "lft1") {
-        calcScore(1);
-    }
-    else {
-        calcScore(2);
-    }
-});
-
-$("#lft2, #rgt2").on(TOUCH_START, function() {
-    if (active) {
-        active = false;
-        $("#sWrd").css({'opacity': '0'});
-        sStop = new Date().getTime();
-        sTime = sStop - sStTime; 
-        sCnt++;
-        if (sCnt > 8) {
-            sCalc(sstWrd, $(this).attr('id'), sTime, sstColor);
+function iatBinds() {
+    $("#lft, #rgt, #lft1, #rgt1").on(TOUCH_START, function() {
+        var side = $(this).attr('id');
+        if (side === "lft" || side === "lft1") {
+            calcScore(1);
         }
-        sTrial();
-    }
-});
+        else {
+            calcScore(2);
+        }
+    });
+}
+
+function sstBinds() {
+    $("#lft2, #rgt2").on(TOUCH_START, function() {
+        if (active) {
+            active = false;
+            $("#sWrd").css({'opacity': '0'});
+            sStop = new Date().getTime();
+            sTime = sStop - sStTime; 
+            sCnt++;
+            if (sCnt > 8) {
+                sCalc(sstWrd, $(this).attr('id'), sTime, sstColor);
+            }
+            sTrial();
+        }
+    });
+}
 
 // Custom numeric keyboard for ipad.
 
@@ -158,31 +199,33 @@ function setID(id, len) {
     size = len;
 }
 
-$('.don').click(function(){
-    $(txtID).val("");
-});
+function bindNumPad() {
+    $('.don').click(function(){
+        $(txtID).val("");
+    });
 
-$('.num').on(TOUCH_START, function(){
-    if (!isNaN($(txtID).val()) && $(txtID).val().length < size) {
-        if (parseInt($(txtID).val()) === 0) {
-            $(txtID).val($(this).text());
-        } else {
-            $(txtID).val($(txtID).val() + $(this).text());
+    $('.num').on(TOUCH_START, function(){
+        if (!isNaN($(txtID).val()) && $(txtID).val().length < size) {
+            if (parseInt($(txtID).val()) === 0) {
+                $(txtID).val($(this).text());
+            } else {
+                $(txtID).val($(txtID).val() + $(this).text());
+            }
         }
-    }
-});
+    });
 
-$('.del').on(TOUCH_START, function(){
-    $(txtID).val($(txtID).val().substring(0,$(txtID).val().length - 1));
-});
+    $('.del').on(TOUCH_START, function(){
+        $(txtID).val($(txtID).val().substring(0,$(txtID).val().length - 1));
+    });
 
-$('.zero').on(TOUCH_START, function(){
-    if (!isNaN($(txtID).val()) && $(txtID).val().length < size) {
-        if (parseInt($(txtID).val()) !== 0) {
-            $(txtID).val($(txtID).val() + $(this).text());
+    $('.zero').on(TOUCH_START, function(){
+        if (!isNaN($(txtID).val()) && $(txtID).val().length < size) {
+            if (parseInt($(txtID).val()) !== 0) {
+                $(txtID).val($(txtID).val() + $(this).text());
+            }
         }
-    }
-});
+    });
+}
 // End custom numeric keypad for ipad.
       
 // Remove for the final version.
@@ -236,20 +279,7 @@ function reset() {
                  g2 : "", g3 : ""};
     navArry = [];
     navPos = 0;
-    $("input[type='radio']").each(function() {
-        if ($(this).is(":checked")) {
-            $(this).prop("checked", false).checkboxradio('refresh');
-        }
-    });
-    $("input[type='checkbox']").each(function() {
-        if ($(this).is(":checked")) {
-            $(this).prop("checked", false).checkboxradio('refresh');
-        }
-    });
-    //$("input[type='radio']").checkboxradio("refresh");
-    //$("input[type='checkbox']").checkboxradio("refresh");
     $("input[type=text]").val("");
-    $("#g1Slide").val("50").slider("refresh");
     hideSur();
     //Remove for final version.
     iOnly = false;
@@ -1088,6 +1118,7 @@ function genSData() {
 }
 
 // Survey logic
+function bindSur1() {
 $("#a2Op1, #a2Op2, #a2Op3, #a2Op4, #a2Op5").on('change', function() {
     surArry.a2 = $(this).val();
 });
@@ -1240,6 +1271,7 @@ $("#c4bOp1, #c4bOp2, #c4bOp3, #c4bOp4, #c4bOp5, #c4bOp6, #c4bOp7, #c4bOp8").on('
 $("#c4cOp1, #c4cOp2, #c4cOp3, #c4cOp4, #c4cOp5, #c4cOp6").on('change', function() {
     surArry.c4c = $(this).val();
 });
+}
 
 function aDis() {
     $("#aBlk").show();
@@ -2381,6 +2413,15 @@ function c4c() {
     }
 }
 
+function sur2Binds() {
+    // Handle radio button grids
+$('td').on(TOUCH_START, function() {
+    if ($(this).find("input").attr('id') !== undefined) {
+        var idNum = "#" + $(this).find("input").attr('id');
+        $(idNum).prop("checked", true).trigger("change");
+    }
+});
+
 // Survey 2 start
 $("#d1Op1, #d1Op2, #d1Op3").on('change', function() {
     sur2Arry.d1a = $(this).val();
@@ -2509,6 +2550,7 @@ $("#g2bOp1, #g2bOp2, #g2bOp3, #g2bOp4, #g2bOp5, #g2bOp6, #g2bOp7, #g2bOp8, #g2bO
 $("#g3bOp1, #g3bOp2, #g3bOp3, #g3bOp4, #g3bOp5, #g3bOp6, #g3bOp7, #g3bOp8, #g3bOp9, #g3bOp10, #g3bOp11").on('change', function() {
     sur2Arry.g3 = $(this).val();
 });
+}
 
 function dDis() {
     $("#dBlk").show();
@@ -2856,7 +2898,7 @@ function hideAll() {
     $("#aBlk, #a1Blk, #a2Blk, #a3Blk, #a4Blk, #a5Blk, #a6Blk, #a7Blk, #a8Blk, #a9Blk, #a9aBlk, #a10Blk").hide();
     $("#bBlk, #b1Blk, #b2Blk, #b3Blk, #b1Blkc, #b1Blkc1, #b1Blkc2").hide();
     $("#cBlk, #c1Blk, #c1Blka, #c1Blkb, #c1Blkc, #c2Blk, #c2Blka, #c2Blkb, #c2Blkc, #c3Blk, #c3Blka, #c3Blkb, #c3Blkc, #c3Blkd, #c4Blk, #c4Blka, #c4Blkb, #c4Blkc").hide();
-    $("#dBlk, #d1Blk, #d1Blkb, #d1Blkc, #eBlk, #dBlk, #e1Blk, #e1Blka, #e2Blk, #e2Blka, #e3Blk, #e3Blka, #e3Blkb").hide();
+    $("#dBlk, #d1Blk, #d1Blkb, #d1Blkc, #eBlk, #dBlk, #e1Blk, #e1Blkb, #e2Blk, #e2Blka, #e3Blk, #e3Blka, #e3Blkb").hide();
     $("#fBlk, #f1Blka, #f1Blkb, #f1Blkc, #f1Blkd, #f1Blke, #g1Blk, #g2Blk, #g3Blk").hide();
     $("#keypad, #numpad, #numPad2, #keypad2").hide();
     return true;

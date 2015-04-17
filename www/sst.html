@@ -1,0 +1,46 @@
+<div data-role="page" id="sst" data-theme="a">
+                <div data-role="content">
+                    <div id="lft2">
+                    </div>
+                    <div id="rgt2">
+                    </div>
+                    <div id="sBlk1" class="welBlk welBlk2 welBlk3">
+                        <ul id="sinBlk" style="list-style-type:none">
+                            <li>In this task, please indicate the color of the words you see.</li>
+                            <li>If the word is written in <span style="color:red">red</span>, tap the RED side.</li>
+                            <li>If the word is written in <span style="color:blue">blue</span>, tap the BLUE side.</li>
+                            <li>A "+" will appear on the screen before each word appears to show you where to look.</li>
+                            <li>Please sort the color of each word as quickly and as accurately as you can.</li>
+                            <li><ins>GO AS FAST AS YOU CAN</ins> while making as few mistakes as possible!</li>
+                        </ul>
+                        <a id="sBtn2" onclick="stSST()" class="ui-btn ui-corner-all">Start</a>
+                    </div>
+                    <div id="sBlk2" class="iStim2">
+                        <p id="sWrd"></p>
+                        <p id="wng2" class="wng">X</p>
+                    </div>
+                </div>
+            </div>
+            <div data-role="page" id="sstDataRes" data-theme="a">
+                <div data-role="content">
+                    <table data-role="table" id="sTable1" class="ui-responsive table-stroke">
+                        <thead>
+                            <tr>
+                                <th data-priority="1">Stimulus</th>
+                                <th data-priority="2">Type</th>
+                                <th data-priority="3">Color</th>
+                                <th data-priority="4">Response</th>
+                                <th data-priority="5">Time</th>
+                                <th data-priority="6">Correct</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                    <br />
+                    <div id="sstDiv">
+                    </div>
+                    <a id="sDat" onclick="reset()" href="#home" data-transition="slide" class="ui-btn ui-corner-all">Continue</a>
+                </div>
+            </div>

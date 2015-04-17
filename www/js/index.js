@@ -31,8 +31,6 @@ function appLogic() {
         e.preventDefault();
     }
     
-    hideSur();
-    
     setTimeout(function() {
         navigator.splashscreen.hide();
     }, 2000); 
