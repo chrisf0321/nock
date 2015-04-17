@@ -78,6 +78,7 @@ $(document).on('pagebeforeshow', '#iData', function() {
 });
 
 $(document).on('pagebeforeshow', '#home', function() {
+    $(":mobile-pagecontainer" ).pagecontainer( "load", "sur1.html", { showLoadMsg: false } );
 }); 
 
 $(document).on('pagebeforeshow', '#wel', function() {
@@ -644,7 +645,6 @@ function stIAT(maxTrial, trial) {
         case 1:
             $("#iBlk1").hide();
             $("#iBlk2").show();
-            $(":mobile-pagecontainer" ).pagecontainer( "load", "sur1.html", { showLoadMsg: false } );
             break;
         case 2:
             $("#iBlk3").hide();
@@ -799,7 +799,6 @@ function stSST() {
     active = false;
     sBlkMax = 56;
     sTrial();
-    $(":mobile-pagecontainer" ).pagecontainer( "load", "sur2.html", { showLoadMsg: false } );
 }
 
 function sTrial() {
@@ -2350,6 +2349,7 @@ function c4() {
             }
             else {
                 $.mobile.changePage("#sst");
+                $(":mobile-pagecontainer" ).pagecontainer( "load", "sur2.html", { showLoadMsg: false } );
             }
         }
     }
@@ -2406,6 +2406,7 @@ function c4c() {
         }
         else {
             $.mobile.changePage("#sst");
+            $(":mobile-pagecontainer" ).pagecontainer( "load", "sur2.html", { showLoadMsg: false } );
         }
     }
     else {
