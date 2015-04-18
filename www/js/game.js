@@ -50,6 +50,7 @@ var left = [];
 var right = [];
 var iatData = [];
 var sstData = [];
+var finData = {};
 var a9Exists = false;
 var f1Exists = false;
 var b3Exists = false;
@@ -73,12 +74,7 @@ var s1Only = false;
 var sstOnly = false;
 var s2Only = false;
 
-$(document).on('pagebeforeshow', '#iData', function() {
-    calcIAT();
-});
-
 $(document).on('pagebeforeshow', '#home', function() {
-    
 }); 
 
 $(document).on('pagebeforeshow', '#wel', function() {
@@ -148,6 +144,10 @@ $(document).on('pagebeforeshow', '#survey', function() {
     hideSur();
     $("#aBlk").show();
     $(":mobile-pagecontainer" ).pagecontainer( "load", "sst.html", { showLoadMsg: false } );
+});
+
+$(document).on('pagebeforeshow', '#finish', function() {
+    dataToJSON();
 });
 
 $(document).on('pagebeforeshow', '#survey2', function() {
@@ -265,6 +265,81 @@ Array.prototype.shuffle = function() {
 };
 
 function saveData() {
+    $.ajax({
+	type: 'POST',
+	contentType: 'application/json',
+	url: saveURL,
+	dataType: "json",
+	data: dataToJSON(),
+	success: function(data, textStatus, jqXHR){
+		$("#success").show();
+	},
+	error: function(jqXHR, textStatus, errorThrown){
+		$("#error").show();
+	}
+    });
+}
+function testFunc() {
+    var arry = [{"a" : "1", "b" : "2", "c" : "3"}, {"d" : "1", "e" : "2", "f" : "3"}];
+    var arry2 = {};
+    for (var i = 0; i < arry.length; i++) {
+        arr = arry[i];
+        $.each(arr, function(key, value) {
+            var first = key + i;
+            var sec = value;
+            arry2[first] = value;
+            //console.log(key + " " + value);
+        });
+    }
+    $.each(arry2, function(name, val) {
+        console.log(name + " " + val);
+    });
+}
+
+function dataToJSON() {
+    for (var i = 0; i < iatData.length; i++) {
+        pos = i + 1;
+        arr = iatData[i];
+        if (i < iatData.length -1) {
+            $.each(arr, function(key, value) {
+                var title = key + pos;
+                finData[title] = value;
+            });
+        }
+        else {
+            $.each(arr, function(key, value) {
+                finData[key] = value;
+            });
+        }
+    }
+    for (var i = 0; i < sstData.length; i++) {
+        pos = i + 1;
+        arr = sstData[i];
+        if (i < sstData.length - 1) {
+            $.each(arr, function(key, value) {
+                var title = key + pos;
+                finData[title] = value;
+            });
+        }
+        else {
+            $.each(arr, function(key, value) {
+                finData[key] = value;
+            });
+        }
+    }
+    $.each(surArry, function(key, value) {
+        if (key !== "a9_flag") {
+            finData[key] = value;
+        }
+    });
+    $.each(sur2Arry, function(key, value) {
+        finData[key] = value;
+    });
+    
+    // change this later
+    $.each(finData, function(key, value) {
+        console.log(key + " " + value);
+    });
 }
 
 function reset() {
@@ -287,6 +362,7 @@ function reset() {
                  e3g : "", e3h : "", e3i : "", e3j : "", e3k : "", e3l : "", f1a : "", f1b : "", f1c : "", f1d : "", f1e : "", g1 : "",
                  g2 : "", g3 : ""};
     navArry = [];
+    finData = {};
     navPos = 0;
     $("input[type=text]").val("");
     hideSur();
@@ -336,54 +412,6 @@ function calcScore(num) {
 
 function recordTrial(word, time, trial, correct) {
     iatData.push({"trial" : trial, "word" : word, "time" : time, "correct" : correct});
-}
-
-// Remove for final Version.
-function displayIAT() {
-    $("#iTable1 tbody").empty();
-    $("#iTable2 tbody").empty();
-    $("#iTable3 tbody").empty();
-    $("#iTable4 tbody").empty();
-    $("#iTable5 tbody").empty();
-    $("#iTable6 tbody").empty();
-    $("#iTable7 tbody").empty();
-    $("#iScr").empty();
-    var iPos = iatData.length - 1;
-    var iScrData = iatData[iPos];
-    for (var i = 0; i < iPos; i++) {
-        tr = $('<tr/>');
-        tr.append("<td>" + iatData[i].trial + "</td>");
-        tr.append("<td>" + iatData[i].word + "</td>");
-        tr.append("<td>" + iatData[i].time + "</td>");
-        tr.append("<td>" + iatData[i].correct + "</td>");
-        if ( i < 12) {
-            $("#iTable1 tbody").append(tr);
-        }
-        else if (i < 24) {
-            $("#iTable2 tbody").append(tr);
-        }
-        else if (i < 48) {
-            $("#iTable3 tbody").append(tr);
-        }
-        else if (i < 72) {
-            $("#iTable4 tbody").append(tr);
-        }
-        else if (i < 96) {
-            $("#iTable5 tbody").append(tr);
-        }
-        else if (i < 120) {
-            $("#iTable6 tbody").append(tr);
-        }
-        else if (i < 144) {
-            $("#iTable7 tbody").append(tr);
-        }
-    }
-    $("#iTable1, #iTable2, #iTable3, #iTable4, #iTable5, #iTable6, #iTable7").table("refresh");
-    
-    $.each(iScrData, function(key, value) {
-        var scr = '<p><b>' + key + '</b> ' + value + '</p>';
-        $("#iScr").append(scr);
-    });
 }
 
 function calcIAT() {
@@ -498,7 +526,6 @@ function calcIAT() {
     
     iatData.push({"Wrong" : errorTrials, "Below_400" : errorLat400, "Above_10000" : errorLat10, "Critical_blks_40_err" : blks_40_err,
                   "Session_30_err" : session_30_err, "IAT_Score" : iScore});
-    displayIAT();
 }
 
 function nextInst() {
@@ -780,12 +807,8 @@ function iStart() {
                 blk3Gen();
                 break;
             default:
-                if (iOnly) {
-                    $.mobile.changePage("#iData");
-                }
-                else {
-                    $.mobile.changePage("#survey");
-                }
+                calcIAT();
+                $.mobile.changePage("#survey");
         }
     }
 }
@@ -827,14 +850,8 @@ function sTrial() {
         }, 1000);
     }
     else {
-        if (sstOnly) {
-            if (sstScore()) {
-                genSData();
-            }
-        }
-        else {
-            $.mobile.changePage("#survey2");
-        }
+        sstScore();
+        $.mobile.changePage("#survey2");
     }
 }
 
@@ -1100,30 +1117,6 @@ function sstScore() {
                   "mean_sui" : meanSui, "valid_neut" : validNeut, "mean_neut" : meanNeut, "int_dep" : intDep,
                   "int_pos" : intPos, "int_sui" : intSui});
     return true;
-}
-
-//Remove for final version.
-function genSData() {
-    $("#sTable1 tbody").empty();
-    $("#sstDiv").empty();
-    pos = sstData.length - 1;
-    score = sstData[pos];
-    for (var i = 0; i < pos; i++) {
-        tr = $('<tr/>');
-        tr.append("<td>" + sstData[i].stim + "</td>");
-        tr.append("<td>" + sstData[i].type + "</td>");
-        tr.append("<td>" + sstData[i].color + "</td>");
-        tr.append("<td>" + sstData[i].side + "</td>");
-        tr.append("<td>" + sstData[i].time + "</td>");
-        tr.append("<td>" + sstData[i].correct + "</td>");
-        $("#sTable1 tbody").append(tr);
-    }
-    $.each(score, function(key, value) {
-        var ssData = '<p><b>' + key + '</b> ' + value + '</p>';
-        $("#sstDiv").append(ssData);
-    });
-    
-    $.mobile.changePage("#sstDataRes");
 }
 
 // Survey logic
@@ -2353,13 +2346,8 @@ function c4() {
             surArry.c4a = "";
             surArry.c4b = "";
             surArry.c4c = "";
-            if (s1Only) {
-                genSurData();
-                $.mobile.changePage("#sData");
-            }
-            else {
-                $.mobile.changePage("#sst");
-            }
+            genSurData();
+            $.mobile.changePage("#sst");
         }
     }
     else {
@@ -2409,13 +2397,8 @@ function c4c() {
         $("#c4Blkc").hide();
         $("#erc17").hide();
         addArry(c4b);
-        if (s1Only) {
-            genSurData();
-            $.mobile.changePage("#sData");
-        }
-        else {
-            $.mobile.changePage("#sst");
-        }
+        genSurData();
+        $.mobile.changePage("#sst");
     }
     else {
         $("#erc17").show();
@@ -2838,13 +2821,7 @@ function g3() {
     if (sur2Arry.g3 !== "") {
         $("#g3Blk").hide();
         $("#erg3").hide();
-        if (s2Only) {
-            genSur2Data();
-            $.mobile.changePage("#s2Data");
-        }
-        else {
-            $.mobile.changePage("#finish");
-        }
+        $.mobile.changePage("#finish");
     }
     else {
         $("#erg3").show();
@@ -2909,12 +2886,11 @@ function hideAll() {
     $("#cBlk, #c1Blk, #c1Blka, #c1Blkb, #c1Blkc, #c2Blk, #c2Blka, #c2Blkb, #c2Blkc, #c3Blk, #c3Blka, #c3Blkb, #c3Blkc, #c3Blkd, #c4Blk, #c4Blka, #c4Blkb, #c4Blkc").hide();
     $("#dBlk, #d1Blk, #d1Blkb, #d1Blkc, #eBlk, #dBlk, #e1Blk, #e1Blkb, #e2Blk, #e2Blka, #e3Blk, #e3Blka, #e3Blkb").hide();
     $("#fBlk, #f1Blka, #f1Blkb, #f1Blkc, #f1Blkd, #f1Blke, #g1Blk, #g2Blk, #g3Blk").hide();
-    $("#keypad, #numpad, #numPad2, #keypad2").hide();
+    $("#keypad, #numpad, #numPad2, #keypad2, #success, #error").hide();
     return true;
 }
 
 function genSurData() {
-    $("#dataDiv").empty();
     $.each(surArry, function(key, value) {
         if (key !== "a9_flag") {
             if (key !== "a4_6_other" && key !== "a8_8_other" && key !== "a9_other") {
@@ -2922,16 +2898,6 @@ function genSurData() {
                     surArry[key] = "0";
                 }
             }
-            var surData = '<p><b>' + key + ':</b>  ' + surArry[key] + '</p>';
-            $("#dataDiv").append(surData);
         }
-    });
-}
-
-function genSur2Data() {
-    $("#data2Div").empty();
-    $.each(sur2Arry, function(key, value) {
-        var sur2Data = '<p><b>' + key + ':</b>  ' + value + '</p>';
-        $("#data2Div").append(sur2Data);
     });
 }
