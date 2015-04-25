@@ -274,9 +274,6 @@ function idSt() {
 function saveData() {
     $.ajax({
 	type: 'POST',
-        beforeSend: function(request) {
-            request.setRequestHeader('Access-Control-Allow-Origin', '*');
-        },
 	contentType: 'application/json',
 	url: saveURL,
 	dataType: "json",
@@ -321,9 +318,6 @@ function resendData() {
             url: saveURL,
             dataType: "json",
             data: JSON.stringify(dataSend),
-            headers: {
-                Accept : "application/json"
-            },
             success: function(data, textStatus, jqXHR){
                     console.log(redata);
                     console.log(posi);
