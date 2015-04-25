@@ -222,7 +222,7 @@
                                     <th></th>
                                     <th style="width:55%"></th>
                                     <th class="b1Th" style="width:10%">Past Week</th>
-                                    <th class="b1Th" style="width:10%">Past Year (not past week)</th>
+                                    <th class="b1Th" style="width:10%">Past Year <span style="font-size:15px">(not past week)</span></th>
                                     <th class="b1Th" style="width:10%">More than a year ago</th>
                                     <th class="b1Th" style="width:10%">Never</th>
                                 </tr>
@@ -293,7 +293,7 @@
                                     <th></th>
                                     <th style="width:55%"></th>
                                     <th class="b1Th" style="width:10%">Past Week</th>
-                                    <th class="b1Th" style="width:10%">Past Year (not past week)</th>
+                                    <th class="b1Th" style="width:10%">Past Year <span style="font-size:15px">(not past week)</span></th>
                                     <th class="b1Th" style="width:10%">More than a year ago</th>
                                     <th class="b1Th" style="width:10%">Never</th>
                                 </tr>
@@ -348,7 +348,7 @@
                                     <th></th>
                                     <th style="width:55%"></th>
                                     <th class="b1Th" style="width:10%">Past Week</th>
-                                    <th class="b1Th" style="width:10%">Past Year (not past week)</th>
+                                    <th class="b1Th" style="width:10%">Past Year <span style="font-size:15px">(not past week)</span></th>
                                     <th class="b1Th" style="width:10%">More than a year ago</th>
                                     <th class="b1Th" style="width:10%">Never</th>
                                 </tr>
@@ -403,7 +403,7 @@
                                     <th></th>
                                     <th style="width:55%"></th>
                                     <th class="b1Th" style="width:10%">Past Week</th>
-                                    <th class="b1Th" style="width:10%">Past Year (not past week)</th>
+                                    <th class="b1Th" style="width:10%">Past Year <span style="font-size:15px">(not past week)</span></th>
                                     <th class="b1Th" style="width:10%">More than a year ago</th>
                                     <th class="b1Th" style="width:10%">Never</th>
                                 </tr>
@@ -717,6 +717,62 @@
                         </fieldset>
                         <a id="csb17" onclick="c4c()" class="ui-btn ui-corner-all">Next</a>
                         <p id="erc17" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="c5Blk" class="sur1">
+                        <p><b>Did you ever wish you were dead or would go to sleep and never wake up?</b></p>
+                        <fieldset id="c5fd" data-role="controlgroup">
+                            <input name="c5Op1" id="c5Op1" value="1" type="radio">
+                            <label id="c5lb1" for="c5Op1" class="chkbox">Yes</label>
+                            <input name="c5Op1" id="c5Op2" value="2" type="radio">
+                            <label id="c5lb2" for="c5Op2" class="chkbox">No</label>
+                        </fieldset>
+                        <a id="csb18" onclick="c5()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc18" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="c5Blka" class="sur1">
+                        <p><b>About how old were you the very first time you wished you were dead or would go to sleep and never wake up?</b></p>
+                        <div class="ui-grid-a b2Size">
+                            <div id="c5a" class="ui-block-a">
+                                <input type="text" id="c5atxt" value="" readonly="readonly" placeholder="Age" />
+                            </div>
+                            <div class="ui-block-b">
+                                <p><b>Years old</b><p>
+                            </div>
+                        </div>
+                        <a id="csb19" onclick="c5a()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc19" class="errmsg"><b>Age cannot be greater than current age.</b></p>
+                        <p id="erc19_1" class="errmsg"><b>Please enter an answer.</b></p>
+                    </div>
+                    <div id="c5Blkb" class="sur1">
+                        <p><b>About how many <ins>weeks in the past year</ins> did you wish you were dead or would go to sleep and never wake up?</b><br><span class='smallTitle'><i>(You can use any number between 0 and 52.  Your best estimate is fine.)</i></span></p>
+                        <div class="ui-grid-a">
+                            <div id="c5b" class="ui-block-a">
+                                <input type="text" id="c5btxt" value="" readonly="readonly" placeholder="Weeks" />
+                            </div>
+                            <div class="ui-block-b">
+                                <p><b>Number of Weeks</b><p>
+                            </div>
+                        </div>
+                        <a id="csb20" onclick="c5b()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc20" class="errmsg"><b>Value cannot be greater than 52.</b></p>
+                        <p id="erc20_1" class="errmsg"><b>Please enter an answer.</b></p>
+                    </div>
+                    <div id="c5Blkc" class="sur1">
+                        <p><b>When was the <ins>last time</ins> you wished you were dead or would go to sleep and never wake up?</b></p>
+                        <fieldset id="c5cfd" data-role="controlgroup">
+                            <input name="c5cOp1" id="c5cOp1" value="1" type="radio">
+                            <label id="c5clb1" for="c5cOp1" class="chkbox">Past week</label>
+                            <input name="c5cOp1" id="c5cOp2" value="2" type="radio">
+                            <label id="c5clb2" for="c5cOp2" class="chkbox">2-4 weeks ago</label>
+                            <input name="c5cOp1" id="c5cOp3" value="3" type="radio">
+                            <label id="c5clb3" for="c5cOp3" class="chkbox">1-3 months ago</label>
+                            <input name="c5cOp1" id="c5cOp4" value="4" type="radio">
+                            <label id="c5clb4" for="c5cOp4" class="chkbox">4-6 months ago</label>
+                            <input name="c5cOp1" id="c5cOp5" value="5" type="radio">
+                            <label id="c5clb5" for="c5cOp5" class="chkbox">7-12 months ago</label>
+                        </fieldset>
+                        <a id="csb21" onclick="c5c()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erc21" class="errmsg"><b>Please choose an answer.</b></p>
                     </div>
                 </div>
                 <div id="numPad">

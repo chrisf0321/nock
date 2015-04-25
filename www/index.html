@@ -13,8 +13,12 @@
         <div class="app">
             <div data-role="page" id="home" data-theme="a">
                 <div data-role="content">
-                    <div id="lgBtnGrp">
-                        <a id="stBtn" href="#wel" class="ui-btn ui-corner-all">Start</a>
+                    <div id="idBlk" class="sur3">
+                        <p><b>Please enter the Participant ID:</b></p>
+                        <input type="text" id="idtxt" value="" placeholder="ID" />
+                        <a id="stBtn" onclick="idSt()" class="ui-btn ui-corner-all">Start</a>
+                        <a id="reBtn" onclick="resendData()" class="ui-btn ui-corner-all">Resend Data</a>
+                        <p id="err0" class="errmsg"><b>Please enter a valid ID between 1 and 15 characters.</b></p>
                     </div>
                 </div>               
             </div> 
@@ -33,7 +37,7 @@
                     </div>
                     <div id="iatDiv" class="welBlk">
                         <div id="iat1">
-                            <p>In this task, you will be presented with a set of words to classify into groups.  This will take about 5 minutes.  Here are the categories and items in this task:</p>
+                            <p>In this task, words will appear in the center of the screen one at a time, and your task is to sort them to the left or right side of the screen based on the categories listed at the top of the screen.  This will take about 5 minutes.  Please GO AS FAST AS YOU CAN while making as few mistakes as possible.<br>If you make a mistake, a red X will appear - please then tap the other side of the screen.</p>
                         </div>
                         <div class="iatTable">
                         <table data-role="table" id="iatT" class="ui-responsive table-stroke">
@@ -70,6 +74,8 @@
             <div data-role="page" id="finish" data-theme="a">
                 <div data-role="content">
                     <a id="iBtn3" onclick="reset()" href="#home" data-transition="slide" class="ui-btn ui-corner-all">Continue</a>
+                    <p id="svOk"><span style="color:green">Data saved successfully!</span></p>
+                    <p id="svErr"><span style="color:red">Error!  Data saved locally!</span></p>
                 </div>
             </div>
         </div>

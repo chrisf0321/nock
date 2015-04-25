@@ -1,8 +1,10 @@
 $(function() {
     FastClick.attach(document.body);
 });
+var saveURL = "http://nocksurvey.elasticbeanstalk.com/";
 var hasTouch = ('ontouchstart' in window);
 var TOUCH_START = hasTouch ? "touchstart" : "mousedown";
+var pId = "";
 var iCnt = 0;
 var iCurWrd;
 var iBlkMax;
@@ -55,12 +57,18 @@ var a9Exists = false;
 var f1Exists = false;
 var b3Exists = false;
 var c2Exists = false;
+var b1Exists = false;
+var c1Exists = false;
+var c1cExists = false;
+var c3Exists = false;
+var c4Exists = false;
+var c4bExists = false;
 var surArry = { a1 : "", a2 : "", a3_1 : "", a3_2 : "", a3_3 : "", a3_4 : "", a3_5 : "", a4_1 : "", a4_2 : "", a4_3 : "", a4_4 : "",
                 a4_5 : "", a4_6 : "", a4_6_other : "", a5 : "", a6 : "", a7 : "", a8_1 : "", a8_2 : "", a8_3 : "", a8_4 : "", a8_5 : "", a8_6 : "", 
                 a8_7 : "", a8_8 : "", a8_8_other : "", a9 : "", a9_other : "", a9_flag : 0, a9a : "", a10 : "", b1a : "", b1b : "", b1c : "", b1d : "", b1e : "", b1f : "",
                 b1g : "", b1h : "", b1i : "", b1j : "", b1k : "", b2 : "", b3 : "", c1 : "", c1a : "", c1b : "", c1c : "", c2 : "", c2a : "",
-                c2b : "", c2c : "", c3 : "", c3a : "", c3b : "", c3c : "", c3d_1 : "", c3d_2 : "", c3d_3 : "", c3d_4 : "", c3d_5 : "", c3d_6 : "",
-                c3d_7 : "", c3d_8 : "", c3d_9 : "", c3d_10 : "", c3d_11 : "", c4 : "", c4a : "", c4b : "", c4c : ""};
+                c2b : "", c2c : "", c3 : "", c3a : "", c3b : "", c3c : "", c4 : "", c4a : "", c4b : "", c4c : "", c4d_1 : "", c4d_2 : "", c4d_3 : "", c4d_4 : "", c4d_5 : "", c4d_6 : "",
+                c4d_7 : "", c4d_8 : "", c4d_9 : "", c4d_10 : "", c4d_11 : "", c5 : "", c5a : "", c5b : "", c5c : ""};
 var sur2Arry = { d1a : "", d1b : "", d1c : "", d1d : "", d1e : "", d1f : "", d1g : "", d1h : "", e1a : "", e1b : "", e1c : "", e1d : "",
                  e1e : "", e1f : "", e1g : "", e2a : "", e2b : "", e2c : "", e3a : "", e3b : "", e3c : "", e3d : "", e3e : "", e3f : "",
                  e3g : "", e3h : "", e3i : "", e3j : "", e3k : "", e3l : "", f1a : "", f1b : "", f1c : "", f1d : "", f1e : "", g1 : "",
@@ -69,12 +77,27 @@ var navArry = [];
 var navPos = 0;
 
 //Remove for the final version.
+var id = "test";
 var iOnly = false;
 var s1Only = false;
 var sstOnly = false;
 var s2Only = false;
 
 $(document).on('pagebeforeshow', '#home', function() {
+    $("#idtxt").val("");
+    $("#err0").hide();
+    if (window.localStorage.getItem("stored") !== null) {
+        $("#reBtn").show();
+    }
+    else {
+        $("#reBtn").hide();
+    }
+});
+
+$(document).on('pagebeforeshow', '#finish', function() {
+    $("#svOk").hide();
+    $("#svErr").hide();
+    saveData();
 }); 
 
 $(document).on('pagebeforeshow', '#wel', function() {
@@ -144,10 +167,6 @@ $(document).on('pagebeforeshow', '#survey', function() {
     hideSur();
     $("#aBlk").show();
     $(":mobile-pagecontainer" ).pagecontainer( "load", "sst.html", { showLoadMsg: false } );
-});
-
-$(document).on('pagebeforeshow', '#finish', function() {
-    dataToJSON();
 });
 
 $(document).on('pagebeforeshow', '#survey2', function() {
@@ -236,22 +255,6 @@ function bindNumPad() {
     });
 }
 // End custom numeric keypad for ipad.
-      
-// Remove for the final version.
-function iaton() {
-    iOnly = true;
-}
-function sur1on() {
-    s1Only = true;
-}
-
-function sston() {
-    sstOnly = true;
-}
-
-function sur2on() {
-    s2Only = true;
-}
 
 Array.prototype.shuffle = function() {
     var i = this.length, j, temp;
@@ -264,6 +267,17 @@ Array.prototype.shuffle = function() {
     }
 };
 
+function idSt() {
+    pId = $("#idtxt").val();
+    
+    if (pId === "" || pId.length > 15) {
+        $("#err0").show();
+    }
+    else {
+        $.mobile.changePage("#wel");
+    }
+}
+
 function saveData() {
     $.ajax({
 	type: 'POST',
@@ -272,31 +286,51 @@ function saveData() {
 	dataType: "json",
 	data: dataToJSON(),
 	success: function(data, textStatus, jqXHR){
-		$("#success").show();
+		$("#svOk").show();
 	},
 	error: function(jqXHR, textStatus, errorThrown){
-		$("#error").show();
+                if (window.localStorage.getItem("stored") !== null) {
+                    var storedItems = [];
+                    storedItems.push(JSON.parse(window.localStorage.getItem("stored")));
+                    storedItems.push(finData);
+                    window.localStorage.setItem("stored", JSON.stringify([storedItems]));
+                }
+                else {
+                    window.localStorage.setItem("stored", JSON.stringify(finData));
+                }
+		$("#svErr").show();
 	}
     });
 }
-function testFunc() {
-    var arry = [{"a" : "1", "b" : "2", "c" : "3"}, {"d" : "1", "e" : "2", "f" : "3"}];
-    var arry2 = {};
-    for (var i = 0; i < arry.length; i++) {
-        arr = arry[i];
-        $.each(arr, function(key, value) {
-            var first = key + i;
-            var sec = value;
-            arry2[first] = value;
-            //console.log(key + " " + value);
+function resendData() {
+    var redata = JSON.parse(window.localStorage.getItem("stored"));
+    for (var i = 0; i < redata.length; i++) {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            url: saveURL,
+            dataType: "json",
+            data: JSON.stringify(redata),
+            success: function(data, textStatus, jqXHR){
+                    redata.splice(i, 1);
+                    if (i === redata.length - 1) {
+                        $("#reBtn").hide();
+                    }
+            },
+            error: function(){
+            }
         });
     }
-    $.each(arry2, function(name, val) {
-        console.log(name + " " + val);
-    });
+    if (typeof redata !== 'undefined' && redata.length > 0) {
+        window.localStorage.setItem("stored", JSON.stringify(redata));
+    }
+    else {
+        window.localStorage.removeItem("stored");
+    }
 }
 
 function dataToJSON() {
+    finData["id"] = pId; 
     for (var i = 0; i < iatData.length; i++) {
         pos = i + 1;
         arr = iatData[i];
@@ -336,13 +370,11 @@ function dataToJSON() {
         finData[key] = value;
     });
     
-    // change this later
-    $.each(finData, function(key, value) {
-        console.log(key + " " + value);
-    });
+    return JSON.stringify(finData);
 }
 
 function reset() {
+    pId = "";
     iCnt = 0;
     iatArry = [];
     left = [];
@@ -355,8 +387,8 @@ function reset() {
                 a4_5 : "", a4_6 : "", a4_6_other : "", a5 : "", a6 : "", a7 : "", a8_1 : "", a8_2 : "", a8_3 : "", a8_4 : "", a8_5 : "", a8_6 : "", 
                 a8_7 : "", a8_8 : "", a8_8_other : "", a9 : "", a9_other : "", a9_flag : 0, a9a : "", a10 : "", b1a : "", b1b : "", b1c : "", b1d : "", b1e : "", b1f : "",
                 b1g : "", b1h : "", b1i : "", b1j : "", b1k : "", b2 : "", b3 : "", c1 : "", c1a : "", c1b : "", c1c : "", c2 : "", c2a : "",
-                c2b : "", c2c : "", c3 : "", c3a : "", c3b : "", c3c : "", c3d_1 : "", c3d_2 : "", c3d_3 : "", c3d_4 : "", c3d_5 : "", c3d_6 : "",
-                c3d_7 : "", c3d_8 : "", c3d_9 : "", c3d_10 : "", c3d_11 : "", c4 : "", c4a : "", c4b : "", c4c : ""};
+                c2b : "", c2c : "", c3 : "", c3a : "", c3b : "", c3c : "", c4 : "", c4a : "", c4b : "", c4c : "", c4d_1 : "", c4d_2 : "", c4d_3 : "", c4d_4 : "", c4d_5 : "", c4d_6 : "",
+                c4d_7 : "", c4d_8 : "", c4d_9 : "", c4d_10 : "", c4d_11 : "", c5 : "", c5a : "", c5b : "", c5c : ""};
     sur2Arry = { d1a : "", d1b : "", d1c : "", d1d : "", d1e : "", d1f : "", d1g : "", d1h : "", e1a : "", e1b : "", e1c : "", e1d : "",
                  e1e : "", e1f : "", e1g : "", e2a : "", e2b : "", e2c : "", e3a : "", e3b : "", e3c : "", e3d : "", e3e : "", e3f : "",
                  e3g : "", e3h : "", e3i : "", e3j : "", e3k : "", e3l : "", f1a : "", f1b : "", f1c : "", f1d : "", f1e : "", g1 : "",
@@ -524,8 +556,8 @@ function calcIAT() {
     iScore = (cMean - nMean) / iSd;
     iScore = Math.round(iScore * 1000) / 1000;
     
-    iatData.push({"Wrong" : errorTrials, "Below_400" : errorLat400, "Above_10000" : errorLat10, "Critical_blks_40_err" : blks_40_err,
-                  "Session_30_err" : session_30_err, "IAT_Score" : iScore});
+    iatData.push({"wrong" : errorTrials, "below_400" : errorLat400, "above_10000" : errorLat10, "critical_blks_40_err" : blks_40_err,
+                  "session_30_err" : session_30_err, "iat_score" : iScore});
 }
 
 function nextInst() {
@@ -1002,7 +1034,7 @@ function sCalc(word, side, time, sColor) {
 }
 
 function sRecord(word, side, time, color, correct, type) {
-    sstData.push({"stim" : word, "type" : type, "color" : color, "side" : side, "time" : time, "correct" : correct});
+    sstData.push({"stim" : word, "type" : type, "color" : color, "side" : side, "sTime" : time, "sCorrect" : correct});
 }
 
 function sstScore() {
@@ -1032,7 +1064,7 @@ function sstScore() {
     intSui = 0;
     
     for (var i = 0; i < sstData.length; i++) {
-        if (sstData[i].correct === false) {
+        if (sstData[i].sCorrect === false) {
             errors++;
         }
         else {
@@ -1040,13 +1072,13 @@ function sstScore() {
         }       
     }
     for (var x = 0; x < corArry.length; x++) {
-        sum += corArry[x].time;
+        sum += corArry[x].sTime;
     }
     mean = sum / corArry.length;
     mean = Math.round(mean * 1000) / 1000;
     
     for (var i = 0; i < corArry.length; i++) {
-        sumSd += Math.pow((mean - corArry[i].time), 2);
+        sumSd += Math.pow((mean - corArry[i].sTime), 2);
     }
     sd = sumSd / corArry.length;
     sd = Math.sqrt(sd);
@@ -1055,7 +1087,7 @@ function sstScore() {
     high = mean + (sd * 2);
     
     for (var i = 0; i < corArry.length; i++) {
-        if (corArry[i].time < high && corArry[i].time > low) {
+        if (corArry[i].sTime < high && corArry[i].sTime > low) {
             if (corArry[i].type === "depressotypic") {
                 validDep++;
                 depArry.push(corArry[i]);
@@ -1079,28 +1111,28 @@ function sstScore() {
     }
     if (validDep > 0) {
         for (var i = 0; i < depArry.length; i++) {
-            meanDep += depArry[i].time;
+            meanDep += depArry[i].sTime;
         }
         meanDep = meanDep / depArry.length;
         meanDep = Math.round(meanDep * 1000) / 1000;
     }
     if (validPos > 0) {
         for (var i = 0; i < posArry.length; i++) {
-            meanPos += posArry[i].time;
+            meanPos += posArry[i].sTime;
         }
         meanPos = meanPos / posArry.length;
         meanPos = Math.round(meanPos * 1000) / 1000;
     }
     if (validNeut > 0) {
         for (var i = 0; i < neutArry.length; i++) {
-            meanNeut += neutArry[i].time;
+            meanNeut += neutArry[i].sTime;
         }
         meanNeut = meanNeut / neutArry.length;
         meanNeut = Math.round(meanNeut * 1000) / 1000;
     }
     if (validSui > 0) {
         for (var i = 0; i < suiArry.length; i++) {
-            meanSui += suiArry[i].time;
+            meanSui += suiArry[i].sTime;
         }
         meanSui = meanSui / suiArry.length;
         meanSui = Math.round(meanSui * 1000) / 1000;
@@ -1247,31 +1279,39 @@ $("#c1cOp1, #c1cOp2, #c1cOp3, #c1cOp4, #c1cOp5").on('change', function() {
 });
 
 $("#c2Op1, #c2Op2").on('change', function() {
-    surArry.c2 = $(this).val();
+    surArry.c3 = $(this).val();
 });
 
 $("#c2cOp1, #c2cOp2, #c2cOp3, #c2cOp4, #c2cOp5").on('change', function() {
+    surArry.c3c = $(this).val();
+});
+
+$("#c5Op1, #c5Op2").on('change', function() {
+    surArry.c2 = $(this).val();
+});
+
+$("#c5cOp1, #c5cOp2, #c5cOp3, #c5cOp4, #c5cOp5").on('change', function() {
     surArry.c2c = $(this).val();
 });
 
 $("#c3Op1, #c3Op2").on('change', function() {
-    surArry.c3 = $(this).val();
-});
-
-$("#c3cOp1, #c3cOp2, #c3cOp3, #c3cOp4, #c3cOp5, #c3cOp6").on('change', function() {
-    surArry.c3c = $(this).val();
-});
-
-$("#c4Op1, #c4Op2").on('change', function() {
     surArry.c4 = $(this).val();
 });
 
+$("#c3cOp1, #c3cOp2, #c3cOp3, #c3cOp4, #c3cOp5, #c3cOp6").on('change', function() {
+    surArry.c4c = $(this).val();
+});
+
+$("#c4Op1, #c4Op2").on('change', function() {
+    surArry.c5 = $(this).val();
+});
+
 $("#c4bOp1, #c4bOp2, #c4bOp3, #c4bOp4, #c4bOp5, #c4bOp6, #c4bOp7, #c4bOp8").on('change', function() {
-    surArry.c4b = $(this).val();
+    surArry.c5b = $(this).val();
 });
 
 $("#c4cOp1, #c4cOp2, #c4cOp3, #c4cOp4, #c4cOp5, #c4cOp6").on('change', function() {
-    surArry.c4c = $(this).val();
+    surArry.c5c = $(this).val();
 });
 }
 
@@ -1573,7 +1613,7 @@ function a9() {
         }
         else {
             surArry.a9a = "";
-            $("#a9aOp1, #a9aOp2, #a9aOp3, #a9aOp4").removeAttr("checked").checkboxradio("refresh");
+            $("#a9aOp1, #a9aOp2, #a9aOp3, #a9aOp4").removeAttr("checked");
             removeArry(a9a);
             a9Exists = false;
             $("#a10Blk").show();
@@ -1678,6 +1718,11 @@ function b1() {
             else {
                 surArry.b2 = "";
                 surArry.b3 = "";
+                $("#b2txt").val("");
+                $("#b2txt").val("");
+                b1Exists = true;
+                b3Exists = false;
+                removeArry(b2);
                 $("#cBlk").show();
             }
         }
@@ -1827,6 +1872,8 @@ function b2() {
         }
         else {
             surArry.b3 = "";
+            $("#b3txt").val("");
+            removeArry(b3);
             b3Exists = false;
             $("#cBlk").show();
             $("#keypad").hide();
@@ -1873,6 +1920,9 @@ function cSt() {
     if (b3Exists) {
         addArry(b3);
     }
+    else if (b1Exists) {
+        addArry(b1);
+    }
     else {
         addArry(b2);
     }
@@ -1884,38 +1934,24 @@ function c1() {
         $("#erc1").hide();
         $("#erc2").hide();
         $("#erc2_1").hide();
-        $("#erc14").hide();
+        $("#erc18").hide();
         addArry(cSt);
         if (surArry.c1 === "1") {
+            c1Exists = true;
             $("#c1Blka").show();
             $("#keypad").show();
             $("#numPad").show();
             setID("#c1atxt", 2);
         }
         else {
+            c1Exists = false;
             surArry.c1a = "";
             surArry.c1b = "";
             surArry.c1c = "";
-            surArry.c2  = "";
-            surArry.c2a = "";
-            surArry.c2b = "";
-            surArry.c2c = "";
-            surArry.c3  = "";
-            surArry.c3a = "";
-            surArry.c3b = "";
-            surArry.c3c = "";
-            surArry.c3d_1 = "";
-            surArry.c3d_2 = "";
-            surArry.c3d_3 = "";
-            surArry.c3d_4 = "";
-            surArry.c3d_5 = "";
-            surArry.c3d_6 = "";
-            surArry.c3d_7 = "";
-            surArry.c3d_8 = "";
-            surArry.c3d_9 = "";
-            surArry.c3d_10 = "";
-            surArry.c3d_11 = "";
-            $("#c4Blk").show();
+            $("#c1atxt, #c1btxt").val("");
+            $("#c1cOp1, #c1cOp2, #c1cOp3, #c1cOp4, #c1cOp5").prop("checked", false);
+            removeArry(c1a);
+            $("#c5Blk").show();
         }
     }
     else {
@@ -1962,11 +1998,20 @@ function c1b() {
         $("#erc4").hide();
         addArry(c1a);
         if (num > 0) {
+            c1cExists = true;
             $("#c1Blkc").show();
         }
         else {
+            c1cExists = false;
             surArry.c1c = "";
-            $("#erc6").hide();
+            surArry.c2 = "";
+            surArry.c2a = "";
+            surArry.c2b = "";
+            surArry.c2c = "";
+            $("#c5atxt, #c5btxt").val("");
+            $("#c1Blkc, #c5Blk, #c5Blkc").find("input").prop("checked", false);
+            removeArry(c2);
+            $("#erc9").hide();
             $("#c2Blk").show();
         }
     }
@@ -1984,9 +2029,8 @@ function c1c() {
     if (surArry.c1c !== "") {
         $("#c1Blkc").hide();
         $("#erc4").hide();
-        $("#erc5").hide();
-        $("#erc5_1").hide();
-        $("#c2Blk").show();
+        $("#erc18").hide();
+        $("#c5Blk").show();
         addArry(c1b);
     }
     else {
@@ -1994,24 +2038,139 @@ function c1c() {
     }
 }
 
-function c2() {
+function c5() {
     if (surArry.c2 !== "") {
+        $("#c5Blk").hide();
+        $("#erc18").hide();
+        $("#erc19").hide();
+        $("#erc19_1").hide();
+        $("#erc14").hide();
+        if (c1Exists) {
+            addArry(c1c);
+        }
+        else {
+            addArry(c1);
+        }
+        if (surArry.c2 === "1") {
+            c2Exists = true;
+            $("#c5Blka").show();
+            $("#keypad").show();
+            $("#numPad").show();
+            setID("#c5atxt", 2);
+        }
+        else {
+            c2Exists = false;
+            surArry.c2a = "";
+            surArry.c2b = "";
+            surArry.c2c = "";
+            $("#c5atxt, #c5btxt, #c2atxt, #c2btxt, #c3atxt, #c3btxt").val("");
+            $("#c2Blka, #c2Blkc, #c3Blka, #c3Blkc, c3Blkd, #c5Blkc").find("input").prop("checked", false);
+            $("#c4Blk").show();
+        }
+    }
+    else {
+        $("#erc18").show();
+    }
+}
+
+function c5a() {
+    surArry.c2a = $("#c5atxt").val();
+    num = parseInt($("#c5atxt").val());
+    
+    if (parseInt(surArry.a1) >= num) {
+        $("#c5Blka").hide();
+        $("#keypad").show();
+        $("#numPad").show();
+        setID("#c5btxt", 2);
+        $("#erc19").hide();
+        $("#erc19_1").hide();
+        $("#erc20").hide();
+        $("#erc20_1").hide();
+        $("#c5Blkb").show();
+        addArry(c5);
+    }
+    else if (surArry.c2a === "") {
+        $("#erc19").hide();
+        $("#erc19_1").show();
+    }
+    else {
+        $("#erc19_1").hide();
+        $("#erc19").show();
+    }
+}
+
+function c5b() {
+    surArry.c2b = $("#c5btxt").val();
+    num = parseInt($("#c5btxt").val());
+
+    if (num <= 52) {
+        $("#c5Blkb").hide();
+        $("#keypad").hide();
+        $("#numPad").hide();
+        $("#erc20").hide();
+        $("#erc20_1").hide();
+        $("#erc21").hide();
+        addArry(c5a);
+        if (num === 0) {
+            $("#erc5").hide();
+            surArry.c2c = "";
+            c2Exists = false;
+            $("#c5Blkc").find("input").prop("checked", false);
+            removeArry(c5c);
+            $("#c2Blk").show();
+        }
+        else {
+            c2Exists = true;
+            $("#c5Blkc").show();
+        }
+    }
+    else if (surArry.c2b === "") {
+        $("#erc20").hide();
+        $("#erc20_1").show();
+    }
+    else {
+        $("#erc20_1").hide();
+        $("#erc20").show();
+    }
+}
+
+function c5c() {
+    if (surArry.c2c !== "") {
+        $("#c5Blkc").hide();
+        $("#erc21").hide();
+        $("#erc5").hide();
+        $("#c2Blk").show();
+        c2Exists = true;
+        addArry(c5b);
+    }
+    else {
+        $("#erc21").show();
+    }
+}
+
+function c2() {
+    if (surArry.c3 !== "") {
         $("#c2Blk").hide();
         $("#erc5").hide();
         $("#erc6").hide();
         $("#erc6_1").hide();
         $("#erc9").hide();
-        addArry(c1c);
-        if (surArry.c2 === "1") {
+        if (c2Exists) {
+            addArry(c5c);
+        }
+        else {
+            addArry(c5b);
+        }
+        if (surArry.c3 === "1") {
             $("#c2Blka").show();
             $("#keypad").show();
             $("#numPad").show();
             setID("#c2atxt", 2);
         }
         else {
-            surArry.c2a = "";
-            surArry.c2b = "";
-            surArry.c2c = "";
+            surArry.c3a = "";
+            surArry.c3b = "";
+            surArry.c3c = "";
             $("#c3Blk").show();
         }
     }
@@ -2021,7 +2180,7 @@ function c2() {
 }
 
 function c2a() {
-    surArry.c2a = $("#c2atxt").val();
+    surArry.c3a = $("#c2atxt").val();
     num = parseInt($("#c2atxt").val());
     
     if (parseInt(surArry.a1) >= num) {
@@ -2036,7 +2195,7 @@ function c2a() {
         $("#c2Blkb").show();
         addArry(c2);
     }
-    else if (surArry.c2a === "") {
+    else if (surArry.c3a === "") {
         $("#erc6").hide();
         $("#erc6_1").show();
     }
@@ -2047,7 +2206,7 @@ function c2a() {
 }
 
 function c2b() {
-    surArry.c2b = $("#c2btxt").val();
+    surArry.c3b = $("#c2btxt").val();
     num = parseInt($("#c2btxt").val());
 
     if (num <= 52) {
@@ -2060,17 +2219,18 @@ function c2b() {
         addArry(c2a);
         if (num > 0) {
             $("#erc9").hide();
-            surArry.c2c = "";
-            c2Exists = false;
+            surArry.c3c = "";
+            $("#c2Blkc").find("input").prop("checked", false);
+            c3Exists = false;
             removeArry(c2c);
             $("#c3Blk").show();
         }
         else {
-            c2Exists = true;
+            c3Exists = true;
             $("#c2Blkc").show();
         }
     }
-    else if (surArry.c2b === "") {
+    else if (surArry.c3b === "") {
         $("#erc7").hide();
         $("#erc7_1").show();
     }
@@ -2081,12 +2241,12 @@ function c2b() {
 }
 
 function c2c() {
-    if (surArry.c2c !== "") {
+    if (surArry.c3c !== "") {
         $("#c2cBlk").hide();
         $("#erc8").hide();
         $("#erc9").hide();
         $("#c3Blk").show();
-        c2Exists = true;
+        c3Exists = true;
         addArry(c2b);
     }
     else {
@@ -2095,39 +2255,44 @@ function c2c() {
 }
 
 function c3() {
-    if (surArry.c3 !== "") {
+    if (surArry.c4 !== "") {
         $("#c3Blk").hide();
         $("#erc9").hide();
         $("#erc10").hide();
         $("#erc10_1").hide();
         $("#erc14").hide();
-        if (c2Exists) {
+        if (c3Exists) {
             addArry(c2c);
         }
         else {
             addArry(c2b);
         }
-        if (surArry.c3 === "1") {
+        if (surArry.c4 === "1") {
+            c4Exists = true;
             $("#c3Blka").show();
             $("#keypad").show();
             $("#numPad").show();
             setID("#c3atxt", 2);
         }
         else {
-            surArry.c3a = "";
-            surArry.c3b = "";
-            surArry.c3c = "";
-            surArry.c3d_1 = "";
-            surArry.c3d_2 = "";
-            surArry.c3d_3 = "";
-            surArry.c3d_4 = "";
-            surArry.c3d_5 = "";
-            surArry.c3d_6 = "";
-            surArry.c3d_7 = "";
-            surArry.c3d_8 = "";
-            surArry.c3d_9 = "";
-            surArry.c3d_10 = "";
-            surArry.c3d_11 = "";
+            c4Exists = false;
+            surArry.c4a = "";
+            surArry.c4b = "";
+            surArry.c4c = "";
+            surArry.c4d_1 = "";
+            surArry.c4d_2 = "";
+            surArry.c4d_3 = "";
+            surArry.c4d_4 = "";
+            surArry.c4d_5 = "";
+            surArry.c4d_6 = "";
+            surArry.c4d_7 = "";
+            surArry.c4d_8 = "";
+            surArry.c4d_9 = "";
+            surArry.c4d_10 = "";
+            surArry.c4d_11 = "";
+            $("#c3atxt, #c3btxt").val("");
+            $("#c3Blkc, #c3Blkd").find("input").prop("checked", false);
+            removeArry(c3a);
             $("#c4Blk").show();
         }
     }
@@ -2137,7 +2302,7 @@ function c3() {
 }
 
 function c3a() {
-    surArry.c3a = $("#c3atxt").val();
+    surArry.c4a = $("#c3atxt").val();
     num = parseInt($("#c3atxt").val());
     
     if (parseInt(surArry.a1) >= num) {
@@ -2152,7 +2317,7 @@ function c3a() {
         $("#c3Blkb").show();
         addArry(c3);
     }
-    else if (surArry.c3a === "") {
+    else if (surArry.c4a === "") {
         $("#erc10").hide();
         $("#erc10_1").show();
     }
@@ -2163,12 +2328,12 @@ function c3a() {
 }
 
 function c3b() {
-    surArry.c3b = $("#c3btxt").val();
+    surArry.c4b = $("#c3btxt").val();
     num = parseInt($("#c3btxt").val());
     numC3a = parseInt(surArry.c3a);
     numA1 = parseInt(surArry.a1);
     
-    if (surArry.c3b !== "") {
+    if (surArry.c4b !== "") {
         if (num >= 1) {
             $("#c3Blkb").hide();
             $("#keypad").hide();
@@ -2180,6 +2345,8 @@ function c3b() {
             $("#erc14").hide();
             $("#erc15").hide();
             addArry(c3a);
+            c4bExists = false;
+            c4bLocal = false;
             if (num === 1) {
                 $("#c3dq").html("<b>Which method did you use for your suicide attempt?</b><br><span class='smallTitle'><i>(Check all that apply.)</i></span>");
             }
@@ -2195,21 +2362,27 @@ function c3b() {
             }
             else if (numC3a < (numA1 - 1) && num === 1) {
                 surArry.c3c = "";
+                c4bLocal = true;
+                $("#c3Blkc").find("input").prop("checked", false);
+                removeArry(c3c);
                 $("#c3Blkd").show();
             }
             else {
-                surArry.c3c = "";
-                surArry.c3d_1 = "";
-                surArry.c3d_2 = "";
-                surArry.c3d_3 = "";
-                surArry.c3d_4 = "";
-                surArry.c3d_5 = "";
-                surArry.c3d_6 = "";
-                surArry.c3d_7 = "";
-                surArry.c3d_8 = "";
-                surArry.c3d_9 = "";
-                surArry.c3d_10 = "";
-                surArry.c3d_11 = "";
+                c4bExists = true;
+                surArry.c4c = "";
+                surArry.c4d_1 = "";
+                surArry.c4d_2 = "";
+                surArry.c4d_3 = "";
+                surArry.c4d_4 = "";
+                surArry.c4d_5 = "";
+                surArry.c4d_6 = "";
+                surArry.c4d_7 = "";
+                surArry.c4d_8 = "";
+                surArry.c4d_9 = "";
+                surArry.c4d_10 = "";
+                surArry.c4d_11 = "";
+                $("#c3Blkc, #c3Blkd").find("input").prop("checked", false);
+                removeArry(c3d);
                 $("#c4Blk").show();
             }
         }
@@ -2225,7 +2398,7 @@ function c3b() {
 }
 
 function c3c() {
-    if (surArry.c3c !== "") {
+    if (surArry.c4c !== "") {
         $("#c3Blkc").hide();
         $("#erc12").hide();
         $("#erc13").hide();
@@ -2242,87 +2415,92 @@ function c3d() {
     
     if ($("#c3dOp1").prop('checked')) {
         ans = true;
-        surArry.c3d_1 = $("#c3dOp1").val();
+        surArry.c4d_1 = $("#c3dOp1").val();
     }
     else {
-        surArry.c3d_1 = "";
+        surArry.c4d_1 = "";
     }
     if ($("#c3dOp2").prop('checked')) {
         ans = true;
-        surArry.c3d_2 = $("#c3dOp2").val();
+        surArry.c4d_2 = $("#c3dOp2").val();
     }
     else {
-        surArry.c3d_2 = "";
+        surArry.c4d_2 = "";
     }
     if ($("#c3dOp3").prop('checked')) {
         ans = true;
-        surArry.c3d_3 = $("#c3dOp3").val();
+        surArry.c4d_3 = $("#c3dOp3").val();
     }
     else {
-        surArry.c3d_3 = "";
+        surArry.c4d_3 = "";
     }
     if ($("#c3dOp4").prop('checked')) {
         ans = true;
-        surArry.c3d_4 = $("#c3dOp4").val();
+        surArry.c4d_4 = $("#c3dOp4").val();
     }
     else {
-        surArry.c3d_4 = "";
+        surArry.c4d_4 = "";
     }
     if ($("#c3dOp5").prop('checked')) {
         ans = true;
-        surArry.c3d_5 = $("#c3dOp5").val();
+        surArry.c4d_5 = $("#c3dOp5").val();
     }
     else {
-        surArry.c3d_5 = "";
+        surArry.c4d_5 = "";
     }
     if ($("#c3dOp6").prop('checked')) {
         ans = true;
-        surArry.c3d_6 = $("#c3dOp6").val();
+        surArry.c4d_6 = $("#c3dOp6").val();
     }
     else {
-        surArry.c3d_6 = "";
+        surArry.c4d_6 = "";
     }
     if ($("#c3dOp7").prop('checked')) {
         ans = true;
-        surArry.c3d_7 = $("#c3dOp7").val();
+        surArry.c4d_7 = $("#c3dOp7").val();
     }
     else {
-        surArry.c3d_7 = "";
+        surArry.c4d_7 = "";
     }
     if ($("#c3dOp8").prop('checked')) {
         ans = true;
-        surArry.c3d_8 = $("#c3dOp8").val();
+        surArry.c4d_8 = $("#c3dOp8").val();
     }
     else {
-        surArry.c3d_8 = "";
+        surArry.c4d_8 = "";
     }
     if ($("#c3dOp9").prop('checked')) {
         ans = true;
-        surArry.c3d_9 = $("#c3dOp9").val();
+        surArry.c4d_9 = $("#c3dOp9").val();
     }
     else {
-        surArry.c3d_9 = "";
+        surArry.c4d_9 = "";
     }
     if ($("#c3dOp10").prop('checked')) {
         ans = true;
-        surArry.c3d_10 = $("#c3dOp10").val();
+        surArry.c4d_10 = $("#c3dOp10").val();
     }
     else {
-        surArry.c3d_10 = "";
+        surArry.c4d_10 = "";
     }
     if ($("#c3dOp11").prop('checked')) {
         ans = true;
-        surArry.c3d_11 = $("#c3dOp11").val();
+        surArry.c4d_11 = $("#c3dOp11").val();
     }
     else {
-        surArry.c3d_11 = "";
+        surArry.c4d_11 = "";
     }
     if (ans) {
         $("#c3Blkd").hide();
         $("#erc13").hide();
         $("#erc14").hide();
         $("#c4Blk").show();
-        addArry(c3c);
+        if (c4bLocal) {
+            addArry(c3b);
+        }
+        else {
+            addArry(c3c);
+        }
     }
     else {
         $("#erc13").show();
@@ -2330,22 +2508,33 @@ function c3d() {
 }
 
 function c4() {
-    if (surArry.c4 !== "") {
+    if (surArry.c5 !== "") {
         $("#c4Blk").hide();
         $("#erc14").hide();
         $("#erc15").hide();
         $("#erc15_1").hide();
-        addArry(c3d);
-        if (surArry.c4 === "1") {
+        if (!c2Exists) {
+            addArry(c5);
+        }
+        else if (!c4Exists) {
+            addArry(c3);
+        }
+        else if (c4bExists) {
+            addArry(c4b);
+        }
+        else {
+            addArry(c3d);
+        }
+        if (surArry.c5 === "1") {
             $("#c4Blka").show();
             $("#keypad").show();
             $("#numPad").show();
             setID("#c4atxt", 2);
         }
         else {
-            surArry.c4a = "";
-            surArry.c4b = "";
-            surArry.c4c = "";
+            surArry.c5a = "";
+            surArry.c5b = "";
+            surArry.c5c = "";
             genSurData();
             $.mobile.changePage("#sst");
         }
@@ -2356,7 +2545,7 @@ function c4() {
 }
 
 function c4a() {
-    surArry.c4a = $("#c4atxt").val();
+    surArry.c5a = $("#c4atxt").val();
     num = parseInt($("#c4atxt").val());
     
     if (parseInt(surArry.a1) >= num) {
@@ -2369,7 +2558,7 @@ function c4a() {
         $("#c4Blkb").show();
         addArry(c4);
     }
-    else if (surArry.c4a === "") {
+    else if (surArry.c5a === "") {
         $("#erc15").hide();
         $("#erc15_1").show();
     }
@@ -2380,7 +2569,7 @@ function c4a() {
 }
 
 function c4b() {
-    if (surArry.c4b !== "") {
+    if (surArry.c5b !== "") {
         $("#c4Blkb").hide();
         $("#erc16").hide();
         $("#erc17").hide();
@@ -2393,7 +2582,7 @@ function c4b() {
 }
 
 function c4c() {
-    if (surArry.c4c !== "") {
+    if (surArry.c5c !== "") {
         $("#c4Blkc").hide();
         $("#erc17").hide();
         addArry(c4b);
@@ -2841,7 +3030,7 @@ function addArry(blk) {
 function removeArry(blk) {
     pos = $.inArray(blk, navArry);
     if (pos !== -1) {
-        navArry.splice(pos, 1);
+        navArry.splice(pos, navArry.length - pos);
     }
 }
 
@@ -2858,7 +3047,7 @@ function forward() {
     vis = ["#asb", "#asb1", "#asb2", "#asb3", "#asb4", "#asb5", "#asb6", "#asb7", "#asb8", "#asb9", "#asb9a", "#asb10",
            "#bsb", "#bsb1", "#bsb2", "#bsb3", "#bsb4", "#bsb5", "#bsb6", "#csb", "#csb1", "#csb2", "#csb3", "#csb4",
            "#csb5", "#csb6", "#csb7", "#csb8", "#csb9", "#csb10", "#csb11", "#csb12", "#csb13", "#csb14", "#csb15",
-           "#csb16", "#csb17"];
+           "#csb16", "#csb17", "#csb18", "#csb19", "#csb20", "#csb21"];
        
     for (i = 0; i < vis.length; i++) {
         if ($(vis[i]).is(':visible')) {
@@ -2886,6 +3075,7 @@ function hideAll() {
     $("#cBlk, #c1Blk, #c1Blka, #c1Blkb, #c1Blkc, #c2Blk, #c2Blka, #c2Blkb, #c2Blkc, #c3Blk, #c3Blka, #c3Blkb, #c3Blkc, #c3Blkd, #c4Blk, #c4Blka, #c4Blkb, #c4Blkc").hide();
     $("#dBlk, #d1Blk, #d1Blkb, #d1Blkc, #eBlk, #dBlk, #e1Blk, #e1Blkb, #e2Blk, #e2Blka, #e3Blk, #e3Blka, #e3Blkb").hide();
     $("#fBlk, #f1Blka, #f1Blkb, #f1Blkc, #f1Blkd, #f1Blke, #g1Blk, #g2Blk, #g3Blk").hide();
+    $("#c5Blk, #c5Blka, #c5Blkb, #c5Blkc").hide();
     $("#keypad, #numpad, #numPad2, #keypad2, #success, #error").hide();
     return true;
 }
