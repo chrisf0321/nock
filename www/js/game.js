@@ -286,7 +286,7 @@ function saveData() {
                 storedItems.push(finData);
                 finData.id = "test2";
                 storedItems.push(finData);
-                window.localStorage.setItem("stored", JSON.stringify([storedItems]));
+                window.localStorage.setItem("stored", JSON.stringify(storedItems));
 		$("#svErr").show();
 	}
     });
