@@ -284,8 +284,6 @@ function saveData() {
 	error: function(jqXHR, textStatus, errorThrown){
                 var storedItems = JSON.parse(window.localStorage.getItem("stored")) || [];
                 storedItems.push(finData);
-                finData.id = "test2";
-                storedItems.push(finData);
                 window.localStorage.setItem("stored", JSON.stringify(storedItems));
 		$("#svErr").show();
 	}
