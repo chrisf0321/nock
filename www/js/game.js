@@ -1,7 +1,7 @@
 $(function() {
     FastClick.attach(document.body);
 });
-var saveURL = "http://nocksurvey.elasticbeanstalk.com/";
+var saveURL = "http://nocksurvey.elasticbeanstalk.com/rest/nock";
 var hasTouch = ('ontouchstart' in window);
 var TOUCH_START = hasTouch ? "touchstart" : "mousedown";
 var pId = "";
@@ -75,13 +75,6 @@ var sur2Arry = { d1a : "", d1b : "", d1c : "", d1d : "", d1e : "", d1f : "", d1g
                  g2 : "", g3 : ""};
 var navArry = [];
 var navPos = 0;
-
-//Remove for the final version.
-var id = "test";
-var iOnly = false;
-var s1Only = false;
-var sstOnly = false;
-var s2Only = false;
 
 $(document).on('pagebeforeshow', '#home', function() {
     $("#idtxt").val("");
@@ -289,39 +282,40 @@ function saveData() {
 		$("#svOk").show();
 	},
 	error: function(jqXHR, textStatus, errorThrown){
-                if (window.localStorage.getItem("stored") !== null) {
-                    var storedItems = [];
-                    storedItems.push(JSON.parse(window.localStorage.getItem("stored")));
-                    storedItems.push(finData);
-                    window.localStorage.setItem("stored", JSON.stringify([storedItems]));
-                }
-                else {
-                    window.localStorage.setItem("stored", JSON.stringify(finData));
-                }
+                var storedItems = JSON.parse(window.localStorage.getItem("stored")) || [];
+                storedItems.push(finData);
+                window.localStorage.setItem("stored", JSON.stringify([storedItems]));
 		$("#svErr").show();
 	}
     });
 }
 function resendData() {
+    var posi = 0;
     var redata = JSON.parse(window.localStorage.getItem("stored"));
+    console.log(redata[0][0]);
     for (var i = 0; i < redata.length; i++) {
         $.ajax({
             type: 'POST',
             contentType: 'application/json',
             url: saveURL,
             dataType: "json",
-            data: JSON.stringify(redata),
+            data: JSON.stringify(redata[i][0]),
             success: function(data, textStatus, jqXHR){
-                    redata.splice(i, 1);
-                    if (i === redata.length - 1) {
+                    redata.splice(posi, 1);
+                    console.log(redata.length);
+                    console.log(posi);
+                    if (posi === redata.length) {  // Need to test this more!!!!!!!
+                        console.log("here");
                         $("#reBtn").hide();
                     }
+                    posi++;
             },
             error: function(){
+                posi++;
             }
         });
     }
-    if (typeof redata !== 'undefined' && redata.length > 0) {
+    if (redata.length > 1) {
         window.localStorage.setItem("stored", JSON.stringify(redata));
     }
     else {
