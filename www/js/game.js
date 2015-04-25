@@ -284,42 +284,57 @@ function saveData() {
 	error: function(jqXHR, textStatus, errorThrown){
                 var storedItems = JSON.parse(window.localStorage.getItem("stored")) || [];
                 storedItems.push(finData);
+                finData.id = "test2";
+                storedItems.push(finData);
                 window.localStorage.setItem("stored", JSON.stringify([storedItems]));
 		$("#svErr").show();
 	}
     });
 }
+
+function cleanup(arr) {
+    window.localStorage.removeItem("stored");
+    
+    if (arr.length > 0) {
+        console.log("clean");
+        window.localStorage.setItem("stored", JSON.stringify(arr));
+        $("#reBtn").show();
+    }
+    else {
+        $("#reBtn").hide();
+    }
+}
+
 function resendData() {
     var posi = 0;
+    var newStore = [];
     var redata = JSON.parse(window.localStorage.getItem("stored"));
-    console.log(redata[0][0]);
+    console.log(redata);
     for (var i = 0; i < redata.length; i++) {
+        var dataSend = redata[i];
         $.ajax({
             type: 'POST',
             contentType: 'application/json',
             url: saveURL,
             dataType: "json",
-            data: JSON.stringify(redata[i][0]),
+            data: JSON.stringify(dataSend),
             success: function(data, textStatus, jqXHR){
-                    redata.splice(posi, 1);
-                    console.log(redata.length);
+                    console.log(redata);
                     console.log(posi);
-                    if (posi === redata.length) {  // Need to test this more!!!!!!!
-                        console.log("here");
-                        $("#reBtn").hide();
+                    if (posi === redata.length - 1) {  
+                        cleanup(newStore);
                     }
                     posi++;
             },
             error: function(){
+                console.log(posi);
+                newStore.push(redata[posi]);
+                if (posi === redata.length - 1) {  
+                        cleanup(newStore);
+                    }
                 posi++;
             }
         });
-    }
-    if (redata.length > 1) {
-        window.localStorage.setItem("stored", JSON.stringify(redata));
-    }
-    else {
-        window.localStorage.removeItem("stored");
     }
 }
 
