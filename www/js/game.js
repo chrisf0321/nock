@@ -60,6 +60,7 @@ var c2Exists = false;
 var b1Exists = false;
 var c1Exists = false;
 var c1cExists = false;
+var c2bExists = false;
 var c3Exists = false;
 var c4Exists = false;
 var c4bExists = false;
@@ -204,6 +205,9 @@ function sstBinds() {
             $("#sWrd").css({'opacity': '0'});
             sStop = new Date().getTime();
             sTime = sStop - sStTime; 
+            if (sTime > 15000) {
+                sTime = 15000;
+            }
             sCnt++;
             if (sCnt > 8) {
                 sCalc(sstWrd, $(this).attr('id'), sTime, sstColor);
@@ -405,11 +409,6 @@ function reset() {
     navPos = 0;
     $("input[type=text]").val("");
     hideSur();
-    //Remove for final version.
-    iOnly = false;
-    s1Only = false;
-    s2Only = false;
-    sstOnly = false;
 }
 
 function calcScore(num) {
@@ -419,6 +418,9 @@ function calcScore(num) {
                 iActive = false;
                 iStop = new Date().getTime();
                 iTime = iStop - iStartTime;
+                if (iTime > 15000) {
+                    iTime = 15000;
+                }
                 iCnt++;
                 recordTrial(iCurWrd, iTime, iCnt, iCorrect);
                 $("#wng1").css({'opacity': '0'});
@@ -435,6 +437,9 @@ function calcScore(num) {
                 iActive = false;
                 iStop = new Date().getTime();
                 iTime = iStop - iStartTime;
+                if (iTime > 15000) {
+                    iTime = 15000;
+                }
                 iCnt++;
                 recordTrial(iCurWrd, iTime, iCnt, iCorrect);
                 $("#wng1").css({'opacity': '0'});
@@ -1955,8 +1960,14 @@ function c1() {
             surArry.c1a = "";
             surArry.c1b = "";
             surArry.c1c = "";
+            surArry.c2 = "";
+            surArry.c2a = "";
+            surArry.c2b = "";
+            surArry.c2c = "";
+            $("#c5atxt, #c5btxt").val("");
             $("#c1atxt, #c1btxt").val("");
             $("#c1cOp1, #c1cOp2, #c1cOp3, #c1cOp4, #c1cOp5").prop("checked", false);
+            $("#c5Blk, #c5Blkc").find("input").prop("checked", false);
             removeArry(c1a);
             $("#c5Blk").show();
         }
@@ -2034,10 +2045,17 @@ function c1b() {
 
 function c1c() {
     if (surArry.c1c !== "") {
+        c1cExists = true;
         $("#c1Blkc").hide();
         $("#erc4").hide();
-        $("#erc18").hide();
-        $("#c5Blk").show();
+        $("#erc5").hide();
+        $("#c2Blk").show();
+        surArry.c2 = "";
+        surArry.c2a = "";
+        surArry.c2b = "";
+        surArry.c2c = "";
+        $("#c5atxt, #c5btxt").val("");
+        $("#c5Blk, #c5Blkc").find("input").prop("checked", false);
         addArry(c1b);
     }
     else {
@@ -2122,12 +2140,14 @@ function c5b() {
             $("#erc5").hide();
             surArry.c2c = "";
             c2Exists = false;
+            c2bExists = true;
             $("#c5Blkc").find("input").prop("checked", false);
             removeArry(c5c);
             $("#c2Blk").show();
         }
         else {
-            c2Exists = true;
+            c2bExists = false;
+            c2Exists = false;
             $("#c5Blkc").show();
         }
     }
@@ -2148,6 +2168,7 @@ function c5c() {
         $("#erc5").hide();
         $("#c2Blk").show();
         c2Exists = true;
+        c2bExists = false;
         addArry(c5b);
     }
     else {
@@ -2165,8 +2186,14 @@ function c2() {
         if (c2Exists) {
             addArry(c5c);
         }
-        else {
+        else if (c2bExists) {
             addArry(c5b);
+        }
+        else if (c1cExists) {
+            addArry(c1c);
+        }
+        else {
+            addArry(c1b);
         }
         if (surArry.c3 === "1") {
             $("#c2Blka").show();
@@ -3090,10 +3117,8 @@ function hideAll() {
 function genSurData() {
     $.each(surArry, function(key, value) {
         if (key !== "a9_flag") {
-            if (key !== "a4_6_other" && key !== "a8_8_other" && key !== "a9_other") {
-                if (value === "") {
-                    surArry[key] = "0";
-                }
+            if (value === "") {
+                surArry[key] = "8888";
             }
         }
     });
