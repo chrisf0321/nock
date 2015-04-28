@@ -2984,7 +2984,7 @@ function f1d() {
         else {
             removeArry(f1e);
             f1Exists = false;
-            sur2Arry.f1e = "";
+            sur2Arry.f1e = "8888";
             $("#numPad2").hide();
             $("#keypad2").hide();
             $("#g1Blk").show();
