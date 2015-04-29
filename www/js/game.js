@@ -145,6 +145,13 @@ $(document).on('pagebeforeshow', '#survey', function() {
     a9Exists = false;
     b3Exists = false;
     c2Exists = false;
+    b1Exists = false;
+    c1Exists = false;
+    c1cExists = false;
+    c2bExists = false;
+    c3Exists = false;
+    c4Exists = false;
+    c4bExists = false;
     navArry = [];
     navPos = 0;
     $("input[type='radio']").each(function() {
@@ -1966,8 +1973,16 @@ function c1() {
             surArry.c2c = "";
             $("#c5atxt, #c5btxt").val("");
             $("#c1atxt, #c1btxt").val("");
-            $("#c1cOp1, #c1cOp2, #c1cOp3, #c1cOp4, #c1cOp5").prop("checked", false);
-            $("#c5Blk, #c5Blkc").find("input").prop("checked", false);
+            $("#c1cOp1, #c1cOp2, #c1cOp3, #c1cOp4, #c1cOp5").each(function() {
+                if ($(this).is(":checked")) {
+                    $(this).prop("checked", false).checkboxradio("refresh");
+                }
+            });
+            $("#c5Blk, #c5Blkc").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                    $(this).prop("checked", false).checkboxradio("refresh");
+                }
+            });
             removeArry(c1a);
             $("#c5Blk").show();
         }
@@ -2027,7 +2042,11 @@ function c1b() {
             surArry.c2b = "";
             surArry.c2c = "";
             $("#c5atxt, #c5btxt").val("");
-            $("#c1Blkc, #c5Blk, #c5Blkc").find("input").prop("checked", false);
+            $("#c1Blkc, #c5Blk, #c5Blkc").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                    $(this).prop("checked", false).checkboxradio("refresh");
+                }
+            });
             removeArry(c2);
             $("#erc9").hide();
             $("#c2Blk").show();
@@ -2055,7 +2074,11 @@ function c1c() {
         surArry.c2b = "";
         surArry.c2c = "";
         $("#c5atxt, #c5btxt").val("");
-        $("#c5Blk, #c5Blkc").find("input").prop("checked", false);
+        $("#c5Blk, #c5Blkc").find("input").each(function() {
+            if ($(this).is(":checked")) {
+                $(this).prop("checked", false).checkboxradio("refresh");
+            }
+        });
         addArry(c1b);
     }
     else {
@@ -2089,7 +2112,11 @@ function c5() {
             surArry.c2b = "";
             surArry.c2c = "";
             $("#c5atxt, #c5btxt, #c2atxt, #c2btxt, #c3atxt, #c3btxt").val("");
-            $("#c2Blka, #c2Blkc, #c3Blka, #c3Blkc, c3Blkd, #c5Blkc").find("input").prop("checked", false);
+            $("#c2Blka, #c2Blkc, #c3Blka, #c3Blkc, c3Blkd, #c5Blkc").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+            });
             $("#c4Blk").show();
         }
     }
@@ -2141,9 +2168,13 @@ function c5b() {
             surArry.c2c = "";
             c2Exists = false;
             c2bExists = true;
-            $("#c5Blkc").find("input").prop("checked", false);
-            removeArry(c5c);
+            $("#c5Blkc").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+            });
             $("#c2Blk").show();
+            removeArry(c5c);
         }
         else {
             c2bExists = false;
@@ -2254,14 +2285,18 @@ function c2b() {
         if (num > 0) {
             $("#erc9").hide();
             surArry.c3c = "";
-            $("#c2Blkc").find("input").prop("checked", false);
+            $("#c2Blkc").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+            });
+            c3Exists = true;
+            $("#c2Blkc").show();
+        }
+        else {
             c3Exists = false;
             removeArry(c2c);
             $("#c3Blk").show();
-        }
-        else {
-            c3Exists = true;
-            $("#c2Blkc").show();
         }
     }
     else if (surArry.c3b === "") {
@@ -2325,7 +2360,11 @@ function c3() {
             surArry.c4d_10 = "";
             surArry.c4d_11 = "";
             $("#c3atxt, #c3btxt").val("");
-            $("#c3Blkc, #c3Blkd").find("input").prop("checked", false);
+            $("#c3Blkc, #c3Blkd").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+            });
             removeArry(c3a);
             $("#c4Blk").show();
         }
@@ -2397,7 +2436,11 @@ function c3b() {
             else if (numC3a < (numA1 - 1) && num === 1) {
                 surArry.c3c = "";
                 c4bLocal = true;
-                $("#c3Blkc").find("input").prop("checked", false);
+                $("#c3Blkc").find("input").each(function() {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+                });
                 removeArry(c3c);
                 $("#c3Blkd").show();
             }
@@ -2415,7 +2458,11 @@ function c3b() {
                 surArry.c4d_9 = "";
                 surArry.c4d_10 = "";
                 surArry.c4d_11 = "";
-                $("#c3Blkc, #c3Blkd").find("input").prop("checked", false);
+                $("#c3Blkc, #c3Blkd").find("input").each(function() {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+                });
                 removeArry(c3d);
                 $("#c4Blk").show();
             }
@@ -2984,6 +3031,7 @@ function f1d() {
         else {
             removeArry(f1e);
             f1Exists = false;
+            $("#f1etxt").val("");
             sur2Arry.f1e = "8888";
             $("#numPad2").hide();
             $("#keypad2").hide();
