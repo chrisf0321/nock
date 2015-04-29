@@ -2311,7 +2311,7 @@ function c2b() {
 
 function c2c() {
     if (surArry.c3c !== "") {
-        $("#c2cBlk").hide();
+        $("#c2Blkc").hide();
         $("#erc8").hide();
         $("#erc9").hide();
         $("#c3Blk").show();
