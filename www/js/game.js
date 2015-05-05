@@ -716,8 +716,8 @@ function blk3Gen() {
     var loopCntrl;
     if (iatBlk >= 6) {
 		if (iSwitch) {
-			left = me.concat(death);
-			right = notMe.concat(life);
+			left = notMe.concat(death);
+			right = me.concat(life);
 		}
 		else {
 			left = notMe.concat(life);
@@ -726,8 +726,8 @@ function blk3Gen() {
     }
     else {
 		if (iSwitch) {
-			left = me.concat(life);
-			right = notMe.concat(death);
+			left = notMe.concat(life);
+			right = me.concat(death);
 		}
 		else {
 			left = notMe.concat(death);
