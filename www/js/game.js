@@ -2403,7 +2403,7 @@ function c3a() {
 function c3b() {
     surArry.c4b = $("#c3btxt").val();
     num = parseInt($("#c3btxt").val());
-    numC3a = parseInt(surArry.c3a);
+    numC3a = parseInt(surArry.c4a);
     numA1 = parseInt(surArry.a1);
     
     if (surArry.c4b !== "") {
