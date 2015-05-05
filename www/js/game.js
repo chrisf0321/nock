@@ -2048,7 +2048,7 @@ function c1b() {
                 }
             });
             removeArry(c2);
-            $("#erc9").hide();
+            $("#erc5").hide();
             $("#c2Blk").show();
         }
     }
@@ -2430,10 +2430,10 @@ function c3b() {
             if (numC3a === numA1 || numC3a === (numA1 - 1)) {
                 $("#c3Blkc").show();
             }
-            else if (numC3a < (numA1 - 1) && num > 1) {
+            else if ((numC3a < (numA1 - 1)) && (num > 1)) {
                 $("#c3Blkc").show();
             }
-            else if (numC3a < (numA1 - 1) && num === 1) {
+            else if ((numC3a < (numA1 - 1)) && (num === 1)) {
                 surArry.c3c = "";
                 c4bLocal = true;
                 $("#c3Blkc").find("input").each(function() {
@@ -3057,7 +3057,7 @@ function f1e() {
         addArry(f1d);
     }
     else {
-        $("#erf3").show();
+        $("#erf5").show();
     }
 }
 
