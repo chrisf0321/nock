@@ -9,6 +9,7 @@ var iCnt = 0;
 var iCurWrd;
 var iBlkMax;
 var sCnt = 0;
+var sTrl = 0;
 var rpNum = 0;
 var bpNum = 0;
 var pRed = false;
@@ -64,6 +65,9 @@ var c2bExists = false;
 var c3Exists = false;
 var c4Exists = false;
 var c4bExists = false;
+var iSwitch = false;
+var block;
+var blockcode;
 var surArry = { a1 : "", a2 : "", a3_1 : "", a3_2 : "", a3_3 : "", a3_4 : "", a3_5 : "", a4_1 : "", a4_2 : "", a4_3 : "", a4_4 : "",
                 a4_5 : "", a4_6 : "", a4_6_other : "", a5 : "", a6 : "", a7 : "", a8_1 : "", a8_2 : "", a8_3 : "", a8_4 : "", a8_5 : "", a8_6 : "", 
                 a8_7 : "", a8_8 : "", a8_8_other : "", a9 : "", a9_other : "", a9_flag : 0, a9a : "", a10 : "", b1a : "", b1b : "", b1c : "", b1d : "", b1e : "", b1f : "",
@@ -109,8 +113,14 @@ $(document).on('pagebeforeshow', '#iat', function() {
     $("#iBlk1").show();
     $("#lft1").css({'background-color': 'rgba(255, 0, 0, 0.5)'});
     $("#rgt1").css({'background-color': 'rgba(0, 0, 255, 0.5)'});
-    $("#lWrd3").text("Death");
-    $("#rWrd3").text("Life");
+	if (iSwitch) {
+		$("#lWrd3").text("Life");
+		$("#rWrd3").text("Death");
+	}
+	else {
+		$("#lWrd3").text("Death");
+		$("#rWrd3").text("Life");
+	}
     $("#lWrd3, #rWrd3").removeClass('green_font');
     $("#lWrd3, #rWrd3").addClass('gold_font');
     $("#or3, #or4, #lWrd4, #rWrd4").hide();
@@ -429,7 +439,7 @@ function calcScore(num) {
                     iTime = 15000;
                 }
                 iCnt++;
-                recordTrial(iCurWrd, iTime, iCnt, iCorrect);
+                recordTrial(iCurWrd, iTime, iCnt, iCorrect, block, blockcode);
                 $("#wng1").css({'opacity': '0'});
                 iCorrect = true;
                 iStart();
@@ -448,7 +458,7 @@ function calcScore(num) {
                     iTime = 15000;
                 }
                 iCnt++;
-                recordTrial(iCurWrd, iTime, iCnt, iCorrect);
+                recordTrial(iCurWrd, iTime, iCnt, iCorrect, block, blockcode);
                 $("#wng1").css({'opacity': '0'});
                 iCorrect = true;
                 iStart();
@@ -462,7 +472,7 @@ function calcScore(num) {
 }
 
 function recordTrial(word, time, trial, correct) {
-    iatData.push({"trial" : trial, "word" : word, "time" : time, "correct" : correct});
+    iatData.push({"trial" : trial, "word" : word, "time" : time, "correct" : correct, "block" : block, "blockcode" : blockcode});
 }
 
 function calcIAT() {
@@ -572,7 +582,12 @@ function calcIAT() {
     iSd = iSdSum / 96;
     iSd = Math.sqrt(iSd);
     
-    iScore = (cMean - nMean) / iSd;
+	if (iSwitch) {
+		iScore = (nMean - cMean) / iSd;
+	}
+	else {
+		iScore = (cMean - nMean) / iSd;
+	}
     iScore = Math.round(iScore * 1000) / 1000;
     
     iatData.push({"wrong" : errorTrials, "below_400" : errorLat400, "above_10000" : errorLat10, "critical_blks_40_err" : blks_40_err,
@@ -581,6 +596,25 @@ function calcIAT() {
 
 function nextInst() {
     $("#welDiv").hide();
+	var swtch = Math.floor((Math.random() * 100) + 1);
+	if (swtch > 50) {
+		$("#i1").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>LIFE</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>DEATH</span> related words.");
+		$("#i3").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>LIFE</span> and for <span style='color:green'>NOT ME</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>DEATH</span> and for <span style='color:green'>ME</span> related words.");
+		$("#i4").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>LIFE</span> and for <span style='color:green'>NOT ME</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>DEATH</span> and for <span style='color:green'>ME</span> related words.");
+		$("#i5").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>DEATH</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>LIFE</span> related words.");
+		$("#i6").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>DEATH</span> and for <span style='color:green'>NOT ME</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>LIFE</span> and for <span style='color:green'>ME</span> related words.");
+		$("#i7").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>DEATH</span> and for <span style='color:green'>NOT ME</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>LIFE</span> and for <span style='color:green'>ME</span> related words.");
+		iSwitch = true;
+	}
+	else {
+		$("#i1").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>DEATH</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>LIFE</span> related words.");
+		$("#i3").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>DEATH</span> and for <span style='color:green'>NOT ME</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>LIFE</span> and for <span style='color:green'>ME</span> related words.");
+		$("#i4").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>DEATH</span> and for <span style='color:green'>NOT ME</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>LIFE</span> and for <span style='color:green'>ME</span> related words.");
+		$("#i5").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>LIFE</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>DEATH</span> related words.");
+		$("#i6").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>LIFE</span> and for <span style='color:green'>NOT ME</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>DEATH</span> and for <span style='color:green'>ME</span> related words.");
+		$("#i7").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>LIFE</span> and for <span style='color:green'>NOT ME</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>DEATH</span> and for <span style='color:green'>ME</span> related words.");
+		iSwitch = false;
+	}
     $("#iatDiv").show();
 }
 
@@ -591,14 +625,26 @@ function blk1Gen() {
     var loopSize;
     if (iatBlk === 5) {
         loopSize = 4;
-        left = life;
-        right = death;
+        if (iSwitch) {
+			left = death;
+			right = life;
+		}
+		else {
+			left = life;
+			right = death;
+		}
         iatArry = death.concat(life, left, right);
     }
     else {
         loopSize = 2;
-        left = death;
-        right = life;
+		if (iSwitch) {
+			left = life;
+			right = death;
+		}
+		else {
+			left = death;
+			right = life;
+		}
         iatArry = death.concat(life);
     }
     
@@ -669,12 +715,24 @@ function blk3Gen() {
     var newWrd;
     var loopCntrl;
     if (iatBlk >= 6) {
-        left = notMe.concat(life);
-        right = me.concat(death);
+		if (iSwitch) {
+			left = me.concat(death);
+			right = notMe.concat(life);
+		}
+		else {
+			left = notMe.concat(life);
+			right = me.concat(death);
+		}
     }
     else {
-        left = notMe.concat(death);
-        right = me.concat(life);
+		if (iSwitch) {
+			left = me.concat(life);
+			right = notMe.concat(death);
+		}
+		else {
+			left = notMe.concat(death);
+			right = me.concat(life);
+		}
     }
     iatArry = death.concat(life, notMe, me);
     
@@ -792,6 +850,7 @@ function iStart() {
                 $("#iBlk3").show();
                 $("#lWrd3").text("Not Me");
                 $("#rWrd3").text("Me"); 
+				blockcode = "NotMe/Me";
                 $("#lWrd3, #rWrd3").removeClass('gold_font');
                 $("#lWrd3, #rWrd3").addClass('green_font');
                 blk2Gen();
@@ -809,8 +868,16 @@ function iStart() {
                 else {
                     $("#iBlk4").show();
                 }
-                $("#lWrd3").text("Death");
-                $("#rWrd3").text("Life"); 
+				if (iSwitch) {
+					$("#lWrd3").text("Life");
+					$("#rWrd3").text("Death");
+					blockcode = "NotMe,Death/Me,Life";
+				}
+				else {
+					$("#lWrd3").text("Death");
+					$("#rWrd3").text("Life");
+					blockcode = "NotMe,Life/Me,Death";
+				}
                 $("#or3, #or4").text("or");
                 $("#lWrd4").text("Not Me");
                 $("#rWrd4").text("Me");
@@ -825,8 +892,16 @@ function iStart() {
                 iatBlk = 5;
                 $("#iBlk2").hide();
                 $("#iBlk6").show();
-                $("#lWrd3").text("Life");
-                $("#rWrd3").text("Death");
+				if (iSwitch) {
+					$("#lWrd3").text("Death");
+					$("#rWrd3").text("Life");
+					blockcode = "Death/Life"
+				}
+				else {
+					$("#lWrd3").text("Life");
+					$("#rWrd3").text("Death");
+					blockcode = "life/Death";
+				}
                 $("#lWrd4, #rWrd4, #or3, #or4").hide();
                 $("#lWrd3, #rWrd3").removeClass('green_font');
                 $("#lWrd3, #rWrd3").addClass('gold_font');
@@ -845,8 +920,16 @@ function iStart() {
                 else {
                     $("#iBlk7").show();
                 }
-                $("#lWrd3").text("Life");
-                $("#rWrd3").text("Death");
+				if (iSwitch) {
+					$("#lWrd3").text("Death");
+					$("#rWrd3").text("Life");
+					blockcode = "NotMe,Life/Me,Death";
+				}
+				else {
+					$("#lWrd3").text("Life");
+					$("#rWrd3").text("Death");
+					blockcode = "NotMe,Death/Me,Life";
+				}
                 $("#or3, #or4").text("or");
                 $("#lWrd4").text("Not Me");
                 $("#rWrd4").text("Me");
@@ -882,6 +965,7 @@ function stSST() {
     blue = false;
     active = false;
     sBlkMax = 56;
+	sTrl = 0;
     sTrial();
 }
 
@@ -1016,6 +1100,7 @@ function sStart() {
 }
 
 function sCalc(word, side, time, sColor) {
+	sTrl++;
     var choiceSide = "";
     var correct = false;
     var type = "";
@@ -1053,7 +1138,7 @@ function sCalc(word, side, time, sColor) {
 }
 
 function sRecord(word, side, time, color, correct, type) {
-    sstData.push({"stim" : word, "type" : type, "color" : color, "side" : side, "sTime" : time, "sCorrect" : correct});
+    sstData.push({"stim" : word, "type" : type, "color" : color, "side" : side, "sTime" : time, "sCorrect" : correct, "sTrial" : sTrl});
 }
 
 function sstScore() {
@@ -3171,3 +3256,4 @@ function genSurData() {
         }
     });
 }
+
