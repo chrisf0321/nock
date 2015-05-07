@@ -337,15 +337,13 @@ function resendData() {
             dataType: "json",
             data: JSON.stringify(dataSend),
             success: function(data, textStatus, jqXHR){
-                    console.log(redata);
-                    console.log(posi);
                     if (posi === redata.length - 1) {  
                         cleanup(newStore);
                     }
                     posi++;
             },
-            error: function(){
-                console.log(posi);
+            error: function(jqXHR, textStatus, errorThrown){
+                alert(errorThrown);
                 newStore.push(redata[posi]);
                 if (posi === redata.length - 1) {  
                         cleanup(newStore);
