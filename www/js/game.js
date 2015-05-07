@@ -4,6 +4,12 @@ $(function() {
 var saveURL = "http://nocksurvey.elasticbeanstalk.com/rest/nock";
 var hasTouch = ('ontouchstart' in window);
 var TOUCH_START = hasTouch ? "touchstart" : "mousedown";
+var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var stTime;
+var stopTime;
+var totTime;
+var testDay;
+var testDate;
 var pId = "";
 var iCnt = 0;
 var iCurWrd;
@@ -65,6 +71,7 @@ var c2bExists = false;
 var c3Exists = false;
 var c4Exists = false;
 var c4bExists = false;
+var cExists = false;
 var iSwitch = false;
 var blockcode;
 var surArry = { a1 : "", a2 : "", a3_1 : "", a3_2 : "", a3_3 : "", a3_4 : "", a3_5 : "", a4_1 : "", a4_2 : "", a4_3 : "", a4_4 : "",
@@ -202,6 +209,10 @@ $(document).on('pagebeforeshow', '#survey2', function() {
     $("#dBlk").show();
 });
 
+$(document).on('pagebeforeshow', '#finish', function() {
+    stopTime = new Date();
+});
+
 function iatBinds() {
     $("#lft, #rgt, #lft1, #rgt1").on(TOUCH_START, function() {
         var side = $(this).attr('id');
@@ -287,6 +298,7 @@ function idSt() {
         $("#err0").show();
     }
     else {
+        stTime = new Date();
         $.mobile.changePage("#wel");
     }
 }
@@ -393,7 +405,55 @@ function dataToJSON() {
         finData[key] = value;
     });
     
+    var testStart = formatAMPM(stTime);
+    var testStop = formatAMPM(stopTime);
+    testDay = days[stTime.getDay()];
+    testDate = formatDate(stTime);
+    totTime = formatTime(stTime, stopTime);
+    
+    finData["startTime"] = testStart;
+    finData["stopTime"] = testStop;
+    finData["testDay"] = testDay;
+    finData["testDate"] = testDate;
+    finData["totTime"] = totTime;
+    
     return JSON.stringify(finData);
+}
+
+function formatTime(start, stop) {
+    var st = start.getTime();
+    var sp = stop.getTime();
+    var time = sp - st;
+    var min = Math.floor(time / 60000);
+    var sec = ((time % 60000) / 1000).toFixed(0);
+    
+    return min + ":" + (sec < 10 ? '0' : '') + sec; 
+}
+
+function formatDate(tDate) {
+    var day = tDate.getDate();
+    var month = tDate.getMonth() + 1;
+    var year = tDate.getFullYear();
+    if (month < 10) {
+        month = "0" + month;
+    }
+    if (day < 10) {
+        day = "0" + day;
+    }
+    
+    return month + "/" + day + "/" + year;
+}
+
+function formatAMPM(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  hours = hours < 10 ? '0'+hours : hours;
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
 }
 
 function reset() {
@@ -917,12 +977,12 @@ function iStart() {
 				if (iSwitch) {
 					$("#lWrd3").text("Life");
 					$("#rWrd3").text("Death");
-					blockcode = "NotMe,Death/Me,Life";
+					blockcode = "NotMe,Life/Me,Death";
 				}
 				else {
 					$("#lWrd3").text("Death");
 					$("#rWrd3").text("Life");
-					blockcode = "NotMe,Life/Me,Death";
+					blockcode = "NotMe,Death/Me,Life";
 				}
                 $("#or3, #or4").text("or");
                 $("#lWrd4").text("Not Me");
@@ -969,12 +1029,12 @@ function iStart() {
 				if (iSwitch) {
 					$("#lWrd3").text("Death");
 					$("#rWrd3").text("Life");
-					blockcode = "NotMe,Life/Me,Death";
+					blockcode = "NotMe,Death/Me,Life";
 				}
 				else {
 					$("#lWrd3").text("Life");
 					$("#rWrd3").text("Death");
-					blockcode = "NotMe,Death/Me,Life";
+					blockcode = "NotMe,Life/Me,Death";
 				}
                 $("#or3, #or4").text("or");
                 $("#lWrd4").text("Not Me");
@@ -1971,16 +2031,16 @@ function b1Checks() {
     if (b1Ever > 0) {
         switch(b1Ever) {
             case 1:
-                $("#b2q").text("You reported " + b1Fill[0] + ".  About how old were you when this problem started?");
+                $("#b2q").text("You reported " + b1Fill[0] + ".  About how old were you when this problem first started?");
                 break;
             case 2:
-                $("#b2q").text("You reported " + b1Fill[0] + " and " + b1Fill[1] + ".  About how old were you when either of these problems started?");
+                $("#b2q").text("You reported " + b1Fill[0] + " and " + b1Fill[1] + ".  About how old were you when any of these problems first started?");
                 break;
             case 3:
-                $("#b2q").text("You reported " + b1Fill[0] + " and " + b1Fill[1] + " and " + b1Fill[2] + ".  About how old were you when any of these problems started?");
+                $("#b2q").text("You reported " + b1Fill[0] + " and " + b1Fill[1] + " and " + b1Fill[2] + ".  About how old were you when any of these problems first started?");
                 break;
             default:
-                $("#b2q").text("You reported quite a few of the above problems, like " + b1Fill[0] + ", " + b1Fill[1] + " and " + b1Fill[2] + ".  About how old were you when any of these problems started?");
+                $("#b2q").text("You reported some of the above problems, like " + b1Fill[0] + ", " + b1Fill[1] + " and " + b1Fill[2] + ".  About how old were you when any of these problems first started?");
                 break;
         }
     }
@@ -1991,7 +2051,7 @@ function b1Checks() {
                 $("#b3q").html("<b>About how many months out of 12 in the past year did you have this problem?</b><br><span class='smallTitle'><i>(Your best estimate is fine.)</i></span>");
                 break;
             case 2:
-                $("#b3q").html("<b>About how many months out of 12 in the past year did you have either of these problems?</b><br><span class='smallTitle'><i>(Your best estimate is fine.)</i></span>");
+                $("#b3q").html("<b>About how many months out of 12 in the past year did you have any of these problems?</b><br><span class='smallTitle'><i>(Your best estimate is fine.)</i></span>");
                 break;
             default:
                 $("#b3q").html("<b>About how many months out of 12 in the past year did you have any of these problems?</b><br><span class='smallTitle'><i>(Your best estimate is fine.)</i></span>");
@@ -2092,24 +2152,24 @@ function c1() {
             $("#keypad").show();
             $("#numPad").show();
             setID("#c1atxt", 2);
+            surArry.c2 = "";
+            surArry.c2a = "";
+            surArry.c2b = "";
+            surArry.c2c = "";
+            $("#c5atxt, #c5btxt").val("");
+            $("#c5Blk, #c5Blkc").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                    $(this).prop("checked", false).checkboxradio("refresh");
+                }
+            });
         }
         else {
             c1Exists = false;
             surArry.c1a = "";
             surArry.c1b = "";
             surArry.c1c = "";
-            surArry.c2 = "";
-            surArry.c2a = "";
-            surArry.c2b = "";
-            surArry.c2c = "";
-            $("#c5atxt, #c5btxt").val("");
             $("#c1atxt, #c1btxt").val("");
             $("#c1cOp1, #c1cOp2, #c1cOp3, #c1cOp4, #c1cOp5").each(function() {
-                if ($(this).is(":checked")) {
-                    $(this).prop("checked", false).checkboxradio("refresh");
-                }
-            });
-            $("#c5Blk, #c5Blkc").find("input").each(function() {
                 if ($(this).is(":checked")) {
                     $(this).prop("checked", false).checkboxradio("refresh");
                 }
@@ -2224,12 +2284,7 @@ function c5() {
         $("#erc19").hide();
         $("#erc19_1").hide();
         $("#erc14").hide();
-        if (c1Exists) {
-            addArry(c1c);
-        }
-        else {
-            addArry(c1);
-        }
+        addArry(c1);
         if (surArry.c2 === "1") {
             c2Exists = true;
             $("#c5Blka").show();
@@ -2358,12 +2413,14 @@ function c2() {
             addArry(c1b);
         }
         if (surArry.c3 === "1") {
+            cExists = false;
             $("#c2Blka").show();
             $("#keypad").show();
             $("#numPad").show();
             setID("#c2atxt", 2);
         }
         else {
+            cExists = true;
             surArry.c3a = "";
             surArry.c3b = "";
             surArry.c3c = "";
@@ -2415,12 +2472,6 @@ function c2b() {
         addArry(c2a);
         if (num > 0) {
             $("#erc9").hide();
-            surArry.c3c = "";
-            $("#c2Blkc").find("input").each(function() {
-                if ($(this).is(":checked")) {
-                        $(this).prop("checked", false).checkboxradio("refresh");
-                    }
-            });
             c3Exists = true;
             $("#c2Blkc").show();
         }
@@ -2428,6 +2479,12 @@ function c2b() {
             c3Exists = false;
             removeArry(c2c);
             $("#c3Blk").show();
+            surArry.c3c = "";
+            $("#c2Blkc").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+            });
         }
     }
     else if (surArry.c3b === "") {
@@ -2461,7 +2518,10 @@ function c3() {
         $("#erc10").hide();
         $("#erc10_1").hide();
         $("#erc14").hide();
-        if (c3Exists) {
+        if (cExists) {
+            addArry(c2);
+        }
+        else if (c3Exists) {
             addArry(c2c);
         }
         else {
@@ -2732,7 +2792,7 @@ function c4() {
             addArry(c3);
         }
         else if (c4bExists) {
-            addArry(c4b);
+            addArry(c3b);
         }
         else {
             addArry(c3d);
