@@ -315,7 +315,6 @@ function cleanup(arr) {
     window.localStorage.removeItem("stored");
     
     if (arr.length > 0) {
-        console.log("clean");
         window.localStorage.setItem("stored", JSON.stringify(arr));
         $("#reBtn").show();
     }
@@ -439,7 +438,7 @@ function calcScore(num) {
                     iTime = 15000;
                 }
                 iCnt++;
-                recordTrial(iCurWrd, iTime, iCnt, iCorrect, block, blockcode);
+                recordTrial(iCurWrd, iTime, iCnt, iCorrect, iatBlk, blockcode);
                 $("#wng1").css({'opacity': '0'});
                 iCorrect = true;
                 iStart();
@@ -458,7 +457,7 @@ function calcScore(num) {
                     iTime = 15000;
                 }
                 iCnt++;
-                recordTrial(iCurWrd, iTime, iCnt, iCorrect, block, blockcode);
+                recordTrial(iCurWrd, iTime, iCnt, iCorrect, iatBlk, blockcode);
                 $("#wng1").css({'opacity': '0'});
                 iCorrect = true;
                 iStart();
@@ -471,12 +470,14 @@ function calcScore(num) {
     }
 }
 
-function recordTrial(word, time, trial, correct) {
+function recordTrial(word, time, trial, correct, block, blockcode) {
     iatData.push({"trial" : trial, "word" : word, "time" : time, "correct" : correct, "block" : block, "blockcode" : blockcode});
 }
 
 function calcIAT() {
     var totScores = [];
+    var totScores1 = [];
+    var totScores2 = [];
     var errorTrials = 0;
     var errorLat400 = 0;
     var errorLat10 = 0;
@@ -485,15 +486,28 @@ function calcIAT() {
     var err6 = 0;
     var err7 = 0;
     var iScore = 0;
+    var iScore1 = 0;
+    var iScore2 = 0;
+    var iScoreStd = 0;
     var sum3 = 0;
     var sum4 = 0;
     var sum6 = 0;
     var sum7 = 0;
     var cMean = 0;
     var nMean = 0;
+    var cMeanStd1 = 0;
+    var nMeanStd1 = 0;
+    var cMeanStd2 = 0;
+    var nMeanStd2 = 0;
+    var iSdStd1 = 0;
+    var iSdSumStd1 = 0;
+    var iSdStd2 = 0;
+    var iSdSumStd2 = 0;
     var iSd = 0;
     var iSdSum = 0;
     var allMean = 0;
+    var allMeanStd1 = 0;
+    var allMeanStd2 = 0;
     var blks_40_err = 0;
     var session_30_err = false;
     
@@ -511,6 +525,7 @@ function calcIAT() {
         }
         sum3 += iatData[i].time;
         totScores.push(iatData[i].time);
+        totScores1.push(iatData[i].time);
     }
     for (var i = 48; i < 72; i++) {
         if (!iatData[i].correct) {
@@ -526,6 +541,7 @@ function calcIAT() {
         }
         sum4 += iatData[i].time;
         totScores.push(iatData[i].time);
+        totScores2.push(iatData[i].time);
     }
     for (var i = 96; i < 120; i++) {
         if (!iatData[i].correct) {
@@ -541,6 +557,7 @@ function calcIAT() {
         }
         sum6 += iatData[i].time;
         totScores.push(iatData[i].time);
+        totScores1.push(iatData[i].time);
     }
     for (var i = 120; i < 144; i++) {
         if (!iatData[i].correct) {
@@ -556,6 +573,7 @@ function calcIAT() {
         }
         sum7 += iatData[i].time;
         totScores.push(iatData[i].time);
+        totScores2.push(iatData[i].time);
     }
     if (err3 > 9) {
         blks_40_err++;
@@ -576,22 +594,52 @@ function calcIAT() {
     nMean = (sum6 + sum7) / 48;
     allMean = (sum3 + sum4 + sum6 + sum7) / 96;
     
+    cMeanStd1 = sum3 / 24;
+    nMeanStd1 = sum6 / 24;
+    cMeanStd2 = sum4 / 24;
+    nMeanStd2 = sum7 / 24;
+    
+    allMeanStd1 = (sum3 + sum6) / 48;
+    allMeanStd2 = (sum4 + sum7) / 48;
+    
     for (var i = 0; i < totScores.length; i++) {
         iSdSum += Math.pow((allMean - totScores[i]), 2);
     }
+    
+    for (var i = 0; i < totScores1.length; i++) {
+        iSdSumStd1 += Math.pow((allMeanStd1 - totScores1[i]), 2);
+    }
+    
+    for (var i = 0; i < totScores2.length; i++) {
+        iSdSumStd2 += Math.pow((allMeanStd2 - totScores2[i]), 2);
+    }
+    
     iSd = iSdSum / 96;
     iSd = Math.sqrt(iSd);
     
+    iSdStd1 = iSdSumStd1 / 48;
+    iSdStd1 = Math.sqrt(iSdStd1);
+    
+    iSdStd2 = iSdSumStd2 / 48;
+    iSdStd2 = Math.sqrt(iSdStd2);
+    
 	if (iSwitch) {
 		iScore = (nMean - cMean) / iSd;
+                iScore1 = (nMeanStd1 - cMeanStd1) / iSdStd1;
+                iScore2 = (nMeanStd2 - cMeanStd2) / iSdStd2;              
 	}
 	else {
 		iScore = (cMean - nMean) / iSd;
+                iScore1 = (cMeanStd1 - nMeanStd1) / iSdStd1;
+                iScore2 = (cMeanStd2 - nMeanStd2) / iSdStd2; 
 	}
     iScore = Math.round(iScore * 1000) / 1000;
     
+    iScoreStd = (iScore1 - iScore2) / 2;
+    iScoreStd = Math.round(iScoreStd * 1000)/ 1000;
+    
     iatData.push({"wrong" : errorTrials, "below_400" : errorLat400, "above_10000" : errorLat10, "critical_blks_40_err" : blks_40_err,
-                  "session_30_err" : session_30_err, "iat_score" : iScore});
+                  "session_30_err" : session_30_err, "iat_score" : iScore, "iat_score_std" : iScoreStd});
 }
 
 function nextInst() {
@@ -965,7 +1013,7 @@ function stSST() {
     blue = false;
     active = false;
     sBlkMax = 56;
-	sTrl = 0;
+    sTrl = 0;
     sTrial();
 }
 
@@ -1100,7 +1148,7 @@ function sStart() {
 }
 
 function sCalc(word, side, time, sColor) {
-	sTrl++;
+    sTrl++;
     var choiceSide = "";
     var correct = false;
     var type = "";
@@ -1134,10 +1182,10 @@ function sCalc(word, side, time, sColor) {
     else if ($.inArray(word, positive) !== -1) {
         type = "positive";
     }
-    sRecord(word, choiceSide, time, sColor, correct, type);
+    sRecord(word, choiceSide, time, sColor, correct, type, sTrl);
 }
 
-function sRecord(word, side, time, color, correct, type) {
+function sRecord(word, side, time, color, correct, type, sTrl) {
     sstData.push({"stim" : word, "type" : type, "color" : color, "side" : side, "sTime" : time, "sCorrect" : correct, "sTrial" : sTrl});
 }
 
