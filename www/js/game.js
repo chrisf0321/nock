@@ -467,7 +467,6 @@ function calcScore(num) {
 }
 
 function recordTrial(word, time, trial, correct, block, blockcode) {
-    alert(blockcode);
     iatData.push({"trial" : trial, "word" : word, "time" : time, "correct" : correct, "block" : block, "blockcode" : blockcode});
 }
 
