@@ -66,7 +66,6 @@ var c3Exists = false;
 var c4Exists = false;
 var c4bExists = false;
 var iSwitch = false;
-var block;
 var blockcode;
 var surArry = { a1 : "", a2 : "", a3_1 : "", a3_2 : "", a3_3 : "", a3_4 : "", a3_5 : "", a4_1 : "", a4_2 : "", a4_3 : "", a4_4 : "",
                 a4_5 : "", a4_6 : "", a4_6_other : "", a5 : "", a6 : "", a7 : "", a8_1 : "", a8_2 : "", a8_3 : "", a8_4 : "", a8_5 : "", a8_6 : "", 
@@ -343,7 +342,6 @@ function resendData() {
                     posi++;
             },
             error: function(jqXHR, textStatus, errorThrown){
-                alert(errorThrown);
                 newStore.push(redata[posi]);
                 if (posi === redata.length - 1) {  
                         cleanup(newStore);
@@ -469,6 +467,7 @@ function calcScore(num) {
 }
 
 function recordTrial(word, time, trial, correct, block, blockcode) {
+    alert(blockcode);
     iatData.push({"trial" : trial, "word" : word, "time" : time, "correct" : correct, "block" : block, "blockcode" : blockcode});
 }
 
@@ -650,7 +649,8 @@ function nextInst() {
 		$("#i5").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>DEATH</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>LIFE</span> related words.");
 		$("#i6").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>DEATH</span> and for <span style='color:green'>NOT ME</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>LIFE</span> and for <span style='color:green'>ME</span> related words.");
 		$("#i7").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>DEATH</span> and for <span style='color:green'>NOT ME</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>LIFE</span> and for <span style='color:green'>ME</span> related words.");
-		iSwitch = true;
+		blockcode = "Life/Death";
+                iSwitch = true;
 	}
 	else {
 		$("#i1").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>DEATH</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>LIFE</span> related words.");
@@ -659,7 +659,8 @@ function nextInst() {
 		$("#i5").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>LIFE</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>DEATH</span> related words.");
 		$("#i6").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>LIFE</span> and for <span style='color:green'>NOT ME</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>DEATH</span> and for <span style='color:green'>ME</span> related words.");
 		$("#i7").html("During this part of the task, tap the LEFT side of the screen for <span style='color:gold'>LIFE</span> and for <span style='color:green'>NOT ME</span> related words.  Tap the RIGHT side of the screen for <span style='color:gold'>DEATH</span> and for <span style='color:green'>ME</span> related words.");
-		iSwitch = false;
+		blockcode = "Death/Life";
+                iSwitch = false;
 	}
     $("#iatDiv").show();
 }
@@ -941,7 +942,7 @@ function iStart() {
 				if (iSwitch) {
 					$("#lWrd3").text("Death");
 					$("#rWrd3").text("Life");
-					blockcode = "Death/Life"
+					blockcode = "Death/Life";
 				}
 				else {
 					$("#lWrd3").text("Life");
