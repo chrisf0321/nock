@@ -692,7 +692,7 @@ function calcIAT() {
 	}
     iScore = Math.round(iScore * 1000) / 1000;
     
-    iScoreStd = (iScore1 - iScore2) / 2;
+    iScoreStd = (iScore1 + iScore2) / 2;
     iScoreStd = Math.round(iScoreStd * 1000)/ 1000;
     
     iatData.push({"wrong" : errorTrials, "below_400" : errorLat400, "above_10000" : errorLat10, "critical_blks_40_err" : blks_40_err,
@@ -1286,14 +1286,12 @@ function sstScore() {
         sum += corArry[x].sTime;
     }
     mean = sum / corArry.length;
-    mean = Math.round(mean * 1000) / 1000;
     
     for (var i = 0; i < corArry.length; i++) {
         sumSd += Math.pow((mean - corArry[i].sTime), 2);
     }
     sd = sumSd / corArry.length;
     sd = Math.sqrt(sd);
-    sd = Math.round(sd * 1000) / 1000;
     low = mean - (sd * 2);
     high = mean + (sd * 2);
     
@@ -1325,28 +1323,24 @@ function sstScore() {
             meanDep += depArry[i].sTime;
         }
         meanDep = meanDep / depArry.length;
-        meanDep = Math.round(meanDep * 1000) / 1000;
     }
     if (validPos > 0) {
         for (var i = 0; i < posArry.length; i++) {
             meanPos += posArry[i].sTime;
         }
         meanPos = meanPos / posArry.length;
-        meanPos = Math.round(meanPos * 1000) / 1000;
     }
     if (validNeut > 0) {
         for (var i = 0; i < neutArry.length; i++) {
             meanNeut += neutArry[i].sTime;
         }
         meanNeut = meanNeut / neutArry.length;
-        meanNeut = Math.round(meanNeut * 1000) / 1000;
     }
     if (validSui > 0) {
         for (var i = 0; i < suiArry.length; i++) {
             meanSui += suiArry[i].sTime;
         }
         meanSui = meanSui / suiArry.length;
-        meanSui = Math.round(meanSui * 1000) / 1000;
     }
     intDep = meanDep - meanNeut;
     intPos = meanPos - meanNeut;
@@ -1841,7 +1835,11 @@ function a9() {
         }
         else {
             surArry.a9a = "";
-            $("#a9aOp1, #a9aOp2, #a9aOp3, #a9aOp4").removeAttr("checked");
+            $("#a9aBlk").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                    $(this).prop("checked", false).checkboxradio("refresh");
+                }
+            });
             removeArry(a9a);
             a9Exists = false;
             $("#a10Blk").show();
