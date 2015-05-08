@@ -1366,6 +1366,7 @@ function sstScore() {
 function bindSur1() {
 $("#a2Op1, #a2Op2, #a2Op3, #a2Op4, #a2Op5").on('change', function() {
     surArry.a2 = $(this).val();
+    a2();
 });
 
 $("#a3Op1, #a3Op2, #a3Op3, #a3Op4, #a3Op5").on('change', function() {
@@ -1379,14 +1380,17 @@ $("#a3Op1, #a3Op2, #a3Op3, #a3Op4, #a3Op5").on('change', function() {
 
 $("#a5Op1, #a5Op2, #a5Op3, #a5Op4, #a5Op5, #a5Op6, #a5Op7").on('change', function() {
     surArry.a5 = $(this).val();
+    a5();
 });
 
 $("#a6Op1, #a6Op2, #a6Op3, #a6Op4, #a6Op5").on('change', function() {
     surArry.a6 = $(this).val();
+    a6();
 });
 
 $("#a7Op1, #a7Op2, #a7Op3, #a7Op4").on('change', function() {
     surArry.a7 = $(this).val();
+    a7();
 });
 
 $("#a4Op6").on('change', function() {
@@ -1433,10 +1437,12 @@ $("#a9Op8").on('change', function() {
 
 $("#a9aOp1, #a9aOp2, #a9aOp3, #a9aOp4").on('change', function() {
     surArry.a9a = $(this).val();
+    a9a();
 });
 
 $("#a10Op1, #a10Op2, #a10Op3, #a10Op4, #a10Op5, #a10Op6").on('change', function() {
     surArry.a10 = $(this).val();
+    a10();
 });
 
 $("#b1Op1, #b1Op2, #b1Op3, #b1Op4").on('change', function() {
@@ -1483,46 +1489,57 @@ $('td').on(TOUCH_START, function() {
 
 $("#c1Op1, #c1Op2").on('change', function() {
     surArry.c1 = $(this).val();
+    c1();
 });
 
 $("#c1cOp1, #c1cOp2, #c1cOp3, #c1cOp4, #c1cOp5").on('change', function() {
     surArry.c1c = $(this).val();
+    c1c();
 });
 
 $("#c2Op1, #c2Op2").on('change', function() {
     surArry.c3 = $(this).val();
+    c2();
 });
 
 $("#c2cOp1, #c2cOp2, #c2cOp3, #c2cOp4, #c2cOp5").on('change', function() {
     surArry.c3c = $(this).val();
+    c2c();
 });
 
 $("#c5Op1, #c5Op2").on('change', function() {
     surArry.c2 = $(this).val();
+    c5();
 });
 
 $("#c5cOp1, #c5cOp2, #c5cOp3, #c5cOp4, #c5cOp5").on('change', function() {
     surArry.c2c = $(this).val();
+    c5c();
 });
 
 $("#c3Op1, #c3Op2").on('change', function() {
     surArry.c4 = $(this).val();
+    c3();
 });
 
 $("#c3cOp1, #c3cOp2, #c3cOp3, #c3cOp4, #c3cOp5, #c3cOp6").on('change', function() {
     surArry.c4c = $(this).val();
+    c3c();
 });
 
 $("#c4Op1, #c4Op2").on('change', function() {
     surArry.c5 = $(this).val();
+    c4();
 });
 
 $("#c4bOp1, #c4bOp2, #c4bOp3, #c4bOp4, #c4bOp5, #c4bOp6, #c4bOp7, #c4bOp8").on('change', function() {
     surArry.c5b = $(this).val();
+    c4b();
 });
 
 $("#c4cOp1, #c4cOp2, #c4cOp3, #c4cOp4, #c4cOp5, #c4cOp6").on('change', function() {
     surArry.c5c = $(this).val();
+    c4c();
 });
 }
 
