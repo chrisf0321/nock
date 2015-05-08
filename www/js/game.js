@@ -72,6 +72,7 @@ var c3Exists = false;
 var c4Exists = false;
 var c4bExists = false;
 var cExists = false;
+var c25Exists = false;
 var iSwitch = false;
 var blockcode;
 var surArry = { a1 : "", a2 : "", a3_1 : "", a3_2 : "", a3_3 : "", a3_4 : "", a3_5 : "", a4_1 : "", a4_2 : "", a4_3 : "", a4_4 : "",
@@ -2287,6 +2288,7 @@ function c5() {
         addArry(c1);
         if (surArry.c2 === "1") {
             c2Exists = true;
+            c25Exists = false;
             $("#c5Blka").show();
             $("#keypad").show();
             $("#numPad").show();
@@ -2294,6 +2296,7 @@ function c5() {
         }
         else {
             c2Exists = false;
+            c25Exists = true;
             surArry.c2a = "";
             surArry.c2b = "";
             surArry.c2c = "";
@@ -2424,6 +2427,12 @@ function c2() {
             surArry.c3a = "";
             surArry.c3b = "";
             surArry.c3c = "";
+            $("#c2atxt, #c2btxt").val("");
+            $("#c2Blkc").find("input").each(function() {
+            if ($(this).is(":checked")) {
+                $(this).prop("checked", false).checkboxradio("refresh");
+            }
+        });
             $("#c3Blk").show();
         }
     }
@@ -2785,20 +2794,16 @@ function c4() {
         $("#erc14").hide();
         $("#erc15").hide();
         $("#erc15_1").hide();
-        if (!c2Exists) {
-            alert("c5");
+        if (c25Exists) {
             addArry(c5);
         }
         else if (!c4Exists) {
-            alert("c3");
             addArry(c3);
         }
         else if (c4bExists) {
-            alert("c3b");
             addArry(c3b);
         }
         else {
-            alert("c3d");
             addArry(c3d);
         }
         if (surArry.c5 === "1") {
