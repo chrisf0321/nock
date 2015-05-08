@@ -99,6 +99,7 @@ $(document).on('pagebeforeshow', '#home', function() {
 });
 
 $(document).on('pagebeforeshow', '#finish', function() {
+    stopTime = new Date();
     $("#svOk").hide();
     $("#svErr").hide();
     saveData();
@@ -210,10 +211,6 @@ $(document).on('pagebeforeshow', '#survey2', function() {
     $("#g1Slide").val("50").slider("refresh");
     hideSur();
     $("#dBlk").show();
-});
-
-$(document).on('pagebeforeshow', '#finish', function() {
-    stopTime = new Date();
 });
 
 function iatBinds() {
@@ -3216,6 +3213,7 @@ function f1d() {
         $("#f1Blkd").hide();
         $("#erf4").hide();
         $("#erf5").hide();
+        $("#erf6").hide();
         if (num > 0) {
             $("#numPad2").show();
             $("#keypad2").show();
@@ -3240,15 +3238,22 @@ function f1d() {
 
 function f1e() {
     sur2Arry.f1e = $("#f1etxt").val();
+    numf1 = parseInt($("#f1etxt").val());
     
     if (sur2Arry.f1e !== "") {
-        $("#f1Blke").hide();
-        $("#erf5").hide();
-        $("#numPad2").hide();
-        $("#keypad2").hide();
-        $("#g1Blk").show();
-        f1Exists = true;
-        addArry(f1d);
+        if (numf1 > 0) {
+            $("#f1Blke").hide();
+            $("#erf5").hide();
+            $("#erf6").show();
+            $("#numPad2").hide();
+            $("#keypad2").hide();
+            $("#g1Blk").show();
+            f1Exists = true;
+            addArry(f1d);
+        }
+        else {
+            $("#erf6").show();
+        }
     }
     else {
         $("#erf5").show();
