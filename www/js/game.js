@@ -156,6 +156,9 @@ $(document).on('pagebeforeshow', '#sst', function() {
 
 $(document).on('pagebeforeshow', '#survey', function() {
     FastClick.attach(document.body);
+    document.getElementById('survey').addEventListener('touchmove', function(e) {
+                    e.preventDefault();
+                }, false);
     bindNumPad();
     bindSur1();
     a9Exists = false;
