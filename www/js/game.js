@@ -2786,15 +2786,19 @@ function c4() {
         $("#erc15").hide();
         $("#erc15_1").hide();
         if (!c2Exists) {
+            alert("c5");
             addArry(c5);
         }
         else if (!c4Exists) {
+            alert("c3");
             addArry(c3);
         }
         else if (c4bExists) {
+            alert("c3b");
             addArry(c3b);
         }
         else {
+            alert("c3d");
             addArry(c3d);
         }
         if (surArry.c5 === "1") {
