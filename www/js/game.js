@@ -10,7 +10,8 @@ var stopTime;
 var totTime;
 var testDay;
 var testDate;
-var pId = "dbtest";
+var totSec;
+var pId = "";
 var iCnt = 0;
 var iCurWrd;
 var iBlkMax;
@@ -406,29 +407,41 @@ function dataToJSON() {
         finData[key] = value;
     });
     
-    /*var testStart = formatAMPM(stTime);
+    var testStart = formatAMPM(stTime);
     var testStop = formatAMPM(stopTime);
     testDay = days[stTime.getDay()];
     testDate = formatDate(stTime);
     totTime = formatTime(stTime, stopTime);
+    totSec = getSec(stTime, stopTime);
     
     finData["startTime"] = testStart;
     finData["stopTime"] = testStop;
     finData["testDay"] = testDay;
     finData["testDate"] = testDate;
-    finData["totTime"] = totTime;*/
+    finData["totTime"] = totTime;
+    finData["totSeconds"] = totSec;
     
     return JSON.stringify(finData);
+}
+
+function getSec(start, stop) {
+    var st = start.getTime();
+    var sp = stop.getTime();
+    var time = (sp - st) / 1000;
+    
+    return time;
 }
 
 function formatTime(start, stop) {
     var st = start.getTime();
     var sp = stop.getTime();
-    var time = sp - st;
-    var min = Math.floor(time / 60000);
-    var sec = ((time % 60000) / 1000).toFixed(0);
+    var time = (sp - st) / 1000;
+    var hours = Math.floor(time / 3600);
+    time -= hours * 3600;
+    var min = Math.floor(time / 60);
+    time -= min * 60;
     
-    return min + ":" + (sec < 10 ? '0' : '') + sec; 
+    return hours + ":" + (min < 10 ? '0' + min : min) + ":" + (time < 10 ? '0' + time : time); 
 }
 
 function formatDate(tDate) {
@@ -2061,8 +2074,8 @@ function b1Checks() {
         }
     }
     
-    if (b1Year > 0) {
-        switch(b1Year) {
+    if (b1Ever > 0) {
+        switch(b1Ever) {
             case 1:
                 $("#b3q").html("<b>About how many months out of 12 in the past year did you have this problem?</b><br><span class='smallTitle'><i>(Your best estimate is fine.)</i></span>");
                 break;
@@ -3321,7 +3334,9 @@ function g2() {
         $("#g2Blk").hide();
         $("#erg2").hide();
         $("#erg3").hide();
-        $("#g3Blk").show();
+        setTimeout(function() {
+            $("#g3Blk").show();
+        }, 500);
         addArry(g1);
     }
     else {
@@ -3411,22 +3426,5 @@ function genSurData() {
             }
         }
     });
-}
-
-function testData() {
-    var it = 0;
-    $.each(surArry, function(key, value) {
-        if (key !== "a9_flag") {
-            if (value === "") {
-                surArry[key] = it;
-                it++;
-            }
-        }
-    });
-    $.each(sur2Arry, function(key, value) {
-        sur2Arry[key] = it;
-        it++;
-    });
-    saveData();
 }
 
