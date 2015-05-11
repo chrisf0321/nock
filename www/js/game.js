@@ -411,8 +411,9 @@ function dataToJSON() {
     var testStop = formatAMPM(stopTime);
     testDay = days[stTime.getDay()];
     testDate = formatDate(stTime);
-    totTime = formatTime(stTime, stopTime);
-    totSec = getSec(stTime, stopTime);
+    var timers = formatTime(stTime, stopTime);
+    totTime = timers[0];
+    totSec = timers[1];
     
     finData["startTime"] = testStart;
     finData["stopTime"] = testStop;
@@ -424,24 +425,24 @@ function dataToJSON() {
     return JSON.stringify(finData);
 }
 
-function getSec(start, stop) {
-    var st = start.getTime();
-    var sp = stop.getTime();
-    var time = (sp - st) / 1000;
-    
-    return time;
-}
-
 function formatTime(start, stop) {
     var st = start.getTime();
     var sp = stop.getTime();
     var time = (sp - st) / 1000;
+    var tSec = time.toFixed(0);
     var hours = Math.floor(time / 3600);
     time -= hours * 3600;
     var min = Math.floor(time / 60);
     time -= min * 60;
+    hours = hours < 10 ? '0' + hours : hours;
+    min = min < 10 ? '0' + min : min;
+    time = time.toFixed(0);
     
-    return hours + ":" + (min < 10 ? '0' + min : min) + ":" + (time < 10 ? '0' + time : time); 
+    var timeArry = [];
+    timeArry.push(hours + ":" + min + ":" + time);
+    timeArry.push(tSec);
+    
+    return timeArry; 
 }
 
 function formatDate(tDate) {
