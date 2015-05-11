@@ -10,7 +10,7 @@ var stopTime;
 var totTime;
 var testDay;
 var testDate;
-var pId = "";
+var pId = "dbtest";
 var iCnt = 0;
 var iCurWrd;
 var iBlkMax;
