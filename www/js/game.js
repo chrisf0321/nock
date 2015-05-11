@@ -97,6 +97,7 @@ $(document).on('pagebeforeshow', '#home', function() {
     else {
         $("#reBtn").hide();
     }
+    testData();
 });
 
 $(document).on('pagebeforeshow', '#finish', function() {
@@ -3411,5 +3412,22 @@ function genSurData() {
             }
         }
     });
+}
+
+function testData() {
+    var it = 0;
+    $.each(surArry, function(key, value) {
+        if (key !== "a9_flag") {
+            if (value === "") {
+                surArry[key] = it;
+                it++;
+            }
+        }
+    });
+    $.each(sur2Arry, function(key, value) {
+        sur2Arry[key] = it;
+        it++;
+    });
+    saveData();
 }
 
