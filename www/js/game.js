@@ -97,7 +97,6 @@ $(document).on('pagebeforeshow', '#home', function() {
     else {
         $("#reBtn").hide();
     }
-    testData();
 });
 
 $(document).on('pagebeforeshow', '#finish', function() {
