@@ -406,7 +406,7 @@ function dataToJSON() {
         finData[key] = value;
     });
     
-    var testStart = formatAMPM(stTime);
+    /*var testStart = formatAMPM(stTime);
     var testStop = formatAMPM(stopTime);
     testDay = days[stTime.getDay()];
     testDate = formatDate(stTime);
@@ -416,7 +416,7 @@ function dataToJSON() {
     finData["stopTime"] = testStop;
     finData["testDay"] = testDay;
     finData["testDate"] = testDate;
-    finData["totTime"] = totTime;
+    finData["totTime"] = totTime;*/
     
     return JSON.stringify(finData);
 }
