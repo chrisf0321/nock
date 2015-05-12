@@ -434,9 +434,21 @@ function formatTime(start, stop) {
     time -= hours * 3600;
     var min = Math.floor(time / 60);
     time -= min * 60;
+    time = time.toFixed(0);
+    if (time === 60) {
+        if (min > 58) {
+            hours++;
+            min = 0;
+            time = 0;
+        }
+        else {
+            min++;
+            time = 0;
+        }
+    }
     hours = hours < 10 ? '0' + hours : hours;
     min = min < 10 ? '0' + min : min;
-    time = time.toFixed(0);
+    time = time < 10 ? '0' + time : time;
     
     var timeArry = [];
     timeArry.push(hours + ":" + min + ":" + time);
