@@ -1971,7 +1971,7 @@ function b1() {
                 surArry.b2 = "";
                 surArry.b3 = "";
                 $("#b2txt").val("");
-                $("#b2txt").val("");
+                $("#b3txt").val("");
                 b1Exists = true;
                 b3Exists = false;
                 removeArry(b2);
