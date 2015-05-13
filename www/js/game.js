@@ -10,7 +10,7 @@ var stopTime;
 var totTime;
 var testDay;
 var testDate;
-var bDetach;
+var bDetach = $("#b1Blk");
 var totSec;
 var pId = "";
 var iCnt = 0;
