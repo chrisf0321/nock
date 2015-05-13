@@ -1563,6 +1563,13 @@ $("#c4cOp1, #c4cOp2, #c4cOp3, #c4cOp4, #c4cOp5, #c4cOp6").on('change', function(
 });
 }
 
+function setHt(ele) {
+    var ht = $(ele).outerHeight(true);
+    var ht = ht + "px";
+    
+    $("#survey .ui-content").css({'height' : ht});
+}
+
 function aDis() {
     $("#aBlk").show();
 }
@@ -1571,6 +1578,7 @@ function aSt() {
     $("#aBlk").hide();
     $("#err1").hide();
     $("#a1Blk").show();
+    setHt("#a1Blk");
     $("#keypad").show();
     $("#numPad").show();
     $("#atxt").focus();
@@ -1590,6 +1598,7 @@ function a1() {
         $("#err1").hide();
         $("#err2").hide();
         $("#a2Blk").show();
+        setHt("#a2Blk");
         addArry(aSt);
     }
     else {
@@ -1603,6 +1612,7 @@ function a2() {
         $("#err2").hide();
         $("#err3").hide();
         $("#a3Blk").show();
+        setHt("#a3Blk");
         addArry(a1);
     }
     else {
@@ -1649,6 +1659,7 @@ function a3() {
         $("#err4").hide();
         $("#err4_1").hide();
         $("#a4Blk").show();
+        setHt("#a4Blk");
         addArry(a2);
     }
     else {
@@ -1709,6 +1720,7 @@ function a4() {
         $("#err4_1").hide();
         $("#err5").hide();
         $("#a5Blk").show();
+        setHt("#a5Blk");
         addArry(a3);
     }
     else {
@@ -1722,6 +1734,7 @@ function a5() {
         $("#err5").hide();
         $("#err6").hide();
         $("#a6Blk").show();
+        setHt("#a6Blk");
         addArry(a4);
     }
     else {
@@ -1735,6 +1748,7 @@ function a6() {
         $("#err6").hide();
         $("#err7").hide();
         $("#a7Blk").show();
+        setHt("#a7Blk");
         if (surArry.a6 === "1") {
             $("#a10q").text("What is your best estimate of your and your spouse's total income from all sources, before taxes, in 2014?");
         }
@@ -1756,6 +1770,7 @@ function a7() {
         $("#err8_1").hide();
         $("#a8inpt").hide();
         $("#a8Blk").show();
+        setHt("#a8Blk");
         addArry(a6);
     }
     else {
@@ -1830,6 +1845,7 @@ function a8() {
         $("#err9_1").hide();
         $("#a9inpt").hide();
         $("#a9Blk").show();
+        setHt("#a9Blk");
         addArry(a7);
     }
     else {
@@ -1858,6 +1874,7 @@ function a9() {
         addArry(a8);
         if (surArry.a9_flag === 1) {
             $("#a9aBlk").show();
+            setHt("#a9aBlk");
         }
         else {
             surArry.a9a = "";
@@ -1869,6 +1886,7 @@ function a9() {
             removeArry(a9a);
             a9Exists = false;
             $("#a10Blk").show();
+            setHt("#a10Blk");
         }
     }
     else {
@@ -1882,6 +1900,7 @@ function a9a() {
         $("#err9a").hide();
         $("#err10").hide();
         $("#a10Blk").show();
+        setHt("#a10Blk");
         a9Exists = true;
         addArry(a9);  //need to check this in other areas for questions that skip.
     }
@@ -1895,6 +1914,7 @@ function a10() {
         $("#a10Blk").hide();
         $("#err10").hide();
         $("#bBlk").show();
+        setHt("#bBlk");
         if (a9Exists) {
             addArry(a9a);
         }
@@ -1911,6 +1931,7 @@ function bSt() {
     $("#bBlk").hide();
     $("#erb1").hide();
     $("#b1Blk").show();
+    setHt("#b1Blk");
     addArry(a10);
 }
 
@@ -1920,6 +1941,7 @@ function b1c() {
         $("#erb1").hide();
         $("#erb2").hide();
         $("#b1Blkc").show();
+        setHt("#b1Blkc");
         addArry(bSt);
     }
     else {
@@ -1933,6 +1955,7 @@ function b1c1() {
         $("#erb2").hide();
         $("#erb3").hide();
         $("#b1Blkc1").show();
+        setHt("#b1Blkc1");
         addArry(b1c);
     }
     else {
@@ -1946,6 +1969,7 @@ function b1c2() {
         $("#erb3").hide();
         $("#erb4").hide();
         $("#b1Blkc2").show();
+        setHt("#b1Blkc2");
         addArry(b1c1);
     }
     else {
@@ -1963,6 +1987,7 @@ function b1() {
             addArry(b1c2);
             if (b1Ever > 0) {
                 $("#b2Blk").show();
+                setHt("#b2Blk");
                 $("#keypad").show();
                 $("#numPad").show();
                 setID("#b2txt", 2);
@@ -1976,6 +2001,7 @@ function b1() {
                 b3Exists = false;
                 removeArry(b2);
                 $("#cBlk").show();
+                setHt("#cBlk");
             }
         }
     }
@@ -2117,6 +2143,7 @@ function b2() {
         addArry(b1);
         if (b1Year > 0) {
             $("#b3Blk").show();
+            setHt("#b3Blk");
             b3Exists = true;
             $("#keypad").show();
             $("#numPad").show();
@@ -2128,6 +2155,7 @@ function b2() {
             removeArry(b3);
             b3Exists = false;
             $("#cBlk").show();
+            setHt("#cBlk");
             $("#keypad").hide();
             $("#numPad").hide();
         }
@@ -2153,6 +2181,7 @@ function b3() {
         $("#erb6").hide();
         $("#erb6_1").hide();
         $("#cBlk").show();
+        setHt("#cBlk");
         addArry(b2);
     }
     else if (surArry.b3 === "") {
@@ -2169,6 +2198,7 @@ function cSt() {
     $("#cBlk").hide();
     $("#erc1").hide();
     $("#c1Blk").show();
+    setHt("#c1Blk");
     if (b3Exists) {
         addArry(b3);
     }
@@ -2191,6 +2221,7 @@ function c1() {
         if (surArry.c1 === "1") {
             c1Exists = true;
             $("#c1Blka").show();
+            setHt("#c1Blka");
             $("#keypad").show();
             $("#numPad").show();
             setID("#c1atxt", 2);
@@ -2218,6 +2249,7 @@ function c1() {
             });
             removeArry(c1a);
             $("#c5Blk").show();
+            setHt("#c5Blk");
         }
     }
     else {
@@ -2239,6 +2271,7 @@ function c1a() {
         $("#erc3").hide();
         $("#erc3_1").hide();
         $("#c1Blkb").show();
+        setHt("#c1Blkb");
         addArry(c1);
     }
     else if (surArry.c1a === "") {
@@ -2266,6 +2299,7 @@ function c1b() {
         if (num > 0) {
             c1cExists = true;
             $("#c1Blkc").show();
+            setHt("#c1Blkc");
         }
         else {
             c1cExists = false;
@@ -2283,6 +2317,7 @@ function c1b() {
             removeArry(c2);
             $("#erc5").hide();
             $("#c2Blk").show();
+            setHt("#c2Blk");
         }
     }
     else if (surArry.c1b === "") {
@@ -2304,6 +2339,7 @@ function c1c() {
         $("#erc4").hide();
         $("#erc5").hide();
         $("#c2Blk").show();
+        setHt("#c2Blk");
         surArry.c2 = "";
         surArry.c2a = "";
         surArry.c2b = "";
@@ -2333,6 +2369,7 @@ function c5() {
             c2Exists = true;
             c25Exists = false;
             $("#c5Blka").show();
+            setHt("#c5Blka");
             $("#keypad").show();
             $("#numPad").show();
             setID("#c5atxt", 2);
@@ -2352,6 +2389,7 @@ function c5() {
                     }
             });
             $("#c4Blk").show();
+            setHt("#c4Blk");
         }
     }
     else {
@@ -2373,6 +2411,7 @@ function c5a() {
         $("#erc20").hide();
         $("#erc20_1").hide();
         $("#c5Blkb").show();
+        setHt("#c5Blkb");
         addArry(c5);
     }
     else if (surArry.c2a === "") {
@@ -2409,12 +2448,14 @@ function c5b() {
                     }
             });
             $("#c2Blk").show();
+            setHt("#c2Blk");
             removeArry(c5c);
         }
         else {
             c2bExists = false;
             c2Exists = false;
             $("#c5Blkc").show();
+            setHt("#c5Blkc");
         }
     }
     else if (surArry.c2b === "") {
@@ -2433,6 +2474,7 @@ function c5c() {
         $("#erc21").hide();
         $("#erc5").hide();
         $("#c2Blk").show();
+        setHt("#c2Blk");
         c2Exists = true;
         c2bExists = false;
         c1cExists = false;
@@ -2465,6 +2507,7 @@ function c2() {
         if (surArry.c3 === "1") {
             cExists = false;
             $("#c2Blka").show();
+            setHt("#c2Blka");
             $("#keypad").show();
             $("#numPad").show();
             setID("#c2atxt", 2);
@@ -2482,6 +2525,7 @@ function c2() {
             }
         });
             $("#c3Blk").show();
+            setHt("#c3Blk");
         }
     }
     else {
@@ -2503,6 +2547,7 @@ function c2a() {
         $("#erc7").hide();
         $("#erc7_1").hide();
         $("#c2Blkb").show();
+        setHt("#c2Blkb");
         addArry(c2);
     }
     else if (surArry.c3a === "") {
@@ -2531,12 +2576,14 @@ function c2b() {
             $("#erc9").hide();
             c3Exists = true;
             $("#c2Blkc").show();
+            setHt("#c2Blkc");
         }
         else {
             c3Exists = false;
             cExists = false;
             removeArry(c2c);
             $("#c3Blk").show();
+            setHt("#c3Blk");
             surArry.c3c = "";
             $("#c2Blkc").find("input").each(function() {
                 if ($(this).is(":checked")) {
@@ -2561,6 +2608,7 @@ function c2c() {
         $("#erc8").hide();
         $("#erc9").hide();
         $("#c3Blk").show();
+        setHt("#c3Blk");
         c3Exists = true;
         cExists = false;
         addArry(c2b);
@@ -2589,6 +2637,7 @@ function c3() {
         if (surArry.c4 === "1") {
             c4Exists = true;
             $("#c3Blka").show();
+            setHt("#c3Blka");
             $("#keypad").show();
             $("#numPad").show();
             setID("#c3atxt", 2);
@@ -2619,6 +2668,7 @@ function c3() {
             });
             removeArry(c3a);
             $("#c4Blk").show();
+            setHt("#c4Blk");
         }
     }
     else {
@@ -2640,6 +2690,7 @@ function c3a() {
         $("#erc11_1").hide();
         $("#erc11").hide();
         $("#c3Blkb").show();
+        setHt("#c3Blkb");
         addArry(c3);
     }
     else if (surArry.c4a === "") {
@@ -2695,6 +2746,7 @@ function c3b() {
                 });
                 removeArry(c3c);
                 $("#c3Blkd").show();
+                setHt("#c3Blkd");
             }
             else {
                 c4bExists = true;
@@ -2719,6 +2771,7 @@ function c3b() {
                 });
                 removeArry(c3d);
                 $("#c4Blk").show();
+                setHt("#c4Blk");
             }
         }
         else {
@@ -2738,6 +2791,7 @@ function c3c() {
         $("#erc12").hide();
         $("#erc13").hide();
         $("#c3Blkd").show();
+        setHt("#c3Blkd");
         addArry(c3b);
     }
     else {
@@ -2830,6 +2884,7 @@ function c3d() {
         $("#erc13").hide();
         $("#erc14").hide();
         $("#c4Blk").show();
+        setHt("#c4Blk");
         c25Exists = false;
         c4Exists = true;
         c4bExists = false;
@@ -2865,6 +2920,7 @@ function c4() {
         }
         if (surArry.c5 === "1") {
             $("#c4Blka").show();
+            setHt("#c4Blka");
             $("#keypad").show();
             $("#numPad").show();
             setID("#c4atxt", 2);
@@ -2894,6 +2950,7 @@ function c4a() {
         $("#erc15_1").hide();
         $("#erc16").hide();
         $("#c4Blkb").show();
+        setHt("#c4Blkb");
         addArry(c4);
     }
     else if (surArry.c5a === "") {
@@ -2912,6 +2969,7 @@ function c4b() {
         $("#erc16").hide();
         $("#erc17").hide();
         $("#c4Blkc").show();
+        setHt("#c4Blkc");
         addArry(c4a);
     }
     else {
