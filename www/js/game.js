@@ -10,7 +10,7 @@ var stopTime;
 var totTime;
 var testDay;
 var testDate;
-var bDetach = $("#b1Blk");
+var bDetach;
 var totSec;
 var pId = "";
 var iCnt = 0;
@@ -164,6 +164,7 @@ $(document).on('pagebeforeshow', '#survey', function() {
     /*document.getElementById('survey').addEventListener('touchmove', function(e) {
                     e.preventDefault();
                 }, false);*/
+    bDetach = $("#b1Blk");
     bindNumPad();
     bindSur1();
     a9Exists = false;
@@ -1857,6 +1858,7 @@ function a9() {
         $("#err9_1").hide();
         $("#err9a").hide();
         $("#err10").hide();
+        bDetach = $("#b1Blk").detach();
         addArry(a8);
         if (surArry.a9_flag === 1) {
             $("#a9aBlk").show();
@@ -1896,7 +1898,13 @@ function a10() {
     if (surArry.a10 !== "") {
         $("#a10Blk").hide();
         $("#err10").hide();
-        bDetach = $("#b1Blk").detach();
+        if (bDetach) {
+            $("#s1").append(bDetach);
+            bDetach = null;
+        }
+        else {
+            bDetach = $("#b1Blk").detach();
+        }
         $("#bBlk").show();
         if (a9Exists) {
             addArry(a9a);
@@ -1913,7 +1921,6 @@ function a10() {
 function bSt() {
     $("#bBlk").hide();
     $("#erb1").hide();
-    $("#s1").append(bDetach);
     $("#b1Blk").show();
     addArry(a10);
 }
