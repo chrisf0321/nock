@@ -10,6 +10,7 @@ var stopTime;
 var totTime;
 var testDay;
 var testDate;
+var bDetach;
 var totSec;
 var pId = "";
 var iCnt = 0;
@@ -1895,6 +1896,7 @@ function a10() {
     if (surArry.a10 !== "") {
         $("#a10Blk").hide();
         $("#err10").hide();
+        bDetach = $("#b1Blk, #b1Blkc, #b1Blkc1, #b1Blkc2").detach();
         $("#bBlk").show();
         if (a9Exists) {
             addArry(a9a);
@@ -1911,6 +1913,7 @@ function a10() {
 function bSt() {
     $("#bBlk").hide();
     $("#erb1").hide();
+    bDetach.appendTp("#s1");
     $("#b1Blk").show();
     addArry(a10);
 }
