@@ -9,7 +9,11 @@ body {
 
 .ui-content {
     padding: 0;
-    margin-bottom: 10%;
+}
+
+#survey .ui-content {
+    padding: 0;
+    height: 990px;
 }
 
 .ui-btn {
