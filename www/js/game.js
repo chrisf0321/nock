@@ -1896,7 +1896,7 @@ function a10() {
     if (surArry.a10 !== "") {
         $("#a10Blk").hide();
         $("#err10").hide();
-        bDetach = $("#b1Blk, #b1Blkc, #b1Blkc1, #b1Blkc2").detach();
+        bDetach = $("#b1Blk").detach();
         $("#bBlk").show();
         if (a9Exists) {
             addArry(a9a);
@@ -1913,7 +1913,7 @@ function a10() {
 function bSt() {
     $("#bBlk").hide();
     $("#erb1").hide();
-    bDetach.appendTo("#s1");
+    $("#s1").append(bDetach);
     $("#b1Blk").show();
     addArry(a10);
 }
