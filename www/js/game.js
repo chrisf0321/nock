@@ -74,6 +74,7 @@ var c4Exists = false;
 var c4bExists = false;
 var cExists = false;
 var c25Exists = false;
+var c3ser;
 var iSwitch = false;
 var blockcode;
 var surArry = { a1 : "", a2 : "", a3_1 : "", a3_2 : "", a3_3 : "", a3_4 : "", a3_5 : "", a4_1 : "", a4_2 : "", a4_3 : "", a4_4 : "",
@@ -159,9 +160,9 @@ $(document).on('pagebeforeshow', '#sst', function() {
 
 $(document).on('pagebeforeshow', '#survey', function() {
     FastClick.attach(document.body);
-    document.getElementById('survey').addEventListener('touchmove', function(e) {
+    /*document.getElementById('survey').addEventListener('touchmove', function(e) {
                     e.preventDefault();
-                }, false);
+                }, false);*/
     bindNumPad();
     bindSur1();
     a9Exists = false;
@@ -2269,6 +2270,7 @@ function c1b() {
         }
         else {
             c1cExists = false;
+            c3ser = "c1b";
             surArry.c1c = "";
             surArry.c2 = "";
             surArry.c2a = "";
@@ -2300,6 +2302,7 @@ function c1c() {
         c1cExists = true;
         c2Exists = false;
         c2bExists = false;
+        c3ser = "c1c";
         $("#c1Blkc").hide();
         $("#erc4").hide();
         $("#erc5").hide();
@@ -2403,6 +2406,7 @@ function c5b() {
             c2Exists = false;
             c2bExists = true;
             c1cExists = false;
+            c3ser = "c5b";
             $("#c5Blkc").find("input").each(function() {
                 if ($(this).is(":checked")) {
                         $(this).prop("checked", false).checkboxradio("refresh");
@@ -2433,6 +2437,7 @@ function c5c() {
         $("#erc21").hide();
         $("#erc5").hide();
         $("#c2Blk").show();
+        c3ser = "c5c";
         c2Exists = true;
         c2bExists = false;
         c1cExists = false;
@@ -2450,13 +2455,13 @@ function c2() {
         $("#erc6").hide();
         $("#erc6_1").hide();
         $("#erc9").hide();
-        if (c2Exists) {
+        if (c3ser === "c5c") {
             addArry(c5c);
         }
-        else if (c2bExists) {
+        else if (c3ser === "c5b") {
             addArry(c5b);
         }
-        else if (c1cExists) {
+        else if (c3ser === "c1c") {
             addArry(c1c);
         }
         else {

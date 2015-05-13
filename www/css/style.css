@@ -11,11 +11,6 @@ body {
     padding: 0;
 }
 
-#survey .ui-content {
-    padding: 0;
-    max-height: 990px;
-}
-
 .ui-btn {
     padding: 0.5em;
 }
