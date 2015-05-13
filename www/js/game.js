@@ -1913,7 +1913,7 @@ function a10() {
 function bSt() {
     $("#bBlk").hide();
     $("#erb1").hide();
-    bDetach.appendTp("#s1");
+    bDetach.appendTo("#s1");
     $("#b1Blk").show();
     addArry(a10);
 }
