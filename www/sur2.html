@@ -32,6 +32,19 @@
                                     </td>                           
                                 </tr>
                                 <tr>
+                                    <th>(v)</th>
+                                    <td>Please answer "Don't know" for this question.</td>
+                                    <td id="d1">
+                                        <input name="d1Op9" id="d1Op27" value="1" type="radio">
+                                    </td>
+                                    <td id="d2">
+                                        <input name="d1Op9" id="d1Op28" value="2" type="radio">
+                                    </td>
+                                    <td id="d3">
+                                        <input name="d1Op9" id="d1Op29" value="3" type="radio">
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>(b)</th>
                                     <td>have <ins>manic episodes</ins> lasting several days or longer when they were excited, full of energy, and did dangerous or embarrassing things? <i>(Do <ins>not</ins> include times due to using drugs or alcohol.)</i></td>
                                     <td id="d4"><input name="d1Op2" id="d1Op5" value="1" type="radio">
@@ -676,6 +689,25 @@
                                         <input name="e3Op12" id="e3Op60" value="5" type="radio">
                                     </td>   
                                 </tr>
+                                <tr>
+                                    <th>(v)</th>
+                                    <td>Please answer "Not at all like me" for this question.</td>
+                                    <td id="e111">
+                                        <input name="e3Op13" id="e3Op61" value="1" type="radio">
+                                    </td>
+                                    <td id="e112">
+                                        <input name="e3Op13" id="e3Op62" value="2" type="radio">
+                                    </td>
+                                    <td id="e113">
+                                        <input name="e3Op13" id="e3Op63" value="3" type="radio">
+                                    </td>
+                                    <td id="e114">
+                                        <input name="e3Op13" id="e3Op64" value="4" type="radio">
+                                    </td>
+                                    <td id="e115">
+                                        <input name="e3Op13" id="e3Op65" value="5" type="radio">
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <a id="esb7" onclick="e3()" class="ui-btn ui-corner-all">Next</a>
@@ -703,6 +735,12 @@
                         <input type="text" id="f1ctxt" value="" readonly="readonly" placeholder="Total times" />
                         <a id="fsb3" onclick="f1c()" class="ui-btn ui-corner-all">Next</a>
                         <p id="erf3" class="errmsg"><b>Please enter an answer.</b></p>
+                    </div>
+                    <div id="f1Blkv" class="sur2">
+                        <p><b>During the past 12 months (52 weeks), how many times...</b><br>please answer "0" for this question.</p>
+                        <input type="text" id="f1vtxt" value="" readonly="readonly" placeholder="" />
+                        <a id="fsb6" onclick="f1v()" class="ui-btn ui-corner-all">Next</a>
+                        <p id="erf7" class="errmsg"><b>Please enter an answer.</b></p>
                     </div>
                     <div id="f1Blkd" class="sur2">
                         <p><b>During the past 12 months (52 weeks), how many times...</b><br>were you admitted for an overnight stay at a hospital for the treatment of emotional or behavioral problems (indicate the number of <ins>separate times</ins> this happened, <ins>not</ins> including this visit)?</p>
@@ -771,6 +809,35 @@
                         </fieldset>
                         <a id="gsb2" onclick="g2()" class="ui-btn ui-corner-all" style="visibility:hidden">Next</a>
                         <p id="erg2" class="errmsg"><b>Please choose an answer.</b></p>
+                    </div>
+                    <div id="gvBlk" class="sur1">
+                        <p><b>Please answer "50%" for this question.</b></p>
+                        <fieldset id="gvbfd" data-role="controlgroup">
+                            <input name="gvbOp1" id="gvbOp1" value="1" type="radio">
+                            <label id="gvblb1" for="gvbOp1" class="chkbox">0%</label>
+                            <input name="gvbOp1" id="gvbOp2" value="2" type="radio">
+                            <label id="gvblb2" for="gvbOp2" class="chkbox">10%</label>
+                            <input name="gvbOp1" id="gvbOp3" value="3" type="radio">
+                            <label id="gvblb3" for="gvbOp3" class="chkbox">20%</label>
+                            <input name="gvbOp1" id="gvbOp4" value="4" type="radio">
+                            <label id="gvblb4" for="gvbOp4" class="chkbox">30%</label>
+                            <input name="gvbOp1" id="gvbOp5" value="5" type="radio">
+                            <label id="gvblb5" for="gvbOp5" class="chkbox">40%</label>
+                            <input name="gvbOp1" id="gvbOp6" value="6" type="radio">
+                            <label id="gvblb6" for="gvbOp6" class="chkbox">50%</label>
+                            <input name="gvbOp1" id="gvbOp7" value="7" type="radio">
+                            <label id="gvblb7" for="gvbOp7" class="chkbox">60%</label>
+                            <input name="gvbOp1" id="gvbOp8" value="8" type="radio">
+                            <label id="gvblb8" for="gvbOp8" class="chkbox">70%</label>
+                            <input name="gvbOp1" id="gvbOp9" value="9" type="radio">
+                            <label id="gvblb9" for="gvbOp9" class="chkbox">80%</label>
+                            <input name="gvbOp1" id="gvbOp10" value="10" type="radio">
+                            <label id="gvblb10" for="gvbOp10" class="chkbox">90%</label>
+                            <input name="gvbOp1" id="gvbOp11" value="11" type="radio">
+                            <label id="gvblb11" for="gvbOp11" class="chkbox">100%</label>
+                        </fieldset>
+                        <a id="gsb4" onclick="gv()" class="ui-btn ui-corner-all" style="visibility:hidden">Next</a>
+                        <p id="erg4" class="errmsg"><b>Please choose an answer.</b></p>
                     </div>
                     <div id="g3Blk" class="sur1">
                         <p><b>What are the chances that you will make a suicide attempt in the <ins>next 6 months</ins>?</b></p>
