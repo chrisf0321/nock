@@ -82,11 +82,13 @@ var surArry = { a1 : "", a2 : "", a3_1 : "", a3_2 : "", a3_3 : "", a3_4 : "", a3
                 a8_7 : "", a8_8 : "", a8_8_other : "", a9 : "", a9_other : "", a9_flag : 0, a9a : "", a10 : "", b1a : "", b1b : "", b1c : "", b1d : "", b1e : "", b1f : "",
                 b1g : "", b1h : "", b1i : "", b1j : "", b1k : "", b2 : "", b3 : "", c1 : "", c1a : "", c1b : "", c1c : "", c2 : "", c2a : "",
                 c2b : "", c2c : "", c3 : "", c3a : "", c3b : "", c3c : "", c4 : "", c4a : "", c4b : "", c4c : "", c4d_1 : "", c4d_2 : "", c4d_3 : "", c4d_4 : "", c4d_5 : "", c4d_6 : "",
-                c4d_7 : "", c4d_8 : "", c4d_9 : "", c4d_10 : "", c4d_11 : "", c5 : "", c5a : "", c5b : "", c5c : ""};
+                c4d_7 : "", c4d_8 : "", c4d_9 : "", c4d_10 : "", c4d_11 : "", c5 : "", c5a : "", c5b : "", c5c : "", a11 : "", b1v : "",
+                c4d0_1 : "", c4d0_2 : "", c4d0_3 : "", c4d0_4 : "", c4d0_5 : "", c4d0_6 : "", c4d0_7 : "", c4d0_8 : "", c4d0_9 : "", c4d0_10 : "", c4d0_11 : "",
+                c4d0i : "", c4d1 : "", c4d2 : "", c4d3 : "", c4d4 : "", c4d5 : "", c4d6 : "", c4d7 : "", c6 : "", c6cv : "", c6v : ""};
 var sur2Arry = { d1a : "", d1b : "", d1c : "", d1d : "", d1e : "", d1f : "", d1g : "", d1h : "", e1a : "", e1b : "", e1c : "", e1d : "",
                  e1e : "", e1f : "", e1g : "", e2a : "", e2b : "", e2c : "", e3a : "", e3b : "", e3c : "", e3d : "", e3e : "", e3f : "",
                  e3g : "", e3h : "", e3i : "", e3j : "", e3k : "", e3l : "", f1a : "", f1b : "", f1c : "", f1d : "", f1e : "", g1 : "",
-                 g2 : "", g3 : ""};
+                 g2 : "", g3 : "", d1v : "", e3v : "", f1v : "", gv : ""};
 var navArry = [];
 var navPos = 0;
 
@@ -499,11 +501,13 @@ function reset() {
                 a8_7 : "", a8_8 : "", a8_8_other : "", a9 : "", a9_other : "", a9_flag : 0, a9a : "", a10 : "", b1a : "", b1b : "", b1c : "", b1d : "", b1e : "", b1f : "",
                 b1g : "", b1h : "", b1i : "", b1j : "", b1k : "", b2 : "", b3 : "", c1 : "", c1a : "", c1b : "", c1c : "", c2 : "", c2a : "",
                 c2b : "", c2c : "", c3 : "", c3a : "", c3b : "", c3c : "", c4 : "", c4a : "", c4b : "", c4c : "", c4d_1 : "", c4d_2 : "", c4d_3 : "", c4d_4 : "", c4d_5 : "", c4d_6 : "",
-                c4d_7 : "", c4d_8 : "", c4d_9 : "", c4d_10 : "", c4d_11 : "", c5 : "", c5a : "", c5b : "", c5c : ""};
+                c4d_7 : "", c4d_8 : "", c4d_9 : "", c4d_10 : "", c4d_11 : "", c5 : "", c5a : "", c5b : "", c5c : "", a11 : "", b1v : "",
+                c4d0_1 : "", c4d0_2 : "", c4d0_3 : "", c4d0_4 : "", c4d0_5 : "", c4d0_6 : "", c4d0_7 : "", c4d0_8 : "", c4d0_9 : "", c4d0_10 : "", c4d0_11 : "",
+                c4d0i : "", c4d1 : "", c4d2 : "", c4d3 : "", c4d4 : "", c4d5 : "", c4d6 : "", c4d7 : "", c6 : "", c6cv : "", c6v : ""};
     sur2Arry = { d1a : "", d1b : "", d1c : "", d1d : "", d1e : "", d1f : "", d1g : "", d1h : "", e1a : "", e1b : "", e1c : "", e1d : "",
                  e1e : "", e1f : "", e1g : "", e2a : "", e2b : "", e2c : "", e3a : "", e3b : "", e3c : "", e3d : "", e3e : "", e3f : "",
                  e3g : "", e3h : "", e3i : "", e3j : "", e3k : "", e3l : "", f1a : "", f1b : "", f1c : "", f1d : "", f1e : "", g1 : "",
-                 g2 : "", g3 : ""};
+                 g2 : "", g3 : "", d1v : "", e3v : "", f1v : "", gv : ""};
     navArry = [];
     finData = {};
     navPos = 0;
@@ -1466,6 +1470,12 @@ $("#a10Op1, #a10Op2, #a10Op3, #a10Op4, #a10Op5, #a10Op6").on('change', function(
     a10();
 });
 
+    $("#a11Op1, #a11Op2, #a11Op3, #a11Op4, #a11Op5, #a11Op6").on('change', function() {
+        surArry.a11 = $(this).val();
+        a11();
+    });
+
+
 $("#b1Op1, #b1Op2, #b1Op3, #b1Op4").on('change', function() {
     surArry.b1a = $(this).val();
 });
@@ -1499,6 +1509,9 @@ $("#b1Op37, #b1Op38, #b1Op39, #b1Op40").on('change', function() {
 $("#b1Op41, #b1Op42, #b1Op43, #b1Op44").on('change', function() {
     surArry.b1k = $(this).val();
 });
+    $("#b1Op45, #b1Op46, #b1Op47, #b1Op48").on('change', function() {
+        surArry.b1v = $(this).val();
+    });
 
 // Handle radio button grids
 $('td').on(TOUCH_START, function() {
@@ -1562,6 +1575,35 @@ $("#c4cOp1, #c4cOp2, #c4cOp3, #c4cOp4, #c4cOp5, #c4cOp6").on('change', function(
     surArry.c5c = $(this).val();
     c4c();
 });
+    $("#c3d0iOp1, #c3d0iOp2, #c3d0iOp3, #c3d0iOp4, #c3d0iOp5, #c3d0iOp6, #c3d0iOp7, #c3d0iOp8, #c3d0iOp9, #c3d0iOp10, #c3d0iOp11").on('change', function() {
+        surArry.c3d0i = $(this).val();
+        c3d0i();
+    })
+    $("#c3d1Op1, #c3d1Op2, #c3d1Op3, #c3d1Op4, #c3d1Op5, #c3d1Op6").on('change', function() {
+        surArry.c3d1 = $(this).val();
+        c3d1();
+    });
+    $("#c3d2Op1, #c3d2Op2, #c3d2Op3, #c3d2Op4, #c3d2Op5, #c3d2Op6").on('change', function() {
+        surArry.c3d2 = $(this).val();
+        c3d2();
+    });
+    $("#c3d3Op1, #c3d3Op2, #c3d3Op3, #c3d3Op4, #c3d3Op5, #c3d3Op6").on('change', function() {
+        surArry.c3d3 = $(this).val();
+        c3d3();
+    });
+    $("#c3d4Op1, #c3d4Op2, #c3d4Op3, #c3d4Op4, #c3d4Op5, #c3d4Op6").on('change', function() {
+        surArry.c3d4 = $(this).val();
+        c3d4();
+    });
+    $("#c3d5Op1, #c3d5Op2, #c3d5Op3, #c3d5Op4, #c3d5Op5, #c3d5Op6").on('change', function() {
+        surArry.c3d5 = $(this).val();
+        c3d5();
+    });
+    $("#c3d6Op1, #c3d6Op2, #c3d6Op3, #c3d6Op4, #c3d6Op5, #c3d6Op6").on('change', function() {
+        surArry.c3d6 = $(this).val();
+        c3d6();
+    });
+
 }
 
 function aDis() {
@@ -1895,7 +1937,7 @@ function a10() {
     if (surArry.a10 !== "") {
         $("#a10Blk").hide();
         $("#err10").hide();
-        $("#bBlk").show();
+        $("#a11Blk").show();
         if (a9Exists) {
             addArry(a9a);
         }
@@ -1908,11 +1950,23 @@ function a10() {
     }
 }
 
+function a11() {
+    if (surArry.a11 !== "") {
+        $("#a11Blk").hide();
+        $("#err11").hide();
+        $("#bBlk").show();
+        addArry(a10);
+    }
+    else {
+        $("#err11").show();
+    }
+}
+
 function bSt() {
     $("#bBlk").hide();
     $("#erb1").hide();
     $("#b1Blk").show();
-    addArry(a10);
+    addArry(a11);
 }
 
 function b1c() {
@@ -1929,7 +1983,7 @@ function b1c() {
 }
 
 function b1c1() {
-    if (surArry.b1e !== "" && surArry.b1f !== "" && surArry.b1g !== "") {
+    if (surArry.b1e !== "" && surArry.b1f !== "" && surArry.b1g !== "" && surArry.b1v !== "") {
         $("#b1Blkc").hide();
         $("#erb2").hide();
         $("#erb3").hide();
@@ -2349,7 +2403,7 @@ function c5() {
             surArry.c2b = "";
             surArry.c2c = "";
             $("#c5atxt, #c5btxt, #c2atxt, #c2btxt, #c3atxt, #c3btxt").val("");
-            $("#c2Blka, #c2Blkc, #c3Blka, #c3Blkc, c3Blkd, #c5Blkc").find("input").each(function() {
+            $("#c2Blka, #c2Blkc, #c3Blka, #c3Blkc, #c3Blkd, #c5Blkc").find("input").each(function() {
                 if ($(this).is(":checked")) {
                         $(this).prop("checked", false).checkboxradio("refresh");
                     }
@@ -2752,6 +2806,8 @@ function c3c() {
 
 function c3d() {
     ans = false;
+    num = parseInt(surArry.c4b);
+    num2 = parseInt(surArry.c4c);
     
     if ($("#c3dOp1").prop('checked')) {
         ans = true;
@@ -2834,10 +2890,232 @@ function c3d() {
         $("#c3Blkd").hide();
         $("#erc13").hide();
         $("#erc14").hide();
-        $("#c4Blk").show();
+        //$("#c4Blk").show();
         c25Exists = false;
         c4Exists = true;
         c4bExists = false;
+        if (num == 1 && num2 <= 2) {
+            if (surArry.c4d_1 !== "" || surArry.c4d_2 !== "" || surArry.c4d_3 !== "") {
+                $("#c3d1Blk").show();
+                surArry.c4d0_1 = "";
+                surArry.c4d0_2 = "";
+                surArry.c4d0_3 = "";
+                surArry.c4d0_4 = "";
+                surArry.c4d0_5 = "";
+                surArry.c4d0_6 = "";
+                surArry.c4d0_7 = "";
+                surArry.c4d0_8 = "";
+                surArry.c4d0_9 = "";
+                surArry.c4d0_10 = "";
+                surArry.c4d0_11 = "";
+                surArry.c4d0i = "";
+                surArry.c4d7 = "";
+                surArry.c4d6 = "";
+                surArry.c4d5 = "";
+                surArry.c4d4 = "";
+                surArry.c4d3 = "";
+                surArry.c4d2 = "";
+                $("#c4d7txt").val("");
+                $("#c3d2Blk, #c3d3Blk, #c3d4Blk, #c3d5Blk, #c3d6Blk, #c3Blkd0, #c3Blkd0i").find("input").each(function() {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+                });
+            }
+            else if (surArry.c4d_4 !== "") {
+                $("#c3d2Blk").show();
+                surArry.c4d0_1 = "";
+                surArry.c4d0_2 = "";
+                surArry.c4d0_3 = "";
+                surArry.c4d0_4 = "";
+                surArry.c4d0_5 = "";
+                surArry.c4d0_6 = "";
+                surArry.c4d0_7 = "";
+                surArry.c4d0_8 = "";
+                surArry.c4d0_9 = "";
+                surArry.c4d0_10 = "";
+                surArry.c4d0_11 = "";
+                surArry.c4d0i = "";
+                surArry.c4d7 = "";
+                surArry.c4d6 = "";
+                surArry.c4d5 = "";
+                surArry.c4d4 = "";
+                surArry.c4d3 = "";
+                surArry.c4d1 = "";
+                $("#c4d7txt").val("");
+                $("#c3d1Blk, #c3d3Blk, #c3d4Blk, #c3d5Blk, #c3d6Blk, #c3Blkd0, #c3Blkd0i").find("input").each(function() {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+                });
+            }
+            else if (surArry.c4d_5 !== "" || surArry.c4d_6 !== "") {
+                $("#c3d3Blk").show();
+                surArry.c4d0_1 = "";
+                surArry.c4d0_2 = "";
+                surArry.c4d0_3 = "";
+                surArry.c4d0_4 = "";
+                surArry.c4d0_5 = "";
+                surArry.c4d0_6 = "";
+                surArry.c4d0_7 = "";
+                surArry.c4d0_8 = "";
+                surArry.c4d0_9 = "";
+                surArry.c4d0_10 = "";
+                surArry.c4d0_11 = "";
+                surArry.c4d0i = "";
+                surArry.c4d7 = "";
+                surArry.c4d6 = "";
+                surArry.c4d5 = "";
+                surArry.c4d4 = "";
+                surArry.c4d2 = "";
+                surArry.c4d1 = "";
+                $("#c4d7txt").val("");
+                $("#c3d1Blk, #c3d2Blk, #c3d4Blk, #c3d5Blk, #c3d6Blk, #c3Blkd0, #c3Blkd0i").find("input").each(function() {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+                });
+            }
+            else if (surArry.c4d_7 !== "") {
+                $("#c3d4Blk").show();
+                surArry.c4d0_1 = "";
+                surArry.c4d0_2 = "";
+                surArry.c4d0_3 = "";
+                surArry.c4d0_4 = "";
+                surArry.c4d0_5 = "";
+                surArry.c4d0_6 = "";
+                surArry.c4d0_7 = "";
+                surArry.c4d0_8 = "";
+                surArry.c4d0_9 = "";
+                surArry.c4d0_10 = "";
+                surArry.c4d0_11 = "";
+                surArry.c4d0i = "";
+                surArry.c4d7 = "";
+                surArry.c4d6 = "";
+                surArry.c4d5 = "";
+                surArry.c4d3 = "";
+                surArry.c4d2 = "";
+                surArry.c4d1 = "";
+                $("#c4d7txt").val("");
+                $("#c3d1Blk, #c3d3Blk, #c3d2Blk, #c3d5Blk, #c3d6Blk, #c3Blkd0, #c3Blkd0i").find("input").each(function() {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+                });
+            }
+            else if (surArry.c4d_8 !== "") {
+                $("#c3d5Blk").show();
+                surArry.c4d0_1 = "";
+                surArry.c4d0_2 = "";
+                surArry.c4d0_3 = "";
+                surArry.c4d0_4 = "";
+                surArry.c4d0_5 = "";
+                surArry.c4d0_6 = "";
+                surArry.c4d0_7 = "";
+                surArry.c4d0_8 = "";
+                surArry.c4d0_9 = "";
+                surArry.c4d0_10 = "";
+                surArry.c4d0_11 = "";
+                surArry.c4d0i = "";
+                surArry.c4d7 = "";
+                surArry.c4d6 = "";
+                surArry.c4d4 = "";
+                surArry.c4d3 = "";
+                surArry.c4d2 = "";
+                surArry.c4d1 = "";
+                $("#c4d7txt").val("");
+                $("#c3d1Blk, #c3d3Blk, #c3d2Blk, #c3d4Blk, #c3d6Blk, #c3Blkd0, #c3Blkd0i").find("input").each(function() {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+                });
+            }
+            else if (surArry.c4d_9 !== "" || surArry.c4d_10 != "") {
+                $("#c3d6Blk").show();
+                surArry.c4d0_1 = "";
+                surArry.c4d0_2 = "";
+                surArry.c4d0_3 = "";
+                surArry.c4d0_4 = "";
+                surArry.c4d0_5 = "";
+                surArry.c4d0_6 = "";
+                surArry.c4d0_7 = "";
+                surArry.c4d0_8 = "";
+                surArry.c4d0_9 = "";
+                surArry.c4d0_10 = "";
+                surArry.c4d0_11 = "";
+                surArry.c4d0i = "";
+                surArry.c4d7 = "";
+                surArry.c4d5 = "";
+                surArry.c4d4 = "";
+                surArry.c4d3 = "";
+                surArry.c4d2 = "";
+                surArry.c4d1 = "";
+                $("#c4d7txt").val("");
+                $("#c3d1Blk, #c3d3Blk, #c3d2Blk, #c3d4Blk, #c3d5Blk, #c3Blkd0, #c3Blkd0i").find("input").each(function() {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+                });
+            }
+            else if (surArry.c4d_11 !== "") {
+                $("#c3d7Blk").show();
+                surArry.c4d0_1 = "";
+                surArry.c4d0_2 = "";
+                surArry.c4d0_3 = "";
+                surArry.c4d0_4 = "";
+                surArry.c4d0_5 = "";
+                surArry.c4d0_6 = "";
+                surArry.c4d0_7 = "";
+                surArry.c4d0_8 = "";
+                surArry.c4d0_9 = "";
+                surArry.c4d0_10 = "";
+                surArry.c4d0_11 = "";
+                surArry.c4d0i = "";
+                surArry.c4d6 = "";
+                surArry.c4d5 = "";
+                surArry.c4d4 = "";
+                surArry.c4d3 = "";
+                surArry.c4d2 = "";
+                surArry.c4d1 = "";
+                //$("#c4d7txt").val("");
+                $("#c3d1Blk, #c3d3Blk, #c3d2Blk, #c3d4Blk, #c3d5Blk, #c3d6Blk, #c3Blkd0, #c3Blkd0i").find("input").each(function() {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+                });
+            }
+        }
+        else if (num > 1 && num2 <= 2) {
+            $("#c3Blkd0").show();
+        }
+        else {
+            $("#c4Blk").show();
+            surArry.c4d0_1 = "";
+            surArry.c4d0_2 = "";
+            surArry.c4d0_3 = "";
+            surArry.c4d0_4 = "";
+            surArry.c4d0_5 = "";
+            surArry.c4d0_6 = "";
+            surArry.c4d0_7 = "";
+            surArry.c4d0_8 = "";
+            surArry.c4d0_9 = "";
+            surArry.c4d0_10 = "";
+            surArry.c4d0_11 = "";
+            surArry.c4d0i = "";
+            surArry.c4d7 = "";
+            surArry.c4d6 = "";
+            surArry.c4d5 = "";
+            surArry.c4d4 = "";
+            surArry.c4d3 = "";
+            surArry.c4d2 = "";
+            surArry.c4d1 = "";
+            $("#c4d7txt").val("");
+            $("#c3d1Blk, #c3d3Blk, #c3d2Blk, #c3d4Blk, #c3d5Blk, #c3d6Blk, #c3Blkd0, #c3Blkd0i").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                    $(this).prop("checked", false).checkboxradio("refresh");
+                }
+            });
+        }
         if (c4bLocal) {
             addArry(c3b);
         }
@@ -2848,6 +3126,414 @@ function c3d() {
     else {
         $("#erc13").show();
     }
+}
+
+function c3d0() {
+    ans = false;
+    q1 = false;
+    q2 = false;
+    q3 = false;
+    q4 = false;
+    q5 = false;
+    q6 = false;
+    q7 = false;
+    q8 = false;
+    q9 = false;
+    q10 = false;
+    q11 = false;
+    num = 0;
+
+    if ($("#c3d0Op1").prop('checked')) {
+        ans = true;
+        q1 = true;
+        num++;
+        surArry.c4d0_1 = $("#c3d0Op1").val();
+    }
+    else {
+        surArry.c4d0_1 = "";
+    }
+    if ($("#c3d0Op2").prop('checked')) {
+        ans = true;
+        q2 = true;
+        num++;
+        surArry.c4d0_2 = $("#c3d0Op2").val();
+    }
+    else {
+        surArry.c4d0_2 = "";
+    }
+    if ($("#c3d0Op3").prop('checked')) {
+        ans = true;
+        q3 = true;
+        num++;
+        surArry.c4d0_3 = $("#c3d0Op3").val();
+    }
+    else {
+        surArry.c4d0_3 = "";
+    }
+    if ($("#c3d0Op4").prop('checked')) {
+        ans = true;
+        q4 = true;
+        num++;
+        surArry.c4d0_4 = $("#c3d0Op4").val();
+    }
+    else {
+        surArry.c4d0_4 = "";
+    }
+    if ($("#c3d0Op5").prop('checked')) {
+        ans = true;
+        q5 = true;
+        num++;
+        surArry.c4d0_5 = $("#c3d0Op5").val();
+    }
+    else {
+        surArry.c4d0_5 = "";
+    }
+    if ($("#c3d0Op6").prop('checked')) {
+        ans = true;
+        q6 = true;
+        num++;
+        surArry.c4d0_6 = $("#c3d0Op6").val();
+    }
+    else {
+        surArry.c4d0_6 = "";
+    }
+    if ($("#c3d0Op7").prop('checked')) {
+        ans = true;
+        q7 = true;
+        num++;
+        surArry.c4d0_7 = $("#c3d0Op7").val();
+    }
+    else {
+        surArry.c4d0_7 = "";
+    }
+    if ($("#c3d0Op8").prop('checked')) {
+        ans = true;
+        q8 = true;
+        num++;
+        surArry.c4d0_8 = $("#c3d0Op8").val();
+    }
+    else {
+        surArry.c4d0_8 = "";
+    }
+    if ($("#c3d0Op9").prop('checked')) {
+        ans = true;
+        q9 = true;
+        num++;
+        surArry.c4d0_9 = $("#c3d0Op9").val();
+    }
+    else {
+        surArry.c4d0_9 = "";
+    }
+    if ($("#c3d0Op10").prop('checked')) {
+        ans = true;
+        q10 = true;
+        num++;
+        surArry.c4d0_10 = $("#c3d0Op10").val();
+    }
+    else {
+        surArry.c4d0_10 = "";
+    }
+    if ($("#c3d0Op11").prop('checked')) {
+        ans = true;
+        q11 = true;
+        num++;
+        surArry.c4d0_11 = $("#c3d0Op11").val();
+    }
+    else {
+        surArry.c4d0_11 = "";
+    }
+    if (ans) {
+        if (num > 1) {
+            $("#c3Blkd0i").show();
+            if (!q1) {
+                $("#c3d0iOp1, #c3d0iOp1_1").hide();
+            }
+            if (!q2) {
+                $("#c3d0iOp2, #c3d0iOp2_2").hide();
+            }
+            if (!q3) {
+                $("#c3d0iOp3, #c3d0iOp3_3").hide();
+            }
+            if (!q4) {
+                $("#c3d0iOp4, #c3d0iOp4_4").hide();
+            }
+            if (!q5) {
+                $("#c3d0iOp5, #c3d0iOp5_5").hide();
+            }
+            if (!q6) {
+                $("#c3d0iOp6, #c3d0iOp6_6").hide();
+            }
+            if (!q7) {
+                $("#c3d0iOp7, #c3d0iOp7_7").hide();
+            }
+            if (!q8) {
+                $("#c3d0iOp8, #c3d0iOp8_8").hide();
+            }
+            if (!q9) {
+                $("#c3d0iOp9, #c3d0iOp9_9").hide();
+            }
+            if (!q10) {
+                $("#c3d0iOp10, #c3d0iOp10_10").hide();
+            }
+            if (!q11) {
+                $("#c3d0iOp11, #c3d0iOp11_11").hide();
+            }
+        }
+        else {
+            if (surArry.c4d0_1 !== "" || surArry.c4d0_2 !== "" || surArry.c4d0_3 !== "") {
+                $("#c3d1Blk").show();
+                surArry.c4d0i = "";
+                surArry.c4d7 = "";
+                surArry.c4d6 = "";
+                surArry.c4d5 = "";
+                surArry.c4d4 = "";
+                surArry.c4d3 = "";
+                surArry.c4d2 = "";
+                $("#c4d7txt").val("");
+                $("#c3d2Blk, #c3d3Blk, #c3d4Blk, #c3d5Blk, #c3d6Blk, #c3Blkd0i").find("input").each(function() {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+                });
+            }
+            else if (surArry.c4d0_4 !== "") {
+                $("#c3d2Blk").show();
+                surArry.c4d0i = "";
+                surArry.c4d7 = "";
+                surArry.c4d6 = "";
+                surArry.c4d5 = "";
+                surArry.c4d4 = "";
+                surArry.c4d3 = "";
+                surArry.c4d1 = "";
+                $("#c4d7txt").val("");
+                $("#c3d1Blk, #c3d3Blk, #c3d4Blk, #c3d5Blk, #c3d6Blk, #c3Blkd0i").find("input").each(function() {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+                });
+            }
+            else if (surArry.c4d0_5 !== "" || surArry.c4d0_6 !== "") {
+                $("#c3d3Blk").show();
+                surArry.c4d0i = "";
+                surArry.c4d7 = "";
+                surArry.c4d6 = "";
+                surArry.c4d5 = "";
+                surArry.c4d4 = "";
+                surArry.c4d2 = "";
+                surArry.c4d1 = "";
+                $("#c4d7txt").val("");
+                $("#c3d1Blk, #c3d2Blk, #c3d4Blk, #c3d5Blk, #c3d6Blk, #c3Blkd0i").find("input").each(function() {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+                });
+            }
+            else if (surArry.c4d0_7 !== "") {
+                $("#c3d4Blk").show();
+                surArry.c4d0i = "";
+                surArry.c4d7 = "";
+                surArry.c4d6 = "";
+                surArry.c4d5 = "";
+                surArry.c4d3 = "";
+                surArry.c4d2 = "";
+                surArry.c4d1 = "";
+                $("#c4d7txt").val("");
+                $("#c3d1Blk, #c3d3Blk, #c3d2Blk, #c3d5Blk, #c3d6Blk, #c3Blkd0i").find("input").each(function() {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+                });
+            }
+            else if (surArry.c4d0_8 !== "") {
+                $("#c3d5Blk").show();
+                surArry.c4d0i = "";
+                surArry.c4d7 = "";
+                surArry.c4d6 = "";
+                surArry.c4d4 = "";
+                surArry.c4d3 = "";
+                surArry.c4d2 = "";
+                surArry.c4d1 = "";
+                $("#c4d7txt").val("");
+                $("#c3d1Blk, #c3d3Blk, #c3d2Blk, #c3d4Blk, #c3d6Blk, #c3Blkd0i").find("input").each(function() {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+                });
+            }
+            else if (surArry.c4d0_9 !== "" || surArry.c4d0_10 != "") {
+                $("#c3d6Blk").show();
+                surArry.c4d0i = "";
+                surArry.c4d7 = "";
+                surArry.c4d5 = "";
+                surArry.c4d4 = "";
+                surArry.c4d3 = "";
+                surArry.c4d2 = "";
+                surArry.c4d1 = "";
+                $("#c4d7txt").val("");
+                $("#c3d1Blk, #c3d3Blk, #c3d2Blk, #c3d4Blk, #c3d5Blk, #c3Blkd0i").find("input").each(function() {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+                });
+            }
+            else if (surArry.c4d0_11 !== "") {
+                $("#c3d7Blk").show();
+                surArry.c4d0i = "";
+                surArry.c4d6 = "";
+                surArry.c4d5 = "";
+                surArry.c4d4 = "";
+                surArry.c4d3 = "";
+                surArry.c4d2 = "";
+                surArry.c4d1 = "";
+                //$("#c4d7txt").val("");
+                $("#c3d1Blk, #c3d3Blk, #c3d2Blk, #c3d4Blk, #c3d5Blk, #c3d6Blk, #c3Blkd0i").find("input").each(function() {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", false).checkboxradio("refresh");
+                    }
+                });
+            }
+        }
+    }
+}
+
+function c3d0i() {
+    if (surArry.c4d0i !== "") {
+        aws = parseInt(surArry.c4d0i);
+
+        if (aws == 1 || aws == 2 || aws == 3) {
+            $("#c3d1Blk").show();
+            surArry.c4d7 = "";
+            surArry.c4d6 = "";
+            surArry.c4d5 = "";
+            surArry.c4d4 = "";
+            surArry.c4d3 = "";
+            surArry.c4d2 = "";
+            $("#c4d7txt").val("");
+            $("#c3d2Blk, #c3d3Blk, #c3d4Blk, #c3d5Blk, #c3d6Blk").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                    $(this).prop("checked", false).checkboxradio("refresh");
+                }
+            });
+        }
+        else if (aws == 3) {
+            $("#c3d2Blk").show();
+            surArry.c4d7 = "";
+            surArry.c4d6 = "";
+            surArry.c4d5 = "";
+            surArry.c4d4 = "";
+            surArry.c4d3 = "";
+            surArry.c4d1 = "";
+            $("#c4d7txt").val("");
+            $("#c3d1Blk, #c3d3Blk, #c3d4Blk, #c3d5Blk, #c3d6Blk").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                    $(this).prop("checked", false).checkboxradio("refresh");
+                }
+            });
+        }
+        else if (aws == 5 || aws == 6) {
+            $("#c3d3Blk").show();
+            surArry.c4d7 = "";
+            surArry.c4d6 = "";
+            surArry.c4d5 = "";
+            surArry.c4d4 = "";
+            surArry.c4d2 = "";
+            surArry.c4d1 = "";
+            $("#c4d7txt").val("");
+            $("#c3d1Blk, #c3d2Blk, #c3d4Blk, #c3d5Blk, #c3d6Blk").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                    $(this).prop("checked", false).checkboxradio("refresh");
+                }
+            });
+        }
+        else if (aws == 7) {
+            $("#c3d4Blk").show();
+            surArry.c4d7 = "";
+            surArry.c4d6 = "";
+            surArry.c4d5 = "";
+            surArry.c4d3 = "";
+            surArry.c4d2 = "";
+            surArry.c4d1 = "";
+            $("#c4d7txt").val("");
+            $("#c3d1Blk, #c3d3Blk, #c3d2Blk, #c3d5Blk, #c3d6Blk").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                    $(this).prop("checked", false).checkboxradio("refresh");
+                }
+            });
+        }
+        else if (aws == 8) {
+            $("#c3d5Blk").show();
+            surArry.c4d7 = "";
+            surArry.c4d6 = "";
+            surArry.c4d4 = "";
+            surArry.c4d3 = "";
+            surArry.c4d2 = "";
+            surArry.c4d1 = "";
+            $("#c4d7txt").val("");
+            $("#c3d1Blk, #c3d3Blk, #c3d2Blk, #c3d4Blk, #c3d6Blk").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                    $(this).prop("checked", false).checkboxradio("refresh");
+                }
+            });
+        }
+        else if (aws == 9 || aws == 10) {
+            $("#c3d6Blk").show();
+            surArry.c4d7 = "";
+            surArry.c4d5 = "";
+            surArry.c4d4 = "";
+            surArry.c4d3 = "";
+            surArry.c4d2 = "";
+            surArry.c4d1 = "";
+            $("#c4d7txt").val("");
+            $("#c3d1Blk, #c3d3Blk, #c3d2Blk, #c3d4Blk, #c3d5Blk").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                    $(this).prop("checked", false).checkboxradio("refresh");
+                }
+            });
+        }
+        else if (aws == 11) {
+            $("#c3d7Blk").show();
+            surArry.c4d6 = "";
+            surArry.c4d5 = "";
+            surArry.c4d4 = "";
+            surArry.c4d3 = "";
+            surArry.c4d2 = "";
+            surArry.c4d1 = "";
+            //$("#c4d7txt").val("");
+            $("#c3d1Blk, #c3d3Blk, #c3d2Blk, #c3d4Blk, #c3d5Blk, #c3d6Blk").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                    $(this).prop("checked", false).checkboxradio("refresh");
+                }
+            });
+        }
+    }
+}
+
+function c3d1() {
+
+}
+
+function c3d2() {
+
+}
+
+function c3d3() {
+
+}
+
+function c3d4() {
+
+}
+
+function c3d5() {
+
+}
+
+function c3d6() {
+
+}
+
+function c3d7() {
+
 }
 
 function c4() {
