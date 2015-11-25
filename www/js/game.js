@@ -974,7 +974,7 @@ function stIAT(maxTrial, trial) {
 }
 
 function iStart() {
-    $.mobile.changePage("#survey"); // Mark to take out after testing
+     // Mark to take out after testing
     if (iCnt < iatMax) {
         iCurWrd = iatArry[iCnt];
         $("#iWrd").css({'opacity': '0'});
@@ -1121,7 +1121,7 @@ function stSST() {
 }
 
 function sTrial() {
-    $.mobile.changePage("#survey2"); // Mark to change later after testing
+     // Mark to change later after testing
     if (sCnt < 56) {
         $("#sWrd").removeClass('blue_font');
         $("#sWrd").removeClass('red_font');
