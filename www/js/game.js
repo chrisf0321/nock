@@ -75,6 +75,7 @@ var c4bExists = false;
 var cExists = false;
 var c25Exists = false;
 var c4dExists = false;
+var c4dExists2 = false;
 var c4d0Exists = false;
 var c4d0iExists = false;
 var c4d1Exists = false;
@@ -84,6 +85,7 @@ var c4d4Exists = false;
 var c4d5Exists = false;
 var c4d6Exists = false;
 var c4d7Exists = false;
+var c6Exists = false;
 var c3ser;
 var iSwitch = false;
 var blockcode;
@@ -2919,9 +2921,23 @@ function c3d() {
     ans = false;
     num = parseInt(surArry.c4b);
     num2 = parseInt(surArry.c4c);
+    r1 = false;
+    r2 = false;
+    r3 = false;
+    r4 = false;
+    r5 = false;
+    r6 = false;
+    r7 = false;
+    r8 = false;
+    r9 = false;
+    r10 = false;
+    r11 = false;
+    rsp = 0;
     
     if ($("#c3dOp1").prop('checked')) {
         ans = true;
+        r1 = true;
+        rsp++;
         surArry.c4d_1 = $("#c3dOp1").val();
     }
     else {
@@ -2929,6 +2945,8 @@ function c3d() {
     }
     if ($("#c3dOp2").prop('checked')) {
         ans = true;
+        r2 = true;
+        rsp++;
         surArry.c4d_2 = $("#c3dOp2").val();
     }
     else {
@@ -2936,6 +2954,8 @@ function c3d() {
     }
     if ($("#c3dOp3").prop('checked')) {
         ans = true;
+        r3 = true;
+        rsp++;
         surArry.c4d_3 = $("#c3dOp3").val();
     }
     else {
@@ -2943,6 +2963,8 @@ function c3d() {
     }
     if ($("#c3dOp4").prop('checked')) {
         ans = true;
+        r4 = true;
+        rsp++;
         surArry.c4d_4 = $("#c3dOp4").val();
     }
     else {
@@ -2950,6 +2972,8 @@ function c3d() {
     }
     if ($("#c3dOp5").prop('checked')) {
         ans = true;
+        r5 = true;
+        rsp++;
         surArry.c4d_5 = $("#c3dOp5").val();
     }
     else {
@@ -2957,6 +2981,8 @@ function c3d() {
     }
     if ($("#c3dOp6").prop('checked')) {
         ans = true;
+        r6 = true;
+        rsp++;
         surArry.c4d_6 = $("#c3dOp6").val();
     }
     else {
@@ -2964,6 +2990,8 @@ function c3d() {
     }
     if ($("#c3dOp7").prop('checked')) {
         ans = true;
+        r7 = true;
+        rsp++;
         surArry.c4d_7 = $("#c3dOp7").val();
     }
     else {
@@ -2971,6 +2999,8 @@ function c3d() {
     }
     if ($("#c3dOp8").prop('checked')) {
         ans = true;
+        r8 = true;
+        rsp++;
         surArry.c4d_8 = $("#c3dOp8").val();
     }
     else {
@@ -2978,6 +3008,8 @@ function c3d() {
     }
     if ($("#c3dOp9").prop('checked')) {
         ans = true;
+        r9 = true;
+        rsp++;
         surArry.c4d_9 = $("#c3dOp9").val();
     }
     else {
@@ -2985,6 +3017,8 @@ function c3d() {
     }
     if ($("#c3dOp10").prop('checked')) {
         ans = true;
+        r10 = true;
+        rsp++;
         surArry.c4d_10 = $("#c3dOp10").val();
     }
     else {
@@ -2992,6 +3026,8 @@ function c3d() {
     }
     if ($("#c3dOp11").prop('checked')) {
         ans = true;
+        r11 = true;
+        rsp++;
         surArry.c4d_11 = $("#c3dOp11").val();
     }
     else {
@@ -3005,8 +3041,9 @@ function c3d() {
         //c25Exists = false;
         //c4Exists = true;
         //c4bExists = false;
-        if (num == 1 && num2 <= 2) {
+        if (num == 1 && num2 <= 2 && rsp == 1) {
             c4dExists = true;
+            c4dExists2 = false;
             c25Exists = false;
             c4Exists = false;
             c4bExists = false;
@@ -3212,14 +3249,109 @@ function c3d() {
                 });
             }
         }
+        else if (num == 1 && num2 <= 2 && rsp > 1) {
+            c4Exists = false;
+            c4dExists = false;
+            c4dExists2 = true;
+            $("#erc23").hide();
+            $("#c3Blkd0i").show();
+            if (!r1) {
+                $("#c3d0iOp1, #c3d0iOp1_1").hide();
+            }
+            else {
+                $("#c3d0iOp1, #c3d0iOp1_1").show();
+            }
+            if (!r2) {
+                $("#c3d0iOp2, #c3d0iOp2_2").hide();
+            }
+            else {
+                $("#c3d0iOp2, #c3d0iOp2_2").show();
+            }
+            if (!r3) {
+                $("#c3d0iOp3, #c3d0iOp3_3").hide();
+            }
+            else {
+                $("#c3d0iOp3, #c3d0iOp3_3").show();
+            }
+            if (!r4) {
+                $("#c3d0iOp4, #c3d0iOp4_4").hide();
+            }
+            else {
+                $("#c3d0iOp4, #c3d0iOp4_4").show();
+            }
+            if (!r5) {
+                $("#c3d0iOp5, #c3d0iOp5_5").hide();
+            }
+            else {
+                $("#c3d0iOp5, #c3d0iOp5_5").show();
+            }
+            if (!r6) {
+                $("#c3d0iOp6, #c3d0iOp6_6").hide();
+            }
+            else {
+                $("#c3d0iOp6, #c3d0iOp6_6").show();
+            }
+            if (!r7) {
+                $("#c3d0iOp7, #c3d0iOp7_7").hide();
+            }
+            else {
+                $("#c3d0iOp7, #c3d0iOp7_7").show();
+            }
+            if (!r8) {
+                $("#c3d0iOp8, #c3d0iOp8_8").hide();
+            }
+            else {
+                $("#c3d0iOp8, #c3d0iOp8_8").show();
+            }
+            if (!r9) {
+                $("#c3d0iOp9, #c3d0iOp9_9").hide();
+            }
+            else {
+                $("#c3d0iOp9, #c3d0iOp9_9").show();
+            }
+            if (!r10) {
+                $("#c3d0iOp10, #c3d0iOp10_10").hide();
+            }
+            else {
+                $("#c3d0iOp10, #c3d0iOp10_10").show();
+            }
+            if (!r11) {
+                $("#c3d0iOp11, #c3d0iOp11_11").hide();
+            }
+            else {
+                $("#c3d0iOp11, #c3d0iOp11_11").show();
+            }
+            surArry.c4d0_1 = "";
+            surArry.c4d0_2 = "";
+            surArry.c4d0_3 = "";
+            surArry.c4d0_4 = "";
+            surArry.c4d0_5 = "";
+            surArry.c4d0_6 = "";
+            surArry.c4d0_7 = "";
+            surArry.c4d0_8 = "";
+            surArry.c4d0_9 = "";
+            surArry.c4d0_10 = "";
+            surArry.c4d0_11 = "";
+            $("#c3Blkd0").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                    $(this).prop("checked", false).checkboxradio("refresh");
+                }
+            });
+        }
         else if (num > 1 && num2 <= 2) {
             c4Exists = false;
+            c4dExists = false;
+            c4dExists2 = false;
+            c25Exists = false;
+            c4bExists = false;
             $("#erc22").hide();
             $("#c3Blkd0").show();
         }
         else {
             c25Exists = false;
             c4Exists = true;
+            c4dExists2 = false;
+            c4dExists = false;
             c4bExists = false;
             c4d1Exists = false;
             c4d2Exists = false;
@@ -3708,7 +3840,12 @@ function c3d0i() {
                 }
             });
         }
-        addArry(c3d0);
+        if (c4dExists2) {
+            addArry(c3d);
+        }
+        else {
+            addArry(c3d0);
+        }
     }
     else {
         $("#erc23").show();
@@ -3952,6 +4089,7 @@ function c4() {
             addArry(c3);
         }
         if (surArry.c5 === "1") {
+            c6Exists = false;
             $("#c4Blka").show();
             $("#keypad").show();
             $("#numPad").show();
@@ -3961,6 +4099,7 @@ function c4() {
             surArry.c5a = "";
             surArry.c5b = "";
             surArry.c5c = "";
+            c6Exists = true;
             //genSurData();
             $("#erc31").hide();
             $("#c6Blk").show();
@@ -4037,7 +4176,12 @@ function c6() {
             $("#erc33").hide();
             $("#c6vBlk").show();
         }
-        addArry(c4c);
+        if (c6Exists) {
+            addArry(c4);
+        }
+        else {
+            addArry(c4c);
+        }
     }
     else {
         $("#erc31").show();
